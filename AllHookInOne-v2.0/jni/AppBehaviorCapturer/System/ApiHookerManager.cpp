@@ -59,9 +59,11 @@ bool ApiHookerManager::init(){
 	string s1 = "ads";
 	LOGD("this is ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ %s",s1.data());
 	LOGD("this is ------------------------------------------------------- %s",s1.c_str());
-
-	StartThreadApiHooker* start = new StartThreadApiHooker(new ApiDeclaration("java/lang/Thread","start","()V",false,NULL,NULL,NULL),new CollectedApiInfo());
-	LOGD("startThreadApiHooker apiName is %s",start->getApiDeclaration().getApiName().c_str());
+	//初始化系统中所有的ApiHooker，并将其装载至mApiHookerHashMap中
+	initHashMap();
+	bindJavaMethodToNative();
+/*	StartThreadApiHooker* start = new StartThreadApiHooker(new ApiDeclaration("java/lang/Thread","start","()V",false,NULL,NULL,NULL),new CollectedApiInfo());
+	LOGD("startThreadApiHooker apiName is %s",start->getApiDeclaration().getApiName().c_str());*/
 
 
 //		HookInfo myinfo = {"java/lang/Thread", "start","()V", false, NULL, NULL, NULL};
@@ -102,8 +104,44 @@ bool ApiHookerManager::initHashMap(){
 bool ApiHookerManager::bindJavaMethodToNative(){
 	//绑定Java方法到本地的代码
 	JNIEnv *env = GetEnv();
-	HookInfo *info;
-//	mApiHookerHashMap.begin();
+	HookInfo info;
+	JavaMethodHook* mJavaMethodHook = new JavaMethodHook();
+	ApiHooker tempApiHooker;
+	ApiDeclaration tempApiDeclaration;
+
+	//取出哈西表的第一个元素
+	unordered_map<string,ApiHooker>::iterator map_it = mApiHookerHashMap.begin();
+	//哈西表每个ApiHooker的绑定过程
+	while(map_it != mApiHookerHashMap.end()){
+		LOGD("step 1");
+		//获取哈西表中的键值
+		LOGD("===============%s",map_it->first.data());//这个地方的输出是正确的，输出start
+		tempApiHooker = (ApiHooker)map_it->second;
+		LOGD("step 2");
+		if(&tempApiHooker== NULL){
+			LOGE("AiHookerManager bindJavaMethodToNative failed");
+			break;
+		}else{
+			LOGD("get ApiHooker in mApiHookerHashMap succeed");
+			tempApiDeclaration = tempApiHooker.getApiDeclaration();
+			info.classDesc = tempApiDeclaration.getClassName().c_str();
+			LOGD("info classDesc is %s",info.classDesc);
+			info.methodName = tempApiDeclaration.getApiName().c_str();
+			LOGD("info methodName=%s",info.methodName);
+			info.methodSig = tempApiDeclaration.getApiSignature().c_str();
+			LOGD("info methodSig=%s",info.methodSig);
+			info.isStaticMethod = tempApiDeclaration.isStaticMethod();
+			LOGD("info isStaticMethod=%c",info.isStaticMethod);
+			info.originalMethod = tempApiDeclaration.getOriginalMethod();
+			info.paramTypes = tempApiDeclaration.getParamTapes();
+			info.returnType = tempApiDeclaration.getReturnType();
+			LOGD("step 3");
+			mJavaMethodHook->hookJavaMethod(env,&info);
+			++map_it;
+			LOGD("step 4");
+		}
+
+	}
 /*	// 查找元素
 	auto iElementFound = mApiHookerHashMap.find("start");
 	if (iElementFound != mApiHookerHashMap.end())
@@ -116,22 +154,6 @@ bool ApiHookerManager::bindJavaMethodToNative(){
 	}
 	else
 		LOGD( "Key has no corresponding value in unordered map!");*/
-	JavaMethodHook* mJavaMethodHook = new JavaMethodHook();
-/*	for(遍历整个HashMap){4
-		ApiDeclaration* apiDeclaration = start->getApiDeclaration();
-		info->classDesc = apiDeclaration->getClassName();
-		info->methodName = apiDeclaration->getApiName();
-		info->methodSig = apiDeclaration->getApiSignature();
-		info->isStaticMethod = apiDeclaration->isStaticMethod();
-		info->originalMethod = apiDeclaration->getOriginalMethod();
-		info->paramTypes = apiDeclaration->getParamTapes();
-		info->returnType = apiDeclaration->getReturnType();
-		LOGD("info->classDesc=%s",info->classDesc);
-		LOGD("info->methodName=%s",info->methodName);
-		LOGD("info->methodSig=%s",info->methodSig);
-		LOGD("info->isStaticMethod=%c",info->isStaticMethod);
-		mJavaMethodHook->hookJavaMethod(env,info);
-	}*/
 
 	LOGD("*-*-*-*-*-*-*- End -*-*-*-*-*-*-*-*-*-*");
 	return true;

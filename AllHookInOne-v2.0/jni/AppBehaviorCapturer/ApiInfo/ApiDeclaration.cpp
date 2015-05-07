@@ -32,11 +32,11 @@ string ApiDeclaration::getClassName(){
 }
 string ApiDeclaration::getApiName(){
 	cout << "getAPiName method called" << endl;
-	return this->mClassName;
+	return this->mMethodName;
 }
 string ApiDeclaration::getApiSignature(){
 	cout << "getApiSignature method called" << endl;
-	return this->mClassName;
+	return this->mMethodSignature;
 }
 bool ApiDeclaration::isStaticMethod(){
 	return this->mIsStaticMethod;
@@ -48,5 +48,5 @@ void* ApiDeclaration::getReturnType(){
 	return this->mReturnType;
 }
 void* ApiDeclaration::getParamTapes(){
-	return this->mReturnType;
+	return this->mParamTypes;
 }

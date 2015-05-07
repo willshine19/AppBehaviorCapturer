@@ -8,7 +8,7 @@
 #include "AppBehaviorCapturer/System/ApiHookerManager.h"
 
 
-extern "C" void InjectInterface(char*arg){
+extern "C" void injectInterface(char*arg){
 	LOGD("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 	LOGD("*-*-*-*-*-* Injected so *-*-*-*-*-*-*-*");
 	LOGD("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
@@ -16,12 +16,6 @@ extern "C" void InjectInterface(char*arg){
 	ApiHookerManager* apiHookerManager = ApiHookerManager::getInstance();
 	//完成系统的初始化
 	apiHookerManager->init();
-}
-static inline void get_cstr_from_jstring(JNIEnv* env, jstring jstr, char **out) {
-	jboolean iscopy = JNI_TRUE;
-	const char *cstr = env->GetStringUTFChars(jstr, &iscopy);
-	*out = strdup(cstr);
-	env->ReleaseStringUTFChars(jstr, cstr);
 }
 
 typedef int (*strlen_fun)(const char *);
