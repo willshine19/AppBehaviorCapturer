@@ -1,4 +1,8 @@
 <center> AllHookInOne
+
+sang
+
+
 ------------------------
 - A project contains all hook methods for android;
 - Such as dalvik hook, art hook, elf hook and inline hook;
