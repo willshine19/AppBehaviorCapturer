@@ -1,5 +1,5 @@
+
 完善部分：
 1.针对2015年4月30日的讨论对命名等内容做了调整；
 2.编写了APiHookerManager的init代码，目前可以跑通
 
-仍未解决的问题：将DalvikMethodHook重构
