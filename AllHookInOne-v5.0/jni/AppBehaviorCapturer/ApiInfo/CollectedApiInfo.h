@@ -19,13 +19,13 @@
 using namespace std;
 
 class CollectedApiInfo {
-	string mClassName;
-	string mMethodName;
-	string mTime;
-	unsigned long int mThreadId;
+	string mClassName;//
+	string mMethodName;//
+	string mTime;//
+	unsigned long int mThreadId;//
 	char args[10];
 	int flag;
-	pthread_mutex_t lock;
+//	pthread_mutex_t lock;
 public:
 	CollectedApiInfo();
 	virtual ~CollectedApiInfo();
@@ -34,13 +34,13 @@ public:
 	string getTime();
 	int getThreadId();
 	int getFlag();
-	pthread_mutex_t getLock();
+//	pthread_mutex_t getLock();
 	//改成私有成员函数
 	bool setClassName(string ClasName);
 	bool setMethodName(string MethodName);
 	bool setThreadId(u4 ThreadId);
 	bool setFlag(int flag);
-	bool setLock(pthread_mutex_t lock);
+//	bool setLock(pthread_mutex_t lock);
 	string convertToJson();
 
 private:
