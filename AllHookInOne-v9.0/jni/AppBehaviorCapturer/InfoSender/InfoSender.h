@@ -9,6 +9,19 @@
 #define INFOSENDER_H_
 #include "../InfoSender/CycledBlockingQueue.h"
 #include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <string.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <sys/wait.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include "android_runtime/AndroidRuntime.h"
+
+using android::AndroidRuntime;
 class InfoSender {
 	private:
 	//	BlockingQueue<CollectedApiInfo> mCycledBlockingQueue;
@@ -16,6 +29,7 @@ class InfoSender {
 
 	static InfoSender* infoSenderInstance;
 	pthread_t ntid;
+	static int sockfd;
 	//使用单例模式，构造方法私有，声明一个private static变量，由getInstance方法访问
 	InfoSender(BlockingQueue* blockingQueue);
 	virtual ~InfoSender();
@@ -30,7 +44,7 @@ class InfoSender {
 		bool init();
 //		void* readFromQueue();
 		int socketConnection();
-		bool send();
+//		bool send();跟系统中的send方法重名，不可用
 		CycledBlockingQueue* getCycledBlockingQueue();
 };
 

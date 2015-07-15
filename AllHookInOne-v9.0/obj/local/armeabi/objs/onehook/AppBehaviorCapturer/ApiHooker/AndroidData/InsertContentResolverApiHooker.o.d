@@ -70,11 +70,46 @@ obj/local/armeabi/objs/onehook/AppBehaviorCapturer/ApiHooker/AndroidData/InsertC
  /home/long/java/android-ndk-r9b/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../InfoSender/../InfoSender/../ApiInfo/../Utils/json/json/writer.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../InfoSender/../InfoSender/Bucket.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/errno.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/errno.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm/errno.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm-generic/errno.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm-generic/errno-base.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/netinet/in.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/endian.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/sys/endian.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/machine/endian.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/socket.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm/socket.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm/sockios.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/sockios.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/uio.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/in.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm/byteorder.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/byteorder/little_endian.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/byteorder/swab.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/byteorder/generic.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/in6.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/ipv6.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/netinet/in6.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/sys/socket.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/sys/wait.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/sys/resource.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/resource.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm/resource.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm-generic/resource.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/wait.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/arpa/inet.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/unistd.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/sys/select.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/sys/sysconf.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/capability.h \
+ /home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/pathconf.h \
+ jni/include/android_runtime/AndroidRuntime.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../ApiInfo/ApiDeclaration.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../ApiInfo/CollectedApiInfo.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/DalvikMethodHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/ApiHookerManager.h \
- jni/include/android_runtime/AndroidRuntime.h \
  /home/long/java/android-ndk-r9b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../InfoSender/InfoSender.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateActivityApiHooker.h \
@@ -332,6 +367,78 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../InfoSender/../InfoSender/../
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../InfoSender/../InfoSender/Bucket.h:
 
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/errno.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/errno.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm/errno.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm-generic/errno.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm-generic/errno-base.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/netinet/in.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/endian.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/sys/endian.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/machine/endian.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/socket.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm/socket.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm/sockios.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/sockios.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/uio.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/in.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm/byteorder.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/byteorder/little_endian.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/byteorder/swab.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/byteorder/generic.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/in6.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/ipv6.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/netinet/in6.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/sys/socket.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/sys/wait.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/sys/resource.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/resource.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm/resource.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/asm-generic/resource.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/wait.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/arpa/inet.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/unistd.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/sys/select.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/sys/sysconf.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/linux/capability.h:
+
+/home/long/java/android-ndk-r9b/platforms/android-16/arch-arm/usr/include/pathconf.h:
+
+jni/include/android_runtime/AndroidRuntime.h:
+
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../ApiInfo/ApiDeclaration.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../ApiInfo/CollectedApiInfo.h:
@@ -339,8 +446,6 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../ApiInfo/CollectedApiInfo.h:
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/DalvikMethodHooker.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/ApiHookerManager.h:
-
-jni/include/android_runtime/AndroidRuntime.h:
 
 /home/long/java/android-ndk-r9b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map:
 

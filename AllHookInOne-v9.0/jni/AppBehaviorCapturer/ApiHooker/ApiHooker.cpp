@@ -33,6 +33,7 @@ bool ApiHooker::collectBaseInfo(){
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setTime();
 //	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setThreadId(self->threadId);
 	long pid = pthread_self();
+	LOGD("pid is ++++++++++++++++++++++++++++++++++++++ %ud",pid);
 //	long pid = InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].getThreadId();
 	if(pid==0){
 		LOGE("----------------------------------getThreadID falied");

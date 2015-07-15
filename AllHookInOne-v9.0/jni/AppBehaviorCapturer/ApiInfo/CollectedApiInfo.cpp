@@ -53,9 +53,12 @@ string CollectedApiInfo::convertToJson()
 	root["number"] = 0;
 	root["name"] = this->mClassName + "." +this->mMethodName;
 	root["time"] = this->mTime;
-	root["threadID"] = 0;//桑耀辉需要修改
+	root["threadID"] = (unsigned int)this->mThreadId;
 
+//	json2string = root.toStyledString();
 	string out = root.toStyledString();
+//	const char* out = root.asCString();
+//	temp = root.asString();
 	LOGD("CollectedApiInfo类正在转换json，输出为%s", out.data());
 	return out;
 }

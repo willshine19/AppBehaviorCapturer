@@ -23,6 +23,7 @@ class CollectedApiInfo {
 	string mClassName;
 	string mMethodName;
 	string mTime;
+	string json2string;
 	long mThreadId;
 //	char args[10];
 //	int flag;
