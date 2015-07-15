@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:gravity="center"
+android:orientation="vertical"
+>
+
+    <ImageView
+android:layout_width="158dp"
+android:layout_height="158dp" 
+                  android:background="@drawable/splash"
+                android:layout_gravity="center"
+                />
+  
+    <TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="注入控制程序"
+android:layout_marginTop="100dip"
+
+android:shadowColor="#FFFFFF"
+android:textColor="#444444"
+android:textSize="15dip"
+android:gravity="bottom">
+</TextView>
+
+     <TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="BUPT-ISWIT，Team Terminal"
+android:layout_marginTop="20dip"
+
+android:shadowColor="#FFFFFF"
+android:textColor="#444444"
+android:textSize="15dip"
+android:gravity="bottom">
+</TextView>
+    
+    
+<TextView
+android:id="@+id/versionNumber"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="@+id/TextView01"
+android:layout_marginTop="20dip"
+android:typeface="sans"
+android:shadowDx="0"
+android:shadowDy="2"
+android:shadowRadius="1"
+android:shadowColor="#FFFFFF"
+android:textColor="#444444"
+android:textSize="15dip"
+android:gravity="bottom">
+</TextView>
+
+ <LinearLayout
+android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="35dip"
+>
+<ProgressBar
+android:id="@+id/ProgressBar01"
+style="?android:attr/progressBarStyleSmall"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+/>
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_toRightOf="@id/ProgressBar01"
+android:text="  正在加载主界面，请稍候"
+android:shadowColor="#FFFFFF"
+android:textColor="#444444"
+android:textSize="15dip"
+/>
+</LinearLayout>
+</LinearLayout>
