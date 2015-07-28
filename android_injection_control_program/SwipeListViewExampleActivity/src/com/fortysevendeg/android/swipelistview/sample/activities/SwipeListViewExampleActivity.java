@@ -31,6 +31,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,6 +48,10 @@ import com.fortysevendeg.android.swipelistview.sample.utils.PreferencesManager;
 import com.fortysevendeg.android.swipelistview.sample.utils.SettingsManager;
 import com.lwl.service.JsonService;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -81,7 +86,6 @@ public class SwipeListViewExampleActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.swipe_list_view_activity);// 设置Activity采用R.layout下的**布局文件进行布局
         // Thedata= (List<PackageItem>)
         // getIntent().getSerializableExtra("data");
@@ -90,13 +94,14 @@ public class SwipeListViewExampleActivity extends FragmentActivity {
         adapter = new PackageAdapter(this, data);
         swipeListView = (SwipeListView) findViewById(R.id.example_lv_list);
         swipeListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+
         //开启sJsonervice
         System.out.println("开启service");
         Intent intent = new Intent();
         intent.setAction("com.lwl.service.JSON_SERVICE");
         bindService(intent,connection,Service.BIND_AUTO_CREATE);
         System.out.println("成功开启service");
-        
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {// 判断版本>=11
             // Set a {@link MultiChoiceModeListener} that will manage the
             // lifecycle of the selection {@link ActionMode}
