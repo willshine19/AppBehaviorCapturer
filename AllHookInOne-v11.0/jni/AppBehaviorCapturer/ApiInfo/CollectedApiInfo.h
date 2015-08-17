@@ -13,6 +13,7 @@
 #include <sys/time.h>
 #include <sstream>
 #include <pthread.h>
+#include <unistd.h>
 #include "object.h"
 #include "common.h"
 #include "../Utils/json/json/json.h"
@@ -25,6 +26,7 @@ class CollectedApiInfo {
 	string mTime;
 	string json2string;
 	long mThreadId;
+	int mProcessID;
 //	char args[10];
 //	int flag;
 //	pthread_mutex_t lock;

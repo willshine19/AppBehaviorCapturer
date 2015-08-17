@@ -9,6 +9,7 @@
 
 CollectedApiInfo::CollectedApiInfo() {
 	// TODO Auto-generated constructor stub
+	mProcessID = getpid();
 }
 
 CollectedApiInfo::~CollectedApiInfo() {
@@ -54,6 +55,7 @@ string CollectedApiInfo::convertToJson()
 	root["name"] = this->mClassName + "." +this->mMethodName;
 	root["time"] = this->mTime;
 	root["threadID"] = (unsigned int)this->mThreadId;
+	root["processID"] = this->mProcessID;
 
 //	json2string = root.toStyledString();
 	string out = root.toStyledString();
