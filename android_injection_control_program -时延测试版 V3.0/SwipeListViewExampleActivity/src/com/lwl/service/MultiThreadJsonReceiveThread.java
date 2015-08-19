@@ -14,6 +14,8 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.support.v4.util.TimeUtils;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import com.lwl.utils.AppTimeTestUtils;
 import com.lwl.utils.AppToHookerTimeTestUtils;
@@ -67,7 +69,8 @@ class Handler implements Runnable {
     
     private Socket socket;
     private Context context;
-    
+    private final int JSON_STRING_LINE_SIZE = 7;
+
     HookerTimeTestUtils hookerTimeUtils = HookerTimeTestUtils.getInstance();
     AppTimeTestUtils appTimeUtils = AppTimeTestUtils.getInstance();
     AppToHookerTimeTestUtils appToHooker = AppToHookerTimeTestUtils.getInstance();
@@ -111,16 +114,17 @@ class Handler implements Runnable {
             
             // syh add
             JsonSender sender = new JsonSender();
-//            sender.login();
             sender.login();
-            sender.subscribe();
-            // 发送制定内容的第一条JSON数据
+            sender.subscribe(); //订阅
+            // 发送指定内容作为第一条JSON数据
             JSONObject firstData = new JSONObject();
             firstData.put("name", "start");// 待检测数据---对应r=0
             firstData.put("number", "0");
             firstData.put("threadID", "0");
+            firstData.put("processID", "0");
+            firstData.put("IMEI", "0");
             firstData.put("time", "0000-00-00 00:00:00:000:000");
-            sender.publish(firstData);
+//            sender.publish(firstData);
             // syh add end
             
             int receive_msg_line_number = 0;
@@ -135,7 +139,7 @@ class Handler implements Runnable {
                 receive_msg_line_number++;
 //                pw.println(echo(msg));
                 //当接收到指定数量的json包后，不再接收数据
-                if (count % 6 == 0 && json_receive_number < TimeTestUtils.CESHI_NUMBER) {
+                if (count % JSON_STRING_LINE_SIZE == 0 && json_receive_number < TimeTestUtils.CESHI_NUMBER) {
                     // add for time test
                     hookerTimeUtils.setT3ReceiveTime();
 //                    System.out.println("[time test] start time is " +
@@ -145,7 +149,10 @@ class Handler implements Runnable {
                     // syh add
                     // 发送 JSON对象
                     JSONObject json = new JSONObject(jsonString);
-                    sender.publish(json);
+                    TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+                    json.put("IMEI", tm.getDeviceId());
+//                    sender.publish(json);
+                    Log.d("bunengfasong", "看这儿～ " + json);
                     // syh add end
                     
 //                    JSONObject json = new JSONObject(jsonString);

@@ -22,7 +22,6 @@ public class JsonSender {
 	
 	private String mScore = null;
 	private MimoNodeAPI mMimoNode = null;
-	private JSONArray mTestdataArr = null;
 	private boolean mSendFlag = false; //成功发送标志位
 	private ServerToHookerTimeTestUtils mServerToHooker; //保存从服务器收到的时间差的对象
 	private int mCount = 0;
@@ -32,52 +31,9 @@ public class JsonSender {
 		mServerToHooker = ServerToHookerTimeTestUtils.getInstance();
 	}
 	
-	public JsonSender(JSONArray dataArr) {
-		mMimoNode = new MimoNodeAPI();
-		mTestdataArr = dataArr;
-	}
-	
-	// 初始化一组数据在mTestdataArr，供测试使用
-	public void initDataArr() {
-		// 发送数据的初始化
-		Log.v(TAG1, "开始初始化数据");
-		mMimoNode = new MimoNodeAPI();
-		mTestdataArr = new JSONArray();
-		JSONObject testdata1 = new JSONObject();
-		JSONObject testdata2 = new JSONObject();
-		JSONObject testdata3 = new JSONObject();
-		JSONObject testdata4 = new JSONObject();
-		try {
-			testdata1.put("name", "start");// 待检测数据---对应r=0
-			testdata1.put("number", "0");
-			testdata1.put("threadID", "0");
-			testdata1.put("time", "2015-6-15 16:7:33:845:860");
-
-			testdata2.put("name", "getDevicedID");
-			testdata2.put("number", "1");
-			testdata2.put("threadID", "1");
-			testdata2.put("time", "2015-03-18 09:50:01:111");
-
-			testdata3.put("name", "sendMultipartText");
-			testdata3.put("number", "2");
-			testdata3.put("threadID", "2");
-			testdata3.put("time", "2015-03-18 09:50:02:222");
-
-			testdata4.put("name", "valueBegin");
-			testdata4.put("number", "13");
-			testdata4.put("threadID", "1");
-			testdata4.put("time", "2015-03-18 09:50:12:999");
-
-			mTestdataArr.put(testdata1);
-			mTestdataArr.put(testdata2);
-			mTestdataArr.put(testdata3);
-			mTestdataArr.put(testdata4);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	// 登录login
+	/**
+	 * 登陆
+	 */
 	public void login() {
 		Log.i(TAG1, "****开始login****");
 			mMimoNode.login(USER_ID, USER_CODE, new Callback() {
@@ -151,63 +107,11 @@ public class JsonSender {
 		Log.i(TAG1, "****结束login****");
 	}
 	
-	// pub 遍历mTestdataArr
-	public void publish() {
-		Log.i(TAG1, "****开始publish****");
-		for (int i = 0; i < mTestdataArr.length(); i++) {// 发送多次数据
-			mSendFlag = false;
-			JSONObject tmpJSONIObj = null;
-			String nameofAPI = null;
-			String numberofAPI = null;
-			String threadIDofAPI = null;
-			String timeofAPI = null;
-			try {
-				tmpJSONIObj = (JSONObject) mTestdataArr.get(i);
-				nameofAPI = tmpJSONIObj.getString("NameofAPI");
-				numberofAPI = tmpJSONIObj.getString("NumberofAPI");
-				threadIDofAPI = tmpJSONIObj.getString("threadIDofAPI");
-				timeofAPI = tmpJSONIObj.getString("timeofAPI");
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			
-			// 上传json
-			Log.i(TAG1, "正在发送第" + (i +1) + "组json数据");
-			mMimoNode.publishOnTheme(USER_ID,
-					PUB_SPACE_ID, PUB_THEME_ID, "4", "string",
-					"Sent!zdszdzsdzsdzsdzs", 
-					"Name", nameofAPI,
-					"Number", numberofAPI, 
-					"threadID", threadIDofAPI,
-					"time", timeofAPI, 
-					"score", "score",
-					new Callback() {
-						@Override
-						public void successCallback(Object message) {
-							Log.v(TAG2, "publish成功: "+ message);
-							mSendFlag = true;
-						};
-						@Override
-						public void errorCallback(Object message) {
-							Log.e(TAG2, "publish失败: "+ message);
-						};
-					});
-			// 等待发送成功
-			Log.v(TAG1, "进入while循环");
-			while (!mSendFlag) {} 
-			Log.v(TAG1, "离开while循环");
-			Log.i(TAG1, "成功了发送第" + (i +1) + "组json数据");
-		} // end for
-
-		try {
-			Thread.sleep(1000);// 等待服务器计算
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		Log.i(TAG1, "****结束publish****");
-	}
 	
-	// pub一个JSON对象
+	/**
+	 * pub一个JSON对象
+	 * @param jo 即将被发送的JSON对象
+	 */
 	public void publish(JSONObject jo) {
 		Log.i(TAG1, "****开始publish****");
 		mSendFlag = false;
@@ -215,12 +119,16 @@ public class JsonSender {
 		String numberofAPI = null;
 		String threadIDofAPI = null;
 		String timeofAPI = null;
+		String processID = null;
+		String IMEI = null;
 
 		try {
 			nameofAPI = jo.getString("name");
 			numberofAPI = jo.getString("number");
 			threadIDofAPI = jo.getString("threadID");
 			timeofAPI = jo.getString("time");
+			processID = jo.getString("processID");
+			IMEI = jo.getString("IMEI");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -234,6 +142,8 @@ public class JsonSender {
 				"threadID", threadIDofAPI,
 				"time", timeofAPI, 
 				"score", "score",
+				"processID", processID,
+				"IMEI", IMEI,
 				new Callback() {
 					@Override
 					public void successCallback(Object message) {
@@ -280,8 +190,10 @@ public class JsonSender {
 		});
 		Log.i(TAG1, "****结束subscribe****");
 	}
-	
-	// 断开链接
+
+	/**
+	 * 断开链接
+	 */
 	public void logout() {
 		mScore = null;
 		mMimoNode.logout();

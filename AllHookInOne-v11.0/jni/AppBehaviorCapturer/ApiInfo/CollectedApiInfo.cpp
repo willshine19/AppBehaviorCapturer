@@ -10,6 +10,7 @@
 CollectedApiInfo::CollectedApiInfo() {
 	// TODO Auto-generated constructor stub
 	mProcessID = getpid();
+
 }
 
 CollectedApiInfo::~CollectedApiInfo() {
