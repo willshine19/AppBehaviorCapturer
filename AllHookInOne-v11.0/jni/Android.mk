@@ -28,6 +28,6 @@ LOCAL_SRC_FILES := $(MY_CPP_LIST:$(LOCAL_PATH)/%=%)
 
 
 LOCAL_SHARED_LIBRARIES += \
-	libcutils
+	libcutils  
 	
 include $(BUILD_SHARED_LIBRARY)

@@ -110,6 +110,7 @@ public class MimoNodeAPI {
 	 */
 	public void login(String userId, String password, final Callback callback) {
 		this.connect(callback);
+		System.out.println("login in mimonodeapi did");
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {

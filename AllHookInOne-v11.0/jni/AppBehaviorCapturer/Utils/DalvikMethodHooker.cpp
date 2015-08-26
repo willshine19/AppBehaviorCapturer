@@ -125,6 +125,11 @@ int dvmComputeJniArgInfo(const char* shorty) {
 	return jniArgInfo;
 }
 
+/**
+ * 通过类名 返回 这个java类
+ * @param classDesc 类名
+ * @return java类在jni层的对应的变量表示
+ */
 jclass dvmFindJNIClass(JNIEnv *env, const char *classDesc) {
 	jclass classObj = env->FindClass(classDesc);
 
@@ -369,6 +374,13 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 	LOGD("method_handler----------------end------------------");
 }
 
+/**
+ * 在dvm中 开始hook 指定的java method
+ * 该cpp文件的入口
+ * @param env 指向JNI环境
+ * @param temp 指向ApiHooker实例
+ * @param info 指向HookInfo结构体，内含被hook的java method的信息
+ */
 int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 
 	const char* classDesc = info->classDesc; //类描述
@@ -393,7 +405,6 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 			isStaticMethod ?
 					env->GetStaticMethodID(classObj, methodName, methodSig) :
 					env->GetMethodID(classObj, methodName, methodSig);
-
 	if (methodId == NULL) {
 		LOGE("[-] %s->%s method not found", classDesc, methodName);
 		return -1;
@@ -412,7 +423,7 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 	memcpy(bakMethod, method, sizeof(Method));
 	LOGD("dalvik_java_method_hook-------------------save method success");
 
-	// init info
+	// 填充 info
 	info->originalMethod = (void *) bakMethod;
 	LOGD("info->originalMethod=%s", info->originalMethod);
 	info->returnType = (void *) dvmGetBoxedReturnType(bakMethod);
@@ -421,6 +432,7 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 	info->paramTypes = dvmGetMethodParamTypes(bakMethod, info->methodSig);
 	LOGD("---------------------------------");
 	LOGD("info->paramTypes=%s", info->paramTypes);
+
 	// ***hook method***
 	LOGD("dalvik_java_method_hook----------hook method start");
 	//这一步应该是获取参数的个数

@@ -13,16 +13,16 @@ public class JsonSender {
 	
 	private final String USER_ID = "55a3682dfd4d877911da1658";
 	private final String USER_CODE = "1234567890";
-	private final String PUB_SPACE_ID = "55b730f881b580f30a101eca";
-	private final String PUB_THEME_ID = "55b7312881b580f30a101ecb";
-	private final String SUB_SPACE_ID = "55b7317481b580f30a101ecc";
-	private final String SUB_THEME_ID = "55b7319f81b580f30a101ecd";
+	private final String PUB_SPACE_ID = "55d3e0c7fbab7cd126c37163";
+	private final String PUB_THEME_ID = "55d3e11afbab7cd126c37164";
+	private final String SUB_SPACE_ID = "55d3e156fbab7cd126c37165";
+	private final String SUB_THEME_ID = "55d3e1d5fbab7cd126c37166";
 	private final String TAG1 = "JsonSender";
 	private final String TAG2 = "Callback";
 	
 	private String mScore = null;
 	private MimoNodeAPI mMimoNode = null;
-	private boolean mSendFlag = false; //成功发送标志位
+	private boolean mSuccessFlag = false; //成功发送标志位
 	private ServerToHookerTimeTestUtils mServerToHooker; //保存从服务器收到的时间差的对象
 	private int mCount = 0;
 	
@@ -39,7 +39,8 @@ public class JsonSender {
 			mMimoNode.login(USER_ID, USER_CODE, new Callback() {
 				@Override
 				public void successCallback(Object message) {
-					Log.v(TAG2, "authSucceed: " + message);
+					Log.v(TAG2, "成功login服务器: " + message);
+					mSuccessFlag = true;
 				}
 
 				@Override
@@ -88,9 +89,6 @@ public class JsonSender {
                             Log.i(TAG2, "value时间差str：" + mServerToHooker.mValueCostStr[mCount - 1]);
                             Log.i(TAG2, "list时间差：" + mServerToHooker.mListCost[mCount - 1]);
                             Log.i(TAG2, "list时间差str：" + mServerToHooker.mListCostStr[mCount - 1]);
-							
-
-
 						}
 						mScore = scoreData.getString("value");
 						Log.v(TAG2, "分数为：" + mScore);
@@ -99,11 +97,8 @@ public class JsonSender {
 					}
 				}
 			});
-			try { // 连续发送会出现错误
-				Thread.sleep(200);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			while (!mSuccessFlag) {}
+			mSuccessFlag = false;
 		Log.i(TAG1, "****结束login****");
 	}
 	
@@ -114,7 +109,6 @@ public class JsonSender {
 	 */
 	public void publish(JSONObject jo) {
 		Log.i(TAG1, "****开始publish****");
-		mSendFlag = false;
 		String nameofAPI = null;
 		String numberofAPI = null;
 		String threadIDofAPI = null;
@@ -148,7 +142,7 @@ public class JsonSender {
 					@Override
 					public void successCallback(Object message) {
 						Log.i(TAG2, "publish成功: " + message);
-						mSendFlag = true;
+						mSuccessFlag = true;
 					};
 
 					@Override
@@ -158,9 +152,9 @@ public class JsonSender {
 				});
 		// 等待发送成功
 		Log.v(TAG1, "进入while循环");
-		while (!mSendFlag) {
-		}
+		while (!mSuccessFlag) {}
 		Log.v(TAG1, "离开while循环");
+		mSuccessFlag = false;
 		Log.i(TAG1, "完成pubJSON数据");
 
 		try {

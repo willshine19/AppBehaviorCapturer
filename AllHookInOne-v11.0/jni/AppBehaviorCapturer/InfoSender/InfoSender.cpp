@@ -7,6 +7,12 @@
 #include "InfoSender.h"
 using namespace std;
 
+/**
+ * 构造函数
+ * 参数：BlockingQueue实例的指针
+ * 18行为什么注释掉了？
+ * mCycledBlockingQueue已经改为类变量，在init()方法中初始化
+ */
 InfoSender::InfoSender(BlockingQueue* blockingQueue) {
 	// TODO Auto-generated constructor stub
 	cout << "construct InfoSender success " << endl;
@@ -14,6 +20,9 @@ InfoSender::InfoSender(BlockingQueue* blockingQueue) {
 	pthread_mutex_init(&InfoSender::lock, NULL);
 }
 
+/**
+ * 析构函数
+ */
 InfoSender::~InfoSender() {
 	// TODO Auto-generated destructor stub
 }
@@ -25,7 +34,11 @@ CycledBlockingQueue* InfoSender::mCycledBlockingQueue = NULL;
 pthread_mutex_t InfoSender::lock = PTHREAD_MUTEX_INITIALIZER;
 ;
 //CycledBlockingQueue* mCycledBlockingQueue
-//单例模式中访问实例的接口
+
+/**
+ * 单例模式
+ * 返回：唯一的InfoSender实例
+ */
 InfoSender* InfoSender::getInstance() {
 	pthread_mutex_lock(&InfoSender::lock);
 	if (infoSenderInstance == NULL) {
@@ -35,19 +48,27 @@ InfoSender* InfoSender::getInstance() {
 	pthread_mutex_unlock(&InfoSender::lock);
 	return infoSenderInstance;
 }
+
+/**
+ * 从队列中读取CollectedApiInfo实例，发送json字符串到socket
+ * 在新的线程中执行该函数
+ */
 void* InfoSender::readFromQueue(void* arg) {
 	LOGD("create reading thread successfully");
 	int count;
 	TimeUtils* timeUtils = TimeUtils::getInstance();
-	string s;
+	string s;//待发送的json字符串
 
 	while (1) {
 		LOGD("第 %d 次 发送JSon", count);
+		// 若队列为空则阻塞
 		CollectedApiInfo temp = InfoSender::mCycledBlockingQueue->send();
 		s = temp.convertToJson();
-		//发送json
-		int len = s.size();
 
+		//发送json字符串
+		int len = s.size();
+		// send a message on a socket
+		// ssize_t send(int socket, const void *buffer, size_t length, int flags);
 		int result = (int) send(sockfd, s.c_str(), len, 0);
 		LOGD("send Json successfully");
 		if (result == -1)
@@ -68,7 +89,7 @@ void* InfoSender::readFromQueue(void* arg) {
 		//时间测试，记录处理Api的结束时间，即t2
 		timeUtils->setT2EndTime();
 
-		//当已发送了CESHI_NUMBER个Json包后，即可计算时间差值等，然后发送至HookerManager
+		//当已发送了CESHI_NUMBER个Json字符串后，即可计算时间差值等，然后发送至HookerManager
 		if (count % CESHI_NUMBER == 0) {
 			LOGD("begin calculate time subtract and send ");
 			//开始计算时间差值，存入数组，计算平均值，并发送至HookerManager中
@@ -91,7 +112,7 @@ void* InfoSender::readFromQueue(void* arg) {
 					//保存时间差值对应的string数组
 					timeUtils->time_subtract_string[t] = ss;
 				}
-			}
+			} // end for
 			//将string输出，经验证，保存正常
 			for (int i = 0; i < CESHI_NUMBER; i++) {
 				LOGD(
@@ -162,16 +183,17 @@ void* InfoSender::readFromQueue(void* arg) {
 			 if(result == -1){
 			 LOGE("send t1 error");
 			 }*/
-
-		}
-
-	}
+		} // end if
+	} // end while
 	return ((void*) 0);
 }
-int InfoSender::socketConnection() {
-	//创建并初始化socket链接
-	int res;
 
+/**
+ * 创建 并 初始化 socket链接
+ * #include <sys/socket.h>
+ */
+int InfoSender::socketConnection() {
+	int res;
 	ssize_t cnt;
 	int j;
 	int k = 7; //(int)argv[1];
@@ -214,9 +236,12 @@ int InfoSender::socketConnection() {
 	 close(res);
 	 while (waitpid(-1, NULL, WNOHANG) > 0);*/
 	return 0;
-
 }
-//成员函数后面在做补充
+
+/**
+ * 类的初始化
+ * 成员函数后面在做补充
+ */
 bool InfoSender::init() {
 	//初始化队列
 	InfoSender::mCycledBlockingQueue = new CycledBlockingQueue(1024);
