@@ -70,9 +70,9 @@ void* InfoSender::readFromQueue(void* arg) {
 		// send a message on a socket
 		// ssize_t send(int socket, const void *buffer, size_t length, int flags);
 		int result = (int) send(sockfd, s.c_str(), len, 0);
-		LOGD("send Json successfully");
 		if (result == -1)
 			LOGE("[-]send Json error!\r\n");
+		LOGD("send Json successfully");
 		++count;
 		//关于时间测试，为什么还用json传输，在这里做过一部分的探究，基于
 		//结果是一样的
@@ -113,17 +113,14 @@ void* InfoSender::readFromQueue(void* arg) {
 					timeUtils->time_subtract_string[t] = ss;
 				}
 			} // end for
+
 			//将string输出，经验证，保存正常
-			for (int i = 0; i < CESHI_NUMBER; i++) {
-				LOGD(
-						"[time test] timeSubtract is %s", timeUtils->time_subtract_string[i].c_str());
-			}
-			timeUtils->avg_time_subtract.tv_sec = sum_timeval_time
-					/ CESHI_NUMBER;
-			timeUtils->avg_time_subtract.tv_usec = sum_timeval_seconds
-					/ CESHI_NUMBER;
-			timeUtils->avg_time_subtract_string = timeUtils->timevalToString(
-					&timeUtils->avg_time_subtract);
+//			for (int i = 0; i < CESHI_NUMBER; i++) {
+//				LOGD("[time test] timeSubtract is %s", timeUtils->time_subtract_string[i].c_str());
+//			}
+			timeUtils->avg_time_subtract.tv_sec = sum_timeval_time / CESHI_NUMBER;
+			timeUtils->avg_time_subtract.tv_usec = sum_timeval_seconds / CESHI_NUMBER;
+			timeUtils->avg_time_subtract_string = timeUtils->timevalToString(&timeUtils->avg_time_subtract);
 			LOGD("时间平均值  %s", timeUtils->avg_time_subtract_string.c_str());
 
 			/*采用json格式发送时间测试结果，格式如下：
@@ -139,8 +136,7 @@ void* InfoSender::readFromQueue(void* arg) {
 			for (int i = 0; i < CESHI_NUMBER; i++) {
 				time_test["t1_time"] = timeUtils->t1_start_handle_string[i];
 				time_test["t2_time"] = timeUtils->t2_end_handle_string[i];
-				time_test["t2_t1_subtract_time"] =
-						timeUtils->time_subtract_string[i];
+				time_test["t2_t1_subtract_time"] = timeUtils->time_subtract_string[i];
 				time_test["avg_t2_t1"] = timeUtils->avg_time_subtract_string;
 
 				//发送时间测试的json包

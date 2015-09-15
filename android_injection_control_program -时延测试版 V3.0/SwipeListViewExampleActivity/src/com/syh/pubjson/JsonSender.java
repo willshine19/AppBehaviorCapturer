@@ -11,14 +11,14 @@ import java.util.HashMap;
 
 public class JsonSender {
 	
-	private final String USER_ID = "55a3682dfd4d877911da1658";
-	private final String USER_CODE = "1234567890";
-	private final String PUB_SPACE_ID = "55d3e0c7fbab7cd126c37163";
-	private final String PUB_THEME_ID = "55d3e11afbab7cd126c37164";
-	private final String SUB_SPACE_ID = "55d3e156fbab7cd126c37165";
-	private final String SUB_THEME_ID = "55d3e1d5fbab7cd126c37166";
-	private final String TAG1 = "JsonSender";
-	private final String TAG2 = "Callback";
+	private static final String USER_ID = "55a3682dfd4d877911da1658";
+	private static final String USER_CODE = "1234567890";
+	private static final String PUB_SPACE_ID = "55d3e0c7fbab7cd126c37163";
+	private static final String PUB_THEME_ID = "55d3e11afbab7cd126c37164";
+	private static final String SUB_SPACE_ID = "55d3e156fbab7cd126c37165";
+	private static final String SUB_THEME_ID = "55d3e1d5fbab7cd126c37166";
+	private static final String TAG1 = "JsonSender";
+	private static final String TAG2 = "Callback";
 	
 	private String mScore = null;
 	private MimoNodeAPI mMimoNode = null;
@@ -65,39 +65,31 @@ public class JsonSender {
 
 				@Override
 				public void newMessageCallback(Object message) {
-					Log.v(TAG2, "newMessage: " + message);
-					// 下载并解析json
-					try {
-						JSONObject msg = (JSONObject) message;
-						JSONArray descriptions = msg
-								.optJSONArray("descriptions");
-						JSONObject scoreData = (JSONObject) descriptions.opt(4);
-						JSONObject valueCostData = (JSONObject) descriptions.opt(5);
-						JSONObject listCostData = (JSONObject) descriptions.opt(6);
-						if (mCount < mServerToHooker.ARRAY_SIZE) {
-							mServerToHooker.mValueCost[mCount] = Long.parseLong((String) valueCostData.opt("value"));
-							mServerToHooker.mValueCostStr[mCount] = Long.toString(mServerToHooker.mValueCost[mCount] / 1000)
-									+ ":" + Long.toString(mServerToHooker.mValueCost[mCount] % 1000);
-							mServerToHooker.mListCost[mCount] = Long.parseLong((String) listCostData.opt("value"));
-							mServerToHooker.mListCostStr[mCount] = Long.toString(mServerToHooker.mListCost[mCount] / 1000)
-									+ ":" + Long.toString(mServerToHooker.mListCost[mCount] % 1000);
-							mCount++;
-							//设置t7时间
-							mServerToHooker.setT7ReceiveTime();
-                            Log.i(TAG2, "【+】从服务器端接收到时间差，数组中已有" + mCount + "个数据");
-                            Log.i(TAG2, "value时间差：" + mServerToHooker.mValueCost[mCount - 1]);
-                            Log.i(TAG2, "value时间差str：" + mServerToHooker.mValueCostStr[mCount - 1]);
-                            Log.i(TAG2, "list时间差：" + mServerToHooker.mListCost[mCount - 1]);
-                            Log.i(TAG2, "list时间差str：" + mServerToHooker.mListCostStr[mCount - 1]);
-						}
-						mScore = scoreData.getString("value");
-						Log.v(TAG2, "分数为：" + mScore);
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
+					Log.v(TAG2, "从server端收到一条消息，开始解析");
+					// 将从服务器端接受到的时间，保存到mServerToHooker对象中
+					JSONObject msg = (JSONObject) message;
+					mServerToHooker.parseTimeFromJson(msg);
+					mCount++;
+					//设置t7时间
+					mServerToHooker.setT7ReceiveTime();
+					Log.v(TAG2, "value时间差：" + mServerToHooker.mValueCost.get(mCount - 1));
+					Log.v(TAG2, "value时间差str：" + mServerToHooker.mValueCostStr.get(mCount - 1));
+					Log.v(TAG2, "list时间差：" + mServerToHooker.mListCost.get(mCount - 1));
+					Log.v(TAG2, "list时间差str：" + mServerToHooker.mListCostStr.get(mCount - 1));
+					Log.v(TAG2, "【+】从服务器端接收到时间差，数组中已有" + mCount + "个数据");
+//						mScore = scoreData.getString("value");
+//						Log.v(TAG2, "分数为：" + mScore);
 				}
 			});
-			while (!mSuccessFlag) {}
+			while (!mSuccessFlag) {
+				Log.v(TAG1, "JsonSender等待longin成功的标志...");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			mSuccessFlag = false;
 		Log.i(TAG1, "****结束login****");
 	}
@@ -141,7 +133,7 @@ public class JsonSender {
 				new Callback() {
 					@Override
 					public void successCallback(Object message) {
-						Log.i(TAG2, "publish成功: " + message);
+						Log.v(TAG2, "publish成功" );
 						mSuccessFlag = true;
 					};
 
@@ -151,21 +143,31 @@ public class JsonSender {
 					};
 				});
 		// 等待发送成功
-		Log.v(TAG1, "进入while循环");
-		while (!mSuccessFlag) {}
-		Log.v(TAG1, "离开while循环");
-		mSuccessFlag = false;
-		Log.i(TAG1, "完成pubJSON数据");
+//		Log.v(TAG1, "进入while循环");
+//		while (!mSuccessFlag) {
+//			Log.v(TAG1, "JsonSender等待发送成功的标志...");
+//			try {
+//				Thread.sleep(5000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		Log.v(TAG1, "离开while循环");
+//		mSuccessFlag = false;
+//		Log.i(TAG1, "完成pubJSON数据");
 
-		try {
-			Thread.sleep(1000);// 等待服务器计算
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(1000);// 等待服务器计算
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 		Log.i(TAG1, "****结束publish****");
 	}
 	
-	// sub
+	/**
+	 * 订阅一个space空间的theme，以接受该theme中的信息
+	 */
 	public void subscribe() {
 		Log.i(TAG1, "****开始subscribe****");
 		mMimoNode.subscribeOnTheme(USER_ID,

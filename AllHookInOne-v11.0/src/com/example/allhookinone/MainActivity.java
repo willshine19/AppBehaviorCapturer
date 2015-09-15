@@ -95,7 +95,7 @@ public class MainActivity extends ActionBarActivity {
             
             @Override
             public void onClick(View v) {
-                //test 1
+                //test 1 io 
 //                for(int i=0;i<170;i++){
                 for(int i=0;i<1;i++){
                     Log.d(TAG,"*************test 1****************");
@@ -116,6 +116,7 @@ public class MainActivity extends ActionBarActivity {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
+                    
                     //test 2
                     Log.d(TAG,"*************test 2****************");
                     Location location = MainActivity.location.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -123,12 +124,15 @@ public class MainActivity extends ActionBarActivity {
                         Log.i("Thread", location.toString());
                     }
                     Log.i("param-test","getLastKnownLcoation failed");
+                    
                     //test 3
                     Log.d(TAG,"*************test 3****************");
                     insertContacts();
+                    
                     //test 4
                     Log.d(TAG,"*************test 4****************");
                     getContacts();
+                    
                     //test 5
                     Log.d(TAG,"**************test 5****************");
                     deleteContacts();
@@ -174,6 +178,7 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
 	private void getContacts() {
         ContentResolver resolver = mContext.getContentResolver();
         Cursor phoneCursor = resolver.query(Phone.CONTENT_URI, null, null, null, null);
@@ -187,6 +192,7 @@ public class MainActivity extends ActionBarActivity {
             phoneCursor.close();
         }
     }
+	
     private void insertContacts(){        
         Uri uri = Uri.parse("content://com.android.contacts/raw_contacts");
         Log.d(TAG,uri.toString());

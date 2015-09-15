@@ -54,10 +54,19 @@ bool ApiHooker::collectBaseInfo(){
 	LOGD( "mCollectedApiInfo MethodName: %s", InfoSender::getInstance()->getCycledBlockingQueue()->queue[this->mQueuePosition].getMethodName().data() );*/
 	return true;
 }
+
+
 bool ApiHooker::saveToQueue(){
 	LOGD("saveToQueue method has been called successfully in ApiHooker");
 	return true;
 }
+
+
+/**
+ * 当一个java方法被hook之后，上层app调用了该方法
+ * 则会调用该方法。
+ * 谁调用了这个方法？DalvikMethodHooker.cpp 中的methodHandler()函数
+ */
 bool ApiHooker::main(const u4* args){
 	pthread_mutex_lock(&lock);
 	//申请队列空闲位置
