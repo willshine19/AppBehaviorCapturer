@@ -36,8 +36,8 @@
 
 //用于测试
 //ARY_NUMBER需要大于等于CESHI_NUMBER
-#define ARY_NUMBER 100
-#define CESHI_NUMBER 6
+#define ARY_NUMBER 200
+#define CESHI_NUMBER 100
 
 struct HookInfo {
 	const char *classDesc;

@@ -22,7 +22,11 @@ package com.fortysevendeg.android.swipelistview.sample.adapters;
 
 import android.graphics.drawable.Drawable;
 
-public class PackageItem{// implements Serializable 
+/**  
+ *   包信息 只有4个成员变量 getter setter
+ *   成员变量 icon name packageName running_status
+ */  
+public class PackageItem { // implements Serializable 
 
     private Drawable icon;
     private String name;
@@ -30,41 +34,41 @@ public class PackageItem{// implements Serializable
     private int running_status;
     
     //标识此程序未运行
-    public static final int  NOT_RUNNING = 0;
+    public static final int NOT_RUNNING = 0;
     //标识此程序已注入
     public static final int IS_INJECTED = 1;
     //标识此程序已运行，未注入
     public static final int NOT_INJECT = 2;
     
+    public void setRunningStatus(int running_status) {
+    	this.running_status = running_status;
+    }
+    
     public int getRunningStatus() {
         return running_status;
     }
-    public void setRunningStatus(int running_status) {
-        this.running_status = running_status;
+    
+    public void setPackageName(String packageName) {
+    	this.packageName = packageName;
     }
-    
-    
+ 
     public String getPackageName() {
         return packageName;
     }
 
-    public void setPackageName(String packageName) {
-        this.packageName = packageName;
+    public void setName(String name) {
+    	this.name = name;
     }
-
+ 
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    
+    public void setIcon(Drawable icon) {
+    	this.icon = icon;
     }
 
     public Drawable getIcon() {
         return icon;
-    }
-
-    public void setIcon(Drawable icon) {
-        this.icon = icon;
     }
 }

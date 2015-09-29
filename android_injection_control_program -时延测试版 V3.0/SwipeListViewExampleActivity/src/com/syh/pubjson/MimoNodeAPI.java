@@ -686,11 +686,11 @@ public class MimoNodeAPI {
 			data.put("msgType", msgType);
 			data.put("content", content);
 			data.put("descriptions", descriptions);
-			Log.v("description", data.toString());
+//			Log.v("description", data.toString());
 			// for(int i=0;i<data.get("descriptions").;i++);
-			System.out.println("descriptions: " + descriptions.getClass());
-			System.out.println("description1: " + descriptions.length());
-			System.out.println("data: " + data.getClass());
+//			System.out.println("descriptions: " + descriptions.getClass());
+//			System.out.println("description1: " + descriptions.length());
+//			System.out.println("data: " + data.getClass());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

@@ -27,20 +27,20 @@ public class HookerTimeTestUtils  extends TimeTestUtils{
     // t3时间存储
     public ArrayList<String> t3_receive_time;
     // t3纳秒级时间存储
-    public ArrayList<Long> t3_receive_long_format;
+    public ArrayList<Long> t3TimeStampNanosecond;
     
     // t4时间存储
     public ArrayList<String> t4_send_time;
     // t4纳秒级存储
-    public ArrayList<Long> t4_send_long_format;
+    public ArrayList<Long> t4TimeStampNanosecond;
     
     //时间间隔存储
-    public ArrayList<String> t4_t3_time_subtract;
+    public ArrayList<String> t4t3DiffStr;
     // 纳秒时间 间隔
-    public ArrayList<Long> time_subtract_long_format;
+    public ArrayList<Long> t4t3DiffNanosecond;
     
     //平均时间间隔
-    public String avg_t4_t3_subtract;
+    public String t4t3DiffAvgStr; // 单位 s:ma:us
     
     private static final String TAG = "TimeTest";
     private static HookerTimeTestUtils single = null;
@@ -50,11 +50,11 @@ public class HookerTimeTestUtils  extends TimeTestUtils{
      */ 
     private HookerTimeTestUtils() {
         t3_receive_time = new ArrayList<String>();
-        t3_receive_long_format = new ArrayList<Long>();
+        t3TimeStampNanosecond = new ArrayList<Long>();
         t4_send_time = new ArrayList<String>();
-        t4_send_long_format = new ArrayList<Long>();
-        t4_t3_time_subtract = new ArrayList<String>();
-        time_subtract_long_format = new ArrayList<Long>();
+        t4TimeStampNanosecond = new ArrayList<Long>();
+        t4t3DiffStr = new ArrayList<String>();
+        t4t3DiffNanosecond = new ArrayList<Long>();
         s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SS");
     }
     
@@ -74,7 +74,7 @@ public class HookerTimeTestUtils  extends TimeTestUtils{
      */
     public  String setT3ReceiveTime() {
         //获取当前时间（纳秒单位）,保存至long数组中
-        t3_receive_long_format.add(System.nanoTime());
+        t3TimeStampNanosecond.add(System.nanoTime());
         //输出正常
         // 格式化时间，返回字符串类型
         String temp = s.format(new Date());
@@ -90,7 +90,7 @@ public class HookerTimeTestUtils  extends TimeTestUtils{
     public  String setT4SendTime() {
         //获取当前时间（纳秒单位）,保存至long数组中
         //System.nanoTime()，此方法只能用于测量已过的时间，与系统或钟表时间的其他任何时间概念无关
-        t4_send_long_format.add(System.nanoTime());
+        t4TimeStampNanosecond.add(System.nanoTime());
         // 格式化时间，返回字符串类型
         String temp = s.format(new Date());
         t4_send_time.add(temp);
@@ -111,13 +111,13 @@ public class HookerTimeTestUtils  extends TimeTestUtils{
         }
         
 		for (int i = 0; i < CESHI_NUMBER; i++) {
-            long subtract = t4_send_long_format.get(i) - t3_receive_long_format.get(i);
+            long subtract = t4TimeStampNanosecond.get(i) - t3TimeStampNanosecond.get(i);
             //将long类型时间差存入数组
-            time_subtract_long_format.add(subtract);
+            t4t3DiffNanosecond.add(subtract);
             //设置时间差值的格式
             String temp = subtract/1000000000 + ":" + subtract%1000000000/1000000 + ":" + subtract%1000000/1000;
             //将String类型时间差值存入数组
-            t4_t3_time_subtract.add(temp);
+            t4t3DiffStr.add(temp);
         }
         return 0;
     }
@@ -129,11 +129,11 @@ public class HookerTimeTestUtils  extends TimeTestUtils{
 		long sum = 0;
 
 		for (int i = 0; i < CESHI_NUMBER; i++) {
-			sum += time_subtract_long_format.get(i);
+			sum += t4t3DiffNanosecond.get(i);
 		}
 		long avg = sum / CESHI_NUMBER;
         
-        avg_t4_t3_subtract = avg/1000000000 + ":" + avg%1000000000/1000000 + ":" + avg%1000000/1000;
+        t4t3DiffAvgStr = avg/1000000000 + ":" + avg%1000000000/1000000 + ":" + avg%1000000/1000;
         return 0;
     }
 	
@@ -142,18 +142,19 @@ public class HookerTimeTestUtils  extends TimeTestUtils{
 	 */
 	public void print() {
 		
-		Log.d(TAG, "t3_receive_time: ");
-		for (int i = 0; i < CESHI_NUMBER; i++) {
-			Log.v(TAG, t3_receive_time.get(i));
-		} 
-		Log.d(TAG, "t4_send_time:");
-		for (int i = 0; i < CESHI_NUMBER; i++) {
-			Log.v(TAG, t4_send_time.get(i));
-		} 
+//		Log.d(TAG, "t3_receive_time: ");
+//		for (int i = 0; i < CESHI_NUMBER; i++) {
+//			Log.v(TAG, t3_receive_time.get(i));
+//		} 
+//		Log.d(TAG, "t4_send_time:");
+//		for (int i = 0; i < CESHI_NUMBER; i++) {
+//			Log.v(TAG, t4_send_time.get(i));
+//		} 
+		
 		Log.d(TAG, "t4_t3_time_subtract:");
 		for (int i = 0; i < CESHI_NUMBER; i++) {
-			Log.v(TAG, t4_t3_time_subtract.get(i));
+			Log.v(TAG, t4t3DiffStr.get(i));
 		} 
-		Log.d(TAG, "avg_t4_t3_subtract: " + avg_t4_t3_subtract);
+		Log.d(TAG, "t4t3DiffAvgStr (s:ms:um): " + t4t3DiffAvgStr);
 	}
 }

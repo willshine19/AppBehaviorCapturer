@@ -22,7 +22,7 @@ public class AppTimeTestUtils extends TimeTestUtils{
     //时间间隔存储
     public ArrayList<String> t2_t1_subtract;
     //平均时间间隔存储
-    public String avg_t2_t1_subtract;
+    public String t2t1DiffAvgStr;
     
     private static final String TAG = "TimeTest";
     //单例
@@ -58,7 +58,7 @@ public class AppTimeTestUtils extends TimeTestUtils{
 
         try {
 			if (receive_count == 1) {
-                avg_t2_t1_subtract = (String) json.get("avg_t2_t1");
+                t2t1DiffAvgStr = (String) json.get("avg_t2_t1");
             }
             t1_start_handle_time.add((String) json.get("t1_time"));
             t2_end_handle_time.add((String) json.get("t2_time"));
@@ -77,20 +77,20 @@ public class AppTimeTestUtils extends TimeTestUtils{
 	 */
 	public void print() {
 		
-		Log.d(TAG, "t1_start_handle_time: ");
-		for (int i = 0; i < t1_start_handle_time.size(); i++) {
-			Log.v(TAG, t1_start_handle_time.get(i));
-		}
-		
-		Log.d(TAG, "t2_end_handle_time:");
-		for (int i = 0; i < t2_end_handle_time.size(); i++) {
-			Log.v(TAG, t2_end_handle_time.get(i));
-		} 
+//		Log.d(TAG, "t1_start_handle_time: ");
+//		for (int i = 0; i < t1_start_handle_time.size(); i++) {
+//			Log.v(TAG, t1_start_handle_time.get(i));
+//		}
+//		
+//		Log.d(TAG, "t2_end_handle_time:");
+//		for (int i = 0; i < t2_end_handle_time.size(); i++) {
+//			Log.v(TAG, t2_end_handle_time.get(i));
+//		} 
 		
 		Log.d(TAG, "t2_t1_subtract:");
 		for (int i = 0; i < t2_t1_subtract.size(); i++) {
 			Log.v(TAG, t2_t1_subtract.get(i));
 		} 
-		Log.d(TAG, "avg_t2_t1_subtract: " + avg_t2_t1_subtract);
+		Log.d(TAG, "avg_t2_t1_subtract (s:ms:us): " + t2t1DiffAvgStr);
 	}
 }

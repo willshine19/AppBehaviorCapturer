@@ -76,7 +76,7 @@ public class JsonSender {
 					Log.v(TAG2, "value时间差str：" + mServerToHooker.mValueCostStr.get(mCount - 1));
 					Log.v(TAG2, "list时间差：" + mServerToHooker.mListCost.get(mCount - 1));
 					Log.v(TAG2, "list时间差str：" + mServerToHooker.mListCostStr.get(mCount - 1));
-					Log.v(TAG2, "【+】从服务器端接收到时间差，数组中已有" + mCount + "个数据");
+					Log.i(TAG2, "[+] 成功从【服务器端】接收到第" + mCount + "组数据");
 //						mScore = scoreData.getString("value");
 //						Log.v(TAG2, "分数为：" + mScore);
 				}
@@ -100,7 +100,7 @@ public class JsonSender {
 	 * @param jo 即将被发送的JSON对象
 	 */
 	public void publish(JSONObject jo) {
-		Log.i(TAG1, "****开始publish****");
+//		Log.v(TAG1, "****开始publish****");
 		String nameofAPI = null;
 		String numberofAPI = null;
 		String threadIDofAPI = null;
@@ -133,7 +133,7 @@ public class JsonSender {
 				new Callback() {
 					@Override
 					public void successCallback(Object message) {
-						Log.v(TAG2, "publish成功" );
+//						Log.v(TAG2, "publish成功" );
 						mSuccessFlag = true;
 					};
 
@@ -162,7 +162,7 @@ public class JsonSender {
 //		} catch (InterruptedException e) {
 //			e.printStackTrace();
 //		}
-		Log.i(TAG1, "****结束publish****");
+//		Log.v(TAG1, "****结束publish****");
 	}
 	
 	/**
@@ -197,5 +197,25 @@ public class JsonSender {
 	
 	public String getScore() {
 		return mScore;
+	}
+	
+	/**  
+	 * 发送第一条JSON数据，指定内容
+	 * @param deviceId 设备识别码
+	 */
+	public void pubFirstData(String deviceId) {
+		JSONObject firstData = new JSONObject();
+        try {
+			firstData.put("name", "start");// 待检测数据---对应r=0
+			firstData.put("number", "0");
+			firstData.put("threadID", "0");
+			firstData.put("processID", "0");
+			firstData.put("IMEI", deviceId);
+			firstData.put("time", "0000-00-00 00:00:00:000:000");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        publish(firstData);
 	}
 }

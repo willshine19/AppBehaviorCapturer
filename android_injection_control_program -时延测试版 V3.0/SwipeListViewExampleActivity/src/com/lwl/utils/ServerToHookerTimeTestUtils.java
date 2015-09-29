@@ -23,25 +23,28 @@ public class ServerToHookerTimeTestUtils extends TimeTestUtils{
     //由server传过来的t5-t4'
     public ArrayList<Long> mListCost;
     public ArrayList<String> mListCostStr;
-    public long mListCostAvg;
+    public long mListCostAvg; 
+    public String mListCostAvgStr; // 单位 s:ms
     
     //由server传过来的t6-t5
     public ArrayList<Long> mValueCost; // 单位毫秒
     public ArrayList<String> mValueCostStr;
     public long mValueCostAvg;
+    public String mValueCostAvgStr; // 单位 s:ms
     
     //接受到server端测评结果的时间
-    public ArrayList<Long> t7_receive_time_long;
-    public ArrayList<String> t7_receive_time_str;
+    public ArrayList<Long> t7TimestampNanosecond; // 单位 纳秒
+    public ArrayList<String> t7TimestampDateStr;
     
     //t7与t4的时间差，便于计算网络时延
     public ArrayList<Long> t7_t4_subtract_long;
     public ArrayList<String> t7_t4_subtract_str;
-    public long avg_t7_t4_subtract;
+    public long t7t4SubtractAvg; // 单位 纳秒
+    public String t7t4SubtractAvgStr; // 单位 s:ms
     
     //网络时延计算，公式为((t7-t4)-(t5-t4')-(t6-t5))/2
     public ArrayList<Long> network_delay_long;
-    public ArrayList<String> network_delay_str;
+    public ArrayList<String> network_delay_str; //单位 s:ms
     
     //平均网络时延计算
     public long avg_network_delay_long;
@@ -61,8 +64,8 @@ public class ServerToHookerTimeTestUtils extends TimeTestUtils{
         mListCost = new ArrayList<Long>();
         mListCostStr = new ArrayList<String>();
         
-        t7_receive_time_long = new ArrayList<Long>();
-        t7_receive_time_str = new ArrayList<String>();
+        t7TimestampNanosecond = new ArrayList<Long>();
+        t7TimestampDateStr = new ArrayList<String>();
         t7_t4_subtract_long = new ArrayList<Long>();
         t7_t4_subtract_str = new ArrayList<String>();
         network_delay_long = new ArrayList<Long>();
@@ -88,10 +91,10 @@ public class ServerToHookerTimeTestUtils extends TimeTestUtils{
      */
     public  String setT7ReceiveTime() {
         //获取当前时间（纳秒单位）,保存至long数组中
-        t7_receive_time_long.add(System.nanoTime());
+        t7TimestampNanosecond.add(System.nanoTime());
         // 格式化时间，返回字符串类型
         String temp = s.format(new Date());
-        t7_receive_time_str.add(temp);
+        t7TimestampDateStr.add(temp);
         t7_count++;
         return temp;
     }
@@ -127,12 +130,12 @@ public class ServerToHookerTimeTestUtils extends TimeTestUtils{
 	public int setNetworkDelay() {
 		for (int i = 0; i < (CESHI_NUMBER - 2); i++) {
 			// 纳秒精度
-			long subtract = t7_receive_time_long.get(i)
-					- hooker.t4_send_long_format.get(i + 2);
+			long subtract = t7TimestampNanosecond.get(i)
+					- hooker.t4TimeStampNanosecond.get(i + 2);
 			// 将long类型时间差存入数组
 			t7_t4_subtract_long.add(subtract);
 			t7_t4_subtract_str.add(Long.toString(subtract / 1000000000)
-					+ ":" + Long.toString(subtract % 1000000000));
+					+ ":" + Long.toString(subtract % 1000000000 / 1000000));
 			
 			// 转换为毫秒精度，与server端传过来的精度保持一致
 			long avg_t7_t4 = t7_t4_subtract_long.get(i) / 1000000;
@@ -161,7 +164,7 @@ public class ServerToHookerTimeTestUtils extends TimeTestUtils{
           calculateAVGT7T4Subtract();
          
           //计算平均时延
-          avg_network_delay_long = (avg_t7_t4_subtract/1000000 - mListCostAvg - mValueCostAvg)/2;
+          avg_network_delay_long = (t7t4SubtractAvg/1000000 - mListCostAvg - mValueCostAvg)/2;
           System.out.println("avg_network_delay_long" + avg_network_delay_long);
           
           //将平均时延保存至string
@@ -180,6 +183,7 @@ public class ServerToHookerTimeTestUtils extends TimeTestUtils{
 			sum += mListCost.get(i);
 		}
 		mListCostAvg = sum / (CESHI_NUMBER - 2);
+		mListCostAvgStr = mListCostAvg / 1000 + ":" + mListCostAvg % 1000;
 		return 0;
 	}
 
@@ -187,13 +191,9 @@ public class ServerToHookerTimeTestUtils extends TimeTestUtils{
 	 * 计算t6-t5的平均cost 填充mValueCostAvg
 	 * @return 0
 	 */
-	private int caculateAVGValueCost() {
-		long sum = 0;
-		for (int i = 0; i < (CESHI_NUMBER - 2); i++) {
-			sum += mValueCost.get(i);
-		}
-		mValueCostAvg = sum / (CESHI_NUMBER - 2);
-		return 0;
+	private void caculateAVGValueCost() {
+		mValueCostAvg = calculateAVG(mValueCost);
+		mValueCostAvgStr = mValueCostAvg % 1000 + ":" + mValueCostAvg / 1000;
 	}
 
 	/**
@@ -205,7 +205,9 @@ public class ServerToHookerTimeTestUtils extends TimeTestUtils{
 		for (int i = 0; i < (CESHI_NUMBER - 2); i++) {
 			sum += t7_t4_subtract_long.get(i);
 		}
-		avg_t7_t4_subtract = sum / (CESHI_NUMBER - 2);
+		t7t4SubtractAvg = sum / (CESHI_NUMBER - 2);
+		t7t4SubtractAvgStr = t7t4SubtractAvg / 1000000000 + ":" +
+					t7t4SubtractAvg % 1000000000 / 1000000;
 		return 0;
 	}
 	
@@ -218,27 +220,39 @@ public class ServerToHookerTimeTestUtils extends TimeTestUtils{
 		for (int i = 0; i < mListCostStr.size(); i++) {
 			Log.v(TAG, mListCostStr.get(i));
 		}
-		Log.d(TAG, "mListCostAvg: " + mListCostAvg);
+		Log.d(TAG, "mListCostAvgStr (s:ms): " + mListCostAvgStr);
 		
 		Log.d(TAG, "mValueCostStr:");
 		for (int i = 0; i < mValueCostStr.size(); i++) {
 			Log.v(TAG, mValueCostStr.get(i));
 		} 
+		Log.d(TAG, "mValueCostAvgStr (s:ms) : " + mValueCostAvgStr);
 		
 		Log.d(TAG, "t7_receive_time_str:");
-		for (int i = 0; i < t7_receive_time_str.size(); i++) {
-			Log.v(TAG, t7_receive_time_str.get(i));
+		for (int i = 0; i < t7TimestampDateStr.size(); i++) {
+			Log.v(TAG, t7TimestampDateStr.get(i));
 		} 
 		
 		Log.d(TAG, "t7_t4_subtract_str:");
 		for (int i = 0; i < t7_t4_subtract_str.size(); i++) {
 			Log.v(TAG, t7_t4_subtract_str.get(i));
 		} 
+		Log.d(TAG, "t7t4SubtractAvgStr (s:ms):  " + t7t4SubtractAvgStr);
+		
 		Log.d(TAG, "network_delay_str:");
 		for (int i = 0; i < network_delay_str.size(); i++) {
 			Log.v(TAG, network_delay_str.get(i));
 		} 
-		Log.d(TAG, "avg_network_delay_str: " + avg_network_delay_str);
+		Log.d(TAG, "avg_network_delay_str (s:ms): " + avg_network_delay_str);
+	}
+	
+	public void clear() {
+		this.network_delay_long.clear();
+		this.network_delay_str.clear();
+		this.t7TimestampDateStr.clear();
+		this.t7TimestampNanosecond.clear();
+		this.t7_t4_subtract_long.clear();
+		this.t7_t4_subtract_str.clear();
 	}
 	
 }

@@ -8,15 +8,14 @@
 #include "TimeUtils.h"
 
 TimeUtils::TimeUtils() {
-
 }
 
 TimeUtils::~TimeUtils() {
-
 }
 
 //静态成员变量初始化
 TimeUtils* TimeUtils::timeUtilsInstance = NULL;
+
 //获取实例方法
 TimeUtils* TimeUtils::getInstance() {
 	if (timeUtilsInstance == NULL) {
@@ -24,6 +23,10 @@ TimeUtils* TimeUtils::getInstance() {
 	}
 	return timeUtilsInstance;
 }
+
+/**
+ * 获取t1时间戳
+ */
 bool TimeUtils::setT1StartTime() {
 	//获取系统当前时间
 	long timeNow = time(NULL);
@@ -41,6 +44,10 @@ bool TimeUtils::setT1StartTime() {
 		t1_start_handle_count = 0;
 	return true;
 }
+
+/**
+ * 获取t2时间戳
+ */
 bool TimeUtils::setT2EndTime() {
 	//获取系统当前时间
 	long timeNow = time(NULL);
@@ -51,15 +58,18 @@ bool TimeUtils::setT2EndTime() {
 	string timeString = timeToString(t2_end_handle_tm[t2_end_handle_count],
 			t2_end_handle_tv[t2_end_handle_count]);
 	t2_end_handle_string[t2_end_handle_count] = timeString;
-	LOGD(
-			"t2_end_handle_string is %s", t2_end_handle_string[t2_end_handle_count].c_str());
-
-	++t2_end_handle_count;
+	LOGD("t2_end_handle_string is %s", t2_end_handle_string[t2_end_handle_count].c_str());
+	t2_end_handle_count++;
 	if (t2_end_handle_count > 1000)
 		t2_end_handle_count = 0;
 	return true;
 }
 
+/**
+ * 将采集到的时间（两种结构体）转为字符串
+ * 输入：两种结构体 tm timeval
+ * 输出：字符串
+ */
 string TimeUtils::timeToString(struct tm* tmTemp, struct timeval timevalTemp) {
 	ss << tmTemp->tm_year + 1900 << "-" << tmTemp->tm_mon + 1 << "-"
 			<< tmTemp->tm_mday << " " << tmTemp->tm_hour << ":"
@@ -72,6 +82,11 @@ string TimeUtils::timeToString(struct tm* tmTemp, struct timeval timevalTemp) {
 	return tempString;
 }
 
+/**
+ * 将采集到的时间（timeval结构体）转为字符串
+ * 输入：结构体 timeval
+ * 输出：字符串
+ */
 string TimeUtils::timevalToString(struct timeval* temp) {
 	ss << temp->tv_sec << ":" << temp->tv_usec / 1000 << ":"
 			<< temp->tv_usec % 1000;
@@ -82,7 +97,10 @@ string TimeUtils::timevalToString(struct timeval* temp) {
 	return tempString;
 }
 
-//计算时间间隔，并将结果存储到对应数组（结果只显示秒，毫秒，微秒）
+/**
+ * 计算时间间隔，并将结果存储到对应数组（结果只显示秒，毫秒，微秒）
+ * 输入：开始和结束两个时间戳， 类型timeval
+ */
 int TimeUtils::timevalSubtract(struct timeval* result, struct timeval* stop,
 		struct timeval* start) {
 	int nsec;
@@ -108,6 +126,7 @@ int TimeUtils::timevalAvgSubtract(struct timeval* result, struct timeval* stop,
 		struct timeval* start) {
 	return 0;
 }
+
 //暂时不需要写入文件
 bool TimeUtils::writeToFile() {
 

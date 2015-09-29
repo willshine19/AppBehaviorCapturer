@@ -148,8 +148,7 @@ containing a value of this type.
         public static final int splash=0x7f020008;
     }
     public static final class id {
-        public static final int ProgressBar01=0x7f040021;
-        public static final int TextView01=0x7f040020;
+        public static final int ProgressBar01=0x7f04001f;
         public static final int action_left_choice=0x7f040015;
         public static final int action_left_dismiss=0x7f040014;
         public static final int action_left_reveal=0x7f040013;
@@ -161,7 +160,7 @@ containing a value of this type.
         public static final int both=0x7f040001;
         public static final int choice=0x7f040006;
         public static final int dismiss=0x7f040005;
-        public static final int example_lv_list=0x7f040022;
+        public static final int example_lv_list=0x7f040020;
         public static final int example_row_b_action_1=0x7f040008;
         public static final int example_row_b_action_2=0x7f040009;
         public static final int example_row_b_action_3=0x7f04000a;
@@ -170,8 +169,8 @@ containing a value of this type.
         public static final int example_row_tv_title=0x7f04000e;
         public static final int front=0x7f04000b;
         public static final int left=0x7f040003;
-        public static final int menu_delete=0x7f040024;
-        public static final int menu_settings=0x7f040023;
+        public static final int menu_delete=0x7f040022;
+        public static final int menu_settings=0x7f040021;
         public static final int mode_both=0x7f040010;
         public static final int mode_left=0x7f040012;
         public static final int mode_right=0x7f040011;
@@ -184,7 +183,6 @@ containing a value of this type.
         public static final int reveal=0x7f040004;
         public static final int right=0x7f040002;
         public static final int sText=0x7f04000d;
-        public static final int versionNumber=0x7f04001f;
     }
     public static final class layout {
         public static final int package_row=0x7f030000;

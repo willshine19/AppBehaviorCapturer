@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class TimeTestUtils {
     //设置数组的大小
-    public static final int ARRAY_SIZE = 100;
-    public static final int CESHI_NUMBER = 6;
+//    public static final int ARRAY_SIZE = 200;
+    public static final int CESHI_NUMBER = 11000;
     
     /**  
      * 将long数组转换为String
@@ -64,5 +64,29 @@ public class TimeTestUtils {
         sb.append(data);
 //        sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
+    }
+    
+    /**  
+     * 将一个动态数组中的元素值求平均
+     * @param list 动态数组
+     * @return 平均值
+     */
+    public long calculateAVG(ArrayList<Long> list) {
+    	long sum = 0;
+    	int len = list.size();
+		for (int i = 0; i < len; i++) {
+			sum += list.get(i);
+		}
+		sum /= len;
+		return sum;
+    }
+    
+    /**  
+     * 将毫秒单位的时间转为字符串
+     * @param millisecond
+     * @return
+     */
+    public String convertMsToStr(long millisecond) {
+    	return millisecond % 1000 + ":" + millisecond / 1000;
     }
 }

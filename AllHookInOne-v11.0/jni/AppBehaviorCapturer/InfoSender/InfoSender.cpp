@@ -86,11 +86,13 @@ void* InfoSender::readFromQueue(void* arg) {
 		//在此处发送t1_start_handle_string[0],完全可以发送出去，但是后面依然会跟一个{,和下面的情况一致
 //		send(sockfd, timeUtils->t1_start_handle_string[0].c_str(), timeUtils->t1_start_handle_string[0].length(), 0);
 //		LOGD("t1_start_handle_string[0]'s length is  %d",timeUtils->t1_start_handle_string[0].length());
+
 		//时间测试，记录处理Api的结束时间，即t2
-		timeUtils->setT2EndTime();
+//		timeUtils->setT2EndTime();
 
 		//当已发送了CESHI_NUMBER个Json字符串后，即可计算时间差值等，然后发送至HookerManager
-		if (count % CESHI_NUMBER == 0) {
+//		if (count % CESHI_NUMBER == 0) {
+		if (0) {
 			LOGD("begin calculate time subtract and send ");
 			//开始计算时间差值，存入数组，计算平均值，并发送至HookerManager中
 			string ss;

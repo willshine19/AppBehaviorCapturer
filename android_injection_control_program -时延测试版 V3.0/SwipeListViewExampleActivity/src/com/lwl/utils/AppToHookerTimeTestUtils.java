@@ -14,8 +14,8 @@ public class AppToHookerTimeTestUtils extends TimeTestUtils{
     public ArrayList<Long> t3_t2_long;
     // t3-2时间存储(String)
     public ArrayList<String>t3_t2_subtract;
-    //t3-t2平均值
-    public String avg_t3_t2_subtract;
+    //t3-t2平均值 单位 s:ms
+    public String t3t2DiffAvgStr;
     
     private static final String TAG = "TimeTest";
 
@@ -82,7 +82,7 @@ public class AppToHookerTimeTestUtils extends TimeTestUtils{
             sum += t3_t2_long.get(i);
         }
         long avg = sum / CESHI_NUMBER;
-        avg_t3_t2_subtract = Long.toString(avg / 1000) + ":" + Long.toString(avg % 1000);
+        t3t2DiffAvgStr = Long.toString(avg / 1000) + ":" + Long.toString(avg % 1000);
 //        System.out.println("avg_t3_t2" + avg_t3_t2_subtract);
         return 0;
     }
@@ -96,6 +96,6 @@ public class AppToHookerTimeTestUtils extends TimeTestUtils{
 		for (int i = 0; i < CESHI_NUMBER; i++) {
 			Log.v(TAG, t3_t2_subtract.get(i));
 		} 
-		Log.d(TAG, "avg_t3_t2_subtract: " + avg_t3_t2_subtract);
+		Log.d(TAG, "avg_t3_t2_subtract (s:ms):  " + t3t2DiffAvgStr);
 	}
 }

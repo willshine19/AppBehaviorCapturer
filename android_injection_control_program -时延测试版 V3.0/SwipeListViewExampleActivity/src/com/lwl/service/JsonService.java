@@ -46,7 +46,7 @@ public class JsonService extends Service{
             try {
                 System.out.println("socket_thread bagins running");
                 MultiThreadJsonReceiveThread jsonThread= new MultiThreadJsonReceiveThread(context);
-                jsonThread.service();
+                jsonThread.startThead();
                 
             } catch (IOException e) {
                 e.printStackTrace();

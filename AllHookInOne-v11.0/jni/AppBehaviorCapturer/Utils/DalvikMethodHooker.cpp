@@ -358,8 +358,8 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 		struct Thread* self) {
 
 	//时间测试，记录处理Api的start时间，即t1
-	TimeUtils* timeUtils = TimeUtils::getInstance();
-	timeUtils->setT1StartTime();
+//	TimeUtils* timeUtils = TimeUtils::getInstance();
+//	timeUtils->setT1StartTime();
 
 	// 在哈希表中查找该方法
 	const char* temp = method->name;

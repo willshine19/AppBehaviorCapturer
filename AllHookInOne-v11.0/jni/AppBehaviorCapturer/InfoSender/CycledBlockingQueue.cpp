@@ -85,13 +85,13 @@ bool CycledBlockingQueue::push(CollectedApiInfo apiInfo) {
 CollectedApiInfo CycledBlockingQueue::send() {
 	// TODO Auto-generated destructor stub
 	pthread_mutex_lock(&(queue[rp].bucket_read_mutex));
+	int read_point = rp;
 	char* ret;
 /*	LOGD("ReadingThread-------------------------position =  %d",rp);
 	LOGD("ReadingThread-------------------------className is %s",queue[rp].getClassName().data());
 	LOGD("ReadingThread-------------------------methodName is %s",queue[rp].getMethodName().data());
 	LOGD("ReadingThread-------------------------threadID is %ud",queue[rp].getThreadId());*/
 	rp = (rp + 1) & (capacity - 1);
-	return queue[rp-1].m;
+	return queue[read_point].m;
 //	return true;
-
 }

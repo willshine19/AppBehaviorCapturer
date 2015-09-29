@@ -24,11 +24,12 @@ import com.lwl.utils.TimeTestUtils;
 import com.syh.pubjson.JsonSender;
 
 /**  
- *   
+ *   接收jni层的json字符串，向服务器端发送json字符串
+ *   用到了线程池， 用于开启新的线程
  */  
 public class MultiThreadJsonReceiveThread {
     
-    private int port = 8821;
+    private static final int port = 8821;
     private ServerSocket serverSocket;
     private Socket socket = null;
     private ExecutorService executorService;// 线程池
@@ -47,22 +48,21 @@ public class MultiThreadJsonReceiveThread {
             // serverSocket = new ServerSocket(8000, -1,
             // InetAddress.getByName("127.0.0.1"));
         }
-        // serverSocket=new ServerSocket(port);
+        
         // Runtime的availableProcessor()方法返回当前系统的CPU数目.
         executorService = Executors.newFixedThreadPool(POOL_SIZE);
-        System.out.println("服务器启动");
     }
 	
 
 	/**  
 	 * 为什么要加while循环？
 	 */
-	public void service() {
+	public void startThead() {
 		while (true) {
 			try {
 				// 阻塞线程，等待客户连接。只要客户进行了连接,就会触发accept();从而建立连接
 				socket = serverSocket.accept();
-				// 开启新的线程
+				// 用线程池 开启新的线程
 				executorService.execute(new Handler(context, socket));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -80,13 +80,9 @@ class Handler implements Runnable {
 	private Socket socket;
     private Context context;
     private static final String TAG = "MultiThreadJsonReceiveThread";
-    /**
-     * 从allhookinone中发来的一条json字符串（行为采集），占几行
-     */
+    /** 从allhookinone中发来的一条json字符串（行为采集），占几行 */
     private static final int JSON_STRING_LINE_SIZE = 7;
-    /**
-     * 从allhookinone中发来的一条json字符串（时间），占几行
-     */
+    /** 从allhookinone中发来的一条json字符串（时间），占几行 */
     private final int JSON_STRING_TIMETESE_LINE_SIZE = 6;
 
     AppTimeTestUtils appTimeUtils = AppTimeTestUtils.getInstance();
@@ -97,10 +93,10 @@ class Handler implements Runnable {
     /**  
      * 构造函数
      */ 
-    public Handler(Context context,Socket socket) {
-        this.context = context; 
-        this.socket = socket;
-    }
+	public Handler(Context context, Socket socket) {
+		this.context = context;
+		this.socket = socket;
+	}
 
     private PrintWriter getWriter(Socket socket) throws IOException {
         OutputStream socketOut = socket.getOutputStream();
@@ -120,36 +116,18 @@ class Handler implements Runnable {
      *   线程执行体
      */
     public void run() {
-
-        
-		// 用于时间测试 开启线程
 //		WriteTimeToFileThread writeFile = new WriteTimeToFileThread(context);
 //		writeFile.start(); 
 		
-		System.out.println("socket begins reveiving data");
 		try {
-			System.out.println("New connection accepted "
-					+ socket.getInetAddress() + ":" + socket.getPort());
-			
 			BufferedReader br = getReader(socket);
-			// PrintWriter pw = getWriter(socket);
-
-			// syh add
             TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            JsonSender sender = new JsonSender();
-            sender.login();
-            sender.subscribe(); //订阅
             
-            // 发送指定内容作为第一条JSON数据
-            JSONObject firstData = new JSONObject();
-            firstData.put("name", "start");// 待检测数据---对应r=0
-            firstData.put("number", "0");
-            firstData.put("threadID", "0");
-            firstData.put("processID", "0");
-            firstData.put("IMEI", tm.getDeviceId());
-            firstData.put("time", "0000-00-00 00:00:00:000:000");
-            sender.publish(firstData);
-            // syh add end
+            JsonSender sender = new JsonSender();
+            sender.login(); // login服务器
+            sender.subscribe(); //订阅
+            // 发送第一条JSON数据，指定内容
+            sender.pubFirstData(tm.getDeviceId());
             
             // 接受到的行数的总数
             int receivedLineNum = 0;
@@ -159,58 +137,53 @@ class Handler implements Runnable {
             int receivedTimeTestJsonStringNum = 0;
             
             String receivedLine;
-            StringBuffer jsonStringBuffer = new StringBuffer("Json");
+            StringBuffer jsonStringBuffer = new StringBuffer();
             
             // 线程阻塞 等待jni层发送json，由三个if块组成
-            while ((receivedLine = new String(br.readLine())) != null) {
+            while ((receivedLine = br.readLine()) != null) {
                 Log.v(TAG, "从jni层接受到的单行：" + receivedLine);
-                jsonStringBuffer = jsonStringBuffer.append(receivedLine);
+                // 拼接字符串
+                jsonStringBuffer = jsonStringBuffer.append(new String(receivedLine));
                 //用于解析json，7行一个json
                 receivedLineNum++;
                 
                 // 接收完一个完整的json字符串，发送出去
                 if (receivedLineNum % JSON_STRING_LINE_SIZE == 0 
                 		&& receivedJsonStringNum < TimeTestUtils.CESHI_NUMBER) {
-                    // add for time test
-                    hookerTimeUtils.setT3ReceiveTime();
-//                    System.out.println("[time test] start time is " +
-//                            timeUtils.setT3ReceiveTime());
-                   
-                    // 待发的json字符串，去掉开头的“Json”
-                    String jsonString = jsonStringBuffer.substring(4, jsonStringBuffer.length());
+                	hookerTimeUtils.setT3ReceiveTime(); // 打时间戳
+                	receivedLineNum = 0;
+                	
+                    String jsonString = jsonStringBuffer.toString();
+                    jsonStringBuffer.delete(0, jsonStringBuffer.length());
                     
                     // 转为Json对象
                     JSONObject json = new JSONObject(jsonString);
                     // 加一组信息
                     json.put("IMEI", tm.getDeviceId());
                     sender.publish(json);
-                    hookerTimeUtils.setT4SendTime();
                     
-                    jsonStringBuffer.delete(4, jsonStringBuffer.length());
-                    receivedLineNum = 0;
-                    
-                    
-                    // 成功发送一次，加一
                     receivedJsonStringNum++;
-                    Log.i(TAG, "[+] 成功从jni层接收到" + receivedJsonStringNum + "组行为记录数据");
+                    Log.i(TAG, "[+] 成功从【jni层】接收到第" + receivedJsonStringNum + "组行为【记录数据】");
+
+                    hookerTimeUtils.setT4SendTime(); // 打时间戳
                     continue;
                 }
                 
-                // 开始接受测试数据
+                // 开始接受timetest测试数据，接收完一组解析并保存结果
 				if (receivedLineNum % JSON_STRING_TIMETESE_LINE_SIZE == 0 
 						&& receivedTimeTestJsonStringNum < TimeTestUtils.CESHI_NUMBER
 						&& receivedJsonStringNum == TimeTestUtils.CESHI_NUMBER) {
-                    String jsonString = jsonStringBuffer.substring(4, jsonStringBuffer.length());
+					receivedLineNum = 0;
+                    String jsonString = jsonStringBuffer.toString();
+                    jsonStringBuffer.delete(0, jsonStringBuffer.length());
                     JSONObject json = new JSONObject(jsonString);
                     //解析json中的t1,t2数据，并存入AppTimeUtils中
                     appTimeUtils.parseTimeFromJson(json);
-                    jsonStringBuffer.delete(4, jsonStringBuffer.length());
-                    receivedLineNum = 0;
                     receivedTimeTestJsonStringNum++;
-                    Log.i(TAG, "[+] 成功从jni层接收到" + receivedTimeTestJsonStringNum + "组time test 数据");
+                    Log.i(TAG, "[+] 成功从【jni层】接收到第" + receivedTimeTestJsonStringNum + "组【time test 数据】");
                 }
                 
-                // 接收完CESHI_NUMBER组Json字符串（时间测试数据）
+                // 接收完Json字符串（时间测试数据），计算
                 if(receivedTimeTestJsonStringNum == TimeTestUtils.CESHI_NUMBER) {
                     Log.v(TAG, "接受完app(allhookinone)中的时间数据");
                     //解析获取App到Hooker的网络时延，精确到毫秒，即t3-t2
@@ -229,7 +202,7 @@ class Handler implements Runnable {
                     while (serverToHooker.mListCostStr.size() < TimeTestUtils.CESHI_NUMBER - 2
                             || serverToHooker.mValueCostStr.size() < TimeTestUtils.CESHI_NUMBER - 2) {
                     	Log.v(TAG, "正在等待server端数据的数据...");
-                    	Thread.sleep(1000);
+                    	Thread.sleep(5000);
                     }
                     
                     // 计算网络时延
@@ -239,7 +212,8 @@ class Handler implements Runnable {
                     serverToHooker.print();
                     
                     // 通过修改标志位, 唤醒WriteTimeToFileThread线程,可以将所有的时间数据写入文件了
-//                     WriteTimeToFileThread.writeFlags = true;
+                     WriteTimeToFileThread.writeFlags = true;
+                    return;
 				}
                 
 			} // while
