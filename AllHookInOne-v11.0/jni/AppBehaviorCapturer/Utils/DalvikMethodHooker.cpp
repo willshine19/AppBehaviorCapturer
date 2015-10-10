@@ -4,8 +4,9 @@ using android::AndroidRuntime;
 using namespace __gnu_cxx;
 
 /**
- * 从方法签名中，计算java方法的参数的个数
- * @param shorty: short-form method descriptor string
+ * 从方法签名中，解析除java方法的输入参数的个数
+ * @param shorty: short-form method descriptor string 字符串 函数签名的简写
+ * @return 输入参数的个数
  */
 int calcMethodArgsSize(const char* shorty) {
 	int count = 0;
@@ -15,18 +16,18 @@ int calcMethodArgsSize(const char* shorty) {
 
 	for (;;) {
 		switch (*(shorty++)) {
-		case '\0': {
-			return count;
-		}
-		case 'D':
-		case 'J': {
-			count += 2;
-			break;
-		}
-		default: {
-			count++;
-			break;
-		}
+			case '\0': {
+				return count;
+			}
+			case 'D':
+			case 'J': {
+				count += 2;
+				break;
+			}
+			default: {
+				count++;
+				break;
+			}
 		}
 	}
 	return count;
@@ -83,7 +84,8 @@ u4 dvmPlatformInvokeHints(const char* shorty) {
 
 /**
  *
- *
+ * @param shorty 函数签名的简写
+ * @return 装入method->jniArgInfo
  */
 int dvmComputeJniArgInfo(const char* shorty) {
 	const char* sig = shorty;
@@ -209,11 +211,9 @@ ClassObject* dvmFindClass(const char *classDesc) {
 	char *newclassDesc = dvmDescriptorToName(classDesc);
 
 	jclass jnicls = dvmFindJNIClass(env, newclassDesc);
-	ClassObject *res =
-			jnicls ?
+	ClassObject *res = jnicls ?
 					static_cast<ClassObject*>(dvmDecodeIndirectRef(
-							dvmThreadSelf(), jnicls)) :
-					NULL;
+							dvmThreadSelf(), jnicls)) : NULL;
 	env->DeleteGlobalRef(jnicls);
 	free(newclassDesc);
 	return res;
@@ -238,7 +238,8 @@ ArrayObject* dvmBoxMethodArgs(const Method* method, const u4* args) {
 	if (argArray == NULL)
 		return NULL;
 	Object** argObjects = (Object**) (void*) argArray->contents;
-	 // Fill in the array.
+
+	// Fill in the array.
 	size_t srcIndex = 0;
 	size_t dstIndex = 0;
 	while (*desc != '\0') {
@@ -278,8 +279,9 @@ ArrayObject* dvmBoxMethodArgs(const Method* method, const u4* args) {
 }
 
 /**
- *
- *
+ * 该方法非虚拟机源码，返回值ArrayObject*，用于dvmInvokeMethod函数（虚拟机源码），如下
+ * Object* dvmInvokeMethod(Object* obj, const Method* method, ArrayObject* argList, ArrayObject* params, ClassObject* returnType, bool noAccessCheck)
+ * 就是用于其中的参数params
  */
 ArrayObject* dvmGetMethodParamTypes(const Method* method,
 		const char* methodsig) {
@@ -383,6 +385,7 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 		}
 	}
 	ApiHooker* tempApiHooker = iElementFound->second;
+
 	tempApiHooker->main(args);
 
 	//取出对应ApiHooker中保存的HookInfo结构体，内部保存的是对应temp API 的信息
@@ -393,6 +396,7 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 	const char* desc = originalMethod->shorty;
 	ArrayObject* argTypes = dvmBoxMethodArgs(originalMethod,
 			info->isStaticMethod ? args : args + 1);
+	// 关键：调用方法
 	pResult->l = (void *) dvmInvokeMethod(thisObject, originalMethod, argTypes,
 			(ArrayObject *) info->paramTypes, (ClassObject *) info->returnType,
 			true);
@@ -458,13 +462,14 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 	//read方法在此处出现问题
 	info->paramTypes = dvmGetMethodParamTypes(bakMethod, info->methodSig);
 	LOGD("---------------------------------");
-	LOGD("info->paramTypes=%s", info->paramTypes);
+	LOGD("info->paramTypes=%s", (char*)info->paramTypes);
 
 	// ***hook method***
 	LOGD("dalvik_java_method_hook----------hook method start");
 	//这一步应该是获取参数的个数
 	int argsSize = calcMethodArgsSize(method->shorty);
-//	LOGD("argsSize=%d", argsSize);
+//	LOGD("dalvikJavaMethodHook:method->shorty = %s", method->shorty);
+//	LOGD("dalvikJavaMethodHook:argsSize = %d", argsSize);
 	if (!dvmIsStaticMethod(method))
 		argsSize++;
 //	LOGD("argsSize=%d", argsSize);
