@@ -137,17 +137,18 @@ bool ApiHookerManager::initHashMap(){
 	OnResumeActivityApiHooker* onResume = new OnResumeActivityApiHooker();
 	OnStartActivityApiHooker* onStart = new OnStartActivityApiHooker();
 	OnStopActivityApiHooker* onStop = new OnStopActivityApiHooker();
-	mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
+	/*mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
 	mApiHookerHashMap.insert(make_pair("onDestroy", onDestroy));
 	mApiHookerHashMap.insert(make_pair("onPause", onPause));
 	mApiHookerHashMap.insert(make_pair("onRestart", onRestart));
 	mApiHookerHashMap.insert(make_pair("onResume", onResume));
 	mApiHookerHashMap.insert(make_pair("onStart", onStart));
-	mApiHookerHashMap.insert(make_pair("onStop", onStop));
+	mApiHookerHashMap.insert(make_pair("onStop", onStop));*/
 	mApiHookerHashMap.insert(make_pair("start", start));
-	mApiHookerHashMap.insert(make_pair("run", run));
-	LOGD("insert system api to hashmap successfully");
+	/*mApiHookerHashMap.insert(make_pair("run", run));
+	LOGD("insert system api to hashmap successfully");*/
 
+/*
 
 	//外设api
 	OpenCamera* openCamera = new  OpenCamera();
@@ -233,6 +234,7 @@ bool ApiHookerManager::initHashMap(){
 	mApiHookerHashMap.insert(make_pair("call",call));
 	mApiHookerHashMap.insert(make_pair("endCall",endCall));
 	LOGD("insert communication api to hashmap successfully");
+*/
 
 	return true;
 }

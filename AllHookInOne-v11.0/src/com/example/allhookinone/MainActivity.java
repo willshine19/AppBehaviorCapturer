@@ -36,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
     public static LocationManager location;
     public static TelephonyManager telephony;
     public static ITelephony telephone;
-    private int THREAD_NUM = 1;
+    private static final int THREAD_NUM = 1;
     private int count = 0;
     private String FILE_NAME = "hello";
     private Context mContext;
@@ -67,6 +67,7 @@ public class MainActivity extends ActionBarActivity {
 			e.printStackTrace();
 		}
 
+		// Begin 5-thread test!!!
 		final Button btn1 = (Button) this.findViewById(R.id.button1);
 		btn1.setOnClickListener(new OnClickListener() {
 
