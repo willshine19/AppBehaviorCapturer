@@ -17,15 +17,19 @@ OnCreateActivityApiHooker::~OnCreateActivityApiHooker() {
 	// TODO Auto-generated destructor stub
 }
 
+/**
+ * 该函数解析Activity类的onCreate方法的参数
+ * args[0]表示调用主体，也就是Activity（或其子类）实例
+ * 调用实例的toString方法，将其信息打印到logcat
+ */
 bool OnCreateActivityApiHooker::parseParameter(const u4* args) {
-	LOGD("开始解析oncreate方法的调用实例");
+	LOGD("[参数解析]开始解析oncreate方法的调用实例");
 	JNIEnv *env = AndroidRuntime::getJNIEnv();
 	jclass activity = env->FindClass("android/app/Activity");
 	if (activity == 0) {
 		LOGE("Get Class failed");
 		return false;
 	}
-	LOGD("Find class successfully");
 
 	jmethodID methodID = env->GetMethodID(activity, "toString",
 			"()Ljava/lang/String;");
@@ -33,7 +37,6 @@ bool OnCreateActivityApiHooker::parseParameter(const u4* args) {
 		LOGE("get method failed");
 		return false;
 	}
-	LOGD("get method successfully");
 
 	// 参数1
 	Object* activityObject = (Object*) args[0];

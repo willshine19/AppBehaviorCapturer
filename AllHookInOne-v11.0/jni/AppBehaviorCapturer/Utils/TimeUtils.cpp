@@ -13,10 +13,10 @@ TimeUtils::TimeUtils() {
 TimeUtils::~TimeUtils() {
 }
 
-//静态成员变量初始化
+// 单例：静态成员变量初始化
 TimeUtils* TimeUtils::timeUtilsInstance = NULL;
 
-//获取实例方法
+//获取单例方法
 TimeUtils* TimeUtils::getInstance() {
 	if (timeUtilsInstance == NULL) {
 		timeUtilsInstance = new TimeUtils();
@@ -26,6 +26,10 @@ TimeUtils* TimeUtils::getInstance() {
 
 /**
  * 获取t1时间戳
+ * 将t1的信息保存在三个数组中
+ *	struct tm* t1_start_handle_tm[ARY_NUMBER];
+ * struct timeval t1_start_handle_tv[ARY_NUMBER];
+ * string t1_start_handle_string[ARY_NUMBER];
  */
 bool TimeUtils::setT1StartTime() {
 	//获取系统当前时间
@@ -37,8 +41,7 @@ bool TimeUtils::setT1StartTime() {
 	string timeString = timeToString(t1_start_handle_tm[t1_start_handle_count],
 			t1_start_handle_tv[t1_start_handle_count]);
 	t1_start_handle_string[t1_start_handle_count] = timeString;
-	LOGD(
-			"t1_start_handle_string is %s", t1_start_handle_string[t1_start_handle_count].c_str());
+	LOGD("t1_start_handle_string is %s", t1_start_handle_string[t1_start_handle_count].c_str());
 	++t1_start_handle_count;
 	if (t1_start_handle_count > 1000)
 		t1_start_handle_count = 0;
@@ -47,6 +50,10 @@ bool TimeUtils::setT1StartTime() {
 
 /**
  * 获取t2时间戳
+ * 将t2的信息保存在三个数组中
+ * struct tm* t2_end_handle_tm[ARY_NUMBER];
+ * struct timeval t2_end_handle_tv[ARY_NUMBER];
+ * string t2_end_handle_string[ARY_NUMBER];
  */
 bool TimeUtils::setT2EndTime() {
 	//获取系统当前时间
@@ -91,9 +98,8 @@ string TimeUtils::timevalToString(struct timeval* temp) {
 	ss << temp->tv_sec << ":" << temp->tv_usec / 1000 << ":"
 			<< temp->tv_usec % 1000;
 	tempString = ss.str();
-	ss.str("");
 	//stringstream的clear方法无法清除缓存，而是使用ss.str("");
-//	ss.clear();
+	ss.str("");
 	return tempString;
 }
 
@@ -127,9 +133,10 @@ int TimeUtils::timevalAvgSubtract(struct timeval* result, struct timeval* stop,
 	return 0;
 }
 
-//暂时不需要写入文件
+/**
+ * 写入文件，暂时没用
+ */
 bool TimeUtils::writeToFile() {
-
 	file.open("time-test.txt", ios::app); //ios::app是尾部追加的意思
 	if (file.is_open()) {
 		file << "写入内容" << endl;

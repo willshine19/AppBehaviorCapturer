@@ -7,71 +7,64 @@
 
 #include "ApiHooker.h"
 
+/**
+ * 构造函数
+ */
 ApiHooker::ApiHooker() {
-	// TODO Auto-generated constructor stub
 	pthread_mutex_init(&lock, NULL);
 }
+
 ApiHooker::~ApiHooker() {
 	// TODO Auto-generated destructor stub
 }
-ApiDeclaration ApiHooker::getApiDeclaration(){
+
+ApiDeclaration ApiHooker::getApiDeclaration() {
 	return this->mApiDeclaration;
 }
 
-string ApiHooker::toString()
-{
+string ApiHooker::toString() {
 	return mApiDeclaration.getClassName() + " "
-			+  mApiDeclaration.getApiName()+ " "
+			+ mApiDeclaration.getApiName() + " "
 			+ mApiDeclaration.getApiName();
 }
-bool ApiHooker::collectBaseInfo(){
-	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition];
-//	InfoSender::getInstance()->getCycledBlockingQueue()->queue[this->mQueuePosition];
-	this->mApiDeclaration.getClassName();
-	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setClassName(this->mApiDeclaration.getClassName());
-	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setMethodName(this->mApiDeclaration.getApiName());
-	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setTime();
-//	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setThreadId(self->threadId);
-	long pid = pthread_self();
-	LOGD("pid is ++++++++++++++++++++++++++++++++++++++ %ld",pid);
-//	long pid = InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].getThreadId();
-	if(pid==0){
-		LOGE("----------------------------------getThreadID falied");
+
+/**
+ * 将类名 方法名 时间 线程号 存入循环队列的Bucket实例中
+ */
+bool ApiHooker::collectBaseInfo() {
+	long threadId = pthread_self();
+//	LOGD("ThreadID is  %ld", threadId);
+	if (threadId == 0) {
+		LOGE("getThreadID falied");
 	}
-	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setThreadId(pid);
-/*	LOGD("mCollectedApiInfo ThreadID: %ud",InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].getThreadId());
-	LOGD("mCollectedApiInfo Time: %ud",InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].getTime().data());
-	LOGD("mCollectedApiInfo ClassName: %s",InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].getClassName().data());
-	LOGD("mCollectedApiInfo MethodName: %s", InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].getMethodName().data());*/
-	pthread_mutex_unlock(&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucket_read_mutex));
-/*	InfoSender::getInstance()->getCycledBlockingQueue()->queue[this->mQueuePosition].setClassName(this->mApiDeclaration.getClassName());
-	InfoSender::getInstance()->getCycledBlockingQueue()->queue[this->mQueuePosition].setMethodName(this->mApiDeclaration.getApiName());
-	InfoSender::getInstance()->getCycledBlockingQueue()->queue[this->mQueuePosition].setTime();
-	InfoSender::getInstance()->getCycledBlockingQueue()->queue[this->mQueuePosition].setThreadId(self->threadId);
-	LOGD("mCollectedApiInfo ThreadID: %ud",InfoSender::getInstance()->getCycledBlockingQueue()->queue[this->mQueuePosition].getThreadId());
-	LOGD( "mCollectedApiInfo Time: %s", InfoSender::getInstance()->getCycledBlockingQueue()->queue[this->mQueuePosition].getTime().data() );
-	LOGD( "mCollectedApiInfo ClassName: %s", InfoSender::getInstance()->getCycledBlockingQueue()->queue[this->mQueuePosition].getClassName().data() );
-	LOGD( "mCollectedApiInfo MethodName: %s", InfoSender::getInstance()->getCycledBlockingQueue()->queue[this->mQueuePosition].getMethodName().data() );*/
+	pthread_mutex_t* mutex =  &(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].mutex);
+//	pthread_mutex_lock(mutex); 不注释会死锁
+	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setClassName(
+			this->mApiDeclaration.getClassName());
+	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setMethodName(
+			this->mApiDeclaration.getApiName());
+	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setTime();
+	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setThreadId(
+			threadId);
+	pthread_mutex_unlock(mutex);
 	return true;
 }
 
 
-bool ApiHooker::saveToQueue(){
+bool ApiHooker::saveToQueue() {
 	LOGD("saveToQueue method has been called successfully in ApiHooker");
 	return true;
 }
 
 
 /**
- * 当一个java方法被hook之后，上层app调用了该方法
- * 则会调用该方法。
- * 谁调用了这个方法？DalvikMethodHooker.cpp 中的methodHandler()函数
+ * ApiHooker类的入口
+ * 在DalvikMethodHooker.cpp 中的methodHandler()函数中被调用
  */
-bool ApiHooker::main(const u4* args){
+bool ApiHooker::main(const u4* args) {
 	pthread_mutex_lock(&lock);
 	//申请队列空闲位置
 	this->mQueuePosition = InfoSender::mCycledBlockingQueue->getNowAvailablePosition();
-//	this->mQueuePosition = InfoSender::getInstance()->getCycledBlockingQueue()->getNowAvailablePosition();
 	collectBaseInfo();
 	saveToQueue();
 	parseParameter(args);

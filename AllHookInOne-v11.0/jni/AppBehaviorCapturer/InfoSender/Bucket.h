@@ -15,18 +15,20 @@ public:
 	Bucket();
 	virtual ~Bucket();
 
+	// 向mCollectedApiInfo中写
 	bool setClassName(string ClassName);
 	bool setMethodName(string MethodName);
-	bool setThreadId(u4 ThreadId);
+	bool setThreadId(long ThreadId);
 	bool setTime();
 
+	// 从mCollectedApiInfo中读
 	string getClassName();
 	string getMethodName();
 	string getTime();
 	unsigned int getThreadId();
 
-	CollectedApiInfo m;
-	pthread_mutex_t bucket_read_mutex;
+	CollectedApiInfo mCollectedApiInfo;
+	pthread_mutex_t mutex;
 };
 
 #endif /* BUCKET_H_ */

@@ -401,6 +401,7 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 			(ArrayObject *) info->paramTypes, (ClassObject *) info->returnType,
 			true);
 	dvmReleaseTrackedAlloc((Object *) argTypes, self);
+
 	LOGD("method_handler----------------end------------------");
 }
 

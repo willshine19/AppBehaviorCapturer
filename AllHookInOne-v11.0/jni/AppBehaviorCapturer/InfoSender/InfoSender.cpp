@@ -9,15 +9,10 @@ using namespace std;
 
 /**
  * 构造函数
- * 参数：BlockingQueue实例的指针
- * 18行为什么注释掉了？
- * mCycledBlockingQueue已经改为类变量，在init()方法中初始化
+ * 成员变量mCycledBlockingQueue已经改为类变量，在init()方法中初始化
  */
-InfoSender::InfoSender(BlockingQueue* blockingQueue) {
-	// TODO Auto-generated constructor stub
-	cout << "construct InfoSender success " << endl;
-//	this->mCycledBlockingQueue = blockingQueue;
-	pthread_mutex_init(&InfoSender::lock, NULL);
+InfoSender::InfoSender() {
+	pthread_mutex_init(&InfoSender::mutex, NULL);
 }
 
 /**
@@ -31,58 +26,52 @@ InfoSender::~InfoSender() {
 InfoSender* InfoSender::infoSenderInstance = NULL;
 int InfoSender::sockfd = 0;
 CycledBlockingQueue* InfoSender::mCycledBlockingQueue = NULL;
-pthread_mutex_t InfoSender::lock = PTHREAD_MUTEX_INITIALIZER;
-;
-//CycledBlockingQueue* mCycledBlockingQueue
+pthread_mutex_t InfoSender::mutex = PTHREAD_MUTEX_INITIALIZER;
 
 /**
  * 单例模式
  * 返回：唯一的InfoSender实例
  */
 InfoSender* InfoSender::getInstance() {
-	pthread_mutex_lock(&InfoSender::lock);
+	pthread_mutex_lock(&InfoSender::mutex);
 	if (infoSenderInstance == NULL) {
-		BlockingQueue *q = new CycledBlockingQueue();
-		infoSenderInstance = new InfoSender(q);
+		infoSenderInstance = new InfoSender();
 	}
-	pthread_mutex_unlock(&InfoSender::lock);
+	pthread_mutex_unlock(&InfoSender::mutex);
 	return infoSenderInstance;
 }
 
 /**
- * 从队列中读取CollectedApiInfo实例，发送json字符串到socket
+ * 从队列中的Bucket实例中的CollectedApiInfo实例读取数据
+ * 发送json字符串到socket
+ * 在InfoSender::init()中被调用
  * 在新的线程中执行该函数
  */
 void* InfoSender::readFromQueue(void* arg) {
 	LOGD("create reading thread successfully");
 	int count;
 	TimeUtils* timeUtils = TimeUtils::getInstance();
-	string s;//待发送的json字符串
+	string json;//待发送的json字符串
 
 	while (1) {
 		LOGD("第 %d 次 发送JSon", count);
-		// 若队列为空则阻塞
-		CollectedApiInfo temp = InfoSender::mCycledBlockingQueue->send();
-		s = temp.convertToJson();
+		// 若队列为空则阻塞?
+		CollectedApiInfo apiInfo = InfoSender::mCycledBlockingQueue->send();
+		json = apiInfo.convertToJson();
 
 		//发送json字符串
-		int len = s.size();
+		int len = json.size();
 		// send a message on a socket
-		// ssize_t send(int socket, const void *buffer, size_t length, int flags);
-		int result = (int) send(sockfd, s.c_str(), len, 0);
+		// 函数原型size_t send(int socket, const void *buffer, size_t length, int flags);
+		int result = (int) send(sockfd, json.c_str(), len, 0);
 		if (result == -1)
 			LOGE("[-]send Json error!\r\n");
 		LOGD("send Json successfully");
 		++count;
+
 		//关于时间测试，为什么还用json传输，在这里做过一部分的探究，基于
 		//结果是一样的
-//		char* buf = new char[100];
-//		strcpy(buf,"hello world");
-//		send(sockfd, buf,buf->len, 0);
-		//结果是一样的
-//		string hello = "hello";
-//		int ceshi = hello.length();
-//		send(sockfd, hello.c_str(), ceshi, 0);
+
 		//在此处发送t1_start_handle_string[0],完全可以发送出去，但是后面依然会跟一个{,和下面的情况一致
 //		send(sockfd, timeUtils->t1_start_handle_string[0].c_str(), timeUtils->t1_start_handle_string[0].length(), 0);
 //		LOGD("t1_start_handle_string[0]'s length is  %d",timeUtils->t1_start_handle_string[0].length());
@@ -190,7 +179,7 @@ void* InfoSender::readFromQueue(void* arg) {
  * 创建 并 初始化 socket链接
  * #include <sys/socket.h>
  */
-int InfoSender::socketConnection() {
+int InfoSender::initSocketConnection() {
 	int res;
 	ssize_t cnt;
 	int j;
@@ -243,17 +232,13 @@ int InfoSender::socketConnection() {
 bool InfoSender::init() {
 	//初始化队列
 	InfoSender::mCycledBlockingQueue = new CycledBlockingQueue(1024);
-//	this->mCycledBlockingQueue = new CycledBlockingQueue(1024);
 	//初始化读线程
 	int err = pthread_create(&this->ntid, NULL, InfoSender::readFromQueue,
 			NULL);
 	if (err != 0) {
 		LOGE("can not create thread :%s", strerror(err));
 	}
-	socketConnection();
+	initSocketConnection();
 	return true;
 }
-/*CycledBlockingQueue* InfoSender::getCycledBlockingQueue(){
- return this->mCycledBlockingQueue;
- }*/
 

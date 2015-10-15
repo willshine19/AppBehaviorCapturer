@@ -145,8 +145,8 @@ bool ApiHookerManager::initHashMap(){
 	mApiHookerHashMap.insert(make_pair("onStart", onStart));
 	mApiHookerHashMap.insert(make_pair("onStop", onStop));*/
 	mApiHookerHashMap.insert(make_pair("start", start));
-	/*mApiHookerHashMap.insert(make_pair("run", run));
-	LOGD("insert system api to hashmap successfully");*/
+	mApiHookerHashMap.insert(make_pair("run", run));
+	LOGD("insert system api to hashmap successfully");
 
 /*
 

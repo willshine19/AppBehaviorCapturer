@@ -22,8 +22,9 @@ class ApiDeclaration {
 	void *mParamTypes;
 public:
 	ApiDeclaration();
-	ApiDeclaration(string mClassName,string mMethodName,string mMethodSignature,bool isStaticMethod,void *originalMethod,void *returnType,
-	void *paramType);
+	ApiDeclaration(string mClassName, string mMethodName,
+			string mMethodSignature, bool isStaticMethod, void *originalMethod,
+			void *returnType, void *paramType);
 	virtual ~ApiDeclaration();
 
 	//成员函数
@@ -34,8 +35,6 @@ public:
 	void* getOriginalMethod();
 	void* getReturnType();
 	void* getParamTapes();
-
 };
-
 
 #endif /* ApiDeclaration_H_ */

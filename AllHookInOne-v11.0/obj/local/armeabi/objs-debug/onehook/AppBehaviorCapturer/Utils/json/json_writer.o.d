@@ -8,7 +8,7 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/Utils/json/json_writer.
  /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/vector \
  /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/map \
  /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream \
- /home/sang/android/android-ndk-r10d/platforms/android-16/arch-arm/usr/include/assert.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/assert.h \
  /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/sstream \
  /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/iomanip
 
@@ -28,7 +28,7 @@ jni/AppBehaviorCapturer/Utils/json/json/config.h:
 
 /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream:
 
-/home/sang/android/android-ndk-r10d/platforms/android-16/arch-arm/usr/include/assert.h:
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/assert.h:
 
 /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/sstream:
 

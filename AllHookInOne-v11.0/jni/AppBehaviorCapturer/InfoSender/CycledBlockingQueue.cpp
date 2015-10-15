@@ -12,12 +12,11 @@ using namespace std;
  * 无参构造函数
  */
 CycledBlockingQueue::CycledBlockingQueue() {
-	// TODO Auto-generated constructor stub
 	LOGD("construct CyledBlockingQueue success");
 	this->capacity = 10;
 	queue = new Bucket[capacity];
-	wp = 0;
-	rp = 0;
+	writePointer = 0;
+	readPointer = 0;
 	pthread_mutex_init(&queue_write_mutex, NULL);
 }
 
@@ -25,11 +24,11 @@ CycledBlockingQueue::CycledBlockingQueue() {
  * 含参构造函数
  * @param c: Bucket数组的容量
  */
-CycledBlockingQueue::CycledBlockingQueue(int c) {
-	this->capacity = c;
-	queue = new Bucket[c];
-	wp = 0;
-	rp = 0;
+CycledBlockingQueue::CycledBlockingQueue(int capacity) {
+	this->capacity = capacity;
+	queue = new Bucket[capacity];
+	writePointer = 0;
+	readPointer = 0;
 	pthread_mutex_init(&queue_write_mutex, NULL);
 }
 
@@ -40,8 +39,8 @@ CycledBlockingQueue::~CycledBlockingQueue() {
 	// TODO Auto-generated destructor stub
 	this->capacity = 0;
 	delete[] queue;
-	wp = 0;
-	rp = 0;
+	writePointer = 0;
+	readPointer = 0;
 	pthread_mutex_destroy(&queue_write_mutex);
 }
 
@@ -51,13 +50,13 @@ CycledBlockingQueue::~CycledBlockingQueue() {
  */
 int CycledBlockingQueue::getNowAvailablePosition() {
 	pthread_mutex_lock(&queue_write_mutex);
-	LOGD("wp is %d,rp is %d,capacity is %d",wp,rp,capacity);
-	if (((wp + 1) & (this->capacity - 1)) == rp) { //is full?
+	LOGD("[队列]写指针 is %d, 读指针 is %d, 队列总容量 is %d", writePointer, readPointer, capacity);
+	if (((writePointer + 1) & (this->capacity - 1)) == readPointer) { //is full?
 		LOGD("[CycedBlockingQueue] Get now available position failed!!!");
 		return -1;
 	}
-	int ret = wp;
-	wp = (wp + 1) & (capacity - 1);
+	int ret = writePointer;
+	writePointer = (writePointer + 1) & (capacity - 1);
 	pthread_mutex_unlock(&queue_write_mutex);
 	return ret;
 }
@@ -83,15 +82,8 @@ bool CycledBlockingQueue::push(CollectedApiInfo apiInfo) {
  * 返回：CollectedApiInfo实例
  */
 CollectedApiInfo CycledBlockingQueue::send() {
-	// TODO Auto-generated destructor stub
-	pthread_mutex_lock(&(queue[rp].bucket_read_mutex));
-	int read_point = rp;
-	char* ret;
-/*	LOGD("ReadingThread-------------------------position =  %d",rp);
-	LOGD("ReadingThread-------------------------className is %s",queue[rp].getClassName().data());
-	LOGD("ReadingThread-------------------------methodName is %s",queue[rp].getMethodName().data());
-	LOGD("ReadingThread-------------------------threadID is %ud",queue[rp].getThreadId());*/
-	rp = (rp + 1) & (capacity - 1);
-	return queue[read_point].m;
-//	return true;
+	pthread_mutex_lock(&(queue[readPointer].mutex));
+	int read_point = readPointer;
+	readPointer = (readPointer + 1) & (capacity - 1);
+	return queue[read_point].mCollectedApiInfo;
 }

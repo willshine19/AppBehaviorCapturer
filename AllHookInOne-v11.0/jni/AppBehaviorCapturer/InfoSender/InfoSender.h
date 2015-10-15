@@ -25,29 +25,23 @@
 
 using android::AndroidRuntime;
 class InfoSender {
-	private:
-	//	BlockingQueue<CollectedApiInfo> mCycledBlockingQueue;
-	//需将BlockingQueue做成模板
-
+private:
+	//使用单例模式，构造方法私有，声明一个private static变量，由getInstance方法访问
 	static InfoSender* infoSenderInstance;
 	pthread_t ntid;
 	static int sockfd;
-	//使用单例模式，构造方法私有，声明一个private static变量，由getInstance方法访问
-	InfoSender(BlockingQueue* blockingQueue);
+	InfoSender();
 	virtual ~InfoSender();
 
-	public:
-		static InfoSender* getInstance();
-		static void* readFromQueue(void* arg);
-		static CycledBlockingQueue* mCycledBlockingQueue;
-//		static BlockingQueue* mCycledBlockingQueue;
-		static pthread_mutex_t lock;
-		//成员函数，需填写响应逻辑
-		bool init();
-//		void* readFromQueue();
-		int socketConnection();
-//		bool send();跟系统中的send方法重名，不可用
-		CycledBlockingQueue* getCycledBlockingQueue();
+public:
+	static InfoSender* getInstance();
+	static void* readFromQueue(void* arg);
+	static CycledBlockingQueue* mCycledBlockingQueue;
+	static pthread_mutex_t mutex;
+	//成员函数，需填写响应逻辑
+	bool init();
+	int initSocketConnection();
+	CycledBlockingQueue* getCycledBlockingQueue();
 };
 
 #endif /* INFOSENDER_H_ */
