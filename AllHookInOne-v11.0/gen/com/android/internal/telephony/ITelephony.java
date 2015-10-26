@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /home/long/JNI-Hook-4.27/AllHookInOne-v11.0/src/com/android/internal/telephony/ITelephony.aidl
+ * Original file: /home/zds/syhgit/app_behavior_capturer/AllHookInOne-v11.0/src/com/android/internal/telephony/ITelephony.aidl
  */
 package com.android.internal.telephony;
 /**

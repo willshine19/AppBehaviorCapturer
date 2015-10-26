@@ -31,12 +31,12 @@ import android.widget.Button;
 @SuppressWarnings("deprecation")
 public class MainActivity extends ActionBarActivity {
     
-    private String TAG = "Java Hook";
+    private static final String TAG = "Hooked APP";
     public static WifiManager wifi ;
     public static LocationManager location;
     public static TelephonyManager telephony;
     public static ITelephony telephone;
-    private int THREAD_NUM = 1;
+    private static final int THREAD_NUM = 1;
     private int count = 0;
     private String FILE_NAME = "hello";
     private Context mContext;
@@ -53,8 +53,7 @@ public class MainActivity extends ActionBarActivity {
 		Log.i(TAG,"完成telephonyManager初始化");
 		this.mContext = this.getApplicationContext();
 		
-        try
-        {
+		try {
             //利用java反射机制 
             //获取隐藏类android.os.ServiceManager的getService方法
             Method method = Class.forName("android.os.ServiceManager")
@@ -64,29 +63,28 @@ public class MainActivity extends ActionBarActivity {
             // 将IBinder对象的代理转换为ITelephony对象
             telephone = ITelephony.Stub.asInterface(binder);
             // 拨打电话
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
+		// Begin 5-thread test!!!
 		final Button btn1 = (Button) this.findViewById(R.id.button1);
 		btn1.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-			Runner [] r = new Runner[THREAD_NUM];
-			for(int i =0;i<THREAD_NUM;i++){
-				r[i] = new Runner();
-				r[i].setNum(i+1);
-			}
-			Thread[] t = new Thread[THREAD_NUM];
-			for (int i =0;i<THREAD_NUM;i++){
-				t[i]= new Thread(r[i]);
-				t[i].start();
-			}
+
+				Runner[] r = new Runner[THREAD_NUM];
+				for (int i = 0; i < THREAD_NUM; i++) {
+					r[i] = new Runner();
+					r[i].setNum(i + 1);
+				}
+				Thread[] t = new Thread[THREAD_NUM];
+				for (int i = 0; i < THREAD_NUM; i++) {
+					t[i] = new Thread(r[i]);
+					t[i].start();
+				}
 			}
 		});
 		
@@ -95,19 +93,19 @@ public class MainActivity extends ActionBarActivity {
             
             @Override
             public void onClick(View v) {
-                //test 1
-//                for(int i=0;i<170;i++){
-                for(int i=0;i<1;i++){
+				for (int i = 0; i < 3; i++) {
+                	//test 1 io 
                     Log.d(TAG,"*************test 1****************");
                     try {
                         count++;
                         FileOutputStream out = openFileOutput(FILE_NAME,MODE_PRIVATE);
                         out.write(count);
+                        Log.v(TAG, "调用write");
                         Log.i("param-test","count is  "+count);
                         out.flush();
                         out.close();
                         FileInputStream in = openFileInput(FILE_NAME);
-                        Log.i("param-test","get string from file" + in.read());
+//                        Log.i("param-test","get string from file" + in.read());
                         in.close();
                     } catch (FileNotFoundException e1) {
                         // TODO Auto-generated catch block
@@ -116,24 +114,28 @@ public class MainActivity extends ActionBarActivity {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
+                    
                     //test 2
                     Log.d(TAG,"*************test 2****************");
                     Location location = MainActivity.location.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    Log.v(TAG, "调用getLastKnownLocation");
                     if(location != null){
                         Log.i("Thread", location.toString());
                     }
                     Log.i("param-test","getLastKnownLcoation failed");
+                    
                     //test 3
                     Log.d(TAG,"*************test 3****************");
                     insertContacts();
+                    
                     //test 4
                     Log.d(TAG,"*************test 4****************");
                     getContacts();
+                    
                     //test 5
                     Log.d(TAG,"**************test 5****************");
                     deleteContacts();
                 }
-                
             }
         });
 		
@@ -174,9 +176,11 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
 	private void getContacts() {
         ContentResolver resolver = mContext.getContentResolver();
         Cursor phoneCursor = resolver.query(Phone.CONTENT_URI, null, null, null, null);
+        Log.v(TAG, "调用query");
         if (phoneCursor != null) {
             while (phoneCursor.moveToNext()) {
                 int nameIndex = phoneCursor.getColumnIndex(Phone.DISPLAY_NAME); // 获取联系人name
@@ -187,12 +191,14 @@ public class MainActivity extends ActionBarActivity {
             phoneCursor.close();
         }
     }
+	
     private void insertContacts(){        
         Uri uri = Uri.parse("content://com.android.contacts/raw_contacts");
         Log.d(TAG,uri.toString());
         ContentResolver resolver = mContext.getContentResolver();  
         ContentValues values = new ContentValues();  
-        long contactId = ContentUris.parseId(resolver.insert(uri, values));  
+        long contactId = ContentUris.parseId(resolver.insert(uri, values));
+        Log.v(TAG, "调用insert");
         /* 往 data 中添加数据（要根据前面获取的id号） */  
         // 添加姓名  
         uri = Uri.parse("content://com.android.contacts/data");  
@@ -200,6 +206,7 @@ public class MainActivity extends ActionBarActivity {
         values.put("mimetype", "vnd.android.cursor.item/name");  
         values.put("data2", "周国平");  
         resolver.insert(uri, values); 
+        Log.v(TAG, "调用insert");
         // 添加电话  
         values.clear();  
         values.put("raw_contact_id", contactId);  
@@ -207,6 +214,7 @@ public class MainActivity extends ActionBarActivity {
         values.put("data2", "2");  
         values.put("data1", "15099144117");  
         resolver.insert(uri, values);  
+        Log.v(TAG, "调用insert");
         // 添加Email  
         values.clear();  
         values.put("raw_contact_id", contactId);  
@@ -214,9 +222,14 @@ public class MainActivity extends ActionBarActivity {
         values.put("data2", "2");  
         values.put("data1", "zhouguoping@qq.com");  
         resolver.insert(uri, values);  
+        Log.v(TAG, "调用insert");
+
 	}
+    
     @SuppressWarnings("deprecation")
     private void deleteContacts(){
         this.mContext.getContentResolver().delete(People.CONTENT_URI, null, null);
+        Log.v(TAG, "调用delect");
+
     }
 }

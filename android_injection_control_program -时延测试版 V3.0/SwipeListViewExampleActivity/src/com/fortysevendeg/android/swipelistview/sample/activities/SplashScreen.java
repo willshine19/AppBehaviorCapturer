@@ -21,24 +21,21 @@ import com.fortysevendeg.android.swipelistview.sample.activities.SplashScreen;
 import com.fortysevendeg.android.swipelistview.sample.adapters.PackageItem;
 import com.fortysevendeg.android.swipelistview.R;
 
-public class SplashScreen extends Activity {// 引导页，检测较耗时，在此运行
+/**  
+ *   app的入口
+ *   引导页，检测较耗时，在此运行
+ */  
+public class SplashScreen extends Activity {
 
+    /**  所有安装在终端的app的状态，三个状态：0未运行， 1已注入， 2未注入  */  
     private ArrayList<Integer> JudgeSet = new ArrayList<Integer>();// 检测结果
-    
-    private String[] running_process = new String[300];
+    /**  正在执行的进程信息  */  
+    private String[] runningProcess = new String[300];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.splash);
-
-        try {
-            TextView versionNumber = (TextView) findViewById(R.id.versionNumber);
-            versionNumber.setText("Version " + 1.0);
-        } catch (Exception e) {// NameNotFoundException
-            e.printStackTrace();
-        }
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -64,29 +61,34 @@ public class SplashScreen extends Activity {// 引导页，检测较耗时，在
 
    
 
+    /**  
+     * 在新的线程中执行
+     */
     public void setData() {
         PackageManager appInfo = getPackageManager();
         // Return a List of all application packages that are installed on the device.
         List<ApplicationInfo> listInfo = appInfo.getInstalledApplications(0);
         Collections.sort(listInfo, new ApplicationInfo.DisplayNameComparator(appInfo));
-        // 通过调用ps终端指令，获取正在运行的进程信息，填充sline数组
+        
         getRunningProcess();
 
-        for (int index = 0; index < listInfo.size(); index++) {// 找到了，建立list
+        for (int i = 0; i < listInfo.size(); i++) {// 找到了，建立list
             try {
-                ApplicationInfo content = listInfo.get(index);
-                if ((content.flags != ApplicationInfo.FLAG_SYSTEM) && content.enabled) {
-                    if (content.icon != 0) {
+                ApplicationInfo info = listInfo.get(i);
+                // FLAG_SYSTEM: if set, this application is installed in the device's system image.
+                
+                if ((info.flags != ApplicationInfo.FLAG_SYSTEM) && info.enabled) {
+                    if (info.icon != 0) {
                         PackageItem item = new PackageItem();
                         // set Application Name
-                        item.setName(getPackageManager().getApplicationLabel(content).toString());
+                        item.setName(getPackageManager().getApplicationLabel(info).toString());
                         // set package name
-                        item.setPackageName(content.packageName);
-                        // 判断item对应app是否运行
-                        Integer i = setRunningStatus(item);
+                        item.setPackageName(info.packageName);
+                        // 返回item对应app的状态
+                        Integer status = setRunningStatus(item);
                         // 将item对应app运行状态装填至JudgeSet中
-                        JudgeSet.add(i);// index,
-                        Log.v("index", "" + index);
+                        JudgeSet.add(status);// index,
+                        Log.v("index", "" + i);
                     }
                 }
             } catch (Exception e) {
@@ -96,13 +98,18 @@ public class SplashScreen extends Activity {// 引导页，检测较耗时，在
 
     }
 
+    
+    /**  
+     * 开启新进程，运行 ps，将所有正在运行的进程信息保存在runningProcess数组中
+     */
     public void getRunningProcess() {
         Process process = null;
         DataOutputStream os = null;
         DataInputStream is = null;
 
         try {
-            process = Runtime.getRuntime().exec("su");
+            // 开启新进程
+        	process = Runtime.getRuntime().exec("su");
             os = new DataOutputStream(process.getOutputStream());
             is = new DataInputStream(process.getInputStream());
             BufferedReader bfr = new BufferedReader(new InputStreamReader(is));
@@ -112,33 +119,36 @@ public class SplashScreen extends Activity {// 引导页，检测较耗时，在
             os.writeBytes("exit\n");
             os.flush();
 
-            for (int i = 0; i < 300; i++) {
-                running_process[i] = bfr.readLine();
-//                Log.v("line", sline[i]);
-            }
-
+			for (int i = 0; i < 300; i++) {
+				runningProcess[i] = bfr.readLine();
+//				Log.v("getRunningProcess", runningProcess[i]);
+			}
         } catch (Exception e) {
             // TODO Auto-generated catch block
             Log.e("Error", e.getMessage());
             e.printStackTrace();
         }
-
     }
 
+    
+    /**  
+     * 返回目标进程的pid，通过包名
+     * @param item 包信息
+     * @return 目标进程pid
+     */
     public String findPid(PackageItem item) {
         String pid = "";
 
         try {
             String pName = item.getPackageName();
-            Log.v("pid", "packageName :" + pName);
+//            Log.v("pid", "packageName :" + pName);
 
             for (int i = 0; i < 300; i++) {
-
-                if ((running_process[i]) != null) { // 读取输出 line = bfr.readLine()
-                    if (running_process[i].contains(pName)) {
-                        String[] splitline = running_process[i].split("\\s+");
+                if ((runningProcess[i]) != null) { // 读取输出 line = bfr.readLine()
+                    if (runningProcess[i].contains(pName)) {
+                        String[] splitline = runningProcess[i].split("\\s+");
                         pid = splitline[1];
-//                        Log.v("line", pid);
+                        Log.v("findPid", pid);
                     }
                 }
             }
@@ -150,25 +160,30 @@ public class SplashScreen extends Activity {// 引导页，检测较耗时，在
         return pid;
     }
 
+    
+    /**  
+     * 返回应用的状态
+     * @param item
+     * @return 0未运行， 1已注入， 2未注入
+     */
     public int setRunningStatus(PackageItem item) {// , View convertView
         Process process = null;
         DataOutputStream os = null;
         DataInputStream is = null;
 
-        String pid;
-        pid = findPid(item);
+        String pid = findPid(item);
         if (pid == "") {
             return 0;// 未运行
         }
+        
         try {
-
             process = Runtime.getRuntime().exec("su");
             os = new DataOutputStream(process.getOutputStream());
             is = new DataInputStream(process.getInputStream());
             BufferedReader bfr = new BufferedReader(new InputStreamReader(is));
 
             String pName = item.getPackageName();
-            Log.v("Injector", "packageName :" + pName);
+//            Log.v("Injector", "packageName :" + pName);
 
             String line = null;
 

@@ -1,6 +1,7 @@
 LOCAL_PATH := $(call my-dir)
-
 include $(CLEAR_VARS)
+
+
 LOCAL_MODULE    := onehook
 #LOCAL_LDLIBS	:= -ldvm.4 -llog -landroid_runtime
 #LOCAL_CFLAGS	:= -DDEBUG -O0
@@ -22,13 +23,12 @@ MY_CPP_LIST += $(wildcard $(LOCAL_PATH)/AppBehaviorCapturer/System/*.cpp)
 MY_CPP_LIST += $(wildcard $(LOCAL_PATH)/AppBehaviorCapturer/Utils/*.cpp)
 MY_CPP_LIST += $(wildcard $(LOCAL_PATH)/AppBehaviorCapturer/Utils/json/*.cpp)
 
-#前面我们获取的文件都是以jni开头的,而真正编译所需要的文件都应该是直接从jni目录开始的,所以我们使用模式替换把所有文件名前面的jni/去掉.
-#$(MY_CPP_LIST:$(LOCAL_PATH)/%=%)的语法含义,它的意思是对MY_CPP_LIST中每一项,应用冒号后面的规则,规则是什么呢?规则是$(LOCAL_PATH)/%=%,意思是,查找所有$(LOCAL_PATH)/开头的项,并截取后面部分
+# 前面我们获取的文件都是以jni开头的,而真正编译所需要的文件都应该是直接从jni目录开始的,
+# 所以我们使用模式替换把所有文件名前面的jni/去掉.
+# $(MY_CPP_LIST:$(LOCAL_PATH)/%=%)的语法含义,它的意思是对MY_CPP_LIST中每一项,应用冒号后面的规则,规则是什么呢?
+# 规则是$(LOCAL_PATH)/%=%,意思是,查找所有$(LOCAL_PATH)/开头的项,并截取后面部分
 LOCAL_SRC_FILES := $(MY_CPP_LIST:$(LOCAL_PATH)/%=%)
 
-
-LOCAL_SHARED_LIBRARIES += \
-	libcutils  
+LOCAL_SHARED_LIBRARIES += libcutils  
 	
 include $(BUILD_SHARED_LIBRARY)
-

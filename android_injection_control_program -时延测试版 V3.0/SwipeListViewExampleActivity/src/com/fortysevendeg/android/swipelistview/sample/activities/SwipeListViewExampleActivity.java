@@ -58,7 +58,7 @@ import java.util.List;
 
 public class SwipeListViewExampleActivity extends FragmentActivity {
 
-    private static final int REQUEST_CODE_SETTINGS = 0;
+    private static final int REQUEST_CODE_SETTINGS = 0; 
     private PackageAdapter adapter;
     private List<PackageItem> data;
 
@@ -186,7 +186,8 @@ public class SwipeListViewExampleActivity extends FragmentActivity {
                 for (int position : reverseSortedPositions) {
                     data.remove(position);
                 }
-                adapter.notifyDataSetChanged();// 可以在修改适配器绑定的数组后，不用重新刷新Activity，通知Activity更新ListView
+                // 可以在修改适配器绑定的数组后，不用重新刷新Activity，通知Activity更新ListView
+                adapter.notifyDataSetChanged();
             }
 
         });
@@ -204,7 +205,11 @@ public class SwipeListViewExampleActivity extends FragmentActivity {
 
     }
 
-    private void reload() {// 设置界面的设置
+    
+    /**  
+     * 设置界面的设置
+     */
+    private void reload() {
         SettingsManager settings = SettingsManager.getInstance();
         swipeListView.setSwipeMode(settings.getSwipeMode());
         swipeListView.setSwipeActionLeft(settings.getSwipeActionLeft());

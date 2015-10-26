@@ -12,6 +12,7 @@ import com.lwl.utils.ServerToHookerTimeTestUtils;
 import com.lwl.utils.TimeTestUtils;
 
 import android.content.Context;
+import android.util.Log;
 
 public class WriteTimeToFileThread extends Thread{
     
@@ -25,27 +26,35 @@ public class WriteTimeToFileThread extends Thread{
     private ServerToHookerTimeTestUtils serverToHookerTimeTest = ServerToHookerTimeTestUtils.getInstance();
     
     public static boolean writeFlags = false;
-    public static final String FILE_NAME = "time-test.txt";
+    public static final String FILE_NAME = "/data/inj-allhookinone/time-test.txt";
+    private static final String TAG = "WriteIntoFile";
     
     
+    /**  
+     * 构造函数
+     */ 
     public WriteTimeToFileThread(Context context) {
         super();
         this.context = context;
     }
+    
     @Override
     public void run() {
-        // TODO Auto-generated method stub
-        //等待写标志位置true
-//        while(true){
-            while(!writeFlags){}
-            writeToFile(context, FILE_NAME);
-//        }
-
-        
+		// TODO Auto-generated method stub
+		// 等待写标志位置true
+		while (!writeFlags) {
+		}
+		writeToFile(context, FILE_NAME);
+		Log.i(TAG, "写入文件已结束");
     }
-    //将数组内容写入文件
+    
+    /**  
+     * 将数组内容写入文件
+     * @param context
+     * @param filename
+     * @return
+     */
     public int writeToFile(Context context,String filename){
-        
         try {
             //写入前先清空文件的内容
             //此地方也可以不清空，写入几个换行符，然后记录测试的次数
@@ -118,7 +127,7 @@ public class WriteTimeToFileThread extends Thread{
             fo.flush();
             
             //写avg(t2-t1)
-            byte[] byte4 = TimeTestUtils.string2String("avg_t2_t1_subtract", appTimeTest.avg_t2_t1_subtract).getBytes();
+            byte[] byte4 = TimeTestUtils.string2String("avg_t2_t1_subtract", appTimeTest.t2t1DiffAvgStr).getBytes();
             fo.write(byte4);
             fo.flush();
             fo.write('\n');
@@ -143,8 +152,8 @@ public class WriteTimeToFileThread extends Thread{
             fo.flush();
             
             //写avg(t3-t2)
-            System.out.println("avg_t3_t2_subtract" + appToHookerTimeTest.avg_t3_t2_subtract);
-            byte[] byte2 = TimeTestUtils.string2String("avg_t3_t2_subtract",appToHookerTimeTest.avg_t3_t2_subtract).getBytes();
+            System.out.println("avg_t3_t2_subtract" + appToHookerTimeTest.t3t2DiffAvgStr);
+            byte[] byte2 = TimeTestUtils.string2String("avg_t3_t2_subtract",appToHookerTimeTest.t3t2DiffAvgStr).getBytes();
             fo.write(byte2);
             fo.flush();
             fo.write('\n');
@@ -176,14 +185,14 @@ public class WriteTimeToFileThread extends Thread{
             fo.flush();
             
             //写t4-t3
-            byte[] byte3 = TimeTestUtils.stringAry2String("t4_t3_time_subtract",hookerTimeTest.t4_t3_time_subtract).getBytes();
+            byte[] byte3 = TimeTestUtils.stringAry2String("t4_t3_time_subtract",hookerTimeTest.t4t3DiffStr).getBytes();
             fo.write(byte3);
             fo.flush();
             fo.write('\n');
             fo.flush();
             
             //写avg(t4-t3)
-            byte[] byte4 = TimeTestUtils.string2String("avg_t4_t3_subtract",hookerTimeTest.avg_t4_t3_subtract).getBytes();
+            byte[] byte4 = TimeTestUtils.string2String("avg_t4_t3_subtract",hookerTimeTest.t4t3DiffAvgStr).getBytes();
             fo.write(byte4);
             fo.flush();
             fo.write('\n');
@@ -199,7 +208,7 @@ public class WriteTimeToFileThread extends Thread{
         
         try {
             //t7
-            byte[] byte1 = TimeTestUtils.stringAry2String("t7_receive_time_str",serverToHookerTimeTest.t7_receive_time_str).getBytes();
+            byte[] byte1 = TimeTestUtils.stringAry2String("t7_receive_time_str",serverToHookerTimeTest.t7TimestampDateStr).getBytes();
             fo.write(byte1);
             fo.flush();
             //写入换行符用于区分

@@ -7,13 +7,17 @@
 #include "InfoSender.h"
 using namespace std;
 
-InfoSender::InfoSender(BlockingQueue* blockingQueue) {
-	// TODO Auto-generated constructor stub
-	cout << "construct InfoSender success " << endl;
-//	this->mCycledBlockingQueue = blockingQueue;
-	pthread_mutex_init(&InfoSender::lock, NULL);
+/**
+ * 构造函数
+ * 成员变量mCycledBlockingQueue已经改为类变量，在init()方法中初始化
+ */
+InfoSender::InfoSender() {
+	pthread_mutex_init(&InfoSender::mutex, NULL);
 }
 
+/**
+ * 析构函数
+ */
 InfoSender::~InfoSender() {
 	// TODO Auto-generated destructor stub
 }
@@ -22,54 +26,62 @@ InfoSender::~InfoSender() {
 InfoSender* InfoSender::infoSenderInstance = NULL;
 int InfoSender::sockfd = 0;
 CycledBlockingQueue* InfoSender::mCycledBlockingQueue = NULL;
-pthread_mutex_t InfoSender::lock = PTHREAD_MUTEX_INITIALIZER;
-;
-//CycledBlockingQueue* mCycledBlockingQueue
-//单例模式中访问实例的接口
+pthread_mutex_t InfoSender::mutex = PTHREAD_MUTEX_INITIALIZER;
+
+/**
+ * 单例模式
+ * 返回：唯一的InfoSender实例
+ */
 InfoSender* InfoSender::getInstance() {
-	pthread_mutex_lock(&InfoSender::lock);
+	pthread_mutex_lock(&InfoSender::mutex);
 	if (infoSenderInstance == NULL) {
-		BlockingQueue *q = new CycledBlockingQueue();
-		infoSenderInstance = new InfoSender(q);
+		infoSenderInstance = new InfoSender();
 	}
-	pthread_mutex_unlock(&InfoSender::lock);
+	pthread_mutex_unlock(&InfoSender::mutex);
 	return infoSenderInstance;
 }
+
+/**
+ * 从队列中的Bucket实例中的CollectedApiInfo实例读取数据
+ * 发送json字符串到socket
+ * 在InfoSender::init()中被调用
+ * 在新的线程中执行该函数
+ */
 void* InfoSender::readFromQueue(void* arg) {
 	LOGD("create reading thread successfully");
 	int count;
 	TimeUtils* timeUtils = TimeUtils::getInstance();
-	string s;
+	string json;//待发送的json字符串
 
 	while (1) {
 		LOGD("第 %d 次 发送JSon", count);
-		CollectedApiInfo temp = InfoSender::mCycledBlockingQueue->send();
-		s = temp.convertToJson();
-		//发送json
-		int len = s.size();
+		// 若队列为空则阻塞?
+		CollectedApiInfo apiInfo = InfoSender::mCycledBlockingQueue->send();
+		json = apiInfo.convertToJson();
 
-		int result = (int) send(sockfd, s.c_str(), len, 0);
-		LOGD("send Json successfully");
+		//发送json字符串
+		int len = json.size();
+		// send a message on a socket
+		// 函数原型size_t send(int socket, const void *buffer, size_t length, int flags);
+		int result = (int) send(sockfd, json.c_str(), len, 0);
 		if (result == -1)
 			LOGE("[-]send Json error!\r\n");
+		LOGD("send Json successfully");
 		++count;
+
 		//关于时间测试，为什么还用json传输，在这里做过一部分的探究，基于
 		//结果是一样的
-//		char* buf = new char[100];
-//		strcpy(buf,"hello world");
-//		send(sockfd, buf,buf->len, 0);
-		//结果是一样的
-//		string hello = "hello";
-//		int ceshi = hello.length();
-//		send(sockfd, hello.c_str(), ceshi, 0);
+
 		//在此处发送t1_start_handle_string[0],完全可以发送出去，但是后面依然会跟一个{,和下面的情况一致
 //		send(sockfd, timeUtils->t1_start_handle_string[0].c_str(), timeUtils->t1_start_handle_string[0].length(), 0);
 //		LOGD("t1_start_handle_string[0]'s length is  %d",timeUtils->t1_start_handle_string[0].length());
-		//时间测试，记录处理Api的结束时间，即t2
-		timeUtils->setT2EndTime();
 
-		//当已发送了CESHI_NUMBER个Json包后，即可计算时间差值等，然后发送至HookerManager
-		if (count % CESHI_NUMBER == 0) {
+		//时间测试，记录处理Api的结束时间，即t2
+//		timeUtils->setT2EndTime();
+
+		//当已发送了CESHI_NUMBER个Json字符串后，即可计算时间差值等，然后发送至HookerManager
+//		if (count % CESHI_NUMBER == 0) {
+		if (0) {
 			LOGD("begin calculate time subtract and send ");
 			//开始计算时间差值，存入数组，计算平均值，并发送至HookerManager中
 			string ss;
@@ -91,18 +103,15 @@ void* InfoSender::readFromQueue(void* arg) {
 					//保存时间差值对应的string数组
 					timeUtils->time_subtract_string[t] = ss;
 				}
-			}
+			} // end for
+
 			//将string输出，经验证，保存正常
-			for (int i = 0; i < CESHI_NUMBER; i++) {
-				LOGD(
-						"[time test] timeSubtract is %s", timeUtils->time_subtract_string[i].c_str());
-			}
-			timeUtils->avg_time_subtract.tv_sec = sum_timeval_time
-					/ CESHI_NUMBER;
-			timeUtils->avg_time_subtract.tv_usec = sum_timeval_seconds
-					/ CESHI_NUMBER;
-			timeUtils->avg_time_subtract_string = timeUtils->timevalToString(
-					&timeUtils->avg_time_subtract);
+//			for (int i = 0; i < CESHI_NUMBER; i++) {
+//				LOGD("[time test] timeSubtract is %s", timeUtils->time_subtract_string[i].c_str());
+//			}
+			timeUtils->avg_time_subtract.tv_sec = sum_timeval_time / CESHI_NUMBER;
+			timeUtils->avg_time_subtract.tv_usec = sum_timeval_seconds / CESHI_NUMBER;
+			timeUtils->avg_time_subtract_string = timeUtils->timevalToString(&timeUtils->avg_time_subtract);
 			LOGD("时间平均值  %s", timeUtils->avg_time_subtract_string.c_str());
 
 			/*采用json格式发送时间测试结果，格式如下：
@@ -118,8 +127,7 @@ void* InfoSender::readFromQueue(void* arg) {
 			for (int i = 0; i < CESHI_NUMBER; i++) {
 				time_test["t1_time"] = timeUtils->t1_start_handle_string[i];
 				time_test["t2_time"] = timeUtils->t2_end_handle_string[i];
-				time_test["t2_t1_subtract_time"] =
-						timeUtils->time_subtract_string[i];
+				time_test["t2_t1_subtract_time"] = timeUtils->time_subtract_string[i];
 				time_test["avg_t2_t1"] = timeUtils->avg_time_subtract_string;
 
 				//发送时间测试的json包
@@ -162,16 +170,17 @@ void* InfoSender::readFromQueue(void* arg) {
 			 if(result == -1){
 			 LOGE("send t1 error");
 			 }*/
-
-		}
-
-	}
+		} // end if
+	} // end while
 	return ((void*) 0);
 }
-int InfoSender::socketConnection() {
-	//创建并初始化socket链接
-	int res;
 
+/**
+ * 创建 并 初始化 socket链接
+ * #include <sys/socket.h>
+ */
+int InfoSender::initSocketConnection() {
+	int res;
 	ssize_t cnt;
 	int j;
 	int k = 7; //(int)argv[1];
@@ -214,23 +223,22 @@ int InfoSender::socketConnection() {
 	 close(res);
 	 while (waitpid(-1, NULL, WNOHANG) > 0);*/
 	return 0;
-
 }
-//成员函数后面在做补充
+
+/**
+ * 类的初始化
+ * 成员函数后面在做补充
+ */
 bool InfoSender::init() {
 	//初始化队列
 	InfoSender::mCycledBlockingQueue = new CycledBlockingQueue(1024);
-//	this->mCycledBlockingQueue = new CycledBlockingQueue(1024);
 	//初始化读线程
 	int err = pthread_create(&this->ntid, NULL, InfoSender::readFromQueue,
 			NULL);
 	if (err != 0) {
 		LOGE("can not create thread :%s", strerror(err));
 	}
-	socketConnection();
+	initSocketConnection();
 	return true;
 }
-/*CycledBlockingQueue* InfoSender::getCycledBlockingQueue(){
- return this->mCycledBlockingQueue;
- }*/
 

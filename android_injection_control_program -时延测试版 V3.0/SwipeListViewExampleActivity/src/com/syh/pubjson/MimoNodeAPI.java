@@ -110,6 +110,7 @@ public class MimoNodeAPI {
 	 */
 	public void login(String userId, String password, final Callback callback) {
 		this.connect(callback);
+		System.out.println("login in mimonodeapi did");
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
@@ -640,13 +641,16 @@ public class MimoNodeAPI {
 			String themeId, String secureLevel, String msgType, String content,
 			String attrName1, String value1, String attrName2, String value2,
 			String attrName3, String value3, String attrName4, String value4,
-			String attrName5, String value5, final Callback callback) {
+			String attrName5, String value5, String attrName6, String value6,
+			String attrName7, String value7, final Callback callback) {
 		JSONObject data = new JSONObject();
 		JSONObject description1 = new JSONObject();
 		JSONObject description2 = new JSONObject();
 		JSONObject description3 = new JSONObject();
 		JSONObject description4 = new JSONObject();
 		JSONObject description5 = new JSONObject();
+		JSONObject description6 = new JSONObject();
+		JSONObject description7 = new JSONObject();
 		try {
 			description1.put("attrName", attrName1);
 			description1.put("value", value1);
@@ -658,6 +662,10 @@ public class MimoNodeAPI {
 			description4.put("value", value4);
 			description5.put("attrName", attrName5);
 			description5.put("value", value5);
+			description6.put("attrName", attrName6);
+			description6.put("value", value6);
+			description7.put("attrName", attrName7);
+			description7.put("value", value7);
 			// JSONObject[] descriptions = {description1,
 			// description2,description3, description4};
 			// JSONObject descriptions = new JSONObject();
@@ -668,6 +676,8 @@ public class MimoNodeAPI {
 			descriptions.put(description3);
 			descriptions.put(description4);
 			descriptions.put(description5);
+			descriptions.put(description6);
+			descriptions.put(description7);
 
 			data.put("spaceId", spaceId);
 			data.put("themeId", themeId);
@@ -676,11 +686,11 @@ public class MimoNodeAPI {
 			data.put("msgType", msgType);
 			data.put("content", content);
 			data.put("descriptions", descriptions);
-			Log.v("description", data.toString());
+//			Log.v("description", data.toString());
 			// for(int i=0;i<data.get("descriptions").;i++);
-			System.out.println("descriptions: " + descriptions.getClass());
-			System.out.println("description1: " + descriptions.length());
-			System.out.println("data: " + data.getClass());
+//			System.out.println("descriptions: " + descriptions.getClass());
+//			System.out.println("description1: " + descriptions.length());
+//			System.out.println("data: " + data.getClass());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -710,7 +720,7 @@ public class MimoNodeAPI {
 			String themeId, String content, final Callback callback) {
 		this.publishOnTheme(publisherId, spaceId, themeId, "4", "String",
 				content, "club", "barcerona", "player", "messi", "day", "3",
-				"day", "3", "day", "3", callback);
+				"day", "3", "day", "3", "day", "3", "day", "3", callback);
 	};
 
 }

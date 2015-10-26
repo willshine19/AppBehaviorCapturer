@@ -23,6 +23,7 @@
              android:layout_height="fill_parent"
         >
 
+    <!-- 后面板 三个按钮-->
     <LinearLayout
             android:id="@+id/back"
             android:tag="back"
@@ -52,42 +53,40 @@
 
     </LinearLayout>
 
+    <!-- 前面板 app信息-->
     <RelativeLayout
-            android:orientation="vertical"
             android:id="@+id/front"
+            android:orientation="vertical"
             android:tag="front"
             style="@style/ListFrontContent">
 
         <ImageView
-                style="@style/ListImage"
-                android:id="@+id/example_row_iv_image"/>
-<TextView
+                android:id="@+id/example_row_iv_image"
+                style="@style/ListImage" />
+        
+		<TextView
               android:id="@+id/sText"
-             
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_alignParentBottom="true"
-              android:layout_alignParentRight="true"
-              />
+              android:layout_alignParentRight="true"/>
 
         <TextView
+                android:id="@+id/example_row_tv_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/example_row_iv_image"
                 android:layout_toLeftOf="@id/sText"
-                style="@style/ListTitle"
-                android:id="@+id/example_row_tv_title"/>
-
+                style="@style/ListTitle" />
+        
         <TextView
+                android:id="@+id/example_row_tv_description"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/example_row_iv_image"
                 android:layout_toLeftOf="@id/sText"
                 android:layout_below="@id/example_row_tv_title"
-                style="@style/ListDescription"
-                android:id="@+id/example_row_tv_description"/>
-
-          
+                style="@style/ListDescription"/>     
 
     </RelativeLayout>
 

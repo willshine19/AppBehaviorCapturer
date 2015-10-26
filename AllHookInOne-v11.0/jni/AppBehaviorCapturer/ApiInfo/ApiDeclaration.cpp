@@ -9,10 +9,17 @@
 
 using namespace std;
 
-ApiDeclaration::ApiDeclaration(){
-	// TODO Auto-generated constructor stub
-}
-ApiDeclaration::ApiDeclaration(string ClassName,string MethodName,string MethodSignature,bool isStaticMethod,void* originalMethod,void* returnType,void* paramType) {
+/**
+ * 构造方法
+ */
+ApiDeclaration::ApiDeclaration() {}
+
+/**
+ * 含参构造方法，对7个成员变量赋值
+ */
+ApiDeclaration::ApiDeclaration(string ClassName, string MethodName,
+		string MethodSignature, bool isStaticMethod, void* originalMethod,
+		void* returnType, void* paramType) {
 	this->mClassName = ClassName;
 	this->mMethodName = MethodName;
 	this->mMethodSignature = MethodSignature;
@@ -26,24 +33,24 @@ ApiDeclaration::~ApiDeclaration() {
 	// TODO Auto-generated destructor stub
 }
 
-string ApiDeclaration::getClassName(){
+string ApiDeclaration::getClassName() {
 	return this->mClassName;
 }
-string ApiDeclaration::getApiName(){
+string ApiDeclaration::getApiName() {
 	return this->mMethodName;
 }
-string ApiDeclaration::getApiSignature(){
+string ApiDeclaration::getApiSignature() {
 	return this->mMethodSignature;
 }
-bool ApiDeclaration::isStaticMethod(){
+bool ApiDeclaration::isStaticMethod() {
 	return this->mIsStaticMethod;
 }
-void* ApiDeclaration::getOriginalMethod(){
+void* ApiDeclaration::getOriginalMethod() {
 	return this->mOriginalMethod;
 }
-void* ApiDeclaration::getReturnType(){
+void* ApiDeclaration::getReturnType() {
 	return this->mReturnType;
 }
-void* ApiDeclaration::getParamTapes(){
+void* ApiDeclaration::getParamTapes() {
 	return this->mParamTypes;
 }

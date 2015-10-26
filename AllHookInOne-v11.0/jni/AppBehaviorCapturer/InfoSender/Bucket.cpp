@@ -9,44 +9,44 @@
 
 Bucket::Bucket() {
 	// TODO Auto-generated constructor stub
-	m = *(new CollectedApiInfo());
-	pthread_mutex_init(&bucket_read_mutex,NULL);
-	pthread_mutex_lock(&bucket_read_mutex);
+	mCollectedApiInfo = *(new CollectedApiInfo());
+	pthread_mutex_init(&mutex,NULL);
+	pthread_mutex_lock(&mutex);
 }
 
 Bucket::~Bucket() {
 	// TODO Auto-generated destructor stub
 //	delete m;
-	pthread_mutex_destroy(&bucket_read_mutex);
+	pthread_mutex_destroy(&mutex);
 }
 
 bool Bucket::setClassName(string className){
-	this->m.setClassName(className);
+	this->mCollectedApiInfo.setClassName(className);
 	return true;
 }
 bool Bucket::setMethodName(string methodName) {
-	this->m.setMethodName(methodName);
+	this->mCollectedApiInfo.setMethodName(methodName);
 	return true;
 }
 
-bool Bucket::setThreadId(u4 threadId) {
-	this->m.setThreadId(threadId);
+bool Bucket::setThreadId(long threadId) {
+	this->mCollectedApiInfo.setThreadId(threadId);
 	return true;
 }
 bool Bucket::setTime(){
-	this->m.setTime();
+	this->mCollectedApiInfo.setTime();
 	return true;
 }
 
 string Bucket::getClassName(){
-	return this->m.getClassName();
+	return this->mCollectedApiInfo.getClassName();
 }
 string Bucket::getMethodName(){
-	return this->m.getMethodName();
+	return this->mCollectedApiInfo.getMethodName();
 }
 string Bucket::getTime(){
-	return this->m.getTime();
+	return this->mCollectedApiInfo.getTime();
 }
 unsigned int Bucket::getThreadId(){
-	return this->m.getThreadId();
+	return this->mCollectedApiInfo.getThreadId();
 }

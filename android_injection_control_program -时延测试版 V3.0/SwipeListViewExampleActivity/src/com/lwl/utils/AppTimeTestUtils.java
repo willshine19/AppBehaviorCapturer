@@ -1,31 +1,45 @@
 package com.lwl.utils;
 
+import java.util.ArrayList;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
 
+
+/**  
+ *   对应App中的时延测试（jni层），内部存放t1,t2,t2-t1以及t2-t1的平均值
+ */  
 public class AppTimeTestUtils extends TimeTestUtils{
     
     int receive_count = 0;
     // t1时间存储
-    public String t1_start_handle_time[];
+    public ArrayList<String> t1_start_handle_time;
     // t2时间存储
-    public String t2_end_handle_time[];
+    public ArrayList<String> t2_end_handle_time;
     
     //时间间隔存储
-    public String t2_t1_subtract[];
+    public ArrayList<String> t2_t1_subtract;
     //平均时间间隔存储
-    public String avg_t2_t1_subtract;
+    public String t2t1DiffAvgStr;
+    
+    private static final String TAG = "TimeTest";
     //单例
     private static AppTimeTestUtils single = null;
-    // 私有的默认构造，初始化数组与时间输出格式
     
+    /**  
+     * 私有的默认构造，初始化数组与时间输出格式
+     */ 
     private AppTimeTestUtils() {
-        t1_start_handle_time = new String[ARRAY_SIZE];
-        t2_end_handle_time = new String[ARRAY_SIZE];
-        t2_t1_subtract = new String[ARRAY_SIZE];
+        t1_start_handle_time = new ArrayList<String>();
+        t2_end_handle_time = new ArrayList<String>();
+        t2_t1_subtract = new ArrayList<String>();
     }
-    //单例，保证类只有一个，这样才能保证数据的准确度
+  
+    /**  
+     * 返回单例，确保实例只有一个，这样才能保证数据的准确度
+     */
     public static AppTimeTestUtils getInstance() {
         if (single == null) {
             single = new AppTimeTestUtils();
@@ -33,57 +47,50 @@ public class AppTimeTestUtils extends TimeTestUtils{
         return single;
     }
 
-    public int parseTimeFromJson(JSONObject json){
-        //输出一切正常
-        if(json == null){
-            return -1;
-        }
+    
+    /**  
+     * 解析从jni层发来的json字符串，
+     * 填充t1_start_handle_time, t2_end_handle_time, t2_t1_subtracts 数组
+     * @param json 从jni层接受到的json字符串
+     * @return
+     */
+    public void parseTimeFromJson(JSONObject json){
 
         try {
-            if(receive_count == 1){
-                avg_t2_t1_subtract = (String) json.get("avg_t2_t1");
+			if (receive_count == 1) {
+                t2t1DiffAvgStr = (String) json.get("avg_t2_t1");
             }
-            t1_start_handle_time[receive_count] = (String) json.get("t1_time");
-            t2_end_handle_time[receive_count] = (String) json.get("t2_time");
-            t2_t1_subtract[receive_count] =  (String) json.get("t2_t1_subtract_time");
+            t1_start_handle_time.add((String) json.get("t1_time"));
+            t2_end_handle_time.add((String) json.get("t2_time"));
+            t2_t1_subtract.add((String) json.get("t2_t1_subtract_time"));
             
             receive_count ++;
             
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
-       /* try {
-            // 解析t1数据，装载到数组
-            String t1_time;
-            t1_time = (String) json.get("t1_time");
-            t1_start_handle_time = t1_time.split(";");
-//            for (int i = 0; i < t1_start_handle_time.length; i++) {
-//                System.out.println("t1_start_handle_time" + t1_start_handle_time[i]);
-//            }
-            // 解析t2数据，装载到数组
-            String t2_time;
-            t2_time = (String) json.get("t2_time");
-            t2_end_handle_time = t2_time.split(";");
-//            for (int i = 0; i < t2_end_handle_time.length; i++) {
-//                System.out.println("t2_end_handle_time" + t2_end_handle_time[i]);
-//            }
-            // 解析t2-t1数组，装载到数组
-            String t2_t1_time;
-            t2_t1_time = (String) json.get("t2_t1_subtract_time");
-            t2_t1_subtract = t2_t1_time.split(";");
-//            for (int i = 0; i < t2_t1_subtract.length; i++) {
-//                System.out.println("t2_t1_subtract" + t2_t1_subtract[i]);
-//            }
-            // 解析avg(t2-t1)
-            avg_t2_t1_subtract = (String) json.get("avg_t2_t1");
-//            System.out.println("avg_time_subtract" + avg_time_subtract);
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-*/
-        return 0;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
+    
+    /**  
+	 * 将采集到的数据打印到logcat
+	 */
+	public void print() {
+		
+//		Log.d(TAG, "t1_start_handle_time: ");
+//		for (int i = 0; i < t1_start_handle_time.size(); i++) {
+//			Log.v(TAG, t1_start_handle_time.get(i));
+//		}
+//		
+//		Log.d(TAG, "t2_end_handle_time:");
+//		for (int i = 0; i < t2_end_handle_time.size(); i++) {
+//			Log.v(TAG, t2_end_handle_time.get(i));
+//		} 
+		
+		Log.d(TAG, "t2_t1_subtract:");
+		for (int i = 0; i < t2_t1_subtract.size(); i++) {
+			Log.v(TAG, t2_t1_subtract.get(i));
+		} 
+		Log.d(TAG, "avg_t2_t1_subtract (s:ms:us): " + t2t1DiffAvgStr);
+	}
 }

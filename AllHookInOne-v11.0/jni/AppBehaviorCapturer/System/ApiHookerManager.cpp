@@ -10,19 +10,31 @@
 #include <iostream>
 using namespace std;
 using namespace __gnu_cxx;
+
+/**
+ * 构造函数
+ */
 ApiHookerManager::ApiHookerManager() {
 	LOGD("construct ApiHookerManager successfully");
 	// TODO Auto-generated constructor stub
 	pthread_mutex_init(&ApiHookerManager::lock, NULL);
 }
 
+/**
+ * 析构函数
+ */
 ApiHookerManager::~ApiHookerManager() {
 	// TODO Auto-generated destructor stub
 }
+
 //静态成员变量初始化
 ApiHookerManager* ApiHookerManager::apiHookerManagerInstance = NULL;
-pthread_mutex_t ApiHookerManager::lock = PTHREAD_MUTEX_INITIALIZER;;
-//单例模式中访问实例的接口
+pthread_mutex_t ApiHookerManager::lock = PTHREAD_MUTEX_INITIALIZER;
+
+/**
+ * 单例模式
+ * 返回ApiHookerManager类的唯一实例
+ */
 ApiHookerManager* ApiHookerManager::getInstance(){
 	pthread_mutex_lock(&ApiHookerManager::lock);
 	if(apiHookerManagerInstance == NULL){
@@ -32,6 +44,9 @@ ApiHookerManager* ApiHookerManager::getInstance(){
 	return apiHookerManagerInstance;
 }
 
+/**
+ * 返回JNIEnv的指针
+ */
 JNIEnv* ApiHookerManager::getEnv()
 {
 	 //获取JavaVM，由此可获取JNIEnv
@@ -54,7 +69,10 @@ JNIEnv* ApiHookerManager::getEnv()
     LOGD("-------------getEnv successfully--------------\n");
     return envnow;
 }
-//系统初始化
+
+/**
+ * AppBehaviorCapturer系统 入口
+ */
 bool ApiHookerManager::init(){
 	LOGD("AppBehaviorCapturer system V7.0 is running");
 	//初始化系统中所有的ApiHooker，并将其装载至mApiHookerHashMap中
@@ -70,9 +88,13 @@ bool ApiHookerManager::init(){
 	cout << "Number of pairs, size(): " << mApiHookerHashMap.size() << endl;*/
 	return 0;
 }
+
+/**
+ * 初始化哈希表
+ */
 bool ApiHookerManager::initHashMap(){
-	//所有的ApiHooker在这里实例化
-/*	StartThreadApiHooker* start = new StartThreadApiHooker();
+	/*//所有的ApiHooker在这里实例化
+	StartThreadApiHooker* start = new StartThreadApiHooker();
 	OnCreateActivityApiHooker* onCreate = new OnCreateActivityApiHooker();
 	GetMacAddressWifiInfoApiHooker* getMacAddress = new GetMacAddressWifiInfoApiHooker();
 	RunThreadApiHooker* run = new RunThreadApiHooker();
@@ -104,7 +126,7 @@ bool ApiHookerManager::initHashMap(){
 	LOGD("insert QueryContentResolverApiHooker to hashmap successfully");
 	mApiHookerHashMap.insert(make_pair("insert",insert));
 	LOGD("insert InsertContentResolverApiHooker to hashmap successfully");*/
-/*
+
 	//系统api
 	StartThreadApiHooker* start = new StartThreadApiHooker();
 	RunThreadApiHooker* run = new RunThreadApiHooker();
@@ -115,19 +137,20 @@ bool ApiHookerManager::initHashMap(){
 	OnResumeActivityApiHooker* onResume = new OnResumeActivityApiHooker();
 	OnStartActivityApiHooker* onStart = new OnStartActivityApiHooker();
 	OnStopActivityApiHooker* onStop = new OnStopActivityApiHooker();
-	mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
+	/*mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
 	mApiHookerHashMap.insert(make_pair("onDestroy", onDestroy));
 	mApiHookerHashMap.insert(make_pair("onPause", onPause));
 	mApiHookerHashMap.insert(make_pair("onRestart", onRestart));
 	mApiHookerHashMap.insert(make_pair("onResume", onResume));
 	mApiHookerHashMap.insert(make_pair("onStart", onStart));
-	mApiHookerHashMap.insert(make_pair("onStop", onStop));
+	mApiHookerHashMap.insert(make_pair("onStop", onStop));*/
 	mApiHookerHashMap.insert(make_pair("start", start));
 	mApiHookerHashMap.insert(make_pair("run", run));
 	LOGD("insert system api to hashmap successfully");
-*/
 
-/*	//外设api
+/*
+
+	//外设api
 	OpenCamera* openCamera = new  OpenCamera();
 	GetDefaultSensorSensorManager* getDefaultSensor = new GetDefaultSensorSensorManager();
 	PrepareMediaRecorder* prepare = new PrepareMediaRecorder();
@@ -140,9 +163,9 @@ bool ApiHookerManager::initHashMap(){
 	mApiHookerHashMap.insert(make_pair("prepare", prepare));
 	mApiHookerHashMap.insert(make_pair("read", readAudio));
 	mApiHookerHashMap.insert(make_pair("release", release));
-//	mApiHookerHashMap.insert(make_pair("startLandroid/media/MediaRecorder;", startMediaRecorder));
+	mApiHookerHashMap.insert(make_pair("startLandroid/media/MediaRecorder;", startMediaRecorder));
 	mApiHookerHashMap.insert(make_pair("startRecording", startRecordingAudioRecord));
-	LOGD("insert peripheral api to hashmap successfully");*/
+	LOGD("insert peripheral api to hashmap successfully");
 
 	//数据api
 	AddGpsStatusListenerLocationManager* addGpsStatusListener = new AddGpsStatusListenerLocationManager();
@@ -165,24 +188,24 @@ bool ApiHookerManager::initHashMap(){
 	WriteFileOutputStreamApiHooker* writeFileOutputStream = new WriteFileOutputStreamApiHooker();
 	ReadFileInputStream* readFileInputStream = new ReadFileInputStream();
 	mApiHookerHashMap.insert(make_pair("insert", insertContentResolver));
-//	mApiHookerHashMap.insert(make_pair("query", queryContentResolve));
-//	mApiHookerHashMap.insert(make_pair("delete", deleteContentResolver));
-//	mApiHookerHashMap.insert(make_pair("update", updateContentResolver));
-//	mApiHookerHashMap.insert(make_pair("getMessageBody", getMessageBody));
-//	mApiHookerHashMap.insert(make_pair("getCallState", getCallState));
-//	mApiHookerHashMap.insert(make_pair("getDeviceId", getDeviceId));
-//	mApiHookerHashMap.insert(make_pair("getLine1Number", getLine1));
-//	mApiHookerHashMap.insert(make_pair("getSimSerialNumber", getSimSerialNumber));
-//	mApiHookerHashMap.insert(make_pair("getSubscriberId", getSubscriberId));
-//	mApiHookerHashMap.insert(make_pair("addGpsStatusListener", addGpsStatusListener));
+	mApiHookerHashMap.insert(make_pair("query", queryContentResolve));
+	mApiHookerHashMap.insert(make_pair("delete", deleteContentResolver));
+	mApiHookerHashMap.insert(make_pair("update", updateContentResolver));
+	mApiHookerHashMap.insert(make_pair("getMessageBody", getMessageBody));
+	mApiHookerHashMap.insert(make_pair("getCallState", getCallState));
+	mApiHookerHashMap.insert(make_pair("getDeviceId", getDeviceId));
+	mApiHookerHashMap.insert(make_pair("getLine1Number", getLine1));
+	mApiHookerHashMap.insert(make_pair("getSimSerialNumber", getSimSerialNumber));
+	mApiHookerHashMap.insert(make_pair("getSubscriberId", getSubscriberId));
+	mApiHookerHashMap.insert(make_pair("addGpsStatusListener", addGpsStatusListener));
 	mApiHookerHashMap.insert(make_pair("getLastKnownLocation", getLastKnownLocation));
-//	mApiHookerHashMap.insert(make_pair("requestLocationUpdatas", requestLocationUpdatas));
-//	mApiHookerHashMap.insert(make_pair("readLjava/io/FileInputStream;", readFileInputStream));
-//	mApiHookerHashMap.insert(make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
-//	mApiHookerHashMap.insert(make_pair("getFD", getFD));
-//	mApiHookerHashMap.insert(make_pair("closeLjava/io/FileOutputStream;", closeFileOutputStream));
+	mApiHookerHashMap.insert(make_pair("requestLocationUpdatas", requestLocationUpdatas));
+	mApiHookerHashMap.insert(make_pair("readLjava/io/FileInputStream;", readFileInputStream));
+	mApiHookerHashMap.insert(make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
+	mApiHookerHashMap.insert(make_pair("getFD", getFD));
+	mApiHookerHashMap.insert(make_pair("closeLjava/io/FileOutputStream;", closeFileOutputStream));
 	mApiHookerHashMap.insert(make_pair("write", writeFileOutputStream));
-//	mApiHookerHashMap.insert(make_pair("getMacAddress", getMacAddress));
+	mApiHookerHashMap.insert(make_pair("getMacAddress", getMacAddress));
 	LOGD("insert data api to hashmap successfully");
 
 // 通信 api
@@ -197,26 +220,31 @@ bool ApiHookerManager::initHashMap(){
 	SendTextMessageSmsManager* sendTextMessage = new SendTextMessageSmsManager();
 	CallTelephonnyApiHooker* call = new CallTelephonnyApiHooker();
 	EndCallITelephonyApiHooker* endCall = new EndCallITelephonyApiHooker();
-//	SetWifiEnabledWifiManager* setWifiEnabled = new SetWifiEnabledWifiManager();
-//	mApiHookerHashMap.insert(make_pair("sendDataMessage", sendDataMessage));
-//	mApiHookerHashMap.insert(make_pair("sendMultipartTextMessage", sendMultipartTextMessage));
-//	mApiHookerHashMap.insert(make_pair("sendTextMessage", sendTextMessage));
-/*	mApiHookerHashMap.insert(make_pair("disable", disableBluetoothAdapter));
+	SetWifiEnabledWifiManager* setWifiEnabled = new SetWifiEnabledWifiManager();
+	mApiHookerHashMap.insert(make_pair("sendDataMessage", sendDataMessage));
+	mApiHookerHashMap.insert(make_pair("sendMultipartTextMessage", sendMultipartTextMessage));
+	mApiHookerHashMap.insert(make_pair("sendTextMessage", sendTextMessage));
+	mApiHookerHashMap.insert(make_pair("disable", disableBluetoothAdapter));
 	mApiHookerHashMap.insert(make_pair("enable", enableBluetoothAdapter));
 	mApiHookerHashMap.insert(make_pair("closeLjava/net/Socket;", closeSocket));
 	mApiHookerHashMap.insert(make_pair("openConnection", openConnection));
 	mApiHookerHashMap.insert(make_pair("disconnect", disconnect));
 	mApiHookerHashMap.insert(make_pair("enableNetwork", enableNetwork));
-	mApiHookerHashMap.insert(make_pair("setWifiEnabled", setWifiEnabled));*/
-//	mApiHookerHashMap.insert(make_pair("call",call));
-//	mApiHookerHashMap.insert(make_pair("endCall",endCall));
+	mApiHookerHashMap.insert(make_pair("setWifiEnabled", setWifiEnabled));
+	mApiHookerHashMap.insert(make_pair("call",call));
+	mApiHookerHashMap.insert(make_pair("endCall",endCall));
 	LOGD("insert communication api to hashmap successfully");
-
+*/
 
 	return true;
 }
+
+/**
+ * 遍历哈希表，hook哈希表中的每一个ApiHooker实例
+ * 关键：mJavaMethodHook->hookJavaMethod(env,tempApiHooker,&info); 传入三个指针
+ */
 bool ApiHookerManager::bindJavaMethodToNative(){
-	//绑定Java方法到本地的代码
+	//绑定 Java方法 到 本地 的代码
 	JNIEnv *env = getEnv();
 	HookInfo info;
 	JavaMethodHooker* mJavaMethodHook = new JavaMethodHooker();
@@ -258,6 +286,10 @@ bool ApiHookerManager::bindJavaMethodToNative(){
 	LOGD("*-*-*-*-*-*-*- End -*-*-*-*-*-*-*-*-*-*");
 	return true;
 }
+
+/**
+ * 返回 InfoSender的实例
+ */
 InfoSender* ApiHookerManager::getInfoSender(){
 	if(mInfoSender != NULL){
 		return this->mInfoSender;

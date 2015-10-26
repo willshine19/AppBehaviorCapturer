@@ -27,20 +27,29 @@ bool InsertContentResolverApiHooker::parseParameter(const u4* args){
 		LOGE("Get Uri Class failed");
 	}
 	LOGD("Find Uri class successfully");
+
 	jmethodID methodID = env->GetMethodID(uri, "toSafeString",
 			"()Ljava/lang/String;");
 	if (methodID == 0) {
 		LOGE("get uri toSafeString method failed");
 	}
 	LOGD("get toSafeString method successfully");
-	Method* uriToString = (Method*) methodID;
+
+	// 参数1
 	Object* uriObject = (Object*) args[1];
+	// 参数2
+	Method* uriToString = (Method*) methodID;
+	// 参数3
 	u4* uriArgs = (u4*)1;
 	ArrayObject* uriArgTypes = dvmBoxMethodArgs(uriToString, uriArgs);
+	// 参数4
+	ArrayObject* params = (ArrayObject *) dvmGetMethodParamTypes(uriToString,"()Ljava/lang/String;");
+	// 参数5
+	ClassObject* returnType = (ClassObject *) dvmGetBoxedReturnType(uriToString);
+	// 调用这个方法
 	Object* uriResult = dvmInvokeMethod(uriObject, uriToString, uriArgTypes,
-			(ArrayObject *) dvmGetMethodParamTypes(uriToString,
-					"()Ljava/lang/String;"),
-			(ClassObject *) dvmGetBoxedReturnType(uriToString), true);
+			params, returnType, true);
+
 	StringObject* sourceNameObj = (StringObject*) uriResult;
 	char* paramString = dvmCreateCstrFromString(sourceNameObj);
 	LOGD("paramString is %s",paramString);

@@ -26,8 +26,8 @@ public:
 private:
 	unsigned int capacity;
 //	Bucket* queue;
-	unsigned int wp;
-	unsigned int rp;
+	unsigned int writePointer; // 写位置
+	unsigned int readPointer; // 读位置
 	pthread_mutex_t queue_write_mutex;
 };
 

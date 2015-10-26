@@ -37,13 +37,19 @@ import java.util.List;
 
 import android.widget.Toast;
 
-
-public class PackageAdapter extends BaseAdapter {/*      * 新建一个类继承BaseAdapter，实现视图与数据的绑定*/
-	/*BaseAdapter就Android应用程序中经常用到的基础数据适配器，
-	它的主要用途是将一组数据传到像ListView等UI显示组件，它是继承自接口类Adapter */
+/** 
+ * BaseAdapter子类，实现视图与数据的绑定
+ * 需要重写4个方法。
+ * BaseAdapter就Android应用程序中经常用到的基础数据适配器，
+ * 它的主要用途是将一组数据传到像ListView等UI显示组件，它是继承自接口类Adapter
+ */
+public class PackageAdapter extends BaseAdapter {
     private List<PackageItem> data;
     private Context context;
     
+    /**  
+     * 构造函数
+     */ 
     public PackageAdapter(Context context, List<PackageItem> data) {//设置数据
         this.context = context;
         this.data = data;
@@ -65,7 +71,9 @@ public class PackageAdapter extends BaseAdapter {/*      * 新建一个类继承
     }
 
     
-    /*存放控件*/
+    /**  
+     *   静态内部类，存放控件
+     */  
     static class ViewHolder {
         ImageView process_image;
         TextView process_title;
@@ -76,31 +84,39 @@ public class PackageAdapter extends BaseAdapter {/*      * 新建一个类继承
         TextView running_status;
     }
     
+    
+    /**
+     * Get a View that displays the data at the specified position in the data set.
+     */
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        final PackageItem item = getItem(position);
-        final  ViewHolder holder;
-/*        Log.v("position", "position:"+position);
-        Log.v("convertView", "convertView:"+convertView);*/
-      //观察convertView随ListView滚动情况  
-        if (convertView == null) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
+		final PackageItem item = getItem(position);
+		final ViewHolder holder;
+		
+//		Log.v("position", "position:" + position);
+//		Log.v("convertView", "convertView:" + convertView);
+		 
+		// 观察convertView随ListView滚动情况
+		if (convertView == null) {
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = li.inflate(R.layout.package_row, parent, false);
-            holder = new ViewHolder(); 
             /*得到各个控件的对象*/
+            holder = new ViewHolder(); 
             holder.process_image = (ImageView) convertView.findViewById(R.id.example_row_iv_image);
             holder.process_title = (TextView) convertView.findViewById(R.id.example_row_tv_title);
             holder.process_description = (TextView) convertView.findViewById(R.id.example_row_tv_description);
+            holder.running_status = (TextView) convertView.findViewById(R.id.sText);
             holder.button_open = (Button) convertView.findViewById(R.id.example_row_b_action_1);
             holder.button_inject = (Button) convertView.findViewById(R.id.example_row_b_action_2);
             holder.button_uninject = (Button) convertView.findViewById(R.id.example_row_b_action_3);
-            holder.running_status = (TextView) convertView.findViewById(R.id.sText);
             convertView.setTag(holder);//绑定ViewHolder对象  
         } else {
             holder = (ViewHolder) convertView.getTag();//取出ViewHolder对象 //使用缓存的
         }
 
-        ((SwipeListView) parent).recycle(convertView, position);// 自动判断对象是否不再被需要，然后去销毁该对象
+		// 自动判断对象是否不再被需要，然后去销毁该对象
+        ((SwipeListView) parent).recycle(convertView, position);
+       
         /* 设置TextView显示的内容，即我们存放在动态数组中的数据 */
         holder.process_image.setImageDrawable(item.getIcon());
         holder.process_title.setText(item.getName());
@@ -115,7 +131,8 @@ public class PackageAdapter extends BaseAdapter {/*      * 新建一个类继承
             holder.running_status.setText("未运行");
         }
         
-        holder.button_open.setOnClickListener(new View.OnClickListener() {//打开按钮
+        //打开按钮 通过包名开启指定app
+        holder.button_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //修改item状态
@@ -129,41 +146,43 @@ public class PackageAdapter extends BaseAdapter {/*      * 新建一个类继承
                     Toast.makeText(context, R.string.cantOpen, Toast.LENGTH_SHORT).show();
                     holder.running_status.setText("未运行");
                 }      
-                
             }
         });
 
-        holder.button_inject.setOnClickListener(new View.OnClickListener() {//注入按钮
+        //注入按钮
+        holder.button_inject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             	Process process = null;
         		DataOutputStream os = null;
         		DataInputStream is = null;
         		
-        		if(item.getRunningStatus() == PackageItem.NOT_RUNNING ){
+        		if (item.getRunningStatus() == PackageItem.NOT_RUNNING ) {
         		    Toast.makeText(context,"请先点击打开按钮，运行程序",Toast.LENGTH_SHORT).show();
         		    return;
         		}
-        		if(item.getRunningStatus() == PackageItem.IS_INJECTED){
-                    Toast.makeText(context,"已注入成功",Toast.LENGTH_SHORT).show();
+        		
+        		if (item.getRunningStatus() == PackageItem.IS_INJECTED) {
+                    Toast.makeText(context,"该程序已被注入成功",Toast.LENGTH_SHORT).show();
                     return;
         		}
+        		
         		try {
-        			
         			process = Runtime.getRuntime().exec("su");
         			os = new DataOutputStream(process.getOutputStream());
         			is = new DataInputStream(process.getInputStream());
         			BufferedReader bfr = new BufferedReader(new InputStreamReader(is));
 
         			String pName = item.getPackageName();
-        			String packageName ="com.example.injector";//放的位置
-        			Log.v("Injector", "packageName :" + pName);
+        			String packageName = item.getPackageName();
+        			Log.v("InjectButton", "pName :" + pName);
+        			Log.v("InjectButton", "packageName :" + packageName);
 
-        			String pid = "";
         			String line = null;
-
-        			os.writeBytes("ps\n");
-        			os.flush();
+//        			String pid = "";
+//
+//        			os.writeBytes("ps\n");
+//        			os.flush();
         			
 /*        			while ((line = bfr.readLine()) != null) { // 读取输出
     					Log.v("Injector", line);
@@ -187,15 +206,16 @@ public class PackageAdapter extends BaseAdapter {/*      * 新建一个类继承
         			os.flush();*/
         			os.writeBytes("chmod 777 /data/inj-allhookinone/*\n");
                     os.flush();
-                    os.writeBytes("/data/inj-allhookinone/AndroidInjectSo\n");
+                    os.writeBytes("/data/inj-allhookinone/AndroidInjectSo " +packageName +"\n");
                     os.flush();
         			os.writeBytes("exit\n");
         			os.flush();
         			
-        			while ((line = bfr.readLine()) != null) { // 读取输出
-        				Log.v("Injector", line);
+        			// 读取输出
+        			while ((line = bfr.readLine()) != null) { 
+        				Log.v("InjectButton", line);
         			}
-        			Log.v("Injector", "inject successfully!   " + pid);
+        			Log.v("InjectButton", "inject" + packageName + "successfully!");
         			Toast.makeText(context,"注入成功",Toast.LENGTH_SHORT).show();
         			holder.running_status.setText("已注入");
         			item.setRunningStatus(PackageItem.IS_INJECTED);
@@ -211,37 +231,28 @@ public class PackageAdapter extends BaseAdapter {/*      * 新建一个类继承
                     	holder.setText.setText("未运行");
                     }*/
         			process.waitFor();
-        		} catch (Exception e) {
-        			// TODO Auto-generated catch block
-        			Log.e("Error", e.getMessage());
-        			e.printStackTrace();
-        		} 
-        		finally {
-        			try {
-        				if (os != null) {
-        					os.close();
-        				}
-        				if (is != null) {
-        					is.close();
-        				}
-        				process.destroy();
-        			} catch (IOException e) {
-        				// TODO Auto-generated catch block
-        				e.printStackTrace();
-        			}
-        		}
-     //  		return true;
-        		 try{
-                 	
-                 }catch (Exception e) {
-         			// TODO Auto-generated catch block
-         			Log.e("Error", e.getMessage());
-         			e.printStackTrace();
-   //      			return false;
-         		} 
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					Log.e("Error", e.getMessage());
+					e.printStackTrace();
+				} finally {
+					try {
+						if (os != null) {
+							os.close();
+						}
+						if (is != null) {
+							is.close();
+						}
+						process.destroy();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
             }
         });
 
+     // 解注入按钮，kill这个进程
         holder.button_uninject.setOnClickListener(new View.OnClickListener() {// 解注入按钮
                 @Override
                 public void onClick(View v) {
@@ -250,11 +261,11 @@ public class PackageAdapter extends BaseAdapter {/*      * 新建一个类继承
                     DataInputStream is = null;
                     
                     if(item.getRunningStatus() != PackageItem.IS_INJECTED){
+            		    Toast.makeText(context,"请先注入",Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     try {
-
                         process = Runtime.getRuntime().exec("su");
                         os = new DataOutputStream(process.getOutputStream());
                         is = new DataInputStream(process.getInputStream());
@@ -291,21 +302,27 @@ public class PackageAdapter extends BaseAdapter {/*      * 新建一个类继承
                             holder.running_status.setText("未运行");
                         }*/
                         process.waitFor();
-                    } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        Log.e("Error", e.getMessage());
-                        e.printStackTrace();
-                        // return false;
-                    }
-                }
-
-                });
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							Log.e("Error", e.getMessage());
+							e.printStackTrace();
+							// return false;
+						}
+					}
+				});
 
         return convertView;//把写入具体函数之后的view返回
     }
 
-    public String findpid(PackageItem item){
-    	Process process = null;
+    
+    /**  
+     * 返回目标进程的pid，通过包名
+     * @param item 包信息
+     * @return 目标进程pid
+     */
+    /*
+	public String findpid(PackageItem item) {
+		Process process = null;
 		DataOutputStream os = null;
 		DataInputStream is = null;
 		String pid = "";
@@ -319,7 +336,6 @@ public class PackageAdapter extends BaseAdapter {/*      * 新建一个类继承
 			String pName = item.getPackageName();
 			Log.v("Injector", "packageName :" + pName);
 
-			
 			String line = null;
 
 			os.writeBytes("ps\n");
@@ -332,16 +348,17 @@ public class PackageAdapter extends BaseAdapter {/*      * 新建一个类继承
 					String[] splitline = line.split("\\s+");
 					pid = splitline[1];
 					break;
-				}      
+				}
 			}
-			
-    }catch (Exception e) {
-		// TODO Auto-generated catch block
-		Log.e("Error", e.getMessage());
-		e.printStackTrace();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			Log.e("Error", e.getMessage());
+			e.printStackTrace();
+		}
+		return pid;
 	}
-		return pid;            
-    }
+	*/
     
    /* public int setcolor(PackageItem item){
     	Process process = null;
