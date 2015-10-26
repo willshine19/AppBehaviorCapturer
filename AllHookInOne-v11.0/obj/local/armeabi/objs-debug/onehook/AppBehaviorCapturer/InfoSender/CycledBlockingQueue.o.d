@@ -1,5 +1,6 @@
 obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/InfoSender/CycledBlockingQueue.o: \
  jni/AppBehaviorCapturer/InfoSender/CycledBlockingQueue.cpp \
+<<<<<<< HEAD
  /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream \
  jni/AppBehaviorCapturer/InfoSender/CycledBlockingQueue.h \
  jni/AppBehaviorCapturer/common.h \
@@ -21,12 +22,36 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/InfoSender/CycledBlocki
  /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/sys/sysconf.h \
  /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/linux/capability.h \
  /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/pathconf.h \
+=======
+ /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream \
+ jni/AppBehaviorCapturer/InfoSender/CycledBlockingQueue.h \
+ jni/AppBehaviorCapturer/common.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/stdlib.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/alloca.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/strings.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/memory.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/jni.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/elf.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/sys/exec_elf.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/machine/exec.h \
+ jni/AppBehaviorCapturer/object.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/android/log.h \
+ jni/AppBehaviorCapturer/InfoSender/BlockingQueue.h \
+ jni/AppBehaviorCapturer/InfoSender/../ApiInfo/CollectedApiInfo.h \
+ /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/sstream \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/unistd.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/sys/select.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/sys/sysconf.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/linux/capability.h \
+ /home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/pathconf.h \
+>>>>>>> 5925c92b2d953bfa3a997e46571c8c3e4b2393da
  jni/AppBehaviorCapturer/object.h \
  jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/json.h \
  jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/autolink.h \
  jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/config.h \
  jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/value.h \
  jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/forwards.h \
+<<<<<<< HEAD
  /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/vector \
  /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/map \
  jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/reader.h \
@@ -37,11 +62,24 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/InfoSender/CycledBlocki
  jni/AppBehaviorCapturer/InfoSender/Bucket.h
 
 /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream:
+=======
+ /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/vector \
+ /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/map \
+ jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/reader.h \
+ jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/features.h \
+ /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/deque \
+ /home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/stack \
+ jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/writer.h \
+ jni/AppBehaviorCapturer/InfoSender/Bucket.h
+
+/home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream:
+>>>>>>> 5925c92b2d953bfa3a997e46571c8c3e4b2393da
 
 jni/AppBehaviorCapturer/InfoSender/CycledBlockingQueue.h:
 
 jni/AppBehaviorCapturer/common.h:
 
+<<<<<<< HEAD
 /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/stdlib.h:
 
 /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/alloca.h:
@@ -61,11 +99,33 @@ jni/AppBehaviorCapturer/common.h:
 jni/AppBehaviorCapturer/object.h:
 
 /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/android/log.h:
+=======
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/stdlib.h:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/alloca.h:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/strings.h:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/memory.h:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/jni.h:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/elf.h:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/sys/exec_elf.h:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/machine/exec.h:
+
+jni/AppBehaviorCapturer/object.h:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/android/log.h:
+>>>>>>> 5925c92b2d953bfa3a997e46571c8c3e4b2393da
 
 jni/AppBehaviorCapturer/InfoSender/BlockingQueue.h:
 
 jni/AppBehaviorCapturer/InfoSender/../ApiInfo/CollectedApiInfo.h:
 
+<<<<<<< HEAD
 /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/sstream:
 
 /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/unistd.h:
@@ -77,6 +137,19 @@ jni/AppBehaviorCapturer/InfoSender/../ApiInfo/CollectedApiInfo.h:
 /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/linux/capability.h:
 
 /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/pathconf.h:
+=======
+/home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/sstream:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/unistd.h:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/sys/select.h:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/sys/sysconf.h:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/linux/capability.h:
+
+/home/sang/android/android-ndk-r10d/platforms/android-19/arch-arm/usr/include/pathconf.h:
+>>>>>>> 5925c92b2d953bfa3a997e46571c8c3e4b2393da
 
 jni/AppBehaviorCapturer/object.h:
 
@@ -90,17 +163,29 @@ jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/value.h:
 
 jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/forwards.h:
 
+<<<<<<< HEAD
 /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/vector:
 
 /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/map:
+=======
+/home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/vector:
+
+/home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/map:
+>>>>>>> 5925c92b2d953bfa3a997e46571c8c3e4b2393da
 
 jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/reader.h:
 
 jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/features.h:
 
+<<<<<<< HEAD
 /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/deque:
 
 /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/stack:
+=======
+/home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/deque:
+
+/home/sang/android/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include/stack:
+>>>>>>> 5925c92b2d953bfa3a997e46571c8c3e4b2393da
 
 jni/AppBehaviorCapturer/InfoSender/../ApiInfo/../Utils/json/json/writer.h:
 
