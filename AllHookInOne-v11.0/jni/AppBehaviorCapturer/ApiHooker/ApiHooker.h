@@ -13,6 +13,8 @@
 #include "../InfoSender/InfoSender.h"
 #include "../ApiInfo/ApiDeclaration.h"
 #include "../ApiInfo/CollectedApiInfo.h"
+//#include "../System/ApiHookerManager.h"
+//class ApiHookerManager;
 
 class ApiHooker{
 	protected:

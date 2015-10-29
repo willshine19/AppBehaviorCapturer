@@ -9,7 +9,9 @@
 #define ONRESUMEACTIVITYAPIHOOKER_H_
 
 #include "../VoidApiHooker.h"
-
+#include "../../Utils/DalvikMethodHooker.h"
+#include "android_runtime/AndroidRuntime.h"
+#include "../../System/ApiHookerManager.h"//zds add
 /*
  *
  */
@@ -17,6 +19,7 @@ class OnResumeActivityApiHooker: public VoidApiHooker {
 public:
 	OnResumeActivityApiHooker();
 	virtual ~OnResumeActivityApiHooker();
+	bool parseParameter(const u4* args);
 };
 
 #endif /* ONRESUMEACTIVITYAPIHOOKER_H_ */

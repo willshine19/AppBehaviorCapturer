@@ -6,7 +6,7 @@
  */
 
 #include "ApiHooker.h"
-
+#include "../System/ApiHookerManager.h"//zds add
 /**
  * 构造函数
  */
@@ -23,9 +23,8 @@ ApiDeclaration ApiHooker::getApiDeclaration() {
 }
 
 string ApiHooker::toString() {
-	return mApiDeclaration.getClassName() + " "
-			+ mApiDeclaration.getApiName() + " "
-			+ mApiDeclaration.getApiName();
+	return mApiDeclaration.getClassName() + " " + mApiDeclaration.getApiName()
+			+ " " + mApiDeclaration.getApiName();
 }
 
 /**
@@ -37,7 +36,8 @@ bool ApiHooker::collectBaseInfo() {
 	if (threadId == 0) {
 		LOGE("getThreadID falied");
 	}
-	pthread_mutex_t* mutex =  &(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].mutex);
+	pthread_mutex_t* mutex =
+			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].mutex);
 //	pthread_mutex_lock(mutex); 不注释会死锁
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setClassName(
 			this->mApiDeclaration.getClassName());
@@ -46,16 +46,20 @@ bool ApiHooker::collectBaseInfo() {
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setTime();
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setThreadId(
 			threadId);
+	//zds add
+	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setContext(
+			ApiHookerManager::getInstance()->mcontextinfo);
+	LOGD("[+] ApiHookerManager的context数据为 %s",
+			(ApiHookerManager::getInstance()->mcontextinfo).c_str());
+	//end
 	pthread_mutex_unlock(mutex);
 	return true;
 }
-
 
 bool ApiHooker::saveToQueue() {
 	LOGD("saveToQueue method has been called successfully in ApiHooker");
 	return true;
 }
-
 
 /**
  * ApiHooker类的入口
@@ -64,7 +68,8 @@ bool ApiHooker::saveToQueue() {
 bool ApiHooker::main(const u4* args) {
 	pthread_mutex_lock(&lock);
 	//申请队列空闲位置
-	this->mQueuePosition = InfoSender::mCycledBlockingQueue->getNowAvailablePosition();
+	this->mQueuePosition =
+			InfoSender::mCycledBlockingQueue->getNowAvailablePosition();
 	collectBaseInfo();
 	saveToQueue();
 	parseParameter(args);

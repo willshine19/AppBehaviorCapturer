@@ -4,6 +4,8 @@
  *  Created on: 2015-4-1
  *      Author: long
  */
+#ifndef APIHOOKERMANAGER_H_
+#define APIHOOKERMANAGER_H_
 #include <string>
 #include <jni.h>
 #include <stdio.h>
@@ -64,8 +66,7 @@
 #include "../Utils/JavaMethodHooker.h"
 #include "common.h"
 #include <pthread.h>
-#ifndef APIHOOKERMANAGER_H_
-#define APIHOOKERMANAGER_H_
+
 
 using namespace __gnu_cxx;
 
@@ -85,6 +86,7 @@ class ApiHookerManager {
 		 unordered_map<string, ApiHooker*> mApiHookerHashMap; //hashmap
 		 static pthread_mutex_t lock;
 		 JavaVM *mJavaVM;
+		 string mcontextinfo;
 
 		//单例模式实例访问接口
 		static ApiHookerManager* getInstance();
