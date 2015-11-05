@@ -49,11 +49,25 @@ bool ApiHooker::collectBaseInfo() {
 	//zds add
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setContext(
 			ApiHookerManager::getInstance()->mcontextinfo);
-	LOGD("[+] ApiHookerManager的context数据为 %s",
+	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setFatherThreadId(
+			GetFatherId());
+	LOGD("[+] apihooker-Infosender的context数据为 %s",
 			(ApiHookerManager::getInstance()->mcontextinfo).c_str());
+	LOGD("[+] apihooker-Infosender的fatherid数据为 %ld", GetFatherId());
 	//end
 	pthread_mutex_unlock(mutex);
 	return true;
+}
+
+long ApiHooker::GetFatherId() {
+	long threadId = pthread_self();
+	auto mMapFound = (ThreadMap::getInstance()->mpid_father_son_Map).find(
+			threadId);
+	if (mMapFound != (ThreadMap::getInstance()->mpid_father_son_Map).end()) {
+		return mMapFound->second;
+	} else
+		LOGD("This thread don't have a father thread");
+	return 0;
 }
 
 bool ApiHooker::saveToQueue() {
@@ -70,9 +84,10 @@ bool ApiHooker::main(const u4* args) {
 	//申请队列空闲位置
 	this->mQueuePosition =
 			InfoSender::mCycledBlockingQueue->getNowAvailablePosition();
+	parseParameter(args);
 	collectBaseInfo();
 	saveToQueue();
-	parseParameter(args);
+
 	simpleProcess();
 	pthread_mutex_unlock(&lock);
 	return true;

@@ -73,19 +73,16 @@ bool RunThreadApiHooker::parseParameter(const u4* args) {
 	StringObject* stringObjId = (StringObject*) stringId;
 	char* paramString = dvmCreateCstrFromString(stringObjId);
 
-	//zds add
-	LOGD("doing hashmap");
-	long threadId = pthread_self();	//获取c层的线程号
-	long javaThreadId = 0;		//用来保存java层的线程号
+	//zds
+	long javaThreadId = 0;		//用来保存子java层的线程号
 	sscanf(paramString, "%ld", &javaThreadId);
-	//将c和java的线程号存入hashmap中
-	(ThreadMap::getInstance()->mMap).insert(make_pair(javaThreadId, threadId));
-	//打印刚刚存入的键值对
+	long threadId = pthread_self();	//获取子c层的线程号
 	auto mMapFound = (ThreadMap::getInstance()->mMap).find(javaThreadId);
-	LOGD("[+] 存入hashmap中java线程号为 %ld", mMapFound->first);
-	LOGD("[+] 存入hashmap中c线程号为 %ld", mMapFound->second);
-
-	LOGD("[+] 线程号为 %s", paramString);
-	//end
+	(ThreadMap::getInstance()->mpid_father_son_Map).insert(
+			make_pair(threadId, mMapFound->second));
+	auto mmmm = (ThreadMap::getInstance()->mpid_father_son_Map).find(threadId);
+	LOGD("[+] 存入hashmap中子线程号为 %ld", mmmm->first);
+	LOGD("[+] 存入hashmap中父线程号为 %ld", mmmm->second);
+	LOGD("[+] run线程号为 %s", paramString);
 	return true;
 }

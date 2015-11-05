@@ -45,6 +45,13 @@ bool Bucket::setContext(string context) {
 string Bucket::getContext() {
 	return this->mCollectedApiInfo.getContext();
 }
+bool Bucket::setFatherThreadId(long FatherThreadId) {
+	this->mCollectedApiInfo.setFatherThreadId(FatherThreadId);
+	return true;
+}
+long Bucket::getFatherThreadId() {
+	return this->mCollectedApiInfo.getFatherThreadId();
+}
 //end
 
 string Bucket::getClassName() {

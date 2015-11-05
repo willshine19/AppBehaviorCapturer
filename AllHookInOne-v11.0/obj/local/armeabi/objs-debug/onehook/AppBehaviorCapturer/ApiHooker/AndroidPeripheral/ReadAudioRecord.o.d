@@ -110,7 +110,9 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/ApiHooker/AndroidPeriph
  /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/fstream \
  jni/AppBehaviorCapturer/ApiHooker/AndroidPeripheral/../../InfoSender/../Utils/json/json/json.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidPeripheral/../../ApiInfo/ApiDeclaration.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidPeripheral/../../ApiInfo/CollectedApiInfo.h
+ jni/AppBehaviorCapturer/ApiHooker/AndroidPeripheral/../../ApiInfo/CollectedApiInfo.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidPeripheral/../../System/ThreadMap.h \
+ /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidPeripheral/ReadAudioRecord.h:
 
@@ -333,3 +335,7 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidPeripheral/../../InfoSender/../Utils/js
 jni/AppBehaviorCapturer/ApiHooker/AndroidPeripheral/../../ApiInfo/ApiDeclaration.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidPeripheral/../../ApiInfo/CollectedApiInfo.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidPeripheral/../../System/ThreadMap.h:
+
+/home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map:

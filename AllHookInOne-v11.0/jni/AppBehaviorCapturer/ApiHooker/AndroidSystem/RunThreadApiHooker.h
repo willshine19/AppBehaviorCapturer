@@ -10,8 +10,6 @@
 
 #include "../VoidApiHooker.h"
 #include "../../Utils/DalvikMethodHooker.h"
-#include "../../System/ThreadMap.h"
-#include <pthread.h>
 
 class RunThreadApiHooker: public VoidApiHooker {
 public:

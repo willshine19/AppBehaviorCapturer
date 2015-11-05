@@ -21,12 +21,14 @@ public:
 	bool setThreadId(long threadId);
 	bool setTime();
 	bool setContext(string context);
+	bool setFatherThreadId(long FatherThreadId);
 
 	// 从mCollectedApiInfo中读
 	string getClassName();
 	string getMethodName();
 	string getTime();
 	string getContext();
+	long getFatherThreadId();
 	unsigned int getThreadId();
 
 	CollectedApiInfo mCollectedApiInfo;

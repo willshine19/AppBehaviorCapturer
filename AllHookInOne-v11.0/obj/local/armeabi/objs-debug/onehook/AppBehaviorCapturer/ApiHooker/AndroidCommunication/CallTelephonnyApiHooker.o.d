@@ -110,7 +110,9 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/ApiHooker/AndroidCommun
  /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/fstream \
  jni/AppBehaviorCapturer/ApiHooker/AndroidCommunication/../../InfoSender/../Utils/json/json/json.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidCommunication/../../ApiInfo/ApiDeclaration.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidCommunication/../../ApiInfo/CollectedApiInfo.h
+ jni/AppBehaviorCapturer/ApiHooker/AndroidCommunication/../../ApiInfo/CollectedApiInfo.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidCommunication/../../System/ThreadMap.h \
+ /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidCommunication/CallTelephonnyApiHooker.h:
 
@@ -333,3 +335,7 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidCommunication/../../InfoSender/../Utils
 jni/AppBehaviorCapturer/ApiHooker/AndroidCommunication/../../ApiInfo/ApiDeclaration.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidCommunication/../../ApiInfo/CollectedApiInfo.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidCommunication/../../System/ThreadMap.h:
+
+/home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map:

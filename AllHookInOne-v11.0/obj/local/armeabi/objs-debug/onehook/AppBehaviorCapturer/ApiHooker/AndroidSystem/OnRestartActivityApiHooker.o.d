@@ -111,7 +111,9 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/ApiHooker/AndroidSystem
  /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/fstream \
  jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../InfoSender/../Utils/json/json/json.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../ApiInfo/ApiDeclaration.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../ApiInfo/CollectedApiInfo.h
+ jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../ApiInfo/CollectedApiInfo.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../System/ThreadMap.h \
+ /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h:
 
@@ -336,3 +338,7 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../InfoSender/../Utils/json/j
 jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../ApiInfo/ApiDeclaration.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../ApiInfo/CollectedApiInfo.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../System/ThreadMap.h:
+
+/home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map:

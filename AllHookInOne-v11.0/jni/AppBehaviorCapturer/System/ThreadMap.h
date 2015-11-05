@@ -24,12 +24,13 @@ private:
 public:
 	//成员变量
 	unordered_map<long, long> mMap; //hashmap变量声明
+	unordered_map<long, long> mpid_father_son_Map; //hashmap变量声明
+	unordered_map<long, char*> mpid_contextMap;
 	static pthread_mutex_t lock;
 
 	//单例模式实例访问接口
 	static ThreadMap* getInstance();
 	//成员函数
-	long tolong(char* in);
 
 };
 

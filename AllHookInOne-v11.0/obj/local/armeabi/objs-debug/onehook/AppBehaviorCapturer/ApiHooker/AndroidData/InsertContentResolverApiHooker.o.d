@@ -111,265 +111,52 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/ApiHooker/AndroidData/I
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../InfoSender/../Utils/json/json/json.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../ApiInfo/ApiDeclaration.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../ApiInfo/CollectedApiInfo.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../System/ThreadMap.h \
+ /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/DalvikMethodHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/ApiHookerManager.h \
- /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../InfoSender/InfoSender.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateActivityApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../VoidApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../ApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/DalvikMethodHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/ApiHookerManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../InfoSender/InfoSender.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../VoidApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnResumeActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/StartThreadApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/DalvikMethodHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/ApiHookerManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../InfoSender/InfoSender.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnResumeActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/StartThreadApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/RunThreadApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../VoidApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/DalvikMethodHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/ApiHookerManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../InfoSender/InfoSender.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnResumeActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/StartThreadApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/RunThreadApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/OpenCamera.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/../VoidApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/GetDefaultSensorSensorManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/../ApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/PrepareMediaRecorder.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReadAudioRecord.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReleaseMediaRecorder.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartMediaRecorder.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartRecordingAudioRecord.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/AddGpsStatusListenerLocationManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/../ApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/ReadFileInputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/CloseFileInputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/../VoidApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/CloseFileOutputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/DeleteContentResolver.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetCallStateTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetDeviceIdTelephonyApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetFDFileInputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetLastKnownLocationApiHooker.h \
- jni/dalvik/vm/UtfString.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetLine1NumberTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetMacAddressWifiInfoApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetMessageBodySmsMessage.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetSimSerialNumberTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetSubscriberIdTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/InsertContentResolverApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/QueryContentResolverApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/RequestLocationUpdatesLocationManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/UpdateContentResolver.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/WriteFileOutputStreamApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/CloseSocket.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/../VoidApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/DisableBluetoothAdapter.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/../ApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/DisconnectWifiManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableBluetoothAdapter.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableNetworkWifiManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/OpenConnectionURL.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendDataMessageSmsManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendMultipartTextMessageSmsManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendTextMessageSmsManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SetWifiEnabledWifiManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/CallTelephonnyApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EndCallITelephonyApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiInfo/CollectedApiInfo.h \
- /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/typeinfo \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/JavaMethodHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/DalvikMethodHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/ApiHookerManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../InfoSender/InfoSender.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnCreateActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnResumeActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/StartThreadApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/RunThreadApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/OpenCamera.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/GetDefaultSensorSensorManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/PrepareMediaRecorder.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/ReadAudioRecord.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/ReleaseMediaRecorder.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/StartMediaRecorder.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/StartRecordingAudioRecord.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/AddGpsStatusListenerLocationManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/ReadFileInputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/CloseFileInputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/CloseFileOutputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/DeleteContentResolver.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetCallStateTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetDeviceIdTelephonyApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetFDFileInputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetLastKnownLocationApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetLine1NumberTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetMacAddressWifiInfoApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetMessageBodySmsMessage.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetSimSerialNumberTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetSubscriberIdTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/InsertContentResolverApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/QueryContentResolverApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/RequestLocationUpdatesLocationManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/UpdateContentResolver.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/WriteFileOutputStreamApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/CloseSocket.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/DisableBluetoothAdapter.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/DisconnectWifiManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/EnableBluetoothAdapter.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/EnableNetworkWifiManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/OpenConnectionURL.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/SendDataMessageSmsManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/SendMultipartTextMessageSmsManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/SendTextMessageSmsManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/SetWifiEnabledWifiManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/CallTelephonnyApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/EndCallITelephonyApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiInfo/CollectedApiInfo.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../Utils/JavaMethodHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/dvm.h \
- /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/assert.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/TimeUtils.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/dvm.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/TimeUtils.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../System/ThreadMap.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/OpenCamera.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/GetDefaultSensorSensorManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/PrepareMediaRecorder.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReadAudioRecord.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReleaseMediaRecorder.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartMediaRecorder.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartRecordingAudioRecord.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/AddGpsStatusListenerLocationManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/ReadFileInputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/CloseFileInputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/CloseFileOutputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/DeleteContentResolver.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetCallStateTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetDeviceIdTelephonyApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetFDFileInputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetLastKnownLocationApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetLine1NumberTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetMacAddressWifiInfoApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetMessageBodySmsMessage.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetSimSerialNumberTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetSubscriberIdTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/InsertContentResolverApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/QueryContentResolverApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/RequestLocationUpdatesLocationManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/UpdateContentResolver.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/WriteFileOutputStreamApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/CloseSocket.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/DisableBluetoothAdapter.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/DisconnectWifiManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableBluetoothAdapter.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableNetworkWifiManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/OpenConnectionURL.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendDataMessageSmsManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendMultipartTextMessageSmsManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendTextMessageSmsManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SetWifiEnabledWifiManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/CallTelephonnyApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EndCallITelephonyApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiInfo/CollectedApiInfo.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/JavaMethodHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/dvm.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/TimeUtils.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/RunThreadApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/OpenCamera.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/GetDefaultSensorSensorManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/PrepareMediaRecorder.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReadAudioRecord.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReleaseMediaRecorder.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartMediaRecorder.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartRecordingAudioRecord.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/AddGpsStatusListenerLocationManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/ReadFileInputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/CloseFileInputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/CloseFileOutputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/DeleteContentResolver.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetCallStateTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetDeviceIdTelephonyApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetFDFileInputStream.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetLastKnownLocationApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetLine1NumberTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetMacAddressWifiInfoApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetMessageBodySmsMessage.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetSimSerialNumberTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetSubscriberIdTelephonyManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/InsertContentResolverApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/QueryContentResolverApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/RequestLocationUpdatesLocationManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/UpdateContentResolver.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/WriteFileOutputStreamApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/CloseSocket.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/DisableBluetoothAdapter.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/DisconnectWifiManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableBluetoothAdapter.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableNetworkWifiManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/OpenConnectionURL.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendDataMessageSmsManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendMultipartTextMessageSmsManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendTextMessageSmsManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SetWifiEnabledWifiManager.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/CallTelephonnyApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EndCallITelephonyApiHooker.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiInfo/CollectedApiInfo.h \
- jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/JavaMethodHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/dvm.h \
+ /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/assert.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/TimeUtils.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateServiceApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnResumeActivityApiHooker.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../System/ApiHookerManager.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../System/ThreadMap.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnStartServiceApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/StartThreadApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/RunThreadApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/OpenCamera.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/../VoidApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/GetDefaultSensorSensorManager.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/../ApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/PrepareMediaRecorder.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReadAudioRecord.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReleaseMediaRecorder.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartMediaRecorder.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartRecordingAudioRecord.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/AddGpsStatusListenerLocationManager.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/../ApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/ReadFileInputStream.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/CloseFileInputStream.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/../VoidApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/CloseFileOutputStream.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/DeleteContentResolver.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/GetCallStateTelephonyManager.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/GetDeviceIdTelephonyApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/GetFDFileInputStream.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/GetLastKnownLocationApiHooker.h \
+ jni/dalvik/vm/UtfString.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/GetLine1NumberTelephonyManager.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/GetMacAddressWifiInfoApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/GetMessageBodySmsMessage.h \
@@ -381,7 +168,9 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/ApiHooker/AndroidData/I
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/UpdateContentResolver.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/WriteFileOutputStreamApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/CloseSocket.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/../VoidApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/DisableBluetoothAdapter.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/../ApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/DisconnectWifiManager.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableBluetoothAdapter.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableNetworkWifiManager.h \
@@ -393,7 +182,12 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/ApiHooker/AndroidData/I
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/CallTelephonnyApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/EndCallITelephonyApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiInfo/CollectedApiInfo.h \
+ /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/typeinfo \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../Utils/JavaMethodHooker.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../Utils/DalvikMethodHooker.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../Utils/../System/ApiHookerManager.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../Utils/dvm.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../Utils/TimeUtils.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/dvm.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/TimeUtils.h
 
@@ -619,11 +413,13 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../ApiInfo/ApiDeclaration.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../ApiInfo/CollectedApiInfo.h:
 
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../System/ThreadMap.h:
+
+/home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map:
+
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/DalvikMethodHooker.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/ApiHookerManager.h:
-
-/home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../InfoSender/InfoSender.h:
 
@@ -637,457 +433,13 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/ApiHookerManager.h:
 
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../InfoSender/InfoSender.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../VoidApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnResumeActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/StartThreadApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/DalvikMethodHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/ApiHookerManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../InfoSender/InfoSender.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnResumeActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/StartThreadApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/RunThreadApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../VoidApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/DalvikMethodHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/ApiHookerManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../InfoSender/InfoSender.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnResumeActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/StartThreadApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/RunThreadApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/OpenCamera.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/../VoidApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/GetDefaultSensorSensorManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/../ApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/PrepareMediaRecorder.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReadAudioRecord.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReleaseMediaRecorder.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartMediaRecorder.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartRecordingAudioRecord.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/AddGpsStatusListenerLocationManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/../ApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/ReadFileInputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/CloseFileInputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/../VoidApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/CloseFileOutputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/DeleteContentResolver.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetCallStateTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetDeviceIdTelephonyApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetFDFileInputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetLastKnownLocationApiHooker.h:
-
-jni/dalvik/vm/UtfString.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetLine1NumberTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetMacAddressWifiInfoApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetMessageBodySmsMessage.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetSimSerialNumberTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetSubscriberIdTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/InsertContentResolverApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/QueryContentResolverApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/RequestLocationUpdatesLocationManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/UpdateContentResolver.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/WriteFileOutputStreamApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/CloseSocket.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/../VoidApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/DisableBluetoothAdapter.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/../ApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/DisconnectWifiManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableBluetoothAdapter.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableNetworkWifiManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/OpenConnectionURL.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendDataMessageSmsManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendMultipartTextMessageSmsManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendTextMessageSmsManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SetWifiEnabledWifiManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/CallTelephonnyApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EndCallITelephonyApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiInfo/CollectedApiInfo.h:
-
-/home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/typeinfo:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/JavaMethodHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/DalvikMethodHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/ApiHookerManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../InfoSender/InfoSender.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnCreateActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnResumeActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/StartThreadApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidSystem/RunThreadApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/OpenCamera.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/GetDefaultSensorSensorManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/PrepareMediaRecorder.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/ReadAudioRecord.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/ReleaseMediaRecorder.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/StartMediaRecorder.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidPeripheral/StartRecordingAudioRecord.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/AddGpsStatusListenerLocationManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/ReadFileInputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/CloseFileInputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/CloseFileOutputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/DeleteContentResolver.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetCallStateTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetDeviceIdTelephonyApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetFDFileInputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetLastKnownLocationApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetLine1NumberTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetMacAddressWifiInfoApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetMessageBodySmsMessage.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetSimSerialNumberTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/GetSubscriberIdTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/InsertContentResolverApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/QueryContentResolverApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/RequestLocationUpdatesLocationManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/UpdateContentResolver.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidData/WriteFileOutputStreamApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/CloseSocket.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/DisableBluetoothAdapter.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/DisconnectWifiManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/EnableBluetoothAdapter.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/EnableNetworkWifiManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/OpenConnectionURL.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/SendDataMessageSmsManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/SendMultipartTextMessageSmsManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/SendTextMessageSmsManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/SetWifiEnabledWifiManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/CallTelephonnyApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiHooker/AndroidCommunication/EndCallITelephonyApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../ApiInfo/CollectedApiInfo.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/../System/../Utils/JavaMethodHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/dvm.h:
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/dvm.h:
 
 /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/assert.h:
 
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/TimeUtils.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/dvm.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/TimeUtils.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../System/ThreadMap.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/OpenCamera.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/GetDefaultSensorSensorManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/PrepareMediaRecorder.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReadAudioRecord.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReleaseMediaRecorder.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartMediaRecorder.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartRecordingAudioRecord.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/AddGpsStatusListenerLocationManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/ReadFileInputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/CloseFileInputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/CloseFileOutputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/DeleteContentResolver.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetCallStateTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetDeviceIdTelephonyApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetFDFileInputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetLastKnownLocationApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetLine1NumberTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetMacAddressWifiInfoApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetMessageBodySmsMessage.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetSimSerialNumberTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetSubscriberIdTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/InsertContentResolverApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/QueryContentResolverApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/RequestLocationUpdatesLocationManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/UpdateContentResolver.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/WriteFileOutputStreamApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/CloseSocket.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/DisableBluetoothAdapter.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/DisconnectWifiManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableBluetoothAdapter.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableNetworkWifiManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/OpenConnectionURL.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendDataMessageSmsManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendMultipartTextMessageSmsManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendTextMessageSmsManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SetWifiEnabledWifiManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/CallTelephonnyApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EndCallITelephonyApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiInfo/CollectedApiInfo.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/JavaMethodHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/dvm.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/TimeUtils.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/RunThreadApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/OpenCamera.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/GetDefaultSensorSensorManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/PrepareMediaRecorder.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReadAudioRecord.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/ReleaseMediaRecorder.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartMediaRecorder.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidPeripheral/StartRecordingAudioRecord.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/AddGpsStatusListenerLocationManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/ReadFileInputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/CloseFileInputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/CloseFileOutputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/DeleteContentResolver.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetCallStateTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetDeviceIdTelephonyApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetFDFileInputStream.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetLastKnownLocationApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetLine1NumberTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetMacAddressWifiInfoApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetMessageBodySmsMessage.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetSimSerialNumberTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/GetSubscriberIdTelephonyManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/InsertContentResolverApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/QueryContentResolverApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/RequestLocationUpdatesLocationManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/UpdateContentResolver.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidData/WriteFileOutputStreamApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/CloseSocket.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/DisableBluetoothAdapter.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/DisconnectWifiManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableBluetoothAdapter.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EnableNetworkWifiManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/OpenConnectionURL.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendDataMessageSmsManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendMultipartTextMessageSmsManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SendTextMessageSmsManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/SetWifiEnabledWifiManager.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/CallTelephonnyApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidCommunication/EndCallITelephonyApiHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../ApiInfo/CollectedApiInfo.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/../System/../Utils/JavaMethodHooker.h:
-
-jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/dvm.h:
-
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/TimeUtils.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateServiceApiHooker.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h:
 
@@ -1097,7 +449,13 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnResumeActivityApiHooker.h:
 
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../System/ApiHookerManager.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/../../System/ThreadMap.h:
+
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnStartServiceApiHooker.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h:
 
@@ -1107,7 +465,11 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/OpenCamera.h:
 
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/../VoidApiHooker.h:
+
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/GetDefaultSensorSensorManager.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/../ApiHooker.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidPeripheral/PrepareMediaRecorder.h:
 
@@ -1121,9 +483,13 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/AddGpsStatusListenerLocationManager.h:
 
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/../ApiHooker.h:
+
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/ReadFileInputStream.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/CloseFileInputStream.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/../VoidApiHooker.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/CloseFileOutputStream.h:
 
@@ -1136,6 +502,8 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/GetFDFileInputStream.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/GetLastKnownLocationApiHooker.h:
+
+jni/dalvik/vm/UtfString.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidData/GetLine1NumberTelephonyManager.h:
 
@@ -1159,7 +527,11 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/CloseSocket.h:
 
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/../VoidApiHooker.h:
+
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/DisableBluetoothAdapter.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/../ApiHooker.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker/AndroidCommunication/DisconnectWifiManager.h:
 
@@ -1183,7 +555,17 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiHooker
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../ApiInfo/CollectedApiInfo.h:
 
+/home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/typeinfo:
+
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../Utils/JavaMethodHooker.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../Utils/DalvikMethodHooker.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../Utils/../System/ApiHookerManager.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../Utils/dvm.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/../System/../Utils/TimeUtils.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidData/../../Utils/dvm.h:
 

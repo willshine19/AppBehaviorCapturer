@@ -10,8 +10,10 @@
 
 #include "../VoidApiHooker.h"
 #include "../../Utils/DalvikMethodHooker.h"
-#include "android_runtime/AndroidRuntime.h"
+//#include "android_runtime/AndroidRuntime.h"
 #include "../../System/ApiHookerManager.h"//zds add
+#include "../../System/ThreadMap.h"
+#include <pthread.h>
 /*
  *
  */

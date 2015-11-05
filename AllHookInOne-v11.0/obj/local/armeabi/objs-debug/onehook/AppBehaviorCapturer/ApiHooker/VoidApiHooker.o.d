@@ -110,7 +110,9 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/ApiHooker/VoidApiHooker
  /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/fstream \
  jni/AppBehaviorCapturer/ApiHooker/../InfoSender/../Utils/json/json/json.h \
  jni/AppBehaviorCapturer/ApiHooker/../ApiInfo/ApiDeclaration.h \
- jni/AppBehaviorCapturer/ApiHooker/../ApiInfo/CollectedApiInfo.h
+ jni/AppBehaviorCapturer/ApiHooker/../ApiInfo/CollectedApiInfo.h \
+ jni/AppBehaviorCapturer/ApiHooker/../System/ThreadMap.h \
+ /home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map
 
 jni/AppBehaviorCapturer/ApiHooker/VoidApiHooker.h:
 
@@ -333,3 +335,7 @@ jni/AppBehaviorCapturer/ApiHooker/../InfoSender/../Utils/json/json/json.h:
 jni/AppBehaviorCapturer/ApiHooker/../ApiInfo/ApiDeclaration.h:
 
 jni/AppBehaviorCapturer/ApiHooker/../ApiInfo/CollectedApiInfo.h:
+
+jni/AppBehaviorCapturer/ApiHooker/../System/ThreadMap.h:
+
+/home/zds/android/android-ndk-r10b/sources/cxx-stl/gnu-libstdc++/4.8/include/unordered_map:
