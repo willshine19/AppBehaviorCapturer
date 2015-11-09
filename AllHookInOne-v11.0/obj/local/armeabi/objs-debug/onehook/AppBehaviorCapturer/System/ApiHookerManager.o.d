@@ -85,7 +85,7 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/System/ApiHookerManager
  jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/../../Utils/dvm.h \
  /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/assert.h \
  jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/../../Utils/TimeUtils.h \
- jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnCreateServiceApiHooker.h \
+ jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnCreateApplicationApiHooker.h \
  jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h \
  jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h \
  jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h \
@@ -93,7 +93,7 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/System/ApiHookerManager
  jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/../../System/ApiHookerManager.h \
  jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/../../System/ThreadMap.h \
  jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h \
- jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnStartServiceApiHooker.h \
+ jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/onStartCommandServiceApiHooker.h \
  jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h \
  jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/StartThreadApiHooker.h \
  jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/RunThreadApiHooker.h \
@@ -324,7 +324,7 @@ jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/../../Utils/dvm.h:
 
 jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/../../Utils/TimeUtils.h:
 
-jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnCreateServiceApiHooker.h:
+jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnCreateApplicationApiHooker.h:
 
 jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h:
 
@@ -340,7 +340,7 @@ jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/../../System/ThreadMap
 
 jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h:
 
-jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnStartServiceApiHooker.h:
+jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/onStartCommandServiceApiHooker.h:
 
 jni/AppBehaviorCapturer/System/../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h:
 

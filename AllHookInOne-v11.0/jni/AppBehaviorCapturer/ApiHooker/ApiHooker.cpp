@@ -51,9 +51,9 @@ bool ApiHooker::collectBaseInfo() {
 			ApiHookerManager::getInstance()->mcontextinfo);
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setFatherThreadId(
 			GetFatherId());
-	LOGD("[+] apihooker-Infosender的context数据为 %s",
-			(ApiHookerManager::getInstance()->mcontextinfo).c_str());
-	LOGD("[+] apihooker-Infosender的fatherid数据为 %ld", GetFatherId());
+//	LOGD("[+] apihooker-Infosender的context数据为 %s",
+//			(ApiHookerManager::getInstance()->mcontextinfo).c_str());
+//	LOGD("[+] apihooker-Infosender的fatherid数据为 %ld", GetFatherId());
 	//end
 	pthread_mutex_unlock(mutex);
 	return true;
@@ -87,7 +87,7 @@ bool ApiHooker::main(const u4* args) {
 	parseParameter(args);
 	collectBaseInfo();
 	saveToQueue();
-
+	LOGD("ApiHooker is running");
 	simpleProcess();
 	pthread_mutex_unlock(&lock);
 	return true;

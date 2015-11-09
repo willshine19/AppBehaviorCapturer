@@ -127,14 +127,16 @@ bool ApiHookerManager::initHashMap() {
 	//系统api
 	StartThreadApiHooker* start = new StartThreadApiHooker();
 	RunThreadApiHooker* run = new RunThreadApiHooker();
-	OnCreateServiceApiHooker* onCreateService = new OnCreateServiceApiHooker();
+//	OnCreateServiceApiHooker* onCreateService = new OnCreateServiceApiHooker();
 	OnCreateActivityApiHooker* onCreate = new OnCreateActivityApiHooker();
+	OnCreateApplicationApiHooker* OnCreateApplication = new OnCreateApplicationApiHooker();
 	OnDestroyActivityApiHooker* onDestroy = new OnDestroyActivityApiHooker();
 	OnPauseActivityApiHooker* onPause = new OnPauseActivityApiHooker();
 	OnRestartActivityApiHooker* onRestart = new OnRestartActivityApiHooker();
 	OnResumeActivityApiHooker* onResume = new OnResumeActivityApiHooker();
 	OnStartActivityApiHooker* onStart = new OnStartActivityApiHooker();
-	OnStartServiceApiHooker*  onStartService = new OnStartServiceApiHooker();
+//	OnStartServiceApiHooker*  onStartService = new OnStartServiceApiHooker();
+	onStartCommandServiceApiHooker*  onStartCommandService = new onStartCommandServiceApiHooker();
 	OnStopActivityApiHooker* onStop = new OnStopActivityApiHooker();
 	/*mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
 	 mApiHookerHashMap.insert(make_pair("onDestroy", onDestroy));
@@ -143,10 +145,12 @@ bool ApiHookerManager::initHashMap() {
 
 	 mApiHookerHashMap.insert(make_pair("onStart", onStart));
 	 mApiHookerHashMap.insert(make_pair("onStop", onStop));*/
-	mApiHookerHashMap.insert(make_pair("start", start));
 	mApiHookerHashMap.insert(make_pair("onResume", onResume));
-//	mApiHookerHashMap.insert(make_pair("onCreateLandroid/app/Service", onCreateService));//;
+	mApiHookerHashMap.insert(make_pair("OnCreateApplication", OnCreateApplication));
+//	mApiHookerHashMap.insert(make_pair("onCreate", onCreateService));//;Landroid/app/Service
 //	mApiHookerHashMap.insert(make_pair("onStart", onStartService));
+	mApiHookerHashMap.insert(make_pair("onStartCommand", onStartCommandService));//Landroid/app/Service
+	mApiHookerHashMap.insert(make_pair("start", start));
 	mApiHookerHashMap.insert(make_pair("run", run));
 	LOGD("insert system api to hashmap successfully");
 
