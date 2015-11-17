@@ -127,7 +127,7 @@ bool ApiHookerManager::initHashMap() {
 	//系统api
 	StartThreadApiHooker* start = new StartThreadApiHooker();
 	RunThreadApiHooker* run = new RunThreadApiHooker();
-//	OnCreateServiceApiHooker* onCreateService = new OnCreateServiceApiHooker();
+	OnCreateServiceApiHooker* onCreateService = new OnCreateServiceApiHooker();
 	OnCreateActivityApiHooker* onCreate = new OnCreateActivityApiHooker();
 	OnCreateApplicationApiHooker* OnCreateApplication = new OnCreateApplicationApiHooker();
 	OnDestroyActivityApiHooker* onDestroy = new OnDestroyActivityApiHooker();
@@ -146,10 +146,10 @@ bool ApiHookerManager::initHashMap() {
 	 mApiHookerHashMap.insert(make_pair("onStart", onStart));
 	 mApiHookerHashMap.insert(make_pair("onStop", onStop));*/
 	mApiHookerHashMap.insert(make_pair("onResume", onResume));
-	mApiHookerHashMap.insert(make_pair("OnCreateApplication", OnCreateApplication));
-//	mApiHookerHashMap.insert(make_pair("onCreate", onCreateService));//;Landroid/app/Service
+	mApiHookerHashMap.insert(make_pair("OnCreateApplicationLandroid/app/Application", OnCreateApplication));
+	mApiHookerHashMap.insert(make_pair("onCreateLandroid/app/Service;", onCreateService));//
 //	mApiHookerHashMap.insert(make_pair("onStart", onStartService));
-	mApiHookerHashMap.insert(make_pair("onStartCommand", onStartCommandService));//Landroid/app/Service
+	mApiHookerHashMap.insert(make_pair("onStartCommandLandroid/app/Service;", onStartCommandService));//Landroid/app/Service
 	mApiHookerHashMap.insert(make_pair("start", start));
 	mApiHookerHashMap.insert(make_pair("run", run));
 	LOGD("insert system api to hashmap successfully");

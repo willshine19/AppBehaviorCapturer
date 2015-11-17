@@ -124,6 +124,8 @@ obj/local/armeabi/objs-debug/onehook/AppBehaviorCapturer/ApiHooker/AndroidSystem
  jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/dvm.h \
  /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/assert.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/TimeUtils.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../System/ApiHookerManager.h \
+ jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateServiceApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateApplicationApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h \
  jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h \
@@ -442,6 +444,10 @@ jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../Utils/../System/../ApiHook
 /home/zds/android/android-ndk-r10b/platforms/android-19/arch-arm/usr/include/assert.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../Utils/TimeUtils.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/../../System/ApiHookerManager.h:
+
+jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateServiceApiHooker.h:
 
 jni/AppBehaviorCapturer/ApiHooker/AndroidSystem/../../Utils/../System/../ApiHooker/AndroidSystem/OnCreateApplicationApiHooker.h:
 

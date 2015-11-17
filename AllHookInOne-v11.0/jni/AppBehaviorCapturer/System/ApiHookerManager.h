@@ -14,7 +14,7 @@
 
 #include "../InfoSender/InfoSender.h"
 #include "../ApiHooker/AndroidSystem/OnCreateActivityApiHooker.h"
-//#include "../ApiHooker/AndroidSystem/OnCreateServiceApiHooker.h"
+#include "../ApiHooker/AndroidSystem/OnCreateServiceApiHooker.h"
 #include "../ApiHooker/AndroidSystem/OnCreateApplicationApiHooker.h"
 #include "../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h"
 #include "../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h"

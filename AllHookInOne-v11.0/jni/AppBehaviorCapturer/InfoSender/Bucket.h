@@ -23,6 +23,9 @@ public:
 	bool setContext(string context);
 	bool setFatherThreadId(long FatherThreadId);
 
+	bool setSonThreadId(long SonThreadId);
+	long getSonThreadId();
+
 	// 从mCollectedApiInfo中读
 	string getClassName();
 	string getMethodName();

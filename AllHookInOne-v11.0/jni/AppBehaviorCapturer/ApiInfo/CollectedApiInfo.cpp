@@ -48,6 +48,13 @@ bool CollectedApiInfo::setFatherThreadId(long FatherThreadId) {
 	this->mFatherThreadId = FatherThreadId;
 	return true;
 }
+long CollectedApiInfo::getSonThreadId() {
+	return this->mSonThreadId;
+}
+bool CollectedApiInfo::setSonThreadId(long SonThreadId) {
+	this->mSonThreadId = SonThreadId;
+	return true;
+}
 //end
 bool CollectedApiInfo::setClassName(string className) {
 	this->mClassName = className;
@@ -71,6 +78,7 @@ string CollectedApiInfo::convertToJson() {
 	root["time"] = this->mTime;
 	root["context"] = this->mContext; //zds add
 	root["FatherThreadId"] = (unsigned int) this->mFatherThreadId; //zds add
+	root["SonThreadId"] = (unsigned int) this->mSonThreadId; //zds add
 	root["threadID"] = (unsigned int) this->mThreadId;
 	root["processID"] = this->mProcessID;
 

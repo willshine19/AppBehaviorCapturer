@@ -56,6 +56,8 @@ bool OnCreateActivityApiHooker::parseParameter(const u4* args) {
 	StringObject* sourceNameObj = (StringObject*) toStringResult;
 	char* paramString = dvmCreateCstrFromString(sourceNameObj);
 	LOGD("[+] 调用实例为 %s", paramString);
+
+	ApiHookerManager::getInstance()->mcontextinfo = paramString;
 	return true;
 
 }

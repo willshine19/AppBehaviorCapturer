@@ -8,7 +8,7 @@
 #ifndef ONSTARTCOMMANDSERVICEAPIHOOKER_H_
 #define ONSTARTCOMMANDSERVICEAPIHOOKER_H_
 
-#include "../VoidApiHooker.h"
+#include "../ApiHooker.h"
 #include "../../Utils/DalvikMethodHooker.h"
 #include "android_runtime/AndroidRuntime.h"
 //#include "../../System/ApiHookerManager.h"

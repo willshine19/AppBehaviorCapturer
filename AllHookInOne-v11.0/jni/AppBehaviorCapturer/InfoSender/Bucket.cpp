@@ -52,6 +52,14 @@ bool Bucket::setFatherThreadId(long FatherThreadId) {
 long Bucket::getFatherThreadId() {
 	return this->mCollectedApiInfo.getFatherThreadId();
 }
+bool Bucket::setSonThreadId(long SonThreadId) {
+	this->mCollectedApiInfo.setSonThreadId(SonThreadId);
+	return true;
+}
+long Bucket::getSonThreadId() {
+	return this->mCollectedApiInfo.getSonThreadId();
+}
+
 //end
 
 string Bucket::getClassName() {
