@@ -39,7 +39,7 @@ public class MimoNodeAPI {
 			// opts.reconnectionAttempts = 2;
 
 			// socket = IO.socket("http://10.110.138.196:3006/access", opts);
-			socket = IO.socket("http://10.110.138.196:3006/access");
+			socket = IO.socket("http://10.110.138.48:3002/access");
 			// socket = IO.socket("http://10.8.56.244:3000/communication");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -108,7 +108,7 @@ public class MimoNodeAPI {
 	 *      socketErrorCallback, NewMessageCallback are supposed to Override in
 	 *      this callback.
 	 */
-	public void login(String userId, String password, final Callback callback) {
+	public void login(String userName, String password, final Callback callback) {
 		this.connect(callback);
 		System.out.println("login in mimonodeapi did");
 		try {
@@ -124,7 +124,7 @@ public class MimoNodeAPI {
 		});
 		JSONObject userData = new JSONObject();
 		try {
-			userData.put("userId", userId);
+			userData.put("userName", userName);
 			userData.put("password", password);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -153,16 +153,16 @@ public class MimoNodeAPI {
 	/**
 	 * This function is used to getStoredMessages from mimonode.
 	 * 
-	 * @param userId
+	 * @param userName
 	 *            , callback.
 	 * 
 	 * @see successCallback, errorCallback are supposed to Override in this
 	 *      callback.
 	 */
-	public void getStoredMessages(String userId, final Callback callback) {
+	public void getStoredMessages(String userName, final Callback callback) {
 		JSONObject data = new JSONObject();
 		try {
-			data.put("userId", userId);
+			data.put("userName", userName);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -234,19 +234,19 @@ public class MimoNodeAPI {
 	/**
 	 * This function is used to deleteSpace in mimonode.
 	 * 
-	 * @param userId
+	 * @param userName
 	 *            , spaceId, callback.
 	 * 
 	 * @see successCallback, errorCallback are supposed to Override in this
 	 *      callback.
 	 */
-	public void deleteSpace(String userId, String spaceId,
+	public void deleteSpace(String userName, String spaceId,
 			final Callback callback) {
 
 		JSONObject space = new JSONObject();
 		try {
 			space.put("spaceId", spaceId);
-			space.put("userId", userId);
+			space.put("userName", userName);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -344,7 +344,7 @@ public class MimoNodeAPI {
 		JSONObject data = new JSONObject();
 		try {
 			data.put("spaceId", spaceId);
-			data.put("userId", subscriberId);
+			data.put("userName", subscriberId);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -491,20 +491,20 @@ public class MimoNodeAPI {
 	/**
 	 * This function is used to deleteThemeOnSpace in mimonode.
 	 * 
-	 * @param userId
+	 * @param userName
 	 *            , spaceId, themeId, callback.
 	 * 
 	 * @see successCallback, errorCallback are supposed to Override in this
 	 *      callback.
 	 */
-	public void deleteThemeOnSpace(String userId, String spaceId,
+	public void deleteThemeOnSpace(String userName, String spaceId,
 			String themeId, final Callback callback) {
 
 		JSONObject data = new JSONObject();
 		try {
 			data.put("spaceId", spaceId);
 			data.put("themeId", themeId);
-			data.put("userId", userId);
+			data.put("userName", userName);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -611,7 +611,7 @@ public class MimoNodeAPI {
 		try {
 			data.put("spaceId", spaceId);
 			data.put("themeId", themeId);
-			data.put("userId", subscriberId);
+			data.put("userName", subscriberId);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

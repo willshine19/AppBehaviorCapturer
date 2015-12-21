@@ -6,17 +6,27 @@ import org.json.JSONObject;
 
 import com.lwl.utils.ServerToHookerTimeTestUtils;
 
+import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
 import java.util.HashMap;
 
 public class JsonSender {
 	
-	private static final String USER_ID = "55a3682dfd4d877911da1658";
+	private static final String USER_ID = "GraphValueTest1";
 	private static final String USER_CODE = "1234567890";
-	private static final String PUB_SPACE_ID = "55d3e0c7fbab7cd126c37163";
-	private static final String PUB_THEME_ID = "55d3e11afbab7cd126c37164";
-	private static final String SUB_SPACE_ID = "55d3e156fbab7cd126c37165";
-	private static final String SUB_THEME_ID = "55d3e1d5fbab7cd126c37166";
+	private static final String PUB_SPACE_ID = "56518805f39693a4088fbfa6";
+	private static final String PUB_THEME_ID = "56518931f39693a4088fbfa9";
+	private static final String SUB_SPACE_ID = "5651c957f39693a4088fbfc4";
+	private static final String SUB_THEME_ID = "5651c986f39693a4088fbfc5";
 	private static final String TAG1 = "JsonSender";
 	private static final String TAG2 = "Callback";
 	
@@ -118,6 +128,7 @@ public class JsonSender {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		Log.d("what's in json [No.2]", "" + nameofAPI + numberofAPI+ threadIDofAPI +timeofAPI +processID+IMEI);
 		// 上传json
 		Log.i(TAG1, "正在pubJSON数据");
 		mMimoNode.publishOnTheme(USER_ID,
@@ -143,19 +154,19 @@ public class JsonSender {
 					};
 				});
 		// 等待发送成功
-//		Log.v(TAG1, "进入while循环");
-//		while (!mSuccessFlag) {
-//			Log.v(TAG1, "JsonSender等待发送成功的标志...");
-//			try {
-//				Thread.sleep(5000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//		Log.v(TAG1, "离开while循环");
-//		mSuccessFlag = false;
-//		Log.i(TAG1, "完成pubJSON数据");
+		Log.v(TAG1, "进入while循环");
+		while (!mSuccessFlag) {
+			Log.v(TAG1, "JsonSender等待发送成功的标志...");
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		Log.v(TAG1, "离开while循环");
+		mSuccessFlag = false;
+		Log.i(TAG1, "完成pubJSON数据");
 
 //		try {
 //			Thread.sleep(1000);// 等待服务器计算
@@ -216,6 +227,56 @@ public class JsonSender {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        Log.d("what's in json", "" + firstData);
         publish(firstData);
 	}
+	
+	/**
+	 * 将json对象转为字符串写到一个文本中，并将文件保存到sd卡中，即/storage/emulated/0/json.txt
+	 * 需要申请权限<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	 * 和<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+	 * @throws FileNotFoundException 
+	 * @Description:
+	 */
+	public void saveToFile(JSONObject jo) {
+		FileOutputStream fos = null	;
+		PrintStream ps = null;
+		try {
+			String fileName = getSDPath() + "/SyhJson.txt";
+//			fos = context.openFileOutput(fileName, Context.MODE_APPEND);
+			fos = new FileOutputStream(fileName, true);
+			ps = new PrintStream(fos);
+			ps.println(jo.toString());
+			Log.d(TAG1, "成功保存到文件/storage/emulated/0/json.txt");
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+				if (fos != null) {
+					fos.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * 获取SD卡的路径
+	 * @Description:
+	 * @return
+	 */
+	private String getSDPath() {
+        File sdDir = null;
+        boolean sdCardExist = Environment.getExternalStorageState().equals(
+                android.os.Environment.MEDIA_MOUNTED); // 判断sd卡是否存在
+        if (sdCardExist) {
+            sdDir = Environment.getExternalStorageDirectory();// 获取跟目录
+        }
+        return sdDir.toString();
+    }
 }

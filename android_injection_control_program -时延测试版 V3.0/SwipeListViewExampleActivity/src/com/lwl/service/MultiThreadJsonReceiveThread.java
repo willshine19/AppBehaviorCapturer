@@ -123,7 +123,7 @@ class Handler implements Runnable {
 			BufferedReader br = getReader(socket);
             TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             
-//            JsonSender sender = new JsonSender();
+            JsonSender sender = new JsonSender();
 //            sender.login(); // login服务器
 //            sender.subscribe(); //订阅
             // 发送第一条JSON数据，指定内容
@@ -161,6 +161,8 @@ class Handler implements Runnable {
                     // 加一组信息
                     json.put("IMEI", tm.getDeviceId());
 //                    sender.publish(json);
+                    Log.d("what's in json", "" + json);
+                    sender.saveToFile(json);
                     
                     receivedJsonStringNum++;
                     Log.i(TAG, "[+] 成功从【jni层】接收到第" + receivedJsonStringNum + "组行为【记录数据】");
