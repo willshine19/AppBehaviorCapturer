@@ -4,6 +4,8 @@
  *  Created on: 2015-4-1
  *      Author: long
  */
+#ifndef APIHOOKERMANAGER_H_
+#define APIHOOKERMANAGER_H_
 #include <string>
 #include <jni.h>
 #include <stdio.h>
@@ -12,11 +14,15 @@
 
 #include "../InfoSender/InfoSender.h"
 #include "../ApiHooker/AndroidSystem/OnCreateActivityApiHooker.h"
+#include "../ApiHooker/AndroidSystem/OnCreateServiceApiHooker.h"
+#include "../ApiHooker/AndroidSystem/OnCreateApplicationApiHooker.h"
 #include "../ApiHooker/AndroidSystem/OnDestroyActivityApiHooker.h"
 #include "../ApiHooker/AndroidSystem/OnPauseActivityApiHooker.h"
 #include "../ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h"
 #include "../ApiHooker/AndroidSystem/OnResumeActivityApiHooker.h"
 #include "../ApiHooker/AndroidSystem/OnStartActivityApiHooker.h"
+//#include "../ApiHooker/AndroidSystem/OnStartServiceApiHooker.h"
+#include "../ApiHooker/AndroidSystem/onStartCommandServiceApiHooker.h"
 #include "../ApiHooker/AndroidSystem/OnStopActivityApiHooker.h"
 #include "../ApiHooker/AndroidSystem/OnRestartActivityApiHooker.h"
 #include "../ApiHooker/AndroidSystem/StartThreadApiHooker.h"
@@ -64,8 +70,7 @@
 #include "../Utils/JavaMethodHooker.h"
 #include "common.h"
 #include <pthread.h>
-#ifndef APIHOOKERMANAGER_H_
-#define APIHOOKERMANAGER_H_
+
 
 using namespace __gnu_cxx;
 
@@ -85,6 +90,7 @@ class ApiHookerManager {
 		 unordered_map<string, ApiHooker*> mApiHookerHashMap; //hashmap
 		 static pthread_mutex_t lock;
 		 JavaVM *mJavaVM;
+		 string mcontextinfo;
 
 		//单例模式实例访问接口
 		static ApiHookerManager* getInstance();

@@ -16,15 +16,22 @@ public:
 	virtual ~Bucket();
 
 	// 向mCollectedApiInfo中写
-	bool setClassName(string ClassName);
-	bool setMethodName(string MethodName);
-	bool setThreadId(long ThreadId);
+	bool setClassName(string className);
+	bool setMethodName(string methodName);
+	bool setThreadId(long threadId);
 	bool setTime();
+	bool setContext(string context);
+	bool setFatherThreadId(long FatherThreadId);
+
+	bool setSonThreadId(long SonThreadId);
+	long getSonThreadId();
 
 	// 从mCollectedApiInfo中读
 	string getClassName();
 	string getMethodName();
 	string getTime();
+	string getContext();
+	long getFatherThreadId();
 	unsigned int getThreadId();
 
 	CollectedApiInfo mCollectedApiInfo;

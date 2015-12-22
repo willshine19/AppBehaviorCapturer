@@ -8,8 +8,8 @@
 #include "StartThreadApiHooker.h"
 
 StartThreadApiHooker::StartThreadApiHooker() {
-	this->mApiDeclaration = *(new ApiDeclaration("java/lang/Thread","start","()V",
-			false,NULL,NULL,NULL));
+	this->mApiDeclaration = *(new ApiDeclaration("java/lang/Thread", "start",
+			"()V", false, NULL, NULL, NULL));
 //	this->mCollectedApiInfo = *(new CollectedApiInfo());
 }
 
@@ -78,7 +78,33 @@ bool StartThreadApiHooker::parseParameter(const u4* args) {
 
 	StringObject* stringObjId = (StringObject*) stringId;
 	char* paramString = dvmCreateCstrFromString(stringObjId);
-	LOGD("[+] 子线程号为 %s", paramString);
+
+	//zds add
+	LOGD("doing hashmap");
+	long threadId = pthread_self();	//获取c层的线程号
+	long javaThreadId = 0;		//用来保存java层的线程号
+	sscanf(paramString, "%ld", &javaThreadId);
+	//将父的c和子的java的线程号存入hashmap中
+	(ThreadMap::getInstance()->mMap).insert(make_pair(javaThreadId, threadId));
+	//打印刚刚存入的键值对
+	auto mMapFound = (ThreadMap::getInstance()->mMap).find(javaThreadId);
+//		LOGD("[+] 存入hashmap中子java线程号为 %ld", mMapFound->first);
+//		LOGD("[+] 存入hashmap中父c线程号为 %ld", mMapFound->second);
+
+	LOGD("[+] start线程号为 %s", paramString);
+	//end
+
+	//存入json中
+	pthread_mutex_t* mutex =
+			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].mutex);
+	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setSonThreadId(
+			javaThreadId);
+	//	LOGD("[+] apihooker-Infosender的context数据为 %s",
+	//			(ApiHookerManager::getInstance()->mcontextinfo).c_str());
+	//	LOGD("[+] apihooker-Infosender的fatherid数据为 %ld", GetFatherId());
+	//end
+	pthread_mutex_unlock(mutex);
+
 	return true;
 }
 

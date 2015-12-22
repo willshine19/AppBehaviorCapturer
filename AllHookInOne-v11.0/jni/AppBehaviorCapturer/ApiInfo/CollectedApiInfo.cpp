@@ -33,7 +33,29 @@ long CollectedApiInfo::getThreadId() {
 //	long tid = pthread_self();
 	return this->mThreadId;
 }
-
+//zds
+string CollectedApiInfo::getContext() {
+	return this->mContext;
+}
+bool CollectedApiInfo::setContext(string Context) {
+	this->mContext = Context;
+	return true;
+}
+long CollectedApiInfo::getFatherThreadId() {
+	return this->mFatherThreadId;
+}
+bool CollectedApiInfo::setFatherThreadId(long FatherThreadId) {
+	this->mFatherThreadId = FatherThreadId;
+	return true;
+}
+long CollectedApiInfo::getSonThreadId() {
+	return this->mSonThreadId;
+}
+bool CollectedApiInfo::setSonThreadId(long SonThreadId) {
+	this->mSonThreadId = SonThreadId;
+	return true;
+}
+//end
 bool CollectedApiInfo::setClassName(string className) {
 	this->mClassName = className;
 	return true;
@@ -48,14 +70,16 @@ bool CollectedApiInfo::setThreadId(long threadId) {
 	this->mThreadId = threadId;
 	return true;
 }
-string CollectedApiInfo::convertToJson()
-{
+string CollectedApiInfo::convertToJson() {
 	Json::Value root;
 
 	root["number"] = 0;
-	root["name"] = this->mClassName + "." +this->mMethodName;
+	root["name"] = this->mClassName + "." + this->mMethodName;
 	root["time"] = this->mTime;
-	root["threadID"] = (unsigned int)this->mThreadId;
+	root["context"] = this->mContext; //zds add
+	root["FatherThreadId"] = (unsigned int) this->mFatherThreadId; //zds add
+	root["SonThreadId"] = (unsigned int) this->mSonThreadId; //zds add
+	root["threadID"] = (unsigned int) this->mThreadId;
 	root["processID"] = this->mProcessID;
 
 //	json2string = root.toStyledString();
@@ -76,7 +100,8 @@ bool CollectedApiInfo::setTime() {
 
 	stringstream ss;
 	ss << p->tm_year + 1900 << "-" << p->tm_mon + 1 << "-" << p->tm_mday << " "
-			<< p->tm_hour << ":" << p->tm_min << ":" << p->tm_sec  << ":" << tv.tv_usec / 1000 <<":" << tv.tv_usec % 1000 ;
+			<< p->tm_hour << ":" << p->tm_min << ":" << p->tm_sec << ":"
+			<< tv.tv_usec / 1000 << ":" << tv.tv_usec % 1000;
 	this->mTime = ss.str();
 	return true;
 }

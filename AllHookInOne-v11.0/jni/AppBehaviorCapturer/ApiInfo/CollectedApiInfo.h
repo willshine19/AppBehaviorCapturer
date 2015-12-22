@@ -25,8 +25,11 @@ class CollectedApiInfo {
 	string mMethodName;
 	string mTime;
 	string json2string;
+	string mContext;
+	long mFatherThreadId;
 	long mThreadId;
 	int mProcessID;
+	long mSonThreadId;
 //	char args[10];
 //	int flag;
 //	pthread_mutex_t lock;
@@ -39,11 +42,19 @@ public:
 	string getTime();
 	long getThreadId();
 	int getFlag();
+	string getContext();
+	long getFatherThreadId();
+
+	long getSonThreadId();
+	bool setSonThreadId(long SonThreadId);
+
 	pthread_mutex_t getLock();
 	//改成私有成员函数
 	bool setClassName(string ClasName);
 	bool setMethodName(string MethodName);
 	bool setThreadId(long ThreadId);
+	bool setContext(string Context);
+	bool setFatherThreadId(long FatherThreadId);
 	bool setTime();
 	bool setFlag(int flag);
 	bool setLock(pthread_mutex_t lock);

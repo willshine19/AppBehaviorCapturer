@@ -13,6 +13,9 @@
 #include "../InfoSender/InfoSender.h"
 #include "../ApiInfo/ApiDeclaration.h"
 #include "../ApiInfo/CollectedApiInfo.h"
+#include "../System/ThreadMap.h"
+//#include "../System/ApiHookerManager.h"
+//class ApiHookerManager;
 
 class ApiHooker{
 	protected:
@@ -27,6 +30,7 @@ class ApiHooker{
 		//成员函数
 		bool collectBaseInfo();
 		bool saveToQueue();
+		long  GetFatherId();
 		bool main(const u4* args);
 		ApiDeclaration getApiDeclaration();
 		virtual bool parseParameter(const u4* args){

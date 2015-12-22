@@ -16,18 +16,18 @@ int calcMethodArgsSize(const char* shorty) {
 
 	for (;;) {
 		switch (*(shorty++)) {
-			case '\0': {
-				return count;
-			}
-			case 'D':
-			case 'J': {
-				count += 2;
-				break;
-			}
-			default: {
-				count++;
-				break;
-			}
+		case '\0': {
+			return count;
+		}
+		case 'D':
+		case 'J': {
+			count += 2;
+			break;
+		}
+		default: {
+			count++;
+			break;
+		}
 		}
 	}
 	return count;
@@ -211,14 +211,15 @@ ClassObject* dvmFindClass(const char *classDesc) {
 	char *newclassDesc = dvmDescriptorToName(classDesc);
 
 	jclass jnicls = dvmFindJNIClass(env, newclassDesc);
-	ClassObject *res = jnicls ?
+	ClassObject *res =
+			jnicls ?
 					static_cast<ClassObject*>(dvmDecodeIndirectRef(
-							dvmThreadSelf(), jnicls)) : NULL;
+							dvmThreadSelf(), jnicls)) :
+					NULL;
 	env->DeleteGlobalRef(jnicls);
 	free(newclassDesc);
 	return res;
 }
-
 
 /**
  *
@@ -358,7 +359,7 @@ ArrayObject* dvmGetMethodParamTypes(const Method* method,
  */
 void methodHandler(const u4* args, JValue* pResult, const Method* method,
 		struct Thread* self) {
-
+//	LOGD("methodHandler start");
 	//时间测试，记录处理Api的start时间，即t1
 //	TimeUtils* timeUtils = TimeUtils::getInstance();
 //	timeUtils->setT1StartTime();
@@ -372,26 +373,28 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 			!= ApiHookerManager::getInstance()->mApiHookerHashMap.end()) {
 		LOGD("find %s in mApiHookerHashMap", temp);
 	} else {
-		char* tmp = (char*) malloc(strlen(method->name) + strlen(method->clazz->descriptor) + 1);
+		char* tmp = (char*) malloc(
+				strlen(method->name) + strlen(method->clazz->descriptor) + 1);
 		strcpy(tmp, method->name);
 		strcat(tmp, method->clazz->descriptor);
-		iElementFound = ApiHookerManager::getInstance()->mApiHookerHashMap.find(tmp);
-		if (iElementFound != ApiHookerManager::getInstance()->mApiHookerHashMap.end()) {
+		iElementFound = ApiHookerManager::getInstance()->mApiHookerHashMap.find(
+				tmp);
+		if (iElementFound
+				!= ApiHookerManager::getInstance()->mApiHookerHashMap.end()) {
 			LOGD("find %s in mApiHookerHashMap", tmp);
 			free(tmp);
 		} else {
-			LOGE( "can not find %s in mApiHookerHashMap!", temp);
+			LOGE("can not find %s in mApiHookerHashMap!", temp);
 			return;
 		}
 	}
 	ApiHooker* tempApiHooker = iElementFound->second;
-
+//	LOGD("调用ApiHooker的main()函数;");
 	tempApiHooker->main(args);
-
-	//取出对应ApiHooker中保存的HookInfo结构体，内部保存的是对应temp API 的信息
+	//取出对应ApiHooker中保存的HookInfo结构体，内部保存的是对应temp API的信息
 	HookInfo* info = &(iElementFound->second->save);
-	Method* originalMethod = reinterpret_cast<Method*>(info->originalMethod);
-	Object* thisObject = !info->isStaticMethod ? (Object*) args[0] : NULL;
+	Method* originalMethod = reinterpret_cast<Method*>(info->originalMethod); //强转
+	Object* thisObject = !info->isStaticMethod ? (Object*) args[0] : NULL; //参数？
 
 	const char* desc = originalMethod->shorty;
 	ArrayObject* argTypes = dvmBoxMethodArgs(originalMethod,
@@ -399,9 +402,8 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 	// 关键：调用方法
 	pResult->l = (void *) dvmInvokeMethod(thisObject, originalMethod, argTypes,
 			(ArrayObject *) info->paramTypes, (ClassObject *) info->returnType,
-			true);
+			true); //obj是this或者null（如果是static方法），method可以直接使用hook之前copy的对象
 	dvmReleaseTrackedAlloc((Object *) argTypes, self);
-
 	LOGD("method_handler----------------end------------------");
 }
 
@@ -430,6 +432,7 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 		return -1;
 	}
 	LOGD("-------------------Class %s has found", classDesc);
+//	LOGD("-------------------classObj is %s ", classObj);
 
 	//jmethodID类表示Java端的属性和方法
 	jmethodID methodId =
@@ -440,8 +443,9 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 		LOGE("[-] %s->%s method not found", classDesc, methodName);
 		return -1;
 	}
-	LOGD(
-			"-------------------MethodId %s has found in %s", methodName, classDesc);
+	LOGD("-------------------MethodId %s has found in %s", methodName,
+			classDesc);
+//	LOGD("-------------------methodId is %s ", methodId);
 
 	// 判断该方法是否已经被hook过
 	Method* method = (Method*) methodId;
@@ -451,29 +455,29 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 	}
 
 	//如果没有被hook,开始暂存
-	Method* bakMethod = (Method*) malloc(sizeof(Method));
+	Method* bakMethod = (Method*) malloc(sizeof(Method)); // 原方法，向系统申请分配指定size个字节的内存空间
 	memcpy(bakMethod, method, sizeof(Method));
 	LOGD("dalvik_java_method_hook-------------------save method success");
 
 	// 填充 info
 	info->originalMethod = (void *) bakMethod;
-//	LOGD("info->originalMethod=%s", info->originalMethod);
+	LOGD("info->originalMethod=%s", info->originalMethod);
 	info->returnType = (void *) dvmGetBoxedReturnType(bakMethod);
-//	LOGD("info->returnType=%s", info->returnType);
+	LOGD("info->returnType=%s", info->returnType);
 	//read方法在此处出现问题
 	info->paramTypes = dvmGetMethodParamTypes(bakMethod, info->methodSig);
 	LOGD("---------------------------------");
-	LOGD("info->paramTypes=%s", (char*)info->paramTypes);
+	LOGD("info->paramTypes=%s", (char* )info->paramTypes);
 
 	// ***hook method***
 	LOGD("dalvik_java_method_hook----------hook method start");
 	//这一步应该是获取参数的个数
 	int argsSize = calcMethodArgsSize(method->shorty);
-//	LOGD("dalvikJavaMethodHook:method->shorty = %s", method->shorty);
-//	LOGD("dalvikJavaMethodHook:argsSize = %d", argsSize);
+	LOGD("dalvikJavaMethodHook:method->shorty = %s", method->shorty);
+	LOGD("dalvikJavaMethodHook:argsSize = %d", argsSize);
 	if (!dvmIsStaticMethod(method))
 		argsSize++;
-//	LOGD("argsSize=%d", argsSize);
+	LOGD("argsSize=%d", argsSize);
 
 	// 修改 method
 	SET_METHOD_FLAG(method, ACC_NATIVE); // 修改 method->accessFlags
@@ -481,17 +485,19 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 	method->outsSize = 0;
 	method->jniArgInfo = dvmComputeJniArgInfo(method->shorty);
 	//在某些ApiHooker的hook过程中，注入过程很有可能卡在argsSize = XXX，经验证与下面的这条log输出有关系，注释掉即可
-//	LOGD("method->jniArgInfo=%s", method->jniArgInfo);
-//	LOGD("method->shorty=%s", method->shorty);
+	LOGD("method->jniArgInfo=%s", method->jniArgInfo);
+	LOGD("method->shorty=%s", method->shorty);
 	//第一个hook中shorty=LIL(String, int, String)，shorty[0]是返回的类型
 	LOGD("dalvik_java_method_hook-----------hook method success");
-//	LOGD("info->classDesc=%s,%x", info->classDesc, info->classDesc);
-//	LOGD("info->methodName=%s,%x", info->methodName, info->methodName);
-//	LOGD("info->methodSig=%s,%x", info->methodSig, info->methodSig);
-//	LOGD("info->isStaticMethod=%s,%x", info->isStaticMethod, info->isStaticMethod);
-//	LOGD("info->originalMethod=%s,%x", info->originalMethod, info->originalMethod);
-//	LOGD("info->paramTypes=%s,%x", info->paramTypes, info->paramTypes);
-//	LOGD("info->returnType=%s,%x", info->returnType, info->returnType);
+	LOGD("info->classDesc=%s,%x", info->classDesc, info->classDesc);
+	LOGD("info->methodName=%s,%x", info->methodName, info->methodName);
+	LOGD("info->methodSig=%s,%x", info->methodSig, info->methodSig);
+	LOGD("info->isStaticMethod=%s,%x", info->isStaticMethod,
+			info->isStaticMethod);
+	LOGD("info->originalMethod=%s,%x", info->originalMethod,
+			info->originalMethod);
+	LOGD("info->paramTypes=%s,%x", info->paramTypes, info->paramTypes);
+	LOGD("info->returnType=%s,%x", info->returnType, info->returnType);
 
 	// save info into ApiHooker save结构体中
 	temp->save.classDesc = info->classDesc;
@@ -502,7 +508,9 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 	temp->save.paramTypes = info->paramTypes;
 	temp->save.returnType = info->returnType;
 
+//	LOGI("[+]hook前nativeFunc= %d",method->nativeFunc);
 	method->nativeFunc = methodHandler;
+//	LOGI("[+]hook后nativeFunc= %d",method->nativeFunc);
 	LOGI("[+] %s->%s was hooked\n", classDesc, methodName);
 
 	return 0;

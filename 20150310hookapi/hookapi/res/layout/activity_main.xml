@@ -1,0 +1,191 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:singleLine="true"
+        android:text="Log"
+        android:textSize="7pt" >
+    </TextView>
+
+    <ScrollView
+        android:id="@+id/sv1"
+        android:layout_width="fill_parent"
+        android:layout_height="202dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/tv1"
+        android:background="@android:drawable/edit_text"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical" >
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:text="NONE!!"
+            android:textSize="5pt" >
+        </TextView>
+    </ScrollView>
+
+    <TableLayout
+        android:id="@+id/tl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sv1" >
+
+        <TableRow> <!-- 1 -->
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="I"
+                android:textSize="5pt"
+                android:textStyle="bold" >
+            </TextView>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="II"
+                android:textSize="5pt"
+                android:textStyle="bold" >
+            </TextView>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="III"
+                android:textSize="5pt"
+                android:textStyle="bold" >
+            </TextView>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="IV"
+                android:textSize="5pt"
+                android:textStyle="bold" >
+            </TextView>
+        </TableRow>
+
+        <TableRow> <!-- 2 -->
+
+            <Button
+                android:id="@+id/b1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text=".so_file" />
+
+            <Button
+                android:id="@+id/b3"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="xml" />
+
+            <Button
+                android:id="@+id/b4"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="get_contacts" />
+
+            <Button
+                android:id="@+id/b7"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="SQL_insert" />
+        </TableRow>
+
+        <TableRow> <!-- 3 -->
+
+            <Button
+                android:id="@+id/b2"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="JAVA_file" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textSize="5pt" >
+            </TextView>
+
+            <Button
+                android:id="@+id/b5"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="get_sms" />
+
+            <Button
+                android:id="@+id/b8"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="SQL_delete" />
+        </TableRow>
+
+        <TableRow> <!-- 4 -->
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textSize="5pt" >
+            </TextView>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textSize="5pt" >
+            </TextView>
+
+            <Button
+                android:id="@+id/b6"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="get_callLog" />
+
+            <Button
+                android:id="@+id/b9"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="SQL_update" />
+        </TableRow>
+
+        <TableRow> <!-- 5 -->
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textSize="5pt" >
+            </TextView>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textSize="5pt" >
+            </TextView>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textSize="5pt" >
+            </TextView>
+
+            <Button
+                android:id="@+id/b10"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="SQL_select" />
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

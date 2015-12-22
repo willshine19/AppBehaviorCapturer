@@ -9,6 +9,8 @@
 #define ONSTARTACTIVITYAPIHOOKER_H_
 
 #include "../VoidApiHooker.h"
+#include "../../Utils/DalvikMethodHooker.h"
+#include "../../System/ApiHookerManager.h"//zds add
 
 /*
  *
@@ -17,6 +19,7 @@ class OnStartActivityApiHooker: public VoidApiHooker {
 public:
 	OnStartActivityApiHooker();
 	virtual ~OnStartActivityApiHooker();
+	bool parseParameter(const u4* args);
 };
 
 #endif /* ONSTARTACTIVITYAPIHOOKER_H_ */

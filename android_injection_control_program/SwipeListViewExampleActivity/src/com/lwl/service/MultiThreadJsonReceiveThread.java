@@ -81,7 +81,7 @@ class Handler implements Runnable {
     private Context context;
     private static final String TAG = "MultiThreadJsonReceiveThread";
     /** 从allhookinone中发来的一条json字符串（行为采集），占几行 */
-    private static final int JSON_STRING_LINE_SIZE = 7;
+    private static final int JSON_STRING_LINE_SIZE = 8;
     /** 从allhookinone中发来的一条json字符串（时间），占几行 */
     private final int JSON_STRING_TIMETESE_LINE_SIZE = 6;
 

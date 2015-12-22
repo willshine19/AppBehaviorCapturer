@@ -6,6 +6,7 @@
  */
 
 #include "VoidApiHooker.h"
+//#include "../System/ApiHookerManager.h"//zds add
 
 VoidApiHooker::VoidApiHooker() {
 	// TODO Auto-generated constructor stub

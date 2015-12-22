@@ -9,6 +9,7 @@
 #define VOIDAPIHOOKER_H_
 
 #include "ApiHooker.h"
+//#include "../System/ApiHookerManager.h"//zds add
 
 class VoidApiHooker: public ApiHooker {
 
