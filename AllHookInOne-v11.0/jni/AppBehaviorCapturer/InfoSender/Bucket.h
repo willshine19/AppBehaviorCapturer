@@ -15,6 +15,9 @@ public:
 	Bucket();
 	virtual ~Bucket();
 
+	CollectedApiInfo mCollectedApiInfo;
+	pthread_mutex_t bucketMutex;
+
 	// 向mCollectedApiInfo中写
 	bool setClassName(string className);
 	bool setMethodName(string methodName);
@@ -34,8 +37,6 @@ public:
 	long getFatherThreadId();
 	unsigned int getThreadId();
 
-	CollectedApiInfo mCollectedApiInfo;
-	pthread_mutex_t mutex;
 };
 
 #endif /* BUCKET_H_ */

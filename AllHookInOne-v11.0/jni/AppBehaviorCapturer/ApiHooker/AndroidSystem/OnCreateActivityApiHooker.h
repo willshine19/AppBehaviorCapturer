@@ -11,7 +11,7 @@
 #include "../VoidApiHooker.h"
 #include "../../Utils/DalvikMethodHooker.h"
 #include "android_runtime/AndroidRuntime.h"
-#include "../../System/ApiHookerManager.h"//zds add
+#include "../../System/ApiHookerManager.h"
 
 class OnCreateActivityApiHooker:public VoidApiHooker{
 public:

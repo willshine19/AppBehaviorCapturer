@@ -10,14 +10,14 @@
 Bucket::Bucket() {
 	// TODO Auto-generated constructor stub
 	mCollectedApiInfo = *(new CollectedApiInfo());
-	pthread_mutex_init(&mutex, NULL);
-	pthread_mutex_lock(&mutex);
+	pthread_mutex_init(&bucketMutex, NULL);
+	pthread_mutex_lock(&bucketMutex);
 }
 
 Bucket::~Bucket() {
 	// TODO Auto-generated destructor stub
 //	delete m;
-	pthread_mutex_destroy(&mutex);
+	pthread_mutex_destroy(&bucketMutex);
 }
 
 bool Bucket::setClassName(string className) {
