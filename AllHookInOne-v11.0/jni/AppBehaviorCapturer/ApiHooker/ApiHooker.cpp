@@ -37,7 +37,7 @@ bool ApiHooker::collectBaseInfo() {
 		LOGE("getThreadID falied");
 	}
 	pthread_mutex_t* mutex =
-			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].mutex);
+			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucketMutex);
 //	pthread_mutex_lock(mutex); 不注释会死锁
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setClassName(
 			this->mApiDeclaration.getClassName());
@@ -70,6 +70,9 @@ long ApiHooker::GetFatherId() {
 	return 0;
 }
 
+/**
+ * 空函数
+ */
 bool ApiHooker::saveToQueue() {
 	LOGD("saveToQueue method has been called successfully in ApiHooker");
 	return true;
@@ -85,10 +88,47 @@ bool ApiHooker::main(const u4* args) {
 	this->mQueuePosition =
 			InfoSender::mCycledBlockingQueue->getNowAvailablePosition();
 	parseParameter(args);
-	collectBaseInfo();
-	saveToQueue();
-	LOGD("ApiHooker is running");
-	simpleProcess();
+//	collectBaseInfo();
+//	saveToQueue();
 	pthread_mutex_unlock(&lock);
 	return true;
+}
+
+/**
+ * 该函数可以解析一个Object对象,该Object对象代表一个java层的java对象,调用这个java对象的toString方法
+ * 参数:obj 解析目标; className 字符串,表示对应的java对象的名字,比如java/io/FileDescriptor
+ * 返回:字符串 返回该java对象的toString方法的返回值
+ */
+char* ApiHooker::parseObjectToString(Object* obj, const char* className) {
+	// 调用该对象的toString方法
+	// 参数1 obj
+	// 参数2 method_this
+	JNIEnv *env = AndroidRuntime::getJNIEnv();
+	jclass longclass = env->FindClass(className);
+	if (longclass == 0) {
+		LOGE("Get Class failed");
+	}
+	jmethodID methodID = env->GetMethodID(longclass, "toString",
+			"()Ljava/lang/String;");
+	if (methodID == 0) {
+		LOGE("get method failed");
+	}
+	Method* method_this = (Method*) methodID;
+	// 参数3 argList
+	u4* uriArgs = (u4*) 1;
+	ArrayObject* argList = dvmBoxMethodArgs(method_this, uriArgs);
+	// 参数4 params
+	ArrayObject* params = (ArrayObject *) dvmGetMethodParamTypes(method_this,
+			"()Ljava/lang/String;");
+	// 参数5 returnType
+	ClassObject* returnType = (ClassObject *) dvmGetBoxedReturnType(
+			method_this);
+
+	// 调用toString方法
+	Object* stringResult = dvmInvokeMethod(obj, method_this, argList, params,
+			returnType, true);
+
+	StringObject* stringObjId = (StringObject*) stringResult;
+	char* resultString = dvmCreateCstrFromString(stringObjId);
+	return resultString;
 }

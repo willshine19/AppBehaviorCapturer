@@ -82,7 +82,7 @@ bool CycledBlockingQueue::push(CollectedApiInfo apiInfo) {
  * 返回：CollectedApiInfo实例
  */
 CollectedApiInfo CycledBlockingQueue::send() {
-	pthread_mutex_lock(&(queue[readPointer].mutex));
+	pthread_mutex_lock(&(queue[readPointer].bucketMutex));
 	int read_point = readPointer;
 	readPointer = (readPointer + 1) & (capacity - 1);
 	return queue[read_point].mCollectedApiInfo;

@@ -179,31 +179,7 @@ public class PackageAdapter extends BaseAdapter {
         			Log.v("InjectButton", "packageName :" + packageName);
 
         			String line = null;
-//        			String pid = "";
-//
-//        			os.writeBytes("ps\n");
-//        			os.flush();
-        			
-/*        			while ((line = bfr.readLine()) != null) { // 读取输出
-    					Log.v("Injector", line);
-        				if (line.contains(pName)) {
-        					Log.v("Injector", line);
-        					String[] splitline = line.split("\\s+");
-        					pid = splitline[1];
-        					break;
-        				}
-        			}
-        			Log.v("Injector", "pid:" + pid);*/
-        			
-/*        			os.writeBytes("chmod 777 /data/data/" + packageName + "/*\n");
-        			os.flush();
-        			os.writeBytes("dd if=/data/data/" + packageName + "/lib/libinj.so "
-        					+ "of=/data/data/" + packageName + "/inj\n");
-        			os.flush();
-        			os.writeBytes("chmod 777 /data/data/" + packageName + "/inj\n");
-        			os.flush();
-        			os.writeBytes("/data/data/" + packageName + "/inj " + pid + "\n");
-        			os.flush();*/
+
         			os.writeBytes("chmod 777 /data/inj-allhookinone/*\n");
                     os.flush();
                     os.writeBytes("/data/inj-allhookinone/AndroidInjectSo " +packageName +"\n");
@@ -220,16 +196,6 @@ public class PackageAdapter extends BaseAdapter {
         			holder.running_status.setText("已注入");
         			item.setRunningStatus(PackageItem.IS_INJECTED);
         			
-/*                    if(setcolor(item)==2){//未注入
-                    	holder.setText.setText("未注入");
-                    }
-//                    else if(setcolor(item)==1){//已注入
-                    else if(setcolor(item)==2){
-                    	holder.setText.setText("已注入");
-                    }
-                    else if(setcolor(item)==0){//未运行
-                    	holder.setText.setText("未运行");
-                    }*/
         			process.waitFor();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -292,15 +258,7 @@ public class PackageAdapter extends BaseAdapter {
                         Toast.makeText(context,"解注入成功",Toast.LENGTH_SHORT).show();
                         holder.running_status.setText("未运行");
                         item.setRunningStatus(PackageItem.NOT_RUNNING);
-/*                        if (setcolor(item) == 2) {// 未注入
-                            holder.running_status.setText("未注入");
-                        }
-                        else if (setcolor(item) == 1) {// 已注入
-                            holder.running_status.setText("已注入");
-                        }
-                        else if (setcolor(item) == 0) {// 未运行
-                            holder.running_status.setText("未运行");
-                        }*/
+
                         process.waitFor();
 						} catch (Exception e) {
 							// TODO Auto-generated catch block

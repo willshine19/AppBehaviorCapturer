@@ -14,8 +14,6 @@
 #include "../ApiInfo/ApiDeclaration.h"
 #include "../ApiInfo/CollectedApiInfo.h"
 #include "../System/ThreadMap.h"
-//#include "../System/ApiHookerManager.h"
-//class ApiHookerManager;
 
 class ApiHooker{
 	protected:
@@ -23,6 +21,7 @@ class ApiHooker{
 		ApiDeclaration mApiDeclaration;
 		pthread_mutex_t lock;
 		int mQueuePosition;
+		char* parseObjectToString(Object* obj, const char* className);
 	public:
 		HookInfo save;
 		ApiHooker();
@@ -30,10 +29,13 @@ class ApiHooker{
 		//成员函数
 		bool collectBaseInfo();
 		bool saveToQueue();
-		long  GetFatherId();
+		long GetFatherId();
 		bool main(const u4* args);
 		ApiDeclaration getApiDeclaration();
 		virtual bool parseParameter(const u4* args){
+			return true;
+		}
+		virtual bool parseResult(Object* obj) {
 			return true;
 		}
 		virtual bool simpleProcess(){

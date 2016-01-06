@@ -96,7 +96,7 @@ bool StartThreadApiHooker::parseParameter(const u4* args) {
 
 	//存入json中
 	pthread_mutex_t* mutex =
-			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].mutex);
+			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucketMutex);
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setSonThreadId(
 			javaThreadId);
 	//	LOGD("[+] apihooker-Infosender的context数据为 %s",
