@@ -61,7 +61,7 @@ bool OnStartServiceApiHooker::parseParameter(const u4* args) {
 	StringObject* sourceNameObj = (StringObject*) toStringResult;
 	char* paramString = dvmCreateCstrFromString(sourceNameObj);
 	LOGD("[+] service调用实例为 %s", paramString);
-	ApiHookerManager::getInstance()->mcontextinfo = paramString;
+	ApiHookerManager::getInstance()->mContextInfo = paramString;
 	return true;
 
 }

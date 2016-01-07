@@ -1,6 +1,5 @@
-#ifndef __DalvikM_METHOD_HOOKER__H__
+#ifndef __Dalvik_METHOD_HOOKER__H__
 #define __Dalvik_METHOD_HOOKER__H__
-//#include "../ApiHooker/ApiHooker.h"
 #include "../System/ApiHookerManager.h"
 
 #include "common.h"
@@ -10,7 +9,6 @@
 #include <jni.h>
 
 #include "TimeUtils.h"
-//#include "JniInternal.h"
 
 ArrayObject* dvmGetMethodParamTypes(const Method* method,
 		const char* methodsig);

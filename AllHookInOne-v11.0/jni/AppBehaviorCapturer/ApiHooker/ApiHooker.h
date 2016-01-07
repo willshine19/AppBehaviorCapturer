@@ -17,7 +17,6 @@
 
 class ApiHooker{
 	protected:
-//		CollectedApiInfo mCollectedApiInfo;
 		ApiDeclaration mApiDeclaration;
 		pthread_mutex_t lock;
 		int mQueuePosition;
@@ -29,7 +28,7 @@ class ApiHooker{
 		//成员函数
 		bool collectBaseInfo();
 		bool saveToQueue();
-		long GetFatherId();
+		long getFatherId();
 		bool main(const u4* args);
 		ApiDeclaration getApiDeclaration();
 		virtual bool parseParameter(const u4* args){

@@ -74,3 +74,8 @@ string Bucket::getTime() {
 unsigned int Bucket::getThreadId() {
 	return this->mCollectedApiInfo.getThreadId();
 }
+
+bool Bucket::setResult(char* result) {
+	this->mCollectedApiInfo.setResult(result);
+	return true;
+}

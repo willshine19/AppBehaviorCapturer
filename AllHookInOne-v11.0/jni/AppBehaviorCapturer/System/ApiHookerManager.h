@@ -67,37 +67,36 @@
 #include "../ApiHooker/AndroidCommunication/EndCallITelephonyApiHooker.h"
 #include "../ApiInfo/CollectedApiInfo.h"
 #include <typeinfo>
+#include "../Utils/DalvikMethodHooker.h"
 #include "../Utils/JavaMethodHooker.h"
 #include "common.h"
 #include <pthread.h>
 
-
 using namespace __gnu_cxx;
 
 class ApiHookerManager {
-	private:
-		//使用单例模式，构造方法私有，声明一个private static变量，由getInstance方法访问
-		 static ApiHookerManager* apiHookerManagerInstance;
-		 ApiHookerManager();
-		 virtual ~ApiHookerManager();
-		 InfoSender* mInfoSender;
-		bool initHashMap();
-		bool bindJavaMethodToNative();
+private:
+	//使用单例模式，构造方法私有，声明一个private static变量，由getInstance方法访问
+	static ApiHookerManager* apiHookerManagerInstance;
+	ApiHookerManager();
+	virtual ~ApiHookerManager();
+	InfoSender* mInfoSender;
+	bool initHashMap();
+	bool hookJavaMethod();
+	JNIEnv * getEnv();
 
-	public:
-		//成员变量
-//		hash_map<string, ApiHooker> mApiHookerHashMap;
-		 unordered_map<string, ApiHooker*> mApiHookerHashMap; //hashmap
-		 static pthread_mutex_t lock;
-		 JavaVM *mJavaVM;
-		 string mcontextinfo;
+public:
+	//成员变量
+	unordered_map<string, ApiHooker*> mApiHookerHashMap; //hashmap
+	static pthread_mutex_t lock;
+	JavaVM *mJavaVM;
+	string mContextInfo; // 当前的上下文信息 全局变量
 
-		//单例模式实例访问接口
-		static ApiHookerManager* getInstance();
-		//成员函数
-		JNIEnv * getEnv();
-		bool init();
-		InfoSender* getInfoSender();
+	//单例模式实例访问接口
+	static ApiHookerManager* getInstance();
+	//成员函数
+	int main();
+	InfoSender* getInfoSender();
 
 };
 

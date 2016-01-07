@@ -70,6 +70,7 @@ bool CollectedApiInfo::setThreadId(long threadId) {
 	this->mThreadId = threadId;
 	return true;
 }
+
 string CollectedApiInfo::convertToJson() {
 	Json::Value root;
 
@@ -89,6 +90,7 @@ string CollectedApiInfo::convertToJson() {
 	LOGD("CollectedApiInfo类正在转换json，输出为%s", out.data());
 	return out;
 }
+
 // 获得当前时间 精度为微秒，需要time.h文件
 bool CollectedApiInfo::setTime() {
 	// 获取时间

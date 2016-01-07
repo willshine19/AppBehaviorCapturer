@@ -48,9 +48,9 @@ bool ApiHooker::collectBaseInfo() {
 			threadId);
 	//zds add
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setContext(
-			ApiHookerManager::getInstance()->mcontextinfo);
+			ApiHookerManager::getInstance()->mContextInfo);
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setFatherThreadId(
-			GetFatherId());
+			getFatherId());
 //	LOGD("[+] apihooker-Infosender的context数据为 %s",
 //			(ApiHookerManager::getInstance()->mcontextinfo).c_str());
 //	LOGD("[+] apihooker-Infosender的fatherid数据为 %ld", GetFatherId());
@@ -59,7 +59,7 @@ bool ApiHooker::collectBaseInfo() {
 	return true;
 }
 
-long ApiHooker::GetFatherId() {
+long ApiHooker::getFatherId() {
 	long threadId = pthread_self();
 	auto mMapFound = (ThreadMap::getInstance()->mpid_father_son_Map).find(
 			threadId);

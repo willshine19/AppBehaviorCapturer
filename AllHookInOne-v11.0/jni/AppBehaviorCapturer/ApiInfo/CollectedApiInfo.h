@@ -26,6 +26,8 @@ class CollectedApiInfo {
 	string mTime;
 	string json2string;
 	string mContext;
+	char* mParameter;
+	char* mResult;
 	long mFatherThreadId;
 	long mThreadId;
 	int mProcessID;
@@ -59,6 +61,24 @@ public:
 	bool setFlag(int flag);
 	bool setLock(pthread_mutex_t lock);
 	string convertToJson();
+
+	char* getParameter() const {
+		return mParameter;
+	}
+
+	void setParameter(char* parameter) {
+		mParameter = parameter;
+	}
+
+	char* getResult() const {
+		return mResult;
+	}
+
+	void setResult(char* result) {
+		mResult = result;
+	}
+
+
 };
 
 #endif /* COLLECTEDAPIINFO_H_ */

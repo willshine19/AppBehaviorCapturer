@@ -70,19 +70,15 @@ JNIEnv* ApiHookerManager::getEnv() {
 /**
  * AppBehaviorCapturer系统 入口
  */
-bool ApiHookerManager::init() {
-	LOGD("AppBehaviorCapturer system V7.0 is running");
+int ApiHookerManager::main() {
+	LOGD("AppBehaviorCapturer system is running");
 	//初始化系统中所有的ApiHooker，并将其装载至mApiHookerHashMap中
 	initHashMap();
-	bindJavaMethodToNative();
-	//获取系统发送模块的实例
+	hookJavaMethod();
+
+	//获取系统发送模块的实例 初始化
 	this->mInfoSender = InfoSender::getInstance();
-	//初始化发送模块
 	mInfoSender->init();
-	// 删除元素
-	/*		mApiHookerHashMap.erase("start");
-	 LOGD("Number of pairs,size is %d",mApiHookerHashMap.size());
-	 cout << "Number of pairs, size(): " << mApiHookerHashMap.size() << endl;*/
 	return 0;
 }
 
@@ -250,51 +246,45 @@ bool ApiHookerManager::initHashMap() {
 }
 
 /**
- * 遍历哈希表，hook哈希表中的每一个ApiHooker实例
- * 关键：mJavaMethodHook->hookJavaMethod(env,tempApiHooker,&info); 传入三个指针
+ * 遍历哈希表，hook哈希表中记录的所有目标java层api
+ * 封装了dalvikJavaMethodHook函数
  */
-bool ApiHookerManager::bindJavaMethodToNative() {
-	//绑定 Java方法 到 本地 的代码
+bool ApiHookerManager::hookJavaMethod() {
 	JNIEnv *env = getEnv();
 	HookInfo info;
-	JavaMethodHooker* mJavaMethodHook = new JavaMethodHooker();
+	JavaMethodHooker* javaMethodHooker = new JavaMethodHooker();
 	ApiHooker* tempApiHooker;
 	ApiDeclaration tempApiDeclaration;
 
-	//取出哈西表的第一个元素
-	unordered_map<string, ApiHooker*>::iterator map_it =
-			mApiHookerHashMap.begin();
+	// 遍历 哈希表
+	unordered_map<string, ApiHooker*>::iterator map_it = mApiHookerHashMap.begin();
 	//哈西表每个ApiHooker的绑定过程
 	while (map_it != mApiHookerHashMap.end()) {
-		LOGD("step 1");
+		// step 1;
 		//获取哈西表中的键值
-		LOGD("===============%s", map_it->first.data()); //这个地方的输出是正确的，输出start
 		tempApiHooker = map_it->second;
-		LOGD("step 2");
+
+		// step 2;
 		if (&tempApiHooker == NULL) {
-			LOGE("AiHookerManager bindJavaMethodToNative failed");
+			LOGE("[-] bindJavaMethodToNative: getting ApiHooker from mApiHookerHashMap failed");
 			break;
-		} else {
-			LOGD("get ApiHooker in mApiHookerHashMap successfully");
-			tempApiDeclaration = tempApiHooker->getApiDeclaration();
-			info.classDesc = tempApiDeclaration.getClassName().c_str();
-			LOGD("info classDesc is %s", info.classDesc);
-			info.methodName = tempApiDeclaration.getApiName().c_str();
-			LOGD("info methodName=%s", info.methodName);
-			info.methodSig = tempApiDeclaration.getApiSignature().c_str();
-			LOGD("info methodSig=%s", info.methodSig);
-			info.isStaticMethod = tempApiDeclaration.isStaticMethod();
-			LOGD("info isStaticMethod=%c", info.isStaticMethod);
-			info.originalMethod = tempApiDeclaration.getOriginalMethod();
-			info.paramTypes = tempApiDeclaration.getParamTapes();
-			info.returnType = tempApiDeclaration.getReturnType();
-			LOGD("step 3");
-			mJavaMethodHook->hookJavaMethod(env, tempApiHooker, &info);
-			++map_it;
-			LOGD("step 4");
 		}
+		tempApiDeclaration = tempApiHooker->getApiDeclaration();
+		info.classDesc = tempApiDeclaration.getClassName().c_str();
+		info.methodName = tempApiDeclaration.getApiName().c_str();
+		info.methodSig = tempApiDeclaration.getApiSignature().c_str();
+		info.isStaticMethod = tempApiDeclaration.isStaticMethod();
+		info.originalMethod = tempApiDeclaration.getOriginalMethod();
+		info.paramTypes = tempApiDeclaration.getParamTapes();
+		info.returnType = tempApiDeclaration.getReturnType();
+
+		// step 3 关键 hook的核心逻辑
+//		javaMethodHooker->hookJavaMethod(env, tempApiHooker, &info);
+		dalvikJavaMethodHook(env, tempApiHooker, &info);
+
+		// step 4
+		map_it++;
 	}
-	LOGD("*-*-*-*-*-*-*- End -*-*-*-*-*-*-*-*-*-*");
 	return true;
 }
 

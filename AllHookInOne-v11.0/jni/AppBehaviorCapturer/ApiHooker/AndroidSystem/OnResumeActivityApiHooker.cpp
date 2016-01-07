@@ -67,7 +67,7 @@ bool OnResumeActivityApiHooker::parseParameter(const u4* args) {
 	LOGD("存入hashmap中context为 %s", mMapFound->second);
 
 	//zds
-	ApiHookerManager::getInstance()->mcontextinfo = paramString;
+	ApiHookerManager::getInstance()->mContextInfo = paramString;
 	//直接赋值，用printf("%s",s1);输出是会出问题的。可以用printf("%s",s1.c_str())
 
 	return true;

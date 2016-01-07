@@ -56,7 +56,7 @@ bool OnDestroyActivityApiHooker::parseParameter(const u4* args) {
 	char* paramString = dvmCreateCstrFromString(sourceNameObj);
 	LOGD("[+] 调用实例为 %s", paramString);
 
-	ApiHookerManager::getInstance()->mcontextinfo = paramString;
+	ApiHookerManager::getInstance()->mContextInfo = paramString;
 	return true;
 
 }
