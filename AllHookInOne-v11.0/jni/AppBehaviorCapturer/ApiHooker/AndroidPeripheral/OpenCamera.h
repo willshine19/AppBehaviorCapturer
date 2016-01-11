@@ -8,15 +8,16 @@
 #ifndef OPENCAMERA_H_
 #define OPENCAMERA_H_
 
-#include "../VoidApiHooker.h"
+#include "../ApiHooker.h"
 
 /*
  *
  */
-class OpenCamera: public VoidApiHooker {
+class OpenCamera: public ApiHooker {
 public:
 	OpenCamera();
 	~OpenCamera();
+	bool parseResult(Object* obj);
 };
 
 #endif /* OPENCAMERA_H_ */

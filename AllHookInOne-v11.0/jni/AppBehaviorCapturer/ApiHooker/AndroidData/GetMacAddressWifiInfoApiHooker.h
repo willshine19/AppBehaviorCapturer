@@ -8,12 +8,13 @@
 #ifndef GETMACADDRESSWIFIINFOAPIHOOKER_H_
 #define GETMACADDRESSWIFIINFOAPIHOOKER_H_
 
-#include "../VoidApiHooker.h"
+#include "../ApiHooker.h"
 
-class GetMacAddressWifiInfoApiHooker: public VoidApiHooker {
+class GetMacAddressWifiInfoApiHooker: public ApiHooker {
 public:
 	GetMacAddressWifiInfoApiHooker();
 	virtual ~GetMacAddressWifiInfoApiHooker();
+	bool parseResult(Object* obj);
 };
 
 #endif /* GETMACADDRESSWIFIINFOAPIHOOKER_H_ */

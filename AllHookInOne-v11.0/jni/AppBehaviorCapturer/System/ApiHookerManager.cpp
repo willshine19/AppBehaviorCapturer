@@ -139,7 +139,7 @@ bool ApiHookerManager::initHashMap() {
 	onStartCommandServiceApiHooker*  onStartCommandService = new onStartCommandServiceApiHooker();
 	OnStopActivityApiHooker* onStop = new OnStopActivityApiHooker();
 
-	/*mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
+/*	mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
 	 mApiHookerHashMap.insert(make_pair("onDestroy", onDestroy));
 	 mApiHookerHashMap.insert(make_pair("onPause", onPause));
 	 mApiHookerHashMap.insert(make_pair("onRestart", onRestart));
@@ -147,8 +147,8 @@ bool ApiHookerManager::initHashMap() {
 	 mApiHookerHashMap.insert(make_pair("onStart", onStart));
 	 mApiHookerHashMap.insert(make_pair("onStop", onStop));*/
 	mApiHookerHashMap.insert(make_pair("onResume", onResume));
-	mApiHookerHashMap.insert(make_pair("OnCreateApplicationLandroid/app/Application", OnCreateApplication));
-	mApiHookerHashMap.insert(make_pair("onCreateLandroid/app/Service;", onCreateService));//
+//	mApiHookerHashMap.insert(make_pair("OnCreateApplicationLandroid/app/Application", OnCreateApplication));
+//	mApiHookerHashMap.insert(make_pair("onCreateLandroid/app/Service;", onCreateService));//
 //	mApiHookerHashMap.insert(make_pair("onStart", onStartService));
 	mApiHookerHashMap.insert(make_pair("onStartCommandLandroid/app/Service;", onStartCommandService));//Landroid/app/Service
 
@@ -160,17 +160,17 @@ bool ApiHookerManager::initHashMap() {
 
 
 	 //外设api
-	 OpenCamera* openCamera = new  OpenCamera();
+	 OpenCamera* open = new  OpenCamera();
 	 GetDefaultSensorSensorManager* getDefaultSensor = new GetDefaultSensorSensorManager();
 	 PrepareMediaRecorder* prepare = new PrepareMediaRecorder();
 	 ReadAudioRecord* readAudio = new ReadAudioRecord();
 	 ReleaseMediaRecorder* release = new ReleaseMediaRecorder();
 	 StartMediaRecorder* startMediaRecorder = new StartMediaRecorder();
 	 StartRecordingAudioRecord* startRecordingAudioRecord = new StartRecordingAudioRecord();
-	 //	mApiHookerHashMap.insert(make_pair("openCamera", openCamera));
+	 mApiHookerHashMap.insert(make_pair("openLandroid/hardware/Camera", open));
 	 mApiHookerHashMap.insert(make_pair("getDefaultSensor", getDefaultSensor));
 	 mApiHookerHashMap.insert(make_pair("prepare", prepare));
-	 mApiHookerHashMap.insert(make_pair("read", readAudio));
+	 mApiHookerHashMap.insert(make_pair("readLandroid/media/AudioRecord", readAudio));
 	 mApiHookerHashMap.insert(make_pair("release", release));
 	 mApiHookerHashMap.insert(make_pair("startLandroid/media/MediaRecorder;", startMediaRecorder));
 	 mApiHookerHashMap.insert(make_pair("startRecording", startRecordingAudioRecord));
@@ -196,28 +196,28 @@ bool ApiHookerManager::initHashMap() {
 	 UpdateContentResolver* updateContentResolver = new UpdateContentResolver();
 	 WriteFileOutputStreamApiHooker* writeFileOutputStream = new WriteFileOutputStreamApiHooker();
 	 ReadFileInputStream* readFileInputStream = new ReadFileInputStream();
-//	 mApiHookerHashMap.insert(make_pair("insert", insertContentResolver));
-//	 mApiHookerHashMap.insert(make_pair("query", queryContentResolve));
-//	 mApiHookerHashMap.insert(make_pair("delete", deleteContentResolver));
-//	 mApiHookerHashMap.insert(make_pair("update", updateContentResolver));
-//	 mApiHookerHashMap.insert(make_pair("getMessageBody", getMessageBody));
-//	 mApiHookerHashMap.insert(make_pair("getCallState", getCallState));
-//	 mApiHookerHashMap.insert(make_pair("getDeviceId", getDeviceId));
-//	 mApiHookerHashMap.insert(make_pair("getLine1Number", getLine1));
-//	 mApiHookerHashMap.insert(make_pair("getSimSerialNumber", getSimSerialNumber));
-//	 mApiHookerHashMap.insert(make_pair("getSubscriberId", getSubscriberId));
-//	 mApiHookerHashMap.insert(make_pair("addGpsStatusListener", addGpsStatusListener));
-//	 mApiHookerHashMap.insert(make_pair("getLastKnownLocation", getLastKnownLocation));
-//	 mApiHookerHashMap.insert(make_pair("requestLocationUpdatas", requestLocationUpdatas));
-//	 mApiHookerHashMap.insert(make_pair("readLjava/io/FileInputStream;", readFileInputStream));
-//	 mApiHookerHashMap.insert(make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
+	 mApiHookerHashMap.insert(make_pair("insert", insertContentResolver));
+	 mApiHookerHashMap.insert(make_pair("query", queryContentResolve));
+	 mApiHookerHashMap.insert(make_pair("delete", deleteContentResolver));
+	 mApiHookerHashMap.insert(make_pair("update", updateContentResolver));
+	 mApiHookerHashMap.insert(make_pair("getMessageBody", getMessageBody));
+	 mApiHookerHashMap.insert(make_pair("getCallState", getCallState));
+	 mApiHookerHashMap.insert(make_pair("getDeviceId", getDeviceId));
+	 mApiHookerHashMap.insert(make_pair("getLine1Number", getLine1));
+	 mApiHookerHashMap.insert(make_pair("getSimSerialNumber", getSimSerialNumber));
+	 mApiHookerHashMap.insert(make_pair("getSubscriberId", getSubscriberId));
+	 mApiHookerHashMap.insert(make_pair("addGpsStatusListener", addGpsStatusListener));
+	 mApiHookerHashMap.insert(make_pair("getLastKnownLocation", getLastKnownLocation));
+	 mApiHookerHashMap.insert(make_pair("requestLocationUpdatas", requestLocationUpdatas));
+	 mApiHookerHashMap.insert(make_pair("readLjava/io/FileInputStream;", readFileInputStream));
+	 mApiHookerHashMap.insert(make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
 	 mApiHookerHashMap.insert(make_pair("getFD", getFD));
-//	 mApiHookerHashMap.insert(make_pair("closeLjava/io/FileOutputStream;", closeFileOutputStream));
-//	 mApiHookerHashMap.insert(make_pair("write", writeFileOutputStream));
-//	 mApiHookerHashMap.insert(make_pair("getMacAddress", getMacAddress));
+	 mApiHookerHashMap.insert(make_pair("closeLjava/io/FileOutputStream;", closeFileOutputStream));
+	 mApiHookerHashMap.insert(make_pair("write", writeFileOutputStream));
+	 mApiHookerHashMap.insert(make_pair("getMacAddress", getMacAddress));
 	 LOGD("insert data api to hashmap successfully");
 
-	 /*
+
 	 // 通信 api
 	 CloseSocket* closeSocket = new CloseSocket();
 	 DisableBluetoothAdapter* disableBluetoothAdapter = new DisableBluetoothAdapter();
@@ -237,14 +237,14 @@ bool ApiHookerManager::initHashMap() {
 	 mApiHookerHashMap.insert(make_pair("disable", disableBluetoothAdapter));
 	 mApiHookerHashMap.insert(make_pair("enable", enableBluetoothAdapter));
 	 mApiHookerHashMap.insert(make_pair("closeLjava/net/Socket;", closeSocket));
-	 mApiHookerHashMap.insert(make_pair("openConnection", openConnection));
+	 mApiHookerHashMap.insert(make_pair("openConnectionLjava/net/URL", openConnection));
 	 mApiHookerHashMap.insert(make_pair("disconnect", disconnect));
 	 mApiHookerHashMap.insert(make_pair("enableNetwork", enableNetwork));
 	 mApiHookerHashMap.insert(make_pair("setWifiEnabled", setWifiEnabled));
 	 mApiHookerHashMap.insert(make_pair("call",call));
 	 mApiHookerHashMap.insert(make_pair("endCall",endCall));
 	 LOGD("insert communication api to hashmap successfully");
-	 */
+
 
 	return true;
 }

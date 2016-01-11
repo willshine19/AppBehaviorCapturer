@@ -17,6 +17,7 @@ class DeleteContentResolver: public ApiHooker {
 public:
 	DeleteContentResolver();
 	~DeleteContentResolver();
+	bool parseResult(Object* obj);
 };
 
 #endif /* DELETECONTENTRESOLVER_H_ */

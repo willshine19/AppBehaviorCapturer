@@ -17,6 +17,7 @@ class ReadFileInputStream: public ApiHooker {
 public:
 	ReadFileInputStream();
 	~ReadFileInputStream();
+	bool parseResult(Object* obj);
 };
 
 #endif /* READFILEINPUTSTREAM_H_ */

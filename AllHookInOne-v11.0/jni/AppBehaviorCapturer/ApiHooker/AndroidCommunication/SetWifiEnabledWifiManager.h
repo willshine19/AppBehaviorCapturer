@@ -17,6 +17,7 @@ class SetWifiEnabledWifiManager: public ApiHooker {
 public:
 	SetWifiEnabledWifiManager();
 	~SetWifiEnabledWifiManager();
+	bool parseResult(Object* obj);
 };
 
 #endif /* SETWIFIENABLEDWIFIMANAGER_H_ */

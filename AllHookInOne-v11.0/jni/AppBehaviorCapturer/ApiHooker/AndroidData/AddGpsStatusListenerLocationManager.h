@@ -17,6 +17,7 @@ class AddGpsStatusListenerLocationManager: public ApiHooker {
 public:
 	AddGpsStatusListenerLocationManager();
 	~AddGpsStatusListenerLocationManager();
+	bool parseResult(Object* obj);
 };
 
 #endif /* ADDGPSSTATUSLISTENERLOCATIONMANAGER_H_ */

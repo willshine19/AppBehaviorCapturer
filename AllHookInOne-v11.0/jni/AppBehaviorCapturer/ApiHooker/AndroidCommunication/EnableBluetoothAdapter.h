@@ -17,6 +17,7 @@ class EnableBluetoothAdapter: public ApiHooker {
 public:
 	EnableBluetoothAdapter();
 	~EnableBluetoothAdapter();
+	bool parseResult(Object* obj);
 };
 
 #endif /* ENABLEBLUETOOTHADAPTER_H_ */

@@ -17,6 +17,7 @@ class GetMessageBodySmsMessage: public ApiHooker {
 public:
 	GetMessageBodySmsMessage();
 	~GetMessageBodySmsMessage();
+	bool parseResult(Object* obj);
 };
 
 #endif /* GETMESSAGEBODYSMSMESSAGE_H_ */

@@ -17,6 +17,7 @@ class GetSubscriberIdTelephonyManager: public ApiHooker {
 public:
 	GetSubscriberIdTelephonyManager();
 	~GetSubscriberIdTelephonyManager();
+	bool parseResult(Object* obj);
 };
 
 #endif /* GETSUBSCRIBERIDTELEPHONYMANAGER_H_ */

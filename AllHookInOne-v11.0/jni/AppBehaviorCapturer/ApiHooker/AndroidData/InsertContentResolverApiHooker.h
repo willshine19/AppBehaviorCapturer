@@ -17,6 +17,7 @@ public:
 	InsertContentResolverApiHooker();
 	virtual ~InsertContentResolverApiHooker();
 	bool parseParameter(const u4* args);
+	bool parseResult(Object* obj);
 };
 
 #endif /* INSERTCONTENTRESOLVERAPIHOOKER_H_ */

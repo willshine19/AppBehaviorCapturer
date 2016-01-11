@@ -14,6 +14,7 @@
 #include "../ApiInfo/ApiDeclaration.h"
 #include "../ApiInfo/CollectedApiInfo.h"
 #include "../System/ThreadMap.h"
+#include <UtfString.h>
 
 class ApiHooker{
 	protected:

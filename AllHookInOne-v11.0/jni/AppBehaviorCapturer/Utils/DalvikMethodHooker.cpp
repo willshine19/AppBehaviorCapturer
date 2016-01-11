@@ -421,14 +421,14 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 
 	const char* classDesc = info->classDesc; //类描述
-//	LOGD("info->classDesc=%s", info->classDesc);
+	LOGD("info->classDesc=%s", info->classDesc);
 	const char* methodName = info->methodName; //方法名
-//	LOGD("info->methodName=%s", info->methodName);
+	LOGD("info->methodName=%s", info->methodName);
 	const char* methodSig = info->methodSig; //方法签名
-//	LOGD("info->methodSig=%s", info->methodSig);
+	LOGD("info->methodSig=%s", info->methodSig);
 	const bool isStaticMethod = info->isStaticMethod; //是否为静态方法
-//	LOGD("info->isStaticMethod=%s", info->isStaticMethod);
-//	LOGD("isStaticMethod=%d", isStaticMethod);
+	LOGD("info->isStaticMethod=%d", info->isStaticMethod);
+	LOGD("isStaticMethod=%d", isStaticMethod);
 
 	jclass classObj = dvmFindJNIClass(env, classDesc); //寻找到这个类，返回它新的global reference
 	if (classObj == NULL) {
@@ -437,6 +437,7 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 	}
 	LOGD("-------------------Class %s has found", classDesc);
 //	LOGD("-------------------classObj is %s ", classObj);
+
 
 	//jmethodID类表示Java端的属性和方法
 	jmethodID methodId =

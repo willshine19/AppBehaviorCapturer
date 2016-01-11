@@ -14,6 +14,7 @@ class EndCallITelephonyApiHooker: public ApiHooker {
 public:
 	EndCallITelephonyApiHooker();
 	virtual ~EndCallITelephonyApiHooker();
+	bool parseResult(Object* obj);
 };
 
 #endif /* ENDCALLITELEPHONYAPIHOOKER_H_ */

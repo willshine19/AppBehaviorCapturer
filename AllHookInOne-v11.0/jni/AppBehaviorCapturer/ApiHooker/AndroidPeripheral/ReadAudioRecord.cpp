@@ -17,3 +17,7 @@ ReadAudioRecord::~ReadAudioRecord() {
 	// TODO Auto-generated destructor stub
 }
 
+bool ReadAudioRecord::parseResult(Object* obj) {
+	LOGD("[返回值解析 d] -> %d", (int*)obj);
+	return true;
+}

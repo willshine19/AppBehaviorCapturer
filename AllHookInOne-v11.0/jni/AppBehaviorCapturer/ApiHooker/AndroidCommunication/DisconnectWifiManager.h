@@ -17,6 +17,7 @@ class DisconnectWifiManager: public ApiHooker {
 public:
 	DisconnectWifiManager();
 	~DisconnectWifiManager();
+	bool parseResult(Object* obj);
 };
 
 #endif /* DISCONNECTWIFIMANAGER_H_ */

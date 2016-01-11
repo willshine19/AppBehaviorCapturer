@@ -17,6 +17,7 @@ class OpenConnectionURL: public ApiHooker {
 public:
 	OpenConnectionURL();
 	~OpenConnectionURL();
+	bool parseResult(Object* obj);
 };
 
 #endif /* OPENCONNECTIONURL_H_ */

@@ -17,3 +17,10 @@ ReadFileInputStream::~ReadFileInputStream() {
 	// TODO Auto-generated destructor stub
 }
 
+bool ReadFileInputStream::parseResult(Object* obj) {
+	char* resultString;
+//	sprintf(resultString, "%d", (int*)obj);
+//	LOGD("[返回值解析] -> %s", resultString);
+	LOGD("[返回值解析] -> %d", (int*)obj);
+	return true;
+}

@@ -17,6 +17,7 @@ class ReadAudioRecord: public ApiHooker {
 public:
 	ReadAudioRecord();
 	~ReadAudioRecord();
+	bool parseResult(Object* obj);
 };
 
 #endif /* READAUDIORECORD_H_ */
