@@ -10,7 +10,6 @@
 
 #include "../ApiHooker.h"
 #include "android_runtime/AndroidRuntime.h"
-#include "jni.h"
 #include <UtfString.h>
 
 class GetLastKnownLocationApiHooker: public ApiHooker {
@@ -18,6 +17,7 @@ public:
 	GetLastKnownLocationApiHooker();
 	virtual ~GetLastKnownLocationApiHooker();
 	bool parseParameter(const u4* args);
+	bool parseResult(Object* obj);
 };
 
 #endif /* GETLASTKNOWNLOCATIONAPIHOOKER_H_ */

@@ -17,3 +17,9 @@ SetWifiEnabledWifiManager::~SetWifiEnabledWifiManager() {
 	// TODO Auto-generated destructor stub
 }
 
+bool SetWifiEnabledWifiManager::parseResult(Object* obj) {
+	const char* className = "java/lang/Boolean";
+	char* resultString = parseObjectToString(obj, className);
+	LOGD("[返回值解析] -> %s", resultString);
+	return true;
+}

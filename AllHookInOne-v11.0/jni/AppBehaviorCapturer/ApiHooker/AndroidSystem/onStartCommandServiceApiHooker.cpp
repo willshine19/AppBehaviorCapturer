@@ -65,4 +65,7 @@ bool onStartCommandServiceApiHooker::parseParameter(const u4* args) {
 	return true;
 
 }
-
+bool onStartCommandServiceApiHooker::parseResult(Object* obj) {
+	LOGD("[返回值解析 d] -> %d", (int*)obj);
+	return true;
+}

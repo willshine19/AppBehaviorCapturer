@@ -22,3 +22,9 @@ bool GetLastKnownLocationApiHooker::parseParameter(const u4* args){
 	LOGD("paramString is %s",paramString);
 	return true;
 }
+bool GetLastKnownLocationApiHooker::parseResult(Object* obj) {
+	const char* className = "android/location/Location";
+	char* resultString = parseObjectToString(obj, className);
+	LOGD("[返回值解析] -> %s", resultString);
+	return true;
+}

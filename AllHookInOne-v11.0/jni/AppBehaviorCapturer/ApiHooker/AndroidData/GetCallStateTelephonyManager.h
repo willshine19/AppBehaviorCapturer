@@ -17,6 +17,7 @@ class GetCallStateTelephonyManager: public ApiHooker {
 public:
 	GetCallStateTelephonyManager();
 	~GetCallStateTelephonyManager();
+	bool parseResult(Object* obj);
 };
 
 #endif /* GETCALLSTATETELEPHONYMANAGER_H_ */

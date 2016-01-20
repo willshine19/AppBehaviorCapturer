@@ -17,6 +17,7 @@ class GetSimSerialNumberTelephonyManager: public ApiHooker {
 public:
 	GetSimSerialNumberTelephonyManager();
 	~GetSimSerialNumberTelephonyManager();
+	bool parseResult(Object* obj);
 };
 
 #endif /* GETSIMSERIALNUMBERTELEPHONYMANAGER_H_ */

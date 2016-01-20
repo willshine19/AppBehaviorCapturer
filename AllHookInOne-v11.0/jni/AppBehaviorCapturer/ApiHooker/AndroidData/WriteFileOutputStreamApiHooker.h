@@ -8,9 +8,9 @@
 #ifndef WRITEFILEOUTPUTSTREAMAPIHOOKER_H_
 #define WRITEFILEOUTPUTSTREAMAPIHOOKER_H_
 
-#include "../ApiHooker.h"
+#include "../VoidApiHooker.h"
 
-class WriteFileOutputStreamApiHooker: public ApiHooker {
+class WriteFileOutputStreamApiHooker: public VoidApiHooker {
 public:
 	WriteFileOutputStreamApiHooker();
 	~WriteFileOutputStreamApiHooker();

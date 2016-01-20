@@ -17,6 +17,7 @@ class CloseFileInputStream: public VoidApiHooker {
 public:
 	CloseFileInputStream();
 	~CloseFileInputStream();
+
 };
 
 #endif /* CLOSEFILEINPUTSTREAM_H_ */

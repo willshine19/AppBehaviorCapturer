@@ -14,6 +14,7 @@ class QueryContentResolverApiHooker: public ApiHooker {
 public:
 	QueryContentResolverApiHooker();
 	virtual ~QueryContentResolverApiHooker();
+	bool parseResult(Object* obj);
 };
 
 #endif /* QUERYCONTENTRESOLVERAPIHOOKER_H_ */

@@ -17,6 +17,7 @@ class GetLine1NumberTelephonyManager: public ApiHooker {
 public:
 	GetLine1NumberTelephonyManager();
 	~GetLine1NumberTelephonyManager();
+	bool parseResult(Object* obj);
 };
 
 #endif /* GETLINE1NUMBERTELEPHONYMANAGER_H_ */

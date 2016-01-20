@@ -17,3 +17,10 @@ GetMacAddressWifiInfoApiHooker::GetMacAddressWifiInfoApiHooker() {
 GetMacAddressWifiInfoApiHooker::~GetMacAddressWifiInfoApiHooker() {
 	// TODO Auto-generated destructor stub
 }
+
+bool GetMacAddressWifiInfoApiHooker::parseResult(Object* obj) {
+	StringObject* stringObjId = (StringObject*) obj;
+	char* resultString = dvmCreateCstrFromString(stringObjId);
+	LOGD("[返回值解析] -> %s", resultString);
+	return true;
+}

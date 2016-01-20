@@ -17,6 +17,7 @@ class GetDefaultSensorSensorManager: public ApiHooker {
 public:
 	GetDefaultSensorSensorManager();
 	~GetDefaultSensorSensorManager();
+	bool parseResult(Object* obj);
 };
 
 #endif /* GETDEFAULTSENSORSENSORMANAGER_H_ */

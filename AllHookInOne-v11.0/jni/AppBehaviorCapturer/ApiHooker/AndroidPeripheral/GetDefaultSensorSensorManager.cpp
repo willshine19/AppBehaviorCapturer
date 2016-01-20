@@ -17,3 +17,9 @@ GetDefaultSensorSensorManager::~GetDefaultSensorSensorManager() {
 	// TODO Auto-generated destructor stub
 }
 
+bool GetDefaultSensorSensorManager::parseResult(Object* obj) {
+	const char* className = "android/hardware/Sensor";
+	char* resultString = parseObjectToString(obj, className);
+	LOGD("[返回值解析] -> %s", resultString);
+	return true;
+}

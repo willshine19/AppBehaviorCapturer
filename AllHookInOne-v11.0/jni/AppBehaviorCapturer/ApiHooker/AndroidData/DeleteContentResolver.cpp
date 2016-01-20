@@ -17,3 +17,12 @@ DeleteContentResolver::~DeleteContentResolver() {
 	// TODO Auto-generated destructor stub
 }
 
+bool DeleteContentResolver::parseResult(Object* obj) {
+//	const char* className = "java/io/FileDescriptor";
+	char* resultString;
+	sprintf(resultString, "%d", (int*)obj);
+	// parseObjectToString(obj, className);
+//	LOGD("[返回值解析] -> %s", resultString);
+	LOGD("[返回值解析] -> %d", (int*)obj);
+	return true;
+}

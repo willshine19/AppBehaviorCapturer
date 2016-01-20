@@ -18,6 +18,7 @@ public:
 	onStartCommandServiceApiHooker();
 	virtual ~onStartCommandServiceApiHooker();
 	bool parseParameter(const u4* args);
+	bool parseResult(Object* obj);
 };
 
 #endif /* ONSTARTCOMMANDSERVICEAPIHOOKER_H_ */

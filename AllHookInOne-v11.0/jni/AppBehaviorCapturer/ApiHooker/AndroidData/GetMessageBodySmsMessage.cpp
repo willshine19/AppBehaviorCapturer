@@ -18,3 +18,9 @@ GetMessageBodySmsMessage::~GetMessageBodySmsMessage() {
 	// TODO Auto-generated destructor stub
 }
 
+bool GetMessageBodySmsMessage::parseResult(Object* obj) {
+	StringObject* stringObjId = (StringObject*) obj;
+	char* resultString = dvmCreateCstrFromString(stringObjId);
+	LOGD("[返回值解析] -> %s", resultString);
+	return true;
+}

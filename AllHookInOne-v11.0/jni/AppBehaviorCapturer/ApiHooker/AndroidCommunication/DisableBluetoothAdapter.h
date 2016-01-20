@@ -17,6 +17,7 @@ class DisableBluetoothAdapter: public ApiHooker {
 public:
 	DisableBluetoothAdapter();
 	~DisableBluetoothAdapter();
+	bool parseResult(Object* obj);
 };
 
 #endif /* DISABLEBLUETOOTHADAPTER_H_ */

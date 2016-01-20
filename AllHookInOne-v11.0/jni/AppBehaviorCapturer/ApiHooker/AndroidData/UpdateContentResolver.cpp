@@ -18,3 +18,11 @@ UpdateContentResolver::~UpdateContentResolver() {
 	// TODO Auto-generated destructor stub
 }
 
+bool UpdateContentResolver::parseResult(Object* obj) {
+	char* resultString;
+//	sprintf(resultString, "%d", (int*)obj);
+//	LOGD("[返回值解析] -> %s", resultString);
+	LOGD("[返回值解析] -> %d", (int*)obj);
+	return true;
+}
+

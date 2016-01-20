@@ -56,3 +56,10 @@ bool InsertContentResolverApiHooker::parseParameter(const u4* args){
 	LOGD("parse parameter uri successfully");
 	return true;
 }
+
+bool InsertContentResolverApiHooker::parseResult(Object* obj) {
+	const char* className = "android/net/Uri";
+	char* resultString = parseObjectToString(obj, className);
+	LOGD("[返回值解析] -> %s", resultString);
+	return true;
+}

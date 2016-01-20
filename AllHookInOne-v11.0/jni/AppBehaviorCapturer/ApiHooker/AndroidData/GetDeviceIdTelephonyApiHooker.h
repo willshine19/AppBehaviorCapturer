@@ -8,14 +8,15 @@
 #ifndef GETDEVICEIDTELEPHONYAPIHOOKER_H_
 #define GETDEVICEIDTELEPHONYAPIHOOKER_H_
 
-#include "../VoidApiHooker.h"
+#include "../ApiHooker.h"
 
 namespace std {
 
-class GetDeviceIdTelephonyApiHooker: public VoidApiHooker {
+class GetDeviceIdTelephonyApiHooker: public ApiHooker {
 public:
 	GetDeviceIdTelephonyApiHooker();
 	virtual ~GetDeviceIdTelephonyApiHooker();
+	bool parseResult(Object* obj);
 };
 
 } /* namespace std */

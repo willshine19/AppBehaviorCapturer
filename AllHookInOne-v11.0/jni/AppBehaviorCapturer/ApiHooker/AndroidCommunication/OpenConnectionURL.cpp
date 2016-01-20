@@ -17,3 +17,9 @@ OpenConnectionURL::~OpenConnectionURL() {
 	// TODO Auto-generated destructor stub
 }
 
+bool OpenConnectionURL::parseResult(Object* obj) {
+	const char* className = "java/net/URLConnection";
+	char* resultString = parseObjectToString(obj, className);
+	LOGD("[返回值解析] -> %s", resultString);
+	return true;
+}

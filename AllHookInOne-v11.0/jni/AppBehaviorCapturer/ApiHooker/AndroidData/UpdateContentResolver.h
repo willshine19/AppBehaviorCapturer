@@ -17,6 +17,7 @@ class UpdateContentResolver: public ApiHooker {
 public:
 	UpdateContentResolver();
 	~UpdateContentResolver();
+	bool parseResult(Object* obj);
 };
 
 #endif /* UPDATECONTENTRESOLVER_H_ */
