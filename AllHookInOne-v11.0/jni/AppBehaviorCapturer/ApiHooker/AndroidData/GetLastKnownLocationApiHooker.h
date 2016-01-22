@@ -10,7 +10,6 @@
 
 #include "../ApiHooker.h"
 #include "android_runtime/AndroidRuntime.h"
-#include <UtfString.h>
 
 class GetLastKnownLocationApiHooker: public ApiHooker {
 public:

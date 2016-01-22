@@ -9,11 +9,13 @@
 #define APIHOOKER_H_
 #include <pthread.h>
 #include <stdio.h>
+
 #include "common.h"
 #include "../InfoSender/InfoSender.h"
 #include "../ApiInfo/ApiDeclaration.h"
 #include "../ApiInfo/CollectedApiInfo.h"
 #include "../System/ThreadMap.h"
+#include <UtfString.h>
 
 class ApiHooker{
 	protected:

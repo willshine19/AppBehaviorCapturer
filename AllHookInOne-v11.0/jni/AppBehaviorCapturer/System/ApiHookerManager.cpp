@@ -148,7 +148,7 @@ bool ApiHookerManager::initHashMap() {
 //	mApiHookerHashMap.insert(make_pair("onStart", onStartService));
 	mApiHookerHashMap.insert(make_pair("onStartCommandLandroid/app/Service;", onStartCommandService));//Landroid/app/Service
 
-	mApiHookerHashMap.insert(make_pair("start", start));
+	mApiHookerHashMap.insert(make_pair("startLjava/lang/Thread", start));
 	mApiHookerHashMap.insert(make_pair("run", run));
 	LOGD("insert system api to hashmap successfully");
 
@@ -195,22 +195,22 @@ bool ApiHookerManager::initHashMap() {
 //	 mApiHookerHashMap.insert(make_pair("insert", insertContentResolver));
 //	 mApiHookerHashMap.insert(make_pair("query", queryContentResolve));
 //	 mApiHookerHashMap.insert(make_pair("delete", deleteContentResolver));
-//	 mApiHookerHashMap.insert(make_pair("update", updateContentResolver));
-//	 mApiHookerHashMap.insert(make_pair("getMessageBody", getMessageBody));
-//	 mApiHookerHashMap.insert(make_pair("getCallState", getCallState));
-//	 mApiHookerHashMap.insert(make_pair("getDeviceId", getDeviceId));
-//	 mApiHookerHashMap.insert(make_pair("getLine1Number", getLine1));
-//	 mApiHookerHashMap.insert(make_pair("getSimSerialNumber", getSimSerialNumber));
-//	 mApiHookerHashMap.insert(make_pair("getSubscriberId", getSubscriberId));
-//	 mApiHookerHashMap.insert(make_pair("addGpsStatusListener", addGpsStatusListener));
-//	 mApiHookerHashMap.insert(make_pair("getLastKnownLocation", getLastKnownLocation));
-//	 mApiHookerHashMap.insert(make_pair("requestLocationUpdatas", requestLocationUpdatas));
-//	 mApiHookerHashMap.insert(make_pair("readLjava/io/FileInputStream;", readFileInputStream));
-//	 mApiHookerHashMap.insert(make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
+	 mApiHookerHashMap.insert(make_pair("update", updateContentResolver));
+	 mApiHookerHashMap.insert(make_pair("getMessageBody", getMessageBody));
+	 mApiHookerHashMap.insert(make_pair("getCallState", getCallState));
+	 mApiHookerHashMap.insert(make_pair("getDeviceId", getDeviceId));
+	 mApiHookerHashMap.insert(make_pair("getLine1Number", getLine1));
+	 mApiHookerHashMap.insert(make_pair("getSimSerialNumber", getSimSerialNumber));
+	 mApiHookerHashMap.insert(make_pair("getSubscriberId", getSubscriberId));
+	 mApiHookerHashMap.insert(make_pair("addGpsStatusListener", addGpsStatusListener));
+	 mApiHookerHashMap.insert(make_pair("getLastKnownLocation", getLastKnownLocation));
+	 mApiHookerHashMap.insert(make_pair("requestLocationUpdatas", requestLocationUpdatas));
+	 mApiHookerHashMap.insert(make_pair("readLjava/io/FileInputStream;", readFileInputStream));
+	 mApiHookerHashMap.insert(make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
 	 mApiHookerHashMap.insert(make_pair("getFD", getFD));
-//	 mApiHookerHashMap.insert(make_pair("closeLjava/io/FileOutputStream;", closeFileOutputStream));
-//	 mApiHookerHashMap.insert(make_pair("write", writeFileOutputStream));
-//	 mApiHookerHashMap.insert(make_pair("getMacAddress", getMacAddress));
+	 mApiHookerHashMap.insert(make_pair("closeLjava/io/FileOutputStream;", closeFileOutputStream));
+	 mApiHookerHashMap.insert(make_pair("write", writeFileOutputStream));
+	 mApiHookerHashMap.insert(make_pair("getMacAddress", getMacAddress));
 	 LOGD("insert data api to hashmap successfully");
 
 

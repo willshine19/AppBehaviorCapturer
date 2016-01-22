@@ -19,23 +19,12 @@ GetCallStateTelephonyManager::~GetCallStateTelephonyManager() {
 }
 
 bool GetCallStateTelephonyManager::parseResult(Object* obj) {
-//	char rs[30];
-//	char *mystr = (char*)malloc(sizeof(rs));
-//	int* m=(int*)obj;
-//	sprintf(rs, "%d", *m);
-//	sprintf(mystr, "%d", *m);
-//	LOGD("[返回值解析char*] -> %s", mystr);
-//	LOGD("[返回值解析char[30]] -> %s", rs);
-	LOGD("[返回值解析 d] -> %d", (int*)obj);
-////	LOGD("[返回值解析] -> %s", resultString);
-//	const char* className = "java/lang/Integer";
-//	char* resultString = parseObjectToString(obj, className);
-//	LOGD("[返回值解析tostring] -> %s", resultString);
+	char rs[20];
+	int* ma ;
+	int i = 0;
+	ma = (int*) obj;
+	i = reinterpret_cast<int>(&ma[0]);
+	sprintf(rs, "%d", i);
+	LOGD("[返回值解析] -> %s", rs);
 	return true;
 }
-/*bool GetCallStateTelephonyManager::parseResult(Object* obj) {
-	const char* className = "java/lang/Integer";
-	char* resultString = parseObjectToString(obj, className);
-	LOGD("[返回值解析] -> %s", resultString);
-	return true;
-}*/
