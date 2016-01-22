@@ -9,6 +9,7 @@
 
 CollectedApiInfo::CollectedApiInfo() {
 	// TODO Auto-generated constructor stub
+	mResult="";
 	mProcessID = getpid();
 
 }
@@ -82,6 +83,7 @@ string CollectedApiInfo::convertToJson() {
 	root["SonThreadId"] = (unsigned int) this->mSonThreadId; //zds add
 	root["threadID"] = (unsigned int) this->mThreadId;
 	root["processID"] = this->mProcessID;
+	root["result"] = this->mResult;
 
 //	json2string = root.toStyledString();
 	string out = root.toStyledString();
