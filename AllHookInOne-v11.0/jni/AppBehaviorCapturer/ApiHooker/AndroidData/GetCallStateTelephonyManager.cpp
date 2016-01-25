@@ -25,7 +25,6 @@ bool GetCallStateTelephonyManager::parseResult(Object* obj) {
 	ma = (int*) obj;
 	i = reinterpret_cast<int>(&ma[0]);
 	sprintf(rs, "%d", i);
-	LOGD("[返回值解析] -> %s", rs);
 	StringObject* stringObjId = dvmCreateStringFromCstr(rs);
 	char* resultString = dvmCreateCstrFromString(stringObjId);
 	LOGD("[返回值解析] -> %s", resultString);
