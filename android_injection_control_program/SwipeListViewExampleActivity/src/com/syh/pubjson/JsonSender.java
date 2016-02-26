@@ -4,6 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+
 import com.lwl.utils.ServerToHookerTimeTestUtils;
 
 import android.content.Context;
@@ -21,12 +23,10 @@ import java.util.HashMap;
 
 public class JsonSender {
 	
-	private static final String USER_ID = "GraphValueTest1";
-	private static final String USER_CODE = "1234567890";
-	private static final String PUB_SPACE_ID = "56518805f39693a4088fbfa6";
-	private static final String PUB_THEME_ID = "56518931f39693a4088fbfa9";
-	private static final String SUB_SPACE_ID = "5651c957f39693a4088fbfc4";
-	private static final String SUB_THEME_ID = "5651c986f39693a4088fbfc5";
+	private static final String USER_NAME = "zhangdaishuai";
+	private static final String PASSWORD = "zhangdaishuai";
+	private static final String SPACE = "securitySpace";
+	private static final String THEME = "securityTheme";
 	private static final String TAG1 = "JsonSender";
 	private static final String TAG2 = "Callback";
 	
@@ -46,7 +46,7 @@ public class JsonSender {
 	 */
 	public void login() {
 		Log.i(TAG1, "****开始login****");
-			mMimoNode.login(USER_ID, USER_CODE, new Callback() {
+			mMimoNode.login(USER_NAME, PASSWORD, new Callback() {
 				@Override
 				public void successCallback(Object message) {
 					Log.v(TAG2, "成功login服务器: " + message);
@@ -75,7 +75,8 @@ public class JsonSender {
 
 				@Override
 				public void newMessageCallback(Object message) {
-					Log.v(TAG2, "从server端收到一条消息，开始解析");
+					//解析服务器发送过来的信息
+/*					Log.v(TAG2, "从server端收到一条消息，开始解析");
 					// 将从服务器端接受到的时间，保存到mServerToHooker对象中
 					JSONObject msg = (JSONObject) message;
 					mServerToHooker.parseTimeFromJson(msg);
@@ -89,7 +90,7 @@ public class JsonSender {
 					Log.i(TAG2, "[+] 成功从【服务器端】接收到第" + mCount + "组数据");
 //						mScore = scoreData.getString("value");
 //						Log.v(TAG2, "分数为：" + mScore);
-				}
+*/				}
 			});
 			while (!mSuccessFlag) {
 				Log.v(TAG1, "JsonSender等待longin成功的标志...");
@@ -117,6 +118,10 @@ public class JsonSender {
 		String timeofAPI = null;
 		String processID = null;
 		String IMEI = null;
+		String contextofAPI = null;
+		String FatherThreadIdofAPI = null;
+		String SonThreadIdofAPI = null;
+		String resultofAPI = null;
 
 		try {
 			nameofAPI = jo.getString("name");
@@ -125,22 +130,30 @@ public class JsonSender {
 			timeofAPI = jo.getString("time");
 			processID = jo.getString("processID");
 			IMEI = jo.getString("IMEI");
+			contextofAPI= jo.getString("context");
+			FatherThreadIdofAPI = jo.getString("FatherThreadId");
+			SonThreadIdofAPI = jo.getString("SonThreadId");
+			resultofAPI = jo.getString("result");
+			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		Log.d("what's in json [No.2]", "" + nameofAPI + numberofAPI+ threadIDofAPI +timeofAPI +processID+IMEI);
 		// 上传json
 		Log.i(TAG1, "正在pubJSON数据");
-		mMimoNode.publishOnTheme(USER_ID,
-				PUB_SPACE_ID, PUB_THEME_ID, "4", "string",
-				"Sent!zdszdzsdzsdzsdzs", 
-				"Name", nameofAPI,
-				"Number", numberofAPI, 
-				"threadID", threadIDofAPI,
-				"time", timeofAPI, 
-				"score", "score",
-				"processID", processID,
-				"IMEI", IMEI,
+		mMimoNode.publishOnTheme(
+				nameofAPI,
+				numberofAPI ,
+				threadIDofAPI,
+				timeofAPI ,
+				processID ,
+				IMEI ,
+				contextofAPI,
+				FatherThreadIdofAPI ,
+				SonThreadIdofAPI,
+				resultofAPI ,
+				USER_NAME,
+				SPACE, THEME, 
 				new Callback() {
 					@Override
 					public void successCallback(Object message) {
@@ -155,7 +168,8 @@ public class JsonSender {
 				});
 		// 等待发送成功
 		Log.v(TAG1, "进入while循环");
-		while (!mSuccessFlag) {
+		//带解决，服务器已收到json但没有返回信息
+/*		while (!mSuccessFlag) {
 			Log.v(TAG1, "JsonSender等待发送成功的标志...");
 			try {
 				Thread.sleep(5000);
@@ -163,7 +177,7 @@ public class JsonSender {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
 		Log.v(TAG1, "离开while循环");
 		mSuccessFlag = false;
 		Log.i(TAG1, "完成pubJSON数据");
@@ -181,9 +195,9 @@ public class JsonSender {
 	 */
 	public void subscribe() {
 		Log.i(TAG1, "****开始subscribe****");
-		mMimoNode.subscribeOnTheme(USER_ID,
-				SUB_SPACE_ID, SUB_THEME_ID,
-				"0", "0", "0", "1", "1", "1", "2", "2", "2",
+		mMimoNode.subscribeOnTheme(USER_NAME,
+				SPACE,//spaceName
+				 THEME,//themeName
 				new Callback() {
 			@Override
 			public void successCallback(Object message) {
@@ -223,6 +237,10 @@ public class JsonSender {
 			firstData.put("processID", "0");
 			firstData.put("IMEI", deviceId);
 			firstData.put("time", "0000-00-00 00:00:00:000:000");
+			firstData.put("context", "");
+			firstData.put("FatherThreadId", "");
+			firstData.put("SonThreadId", "");
+			firstData.put("result", "");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -247,7 +265,7 @@ public class JsonSender {
 			fos = new FileOutputStream(fileName, true);
 			ps = new PrintStream(fos);
 			ps.println(jo.toString());
-			Log.d(TAG1, "成功保存到文件/storage/emulated/0/json.txt");
+			Log.d(TAG1, "成功保存到文件/storage/emulated/0/SyhJson.txt");
 		} catch (IOException e) {
 			// TODO: handle exception
 			e.printStackTrace();

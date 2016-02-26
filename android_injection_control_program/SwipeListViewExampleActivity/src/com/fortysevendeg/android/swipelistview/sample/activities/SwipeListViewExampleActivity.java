@@ -95,7 +95,7 @@ public class SwipeListViewExampleActivity extends FragmentActivity {
         swipeListView = (SwipeListView) findViewById(R.id.example_lv_list);
         swipeListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 
-        //开启sJsonervice
+        //开启Jsonervice
         System.out.println("开启service");
         Intent intent = new Intent();
         intent.setAction("com.lwl.service.JSON_SERVICE");
