@@ -8,24 +8,14 @@ public class test {
 	private static MimoNodeAPI mimonode;
 
 	public static void main(String[] args) {
-		// mimonode = new MimoNodeAPI();
 		login();
-
-		// for(int i=0;i<1;i++){
-//		 myPublish();
 		mySub();
-//		myget();
-		
-		
-		// }
-		// mimonode.logout();
 	}
 
 	public static void login() {
 
 		MimoNodeAPI mimonode = new MimoNodeAPI();
 
-		// mimonode.login("55715c7b992364270bcfa69a", "a", new Callback() {
 		mimonode.login(USER_NAME, PASSWORD, new Callback() {
 			public void successCallback(Object message) {
 				System.out.println("authSucceed: " + message);
@@ -54,10 +44,11 @@ public class test {
 
 	}
 
+	// 测试例，数据自拟
 	public static void myPublish() {
 		MimoNodeAPI mimonode = new MimoNodeAPI();
 
-		mimonode.publishOnTheme("PM2.5", "8ws", "157","1414", USER_NAME,// userName
+		mimonode.publishOnTheme("PM2.5", "8ws", "157", "1414", USER_NAME,// userName
 				SPACE,// spaceName
 				THEME,// themeName
 
@@ -71,22 +62,7 @@ public class test {
 					}
 				});
 	}
-	
-/*	public static void myget() {
-		MimoNodeAPI mimonode = new MimoNodeAPI();
 
-		mimonode.getStoredMessages( USER_NAME,// userName
-				new Callback() {
-					public void successCallback(Object message) {
-						System.out.println("getStoredMessages: " + message);
-					}
-
-					public void errorCallback(Object message) {
-						System.out.println("getStoredMessages: " + message);
-					}
-				});
-	}
-*/
 	public static void mySub() {
 		MimoNodeAPI mimonode = new MimoNodeAPI();
 
@@ -100,7 +76,7 @@ public class test {
 			public void errorCallback(Object message) {
 				System.out.println("sub: " + message);
 			}
-			
+
 		});
 
 	}

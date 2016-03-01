@@ -152,7 +152,7 @@ public class MimoNodeAPI {
 		try {
 			space.put("rootSpaceName", spaceName);
 			space.put("owner", userName);
-//			space.pubers=userName;
+//			space.pubers=userName;//报错
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
