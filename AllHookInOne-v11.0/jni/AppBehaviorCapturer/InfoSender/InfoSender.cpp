@@ -231,10 +231,13 @@ int InfoSender::initSocketConnection() {
  */
 bool InfoSender::init() {
 	//初始化队列
+	LOGE("-------------infosender init ");
 	InfoSender::mCycledBlockingQueue = new CycledBlockingQueue(1024);
+	LOGE("-------------infosender mCycledBlockingQueue ");
 	//初始化读线程
 	int err = pthread_create(&this->ntid, NULL, InfoSender::readFromQueue,
 			NULL);
+	LOGE("-------------infosender readFromQueue ");
 	if (err != 0) {
 		LOGE("can not create thread :%s", strerror(err));
 	}

@@ -78,6 +78,7 @@ int ApiHookerManager::main() {
 
 	//获取系统发送模块的实例 初始化
 	this->mInfoSender = InfoSender::getInstance();
+	LOGE("-------------ApiHookerManager infosender ");
 	mInfoSender->init();
 	return 0;
 }
@@ -116,7 +117,7 @@ bool ApiHookerManager::initHashMap() {
 	mApiHookerHashMap.insert(
 			make_pair("onStartCommandLandroid/app/Service;",
 					onStartCommandService)); //Landroid/app/Service
-	mApiHookerHashMap.insert(make_pair("startLjava/lang/Thread", start));
+	mApiHookerHashMap.insert(make_pair("startLjava/lang/Thread;", start));
 	mApiHookerHashMap.insert(make_pair("run", run));
 	LOGD("insert system api to hashmap successfully");
 
@@ -130,11 +131,11 @@ bool ApiHookerManager::initHashMap() {
 	StartMediaRecorder* startMediaRecorder = new StartMediaRecorder();
 	StartRecordingAudioRecord* startRecordingAudioRecord =
 			new StartRecordingAudioRecord();
-	mApiHookerHashMap.insert(make_pair("openLandroid/hardware/Camera", open));
+	mApiHookerHashMap.insert(make_pair("openLandroid/hardware/Camera;", open));
 	mApiHookerHashMap.insert(make_pair("getDefaultSensor", getDefaultSensor));
 	mApiHookerHashMap.insert(make_pair("prepare", prepare));
 	mApiHookerHashMap.insert(
-			make_pair("readLandroid/media/AudioRecord", readAudio));
+			make_pair("readLandroid/media/AudioRecord;", readAudio));
 	mApiHookerHashMap.insert(make_pair("release", release));
 	mApiHookerHashMap.insert(
 			make_pair("startLandroid/media/MediaRecorder;",
@@ -230,7 +231,7 @@ bool ApiHookerManager::initHashMap() {
 	mApiHookerHashMap.insert(make_pair("enable", enableBluetoothAdapter));
 	mApiHookerHashMap.insert(make_pair("closeLjava/net/Socket;", closeSocket));
 	mApiHookerHashMap.insert(
-			make_pair("openConnectionLjava/net/URL", openConnection));
+			make_pair("openConnectionLjava/net/URL;", openConnection));
 	mApiHookerHashMap.insert(make_pair("disconnect", disconnect));
 	mApiHookerHashMap.insert(make_pair("enableNetwork", enableNetwork));
 	mApiHookerHashMap.insert(make_pair("setWifiEnabled", setWifiEnabled));

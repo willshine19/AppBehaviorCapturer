@@ -32,7 +32,7 @@ public class MultiThreadJsonReceiveThread {
 	private ServerSocket serverSocket;
 	private Socket socket = null;
 	private ExecutorService executorService;// 线程池
-	private final int POOL_SIZE = 5;// 单个CPU线程池大小
+	private final int POOL_SIZE = 15;// 单个CPU线程池大小
 	private Context context;
 
 	JSONArray jsonArray;
@@ -223,7 +223,8 @@ class Handler implements Runnable {
 				}
 
 			} // while
-
+			socket.close();
+//			sender.logout();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
