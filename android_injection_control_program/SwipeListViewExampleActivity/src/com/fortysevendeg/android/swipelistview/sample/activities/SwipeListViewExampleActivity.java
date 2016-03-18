@@ -66,7 +66,7 @@ public class SwipeListViewExampleActivity extends FragmentActivity {
     private SwipeListView swipeListView;
     private ProgressDialog progressDialog;
     //保存启动的service的Binder对象，用于传输Service中的数据
-    JsonService.JsonBinder binder;
+    private JsonService.JsonBinder binder;
     
     // 内部类
     ServiceConnection  connection = new ServiceConnection() {
@@ -86,16 +86,14 @@ public class SwipeListViewExampleActivity extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.swipe_list_view_activity);// 设置Activity采用R.layout下的**布局文件进行布局
-        // Thedata= (List<PackageItem>)
-        // getIntent().getSerializableExtra("data");
-//        appInfoList = getIntent().getParcelableArrayListExtra("appInfoList");
-//        appInfoList = new ArrayList<PackageItem>();
         appInfoList = PackageItemModel.getInstance().getList();
         adapter = new PackageAdapter(this, appInfoList);
-        swipeListView = (SwipeListView) findViewById(R.id.example_lv_list);
+        swipeListView = (SwipeListView) findViewById(R.id.example_lv_list); // 获取xml中创建的实例
         swipeListView.setAdapter(adapter);
         swipeListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 
+        setSwipeListView();
+        
         //开启sJsonervice
         Log.d(TAG, "即将绑定service");
         Intent intent = new Intent();
@@ -103,7 +101,26 @@ public class SwipeListViewExampleActivity extends FragmentActivity {
         bindService(intent,connection,Service.BIND_AUTO_CREATE);
         Log.d(TAG, "成功绑定service");
 
-        // api level >= 11
+        progressDialog = new ProgressDialog(this);// 进度条
+        progressDialog.setMessage(getString(R.string.loading));
+        progressDialog.setCancelable(false);
+//         progressDialog.show();
+    }
+
+    
+    /**  
+     * 设置界面的设置
+     */
+    private void setSwipeListView() {
+        SettingsManager settings = SettingsManager.getInstance();
+        swipeListView.setSwipeMode(settings.getSwipeMode());
+        swipeListView.setSwipeActionLeft(settings.getSwipeActionLeft());
+        swipeListView.setSwipeActionRight(settings.getSwipeActionRight());
+        swipeListView.setOffsetLeft(convertDpToPixel(settings.getSwipeOffsetLeft()));
+        swipeListView.setOffsetRight(convertDpToPixel(settings.getSwipeOffsetRight()));
+        swipeListView.setAnimationTime(settings.getSwipeAnimationTime());
+        swipeListView.setSwipeOpenOnLongPress(settings.isSwipeOpenOnLongPress());
+     // api level >= 11
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // Set a {@link MultiChoiceModeListener} that will manage the
             // lifecycle of the selection {@link ActionMode}
@@ -193,32 +210,6 @@ public class SwipeListViewExampleActivity extends FragmentActivity {
             }
 
         });
-
-
-        setSwipeListView();
-
-//        new InitListTask().execute();// 开启子线程
-
-        progressDialog = new ProgressDialog(this);// 进度条
-        progressDialog.setMessage(getString(R.string.loading));
-        progressDialog.setCancelable(false);
-//         progressDialog.show();
-
-    }
-
-    
-    /**  
-     * 设置界面的设置
-     */
-    private void setSwipeListView() {
-        SettingsManager settings = SettingsManager.getInstance();
-        swipeListView.setSwipeMode(settings.getSwipeMode());
-        swipeListView.setSwipeActionLeft(settings.getSwipeActionLeft());
-        swipeListView.setSwipeActionRight(settings.getSwipeActionRight());
-        swipeListView.setOffsetLeft(convertDpToPixel(settings.getSwipeOffsetLeft()));
-        swipeListView.setOffsetRight(convertDpToPixel(settings.getSwipeOffsetRight()));
-        swipeListView.setAnimationTime(settings.getSwipeAnimationTime());
-        swipeListView.setSwipeOpenOnLongPress(settings.isSwipeOpenOnLongPress());
     }
 
     public int convertDpToPixel(float dp) {
