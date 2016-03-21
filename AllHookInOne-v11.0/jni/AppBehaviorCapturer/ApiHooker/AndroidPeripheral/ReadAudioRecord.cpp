@@ -18,6 +18,16 @@ ReadAudioRecord::~ReadAudioRecord() {
 }
 
 bool ReadAudioRecord::parseResult(Object* obj) {
-	LOGD("[返回值解析 d] -> %d", (int*)obj);
+	char rs[20];
+	int* ma ;
+	int i = 0;
+	ma = (int*) obj;
+	i = reinterpret_cast<int>(&ma[0]);
+	sprintf(rs, "%d", i);
+	LOGD("[返回值解析] -> %s", rs);
+	StringObject* stringObjId = dvmCreateStringFromCstr(rs);
+	char* resultString = dvmCreateCstrFromString(stringObjId);
+	LOGD("[返回值解析] -> %s", resultString);
+	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setResult(resultString);
 	return true;
 }

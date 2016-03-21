@@ -9,11 +9,13 @@
 #define APIHOOKER_H_
 #include <pthread.h>
 #include <stdio.h>
+
 #include "common.h"
 #include "../InfoSender/InfoSender.h"
 #include "../ApiInfo/ApiDeclaration.h"
 #include "../ApiInfo/CollectedApiInfo.h"
 #include "../System/ThreadMap.h"
+#include <UtfString.h>
 
 class ApiHooker{
 	protected:
@@ -31,10 +33,10 @@ class ApiHooker{
 		long getFatherId();
 		bool main(const u4* args);
 		ApiDeclaration getApiDeclaration();
-		virtual bool parseParameter(const u4* args){
+		virtual bool parseParameter(const u4* args){//获取api信息
 			return true;
 		}
-		virtual bool parseResult(Object* obj) {
+		virtual bool parseResult(Object* obj) {//解析返回值函数
 			return true;
 		}
 		virtual bool simpleProcess(){

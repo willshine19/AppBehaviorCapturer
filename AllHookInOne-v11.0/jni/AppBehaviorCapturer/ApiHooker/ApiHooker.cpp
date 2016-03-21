@@ -29,10 +29,10 @@ string ApiHooker::toString() {
 
 /**
  * 将类名 方法名 时间 线程号 存入循环队列的Bucket实例中
+ * result的存储在每个apihook中
  */
 bool ApiHooker::collectBaseInfo() {
 	long threadId = pthread_self();
-//	LOGD("ThreadID is  %ld", threadId);
 	if (threadId == 0) {
 		LOGE("getThreadID falied");
 	}
@@ -51,10 +51,6 @@ bool ApiHooker::collectBaseInfo() {
 			ApiHookerManager::getInstance()->mContextInfo);
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setFatherThreadId(
 			getFatherId());
-//	LOGD("[+] apihooker-Infosender的context数据为 %s",
-//			(ApiHookerManager::getInstance()->mcontextinfo).c_str());
-//	LOGD("[+] apihooker-Infosender的fatherid数据为 %ld", GetFatherId());
-	//end
 	pthread_mutex_unlock(mutex);
 	return true;
 }
@@ -95,6 +91,7 @@ bool ApiHooker::main(const u4* args) {
 }
 
 /**
+ * object返回值解析
  * 该函数可以解析一个Object对象,该Object对象代表一个java层的java对象,调用这个java对象的toString方法
  * 参数:obj 解析目标; className 字符串,表示对应的java对象的名字,比如java/io/FileDescriptor
  * 返回:字符串 返回该java对象的toString方法的返回值
