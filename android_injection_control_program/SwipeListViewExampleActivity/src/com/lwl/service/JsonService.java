@@ -1,8 +1,5 @@
 package com.lwl.service;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import android.app.Service;
@@ -10,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
-import android.util.Log;
 
 
 public class JsonService extends Service{
@@ -33,21 +29,21 @@ public class JsonService extends Service{
         
         
     }
+    
     class jsonThread extends Thread{
-        Context context;
+        Context mContext;
         
         public jsonThread(Context context) {
             super();
-            this.context = context;
+            this.mContext = context;
         }
 
         @Override
         public void run() {
             try {
                 System.out.println("socket_thread bagins running");
-                MultiThreadJsonReceiveThread jsonThread= new MultiThreadJsonReceiveThread(context);
+                MultiThreadJsonReceiveThread jsonThread= new MultiThreadJsonReceiveThread(mContext);
                 jsonThread.startThead();
-                
             } catch (IOException e) {
                 e.printStackTrace();
             } 

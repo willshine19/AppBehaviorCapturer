@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.fortysevendeg.android.swipelistview.R;
@@ -44,25 +45,26 @@ import android.widget.Toast;
  * 它的主要用途是将一组数据传到像ListView等UI显示组件，它是继承自接口类Adapter
  */
 public class PackageAdapter extends BaseAdapter {
-    private List<PackageItem> data;
-    private Context context;
+    protected static final String TAG = "PackageAdapter";
+	private List<PackageItem> mPackageItemList;
+    private Context mContext;
     
     /**  
      * 构造函数
      */ 
     public PackageAdapter(Context context, List<PackageItem> data) {//设置数据
-        this.context = context;
-        this.data = data;
+        this.mContext = context;
+        this.mPackageItemList = data;
     }
 
     @Override
     public int getCount() {//返回数组的长度
-        return data.size();
+        return mPackageItemList.size();
     }
 
     @Override
     public PackageItem getItem(int position) {
-        return data.get(position);
+        return mPackageItemList.get(position);
     }
 
     @Override
@@ -72,15 +74,15 @@ public class PackageAdapter extends BaseAdapter {
 
     
     /**  
-     *   静态内部类，存放控件
+     *   静态内部类，存放列表子项的view信息
      */  
     static class ViewHolder {
+    	Button button_open;
+    	Button button_inject;
+    	Button button_uninject;
         ImageView process_image;
         TextView process_title;
         TextView process_description;
-        Button button_open;
-        Button button_inject;
-        Button button_uninject;
         TextView running_status;
     }
     
@@ -90,25 +92,21 @@ public class PackageAdapter extends BaseAdapter {
      */
     @Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
-		final PackageItem item = getItem(position);
 		final ViewHolder holder;
 		
-//		Log.v("position", "position:" + position);
-//		Log.v("convertView", "convertView:" + convertView);
-		 
 		// 观察convertView随ListView滚动情况
 		if (convertView == null) {
-            LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = li.inflate(R.layout.package_row, parent, false);
+            LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = li.inflate(R.layout.package_row, parent, false); // 加载列表子项的布局
             /*得到各个控件的对象*/
             holder = new ViewHolder(); 
+            holder.button_open = (Button) convertView.findViewById(R.id.example_row_b_action_1);
+            holder.button_inject = (Button) convertView.findViewById(R.id.example_row_b_action_2);
+            holder.button_uninject = (Button) convertView.findViewById(R.id.example_row_b_action_3);
             holder.process_image = (ImageView) convertView.findViewById(R.id.example_row_iv_image);
             holder.process_title = (TextView) convertView.findViewById(R.id.example_row_tv_title);
             holder.process_description = (TextView) convertView.findViewById(R.id.example_row_tv_description);
             holder.running_status = (TextView) convertView.findViewById(R.id.sText);
-            holder.button_open = (Button) convertView.findViewById(R.id.example_row_b_action_1);
-            holder.button_inject = (Button) convertView.findViewById(R.id.example_row_b_action_2);
-            holder.button_uninject = (Button) convertView.findViewById(R.id.example_row_b_action_3);
             convertView.setTag(holder);//绑定ViewHolder对象  
         } else {
             holder = (ViewHolder) convertView.getTag();//取出ViewHolder对象 //使用缓存的
@@ -116,8 +114,10 @@ public class PackageAdapter extends BaseAdapter {
 
 		// 自动判断对象是否不再被需要，然后去销毁该对象
         ((SwipeListView) parent).recycle(convertView, position);
-       
+
+        
         /* 设置TextView显示的内容，即我们存放在动态数组中的数据 */
+        final PackageItem item = getItem(position);
         holder.process_image.setImageDrawable(item.getIcon());
         holder.process_title.setText(item.getName());
         holder.process_description.setText(item.getPackageName());
@@ -135,16 +135,14 @@ public class PackageAdapter extends BaseAdapter {
         holder.button_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //修改item状态
-            	holder.running_status.setText("未注入");
-            	item.setRunningStatus(PackageItem.NOT_INJECT);
             	//通过intent启动应用程序
-                Intent intent = context.getPackageManager().getLaunchIntentForPackage(item.getPackageName());
+                Intent intent = mContext.getPackageManager().getLaunchIntentForPackage(item.getPackageName());
                 if (intent != null) {
-                    context.startActivity(intent);
+                    mContext.startActivity(intent);
+                    holder.running_status.setText("未注入");
+                    item.setRunningStatus(PackageItem.NOT_INJECT);
                 } else {
-                    Toast.makeText(context, R.string.cantOpen, Toast.LENGTH_SHORT).show();
-                    holder.running_status.setText("未运行");
+                    Toast.makeText(mContext, R.string.cantOpen, Toast.LENGTH_SHORT).show();
                 }      
             }
         });
@@ -156,14 +154,15 @@ public class PackageAdapter extends BaseAdapter {
             	Process process = null;
         		DataOutputStream os = null;
         		DataInputStream is = null;
+        		BufferedReader reader = null;
         		
         		if (item.getRunningStatus() == PackageItem.NOT_RUNNING ) {
-        		    Toast.makeText(context,"请先点击打开按钮，运行程序",Toast.LENGTH_SHORT).show();
+        		    Toast.makeText(mContext,"请先点击打开按钮，运行程序",Toast.LENGTH_SHORT).show();
         		    return;
         		}
         		
         		if (item.getRunningStatus() == PackageItem.IS_INJECTED) {
-                    Toast.makeText(context,"该程序已被注入成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext,"该程序已被注入成功",Toast.LENGTH_SHORT).show();
                     return;
         		}
         		
@@ -171,7 +170,7 @@ public class PackageAdapter extends BaseAdapter {
         			process = Runtime.getRuntime().exec("su");
         			os = new DataOutputStream(process.getOutputStream());
         			is = new DataInputStream(process.getInputStream());
-        			BufferedReader bfr = new BufferedReader(new InputStreamReader(is));
+        			reader = new BufferedReader(new InputStreamReader(is));
 
         			String pName = item.getPackageName();
         			String packageName = item.getPackageName();
@@ -188,11 +187,12 @@ public class PackageAdapter extends BaseAdapter {
         			os.flush();
         			
         			// 读取输出
-        			while ((line = bfr.readLine()) != null) { 
+        			while ((line = reader.readLine()) != null) { 
         				Log.v("InjectButton", line);
         			}
+        			
         			Log.v("InjectButton", "inject" + packageName + "successfully!");
-        			Toast.makeText(context,"注入成功",Toast.LENGTH_SHORT).show();
+        			Toast.makeText(mContext,"注入成功",Toast.LENGTH_SHORT).show();
         			holder.running_status.setText("已注入");
         			item.setRunningStatus(PackageItem.IS_INJECTED);
         			
@@ -206,8 +206,8 @@ public class PackageAdapter extends BaseAdapter {
 						if (os != null) {
 							os.close();
 						}
-						if (is != null) {
-							is.close();
+						if (reader != null) {
+							reader.close();
 						}
 						process.destroy();
 					} catch (IOException e) {
@@ -224,142 +224,63 @@ public class PackageAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Process process = null;
                     DataOutputStream os = null;
-                    DataInputStream is = null;
+                    BufferedReader reader = null;
                     
                     if(item.getRunningStatus() != PackageItem.IS_INJECTED){
-            		    Toast.makeText(context,"请先注入",Toast.LENGTH_SHORT).show();
+            		    Toast.makeText(mContext,"请先注入",Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     try {
                         process = Runtime.getRuntime().exec("su");
                         os = new DataOutputStream(process.getOutputStream());
-                        is = new DataInputStream(process.getInputStream());
-                        BufferedReader bfr = new BufferedReader(new InputStreamReader(is));
+                        reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
                         String pName = item.getPackageName();
 
-                        String pid = "";
+                        String pid = null;
                         String line = null;
 
                         os.writeBytes("ps\n");
                         os.flush();
-                        while ((line = bfr.readLine()) != null) { // 读取输出
+                        while ((line = reader.readLine()) != null) { // 读取输出
                             if (line.contains(pName)) {
                                 String[] splitline = line.split("\\s+");
                                 pid = splitline[1];
                                 break;
                             }
                         }
-                        os.writeBytes("kill " + pid + "\n");
-                        os.flush();
-                        os.writeBytes("exit\n");
-                        os.flush();
-                        Toast.makeText(context,"解注入成功",Toast.LENGTH_SHORT).show();
+                        if (pid != null) {
+                        	os.writeBytes("kill " + pid + "\n");
+                        	os.flush();
+                        	os.writeBytes("exit\n");
+                        	os.flush();
+                        	Toast.makeText(mContext,"解注入成功",Toast.LENGTH_SHORT).show();
+                        	process.waitFor();
+                        }
                         holder.running_status.setText("未运行");
                         item.setRunningStatus(PackageItem.NOT_RUNNING);
-
-                        process.waitFor();
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							Log.e("Error", e.getMessage());
-							e.printStackTrace();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						Log.e("Error", e.getMessage());
+						e.printStackTrace();
 							// return false;
+					} finally {
+						try {
+							if (os != null) {
+								os.close();
+							}
+							if (reader != null) {
+								reader.close();
+							}
+						} catch (IOException ex) {
+							Log.e(TAG, "关闭流失败");
 						}
 					}
-				});
+				}
+			});
 
         return convertView;//把写入具体函数之后的view返回
     }
-
     
-    /**  
-     * 返回目标进程的pid，通过包名
-     * @param item 包信息
-     * @return 目标进程pid
-     */
-    /*
-	public String findpid(PackageItem item) {
-		Process process = null;
-		DataOutputStream os = null;
-		DataInputStream is = null;
-		String pid = "";
-		try {
-			
-			process = Runtime.getRuntime().exec("su");
-			os = new DataOutputStream(process.getOutputStream());
-			is = new DataInputStream(process.getInputStream());
-			BufferedReader bfr = new BufferedReader(new InputStreamReader(is));
-
-			String pName = item.getPackageName();
-			Log.v("Injector", "packageName :" + pName);
-
-			String line = null;
-
-			os.writeBytes("ps\n");
-			os.flush();
-			os.writeBytes("exit\n");
-			os.flush();
-
-			while ((line = bfr.readLine()) != null) { // 读取输出
-				if (line.contains(pName)) {
-					String[] splitline = line.split("\\s+");
-					pid = splitline[1];
-					break;
-				}
-			}
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			Log.e("Error", e.getMessage());
-			e.printStackTrace();
-		}
-		return pid;
-	}
-	*/
-    
-   /* public int setcolor(PackageItem item){
-    	Process process = null;
-		DataOutputStream os = null;
-		DataInputStream is = null;
-		
-		String pid;	
-		pid=findpid(item);
-		if(pid==""){
-			return 0;
-		}
-		
-		try {
-			
-			process = Runtime.getRuntime().exec("su");
-			os = new DataOutputStream(process.getOutputStream());
-			is = new DataInputStream(process.getInputStream());
-			BufferedReader bfr = new BufferedReader(new InputStreamReader(is));
-
-			String pName = item.getPackageName();
-			Log.v("Injector", "packageName :" + pName);
-
-			String line = null;
-
-			os.writeBytes("cat /proc/"+pid+"/maps | grep liballhookinone.so\n");
-			os.flush();
-   			os.writeBytes("exit\n");
-			os.flush();	
-			Log.v("Injector", "Not been injected");   
-			
-			while ((line = bfr.readLine()) != null) { // 读取输出
-				if (line.contains("liballhookinone.so")) {
-					Log.v("Injector", "Has been injected");
-					return 1;//已注入
-				}
-			}
-			process.waitFor();
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			Log.e("Error", e.getMessage());
-			e.printStackTrace();
-		} 
-		return 2;//未注入
-    }*/
 }
