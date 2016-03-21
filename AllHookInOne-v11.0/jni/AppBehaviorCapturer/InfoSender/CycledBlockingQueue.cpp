@@ -53,6 +53,7 @@ int CycledBlockingQueue::getNowAvailablePosition() {
 	LOGD("[队列]写指针 is %d, 读指针 is %d, 队列总容量 is %d", writePointer, readPointer, capacity);
 	if (((writePointer + 1) & (this->capacity - 1)) == readPointer) { //is full?
 		LOGD("[CycedBlockingQueue] Get now available position failed!!!");
+		pthread_mutex_unlock(&queue_write_mutex);
 		return -1;
 	}
 	int ret = writePointer;

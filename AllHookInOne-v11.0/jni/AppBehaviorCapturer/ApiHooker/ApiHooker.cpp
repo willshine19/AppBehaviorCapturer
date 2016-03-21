@@ -36,8 +36,8 @@ bool ApiHooker::collectBaseInfo() {
 	if (threadId == 0) {
 		LOGE("getThreadID falied");
 	}
-	pthread_mutex_t* mutex =
-			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucketMutex);
+//	pthread_mutex_t* mutex =
+//			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucketMutex);
 //	pthread_mutex_lock(mutex); 不注释会死锁
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setClassName(
 			this->mApiDeclaration.getClassName());
@@ -51,6 +51,8 @@ bool ApiHooker::collectBaseInfo() {
 			ApiHookerManager::getInstance()->mContextInfo);
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setFatherThreadId(
 			getFatherId());
+	pthread_mutex_t* mutex =
+				&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucketMutex);
 	pthread_mutex_unlock(mutex);
 	return true;
 }

@@ -390,7 +390,7 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 	}
 	ApiHooker* tempApiHooker = iElementFound->second;
 	//	LOGD("调用ApiHooker的main()函数;");
-	tempApiHooker->main(args);
+//	tempApiHooker->main(args);
 	//取出对应ApiHooker中保存的HookInfo结构体，内部保存的是对应temp API的信息
 	HookInfo* info = &(iElementFound->second->save);
 	Method* originalMethod = reinterpret_cast<Method*>(info->originalMethod); //强转
@@ -405,6 +405,7 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 			true); //obj是this或者null（如果是static方法），method可以直接使用hook之前copy的对象
 	pResult->l = (void*) result;
 
+	tempApiHooker->main(args);
 	tempApiHooker->parseResult(result); //解析返回参数
 	tempApiHooker->collectBaseInfo(); //将获取信息存到发送队列
 	dvmReleaseTrackedAlloc((Object *) argTypes, self); //释放内存
