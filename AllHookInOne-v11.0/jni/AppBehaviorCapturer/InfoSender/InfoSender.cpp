@@ -49,7 +49,7 @@ InfoSender* InfoSender::getInstance() {
  */
 void* InfoSender::readFromQueue(void* arg) {
 	LOGD("create reading thread successfully");
-	int count;
+	int count=1;
 	TimeUtils* timeUtils = TimeUtils::getInstance();
 	string json;//待发送的json字符串
 
