@@ -1,27 +1,24 @@
 
-package com.fortysevendeg.android.swipelistview.sample.activities;
+package com.android.swipelistview.sample.activities;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.widget.TextView;
-import com.fortysevendeg.android.swipelistview.sample.activities.SwipeListViewExampleActivity;
-import com.fortysevendeg.android.swipelistview.sample.activities.SplashScreen;
-import com.fortysevendeg.android.swipelistview.sample.adapters.PackageItem;
-import com.fortysevendeg.android.swipelistview.sample.adapters.PackageItemModel;
+
+import com.android.swipelistview.sample.adapters.PackageItem;
+import com.android.swipelistview.sample.adapters.PackageItemModel;
 import com.fortysevendeg.android.swipelistview.R;
 
 /**  

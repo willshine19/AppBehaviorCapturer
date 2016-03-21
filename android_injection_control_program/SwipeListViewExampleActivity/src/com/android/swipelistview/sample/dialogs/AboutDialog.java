@@ -16,7 +16,7 @@
  *  limitations under the License.
  */
 
-package com.fortysevendeg.android.swipelistview.sample.dialogs;
+package com.android.swipelistview.sample.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -28,8 +28,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.CheckBox;
+
+import com.android.swipelistview.sample.utils.PreferencesManager;
 import com.fortysevendeg.android.swipelistview.R;
-import com.fortysevendeg.android.swipelistview.sample.utils.PreferencesManager;
 
 public class AboutDialog extends DialogFragment {
 
@@ -63,10 +64,10 @@ public class AboutDialog extends DialogFragment {
                         PreferencesManager.getInstance(getActivity()).setShowAbout(!checkBox.isChecked());//如果用过则不加载
                     }
                 })
-                .setNegativeButton(R.string.visit47, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.designer, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String url = "http://47deg.com";
+                        String url = "http:";
                         Intent i = new Intent(Intent.ACTION_VIEW);
                         i.setData(Uri.parse(url));
                         startActivity(i);
@@ -75,7 +76,7 @@ public class AboutDialog extends DialogFragment {
                 .setNeutralButton(R.string.goToGitHub, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String url = "https://github.com/47deg/android-swipelistview";
+                        String url = "https:";
                         Intent i = new Intent(Intent.ACTION_VIEW);
                         i.setData(Uri.parse(url));
                         startActivity(i);

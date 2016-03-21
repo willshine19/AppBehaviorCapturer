@@ -16,9 +16,9 @@
  *  limitations under the License.
  */
 
-package com.fortysevendeg.android.swipelistview.sample.utils;
+package com.android.swipelistview.sample.utils;
 
-import com.fortysevendeg.android.swipelistview.SwipeListView;
+import com.android.swipelistview.SwipeListView;
 
 public class SettingsManager {//设置界面的数据读写,父类
 

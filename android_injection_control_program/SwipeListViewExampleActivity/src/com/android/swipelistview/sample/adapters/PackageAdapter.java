@@ -16,18 +16,18 @@
  *  limitations under the License.
  */
 
-package com.fortysevendeg.android.swipelistview.sample.adapters;
+package com.android.swipelistview.sample.adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.*;
+
+import com.android.swipelistview.SwipeListView;
 import com.fortysevendeg.android.swipelistview.R;
-import com.fortysevendeg.android.swipelistview.SwipeListView;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

@@ -16,16 +16,13 @@
  *  limitations under the License.
  */
 
-package com.fortysevendeg.android.swipelistview.sample.activities;
+package com.android.swipelistview.sample.activities;
 
 import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -38,24 +35,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.ListView;
-import com.fortysevendeg.android.swipelistview.BaseSwipeListViewListener;
+
+import com.android.swipelistview.BaseSwipeListViewListener;
+import com.android.swipelistview.SwipeListView;
+import com.android.swipelistview.sample.adapters.PackageAdapter;
+import com.android.swipelistview.sample.adapters.PackageItem;
+import com.android.swipelistview.sample.adapters.PackageItemModel;
+import com.android.swipelistview.sample.utils.SettingsManager;
 import com.fortysevendeg.android.swipelistview.R;
-import com.fortysevendeg.android.swipelistview.SwipeListView;
-import com.fortysevendeg.android.swipelistview.sample.adapters.PackageAdapter;
-import com.fortysevendeg.android.swipelistview.sample.adapters.PackageItem;
-import com.fortysevendeg.android.swipelistview.sample.adapters.PackageItemModel;
-import com.fortysevendeg.android.swipelistview.sample.dialogs.AboutDialog;
-import com.fortysevendeg.android.swipelistview.sample.utils.PreferencesManager;
-import com.fortysevendeg.android.swipelistview.sample.utils.SettingsManager;
 import com.lwl.service.JsonService;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class SwipeListViewExampleActivity extends FragmentActivity {
 

@@ -12,7 +12,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.support.v4.util.TimeUtils;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 

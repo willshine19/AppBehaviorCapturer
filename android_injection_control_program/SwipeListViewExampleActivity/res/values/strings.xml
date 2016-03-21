@@ -44,11 +44,11 @@
     <string name="openOnLongPress">Open On Long Press</string>
 
     <string name="about">About</string>
-    <string name="aboutMessage">This is just a simple demo for the Open Source SwipeListView Android Library by 47 Degrees. Find all source, documentation and packaged downloads at GitHub. Cheers!</string>
+    <string name="aboutMessage">design by wsn</string>
     <string name="ok">Ok</string>
 
-    <string name="visit47">关于demo</string>
-    <string name="goToGitHub">关于作者 </string>
+    <string name="designer">关于作者</string>
+    <string name="goToGitHub">关于demo </string>
 
     <string name="dontShow">Don\'t show this message again</string>
     <string name="others">Others</string>

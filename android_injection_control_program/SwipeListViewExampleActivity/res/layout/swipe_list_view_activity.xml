@@ -23,7 +23,7 @@
     android:background="@color/background_app"
     android:orientation="vertical" >
 
-    <com.fortysevendeg.android.swipelistview.SwipeListView
+    <com.android.swipelistview.SwipeListView
         xmlns:swipe="http://schemas.android.com/apk/res-auto"
         android:id="@+id/example_lv_list"
         android:layout_width="fill_parent"

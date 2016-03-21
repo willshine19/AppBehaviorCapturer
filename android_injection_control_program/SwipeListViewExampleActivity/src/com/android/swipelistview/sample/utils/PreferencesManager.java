@@ -16,7 +16,7 @@
  *  limitations under the License.
  */
 
-package com.fortysevendeg.android.swipelistview.sample.utils;
+package com.android.swipelistview.sample.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

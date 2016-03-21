@@ -37,7 +37,7 @@
         android:icon="@drawable/icon"
         android:label="@string/appName" >
         <activity
-            android:name=".sample.activities.SplashScreen"
+            android:name="com.android.swipelistview.sample.activities.SplashScreen"
             android:label="@string/appName"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
             <intent-filter>
@@ -46,13 +46,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".sample.activities.SwipeListViewExampleActivity"
+            android:name="com.android.swipelistview.sample.activities.SwipeListViewExampleActivity"
             android:hardwareAccelerated="true"
             android:label="@string/appName"
             android:theme="@style/Theme.SwipeListView" >
         </activity>
         <activity
-            android:name=".sample.activities.SettingsActivity"
+            android:name="com.android.swipelistview.sample.activities.SettingsActivity"
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
         <service android:name="com.lwl.service.JsonService" >

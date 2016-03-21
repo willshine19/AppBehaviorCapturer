@@ -18,7 +18,7 @@
  * limitations under the License.
  */
 
-package com.fortysevendeg.android.swipelistview;
+package com.android.swipelistview;
 
 import android.graphics.Rect;
 import android.os.Build;

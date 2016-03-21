@@ -1,4 +1,4 @@
-package com.fortysevendeg.android.swipelistview;
+package com.android.swipelistview;
 
 public class BaseSwipeListViewListener implements SwipeListViewListener {
     @Override

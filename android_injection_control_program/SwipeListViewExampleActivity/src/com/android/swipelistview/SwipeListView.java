@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.fortysevendeg.android.swipelistview;
+package com.android.swipelistview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -33,7 +33,8 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import com.fortysevendeg.swipelistview.R;
+import com.fortysevendeg.android.swipelistview.R;
+
 
 /**
  * ListView subclass that provides the swipe functionality

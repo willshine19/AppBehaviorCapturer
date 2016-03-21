@@ -16,7 +16,7 @@
  *  limitations under the License.
  */
 
-package com.fortysevendeg.android.swipelistview.sample.adapters;
+package com.android.swipelistview.sample.adapters;
 
 //import java.io.Serializable;
 
