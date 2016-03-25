@@ -50,7 +50,7 @@ CycledBlockingQueue::~CycledBlockingQueue() {
  */
 int CycledBlockingQueue::getNowAvailablePosition() {
 	pthread_mutex_lock(&queue_write_mutex);
-	LOGD("[队列]写指针 is %d, 读指针 is %d, 队列总容量 is %d", writePointer, readPointer, capacity);
+	LOGD("[w][申请队列]写指针 is %d, 读指针 is %d, 队列总容量 is %d", writePointer, readPointer, capacity);
 	if (((writePointer + 1) & (this->capacity - 1)) == readPointer) { //is full?
 		LOGD("[CycedBlockingQueue] Get now available position failed!!!");
 		pthread_mutex_unlock(&queue_write_mutex);
@@ -83,8 +83,11 @@ bool CycledBlockingQueue::push(CollectedApiInfo apiInfo) {
  * 返回：CollectedApiInfo实例
  */
 CollectedApiInfo CycledBlockingQueue::send() {
+	LOGI("[r]befor lock bucketMutex %d",readPointer);
 	pthread_mutex_lock(&(queue[readPointer].bucketMutex));
+	LOGI("[r]after lock bucketMutex %d",readPointer);
 	int read_point = readPointer;
 	readPointer = (readPointer + 1) & (capacity - 1);
+	LOGI("[r]before return, read_point = %d, readPointer = %d",read_point,readPointer);
 	return queue[read_point].mCollectedApiInfo;
 }

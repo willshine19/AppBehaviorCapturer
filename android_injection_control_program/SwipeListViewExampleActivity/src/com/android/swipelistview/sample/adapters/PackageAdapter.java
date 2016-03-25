@@ -191,7 +191,7 @@ public class PackageAdapter extends BaseAdapter {
         				Log.v("InjectButton", line);
         			}
         			
-        			Log.v("InjectButton", "inject" + packageName + "successfully!");
+        			Log.v("InjectButton", "inject " + packageName + " successfully!");
         			Toast.makeText(mContext,"注入成功",Toast.LENGTH_SHORT).show();
         			holder.running_status.setText("已注入");
         			item.setRunningStatus(PackageItem.IS_INJECTED);

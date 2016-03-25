@@ -226,27 +226,30 @@ ClassObject* dvmFindClass(const char *classDesc) {
  *
  */
 ArrayObject* dvmBoxMethodArgs(const Method* method, const u4* args) {
+	LOGD("[w]1.5.1");
 	const char* desc = &method->shorty[1]; // [0] is the return type.
-
+	LOGD("[w]1.5.2");
 	/* count args */
 	size_t argCount = dexProtoGetParameterCount(&method->prototype);
+	LOGD("[w]1.5.3");
 	ClassObject* java_lang_object_array = dvmFindSystemClass(
 			"[Ljava/lang/Object;");
-
+	LOGD("[w]1.5.4");
 	/* allocate storage */
 	ArrayObject* argArray = dvmAllocArrayByClass(java_lang_object_array,
 			argCount, ALLOC_DEFAULT);
+	LOGD("[w]1.5.5");
 	if (argArray == NULL)
 		return NULL;
 	Object** argObjects = (Object**) (void*) argArray->contents;
-
+	LOGD("[w]1.5.6");
 	// Fill in the array.
 	size_t srcIndex = 0;
 	size_t dstIndex = 0;
 	while (*desc != '\0') {
 		char descChar = *(desc++);
 		JValue value;
-
+		LOGD("[w]1.5.7while");
 		switch (descChar) {
 		case 'Z':
 		case 'C':
@@ -276,6 +279,7 @@ ArrayObject* dvmBoxMethodArgs(const Method* method, const u4* args) {
 			break;
 		}
 	}
+	LOGD("[w]1.5.8");
 	return argArray;
 }
 
@@ -365,13 +369,13 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 
 	// 在哈希表中查找该方法
 	const char* temp = method->name;
-	LOGD("method_handler[%s]----------------end------------------", temp);
+	LOGD("[w]0 method_handler of %s----------------begin------------------", temp);
 	//获取ApiHookerManager中的mApiHookerHashMap中的对应temp的键值对
 	auto iElementFound =
 			ApiHookerManager::getInstance()->mApiHookerHashMap.find(temp);
 	if (iElementFound
 			!= ApiHookerManager::getInstance()->mApiHookerHashMap.end()) {
-		LOGD("find %s in mApiHookerHashMap", temp);
+//		LOGD("find %s in mApiHookerHashMap", temp);
 	} else {
 		char* tmp = (char*) malloc(
 				strlen(method->name) + strlen(method->clazz->descriptor) + 1);
@@ -381,35 +385,45 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 				tmp);
 		if (iElementFound
 				!= ApiHookerManager::getInstance()->mApiHookerHashMap.end()) {
-			LOGD("find %s in mApiHookerHashMap", tmp);
+//			LOGD("find %s in mApiHookerHashMap", tmp);
 			free(tmp);
 		} else {
 			LOGE("can not find %s in mApiHookerHashMap!", temp);
 			return;
 		}
 	}
+	LOGD("[w]1");
 	ApiHooker* tempApiHooker = iElementFound->second;
 	//	LOGD("调用ApiHooker的main()函数;");
 //	tempApiHooker->main(args);
 	//取出对应ApiHooker中保存的HookInfo结构体，内部保存的是对应temp API的信息
+	LOGD("[w]1.1");
 	HookInfo* info = &(iElementFound->second->save);
+	LOGD("[w]1.2");
 	Method* originalMethod = reinterpret_cast<Method*>(info->originalMethod); //强转
+	LOGD("[w]1.3");
 	Object* thisObject = !info->isStaticMethod ? (Object*) args[0] : NULL; //输入参数
-
+	LOGD("[w]1.4");
 	const char* desc = originalMethod->shorty; //方法介绍
+	LOGD("[w]1.5");
 	ArrayObject* argTypes = dvmBoxMethodArgs(originalMethod,
 			info->isStaticMethod ? args : args + 1); //返回参数个数
+	LOGD("[w]1.6");
 	// 关键：调用原方法
 	Object* result = dvmInvokeMethod(thisObject, originalMethod, argTypes,
 			(ArrayObject *) info->paramTypes, (ClassObject *) info->returnType,
 			true); //obj是this或者null（如果是static方法），method可以直接使用hook之前copy的对象
+	LOGD("[w]1.7");
 	pResult->l = (void*) result;
-
+	LOGD("[w]2");
 	tempApiHooker->main(args);
+	LOGD("[w]3");
 	tempApiHooker->parseResult(result); //解析返回参数
+	LOGD("[w]4");
 	tempApiHooker->collectBaseInfo(); //将获取信息存到发送队列
+	LOGD("[w]5");
 	dvmReleaseTrackedAlloc((Object *) argTypes, self); //释放内存
-	LOGD("method_handler[%s]----------------end------------------", temp);
+	LOGD("[w]6 method_handler of %s----------------end------------------", temp);
 }
 
 /**

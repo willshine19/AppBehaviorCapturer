@@ -64,7 +64,7 @@ long ApiHooker::getFatherId() {
 	if (mMapFound != (ThreadMap::getInstance()->mpid_father_son_Map).end()) {
 		return mMapFound->second;
 	} else
-		LOGD("This thread don't have a father thread");
+//		LOGD("This thread don't have a father thread");
 	return 0;
 }
 

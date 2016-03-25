@@ -89,7 +89,7 @@ string CollectedApiInfo::convertToJson() {
 	string out = root.toStyledString();
 //	const char* out = root.asCString();
 //	temp = root.asString();
-	LOGD("CollectedApiInfo类正在转换json，输出为%s", out.data());
+	LOGD("[r]CollectedApiInfo类正在转换json，输出为%s", out.data());
 	return out;
 }
 
