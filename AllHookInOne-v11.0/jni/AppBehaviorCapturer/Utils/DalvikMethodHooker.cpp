@@ -369,7 +369,8 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 
 	// 在哈希表中查找该方法
 	const char* temp = method->name;
-	LOGD("[w]0 method_handler of %s----------------begin------------------", temp);
+	LOGD(
+			"[w]0 method_handler of %s----------------begin------------------", temp);
 	//获取ApiHookerManager中的mApiHookerHashMap中的对应temp的键值对
 	auto iElementFound =
 			ApiHookerManager::getInstance()->mApiHookerHashMap.find(temp);
@@ -416,14 +417,16 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 	LOGD("[w]1.7");
 	pResult->l = (void*) result;
 	LOGD("[w]2");
-	tempApiHooker->main(args);
-	LOGD("[w]3");
-	tempApiHooker->parseResult(result); //解析返回参数
-	LOGD("[w]4");
-	tempApiHooker->collectBaseInfo(); //将获取信息存到发送队列
+	if (tempApiHooker->main(args)) {
+		LOGD("[w]3");
+		tempApiHooker->parseResult(result); //解析返回参数
+		LOGD("[w]4");
+		tempApiHooker->collectBaseInfo(); //将获取信息存到发送队列
+	}
 	LOGD("[w]5");
 	dvmReleaseTrackedAlloc((Object *) argTypes, self); //释放内存
-	LOGD("[w]6 method_handler of %s----------------end------------------", temp);
+	LOGD(
+			"[w]6 method_handler of %s----------------end------------------", temp);
 }
 
 /**
@@ -459,13 +462,14 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 		LOGE("[-] %s->%s method not found", classDesc, methodName);
 		return -1;
 	}
-	LOGD("-------------------MethodId %s has found in %s", methodName,
-			classDesc);
+	LOGD(
+			"-------------------MethodId %s has found in %s", methodName, classDesc);
 
 	// step 4 判断该方法是否已经被hook过
 	Method* method = (Method*) methodId;
 	if (method->nativeFunc == methodHandler) {
-		LOGW("[*] %s->%s method had been hooked", classDesc, methodName); // 该方法已经被hook过了
+		LOGW("[*] %s->%s method had been hooked", classDesc, methodName);
+		// 该方法已经被hook过了
 		return -1;
 	}
 
@@ -492,7 +496,8 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 	LOGD("argsSize=%d", argsSize);
 
 	// step 8 修改 method结构体
-	SET_METHOD_FLAG(method, ACC_NATIVE); // 修改 method->accessFlags 为 ACC_NATIVE
+	SET_METHOD_FLAG(method, ACC_NATIVE);
+	// 修改 method->accessFlags 为 ACC_NATIVE
 	method->registersSize = method->insSize = argsSize;
 	method->outsSize = 0;
 	method->jniArgInfo = dvmComputeJniArgInfo(method->shorty);

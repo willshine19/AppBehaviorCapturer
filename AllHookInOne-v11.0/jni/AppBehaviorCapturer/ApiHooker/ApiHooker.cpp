@@ -85,6 +85,7 @@ bool ApiHooker::main(const u4* args) {
 	//申请队列空闲位置
 	this->mQueuePosition =
 			InfoSender::mCycledBlockingQueue->getNowAvailablePosition();
+	if(mQueuePosition==-1)return false;
 	parseParameter(args);
 //	collectBaseInfo();
 //	saveToQueue();
