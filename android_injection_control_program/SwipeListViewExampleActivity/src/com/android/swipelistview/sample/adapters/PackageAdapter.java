@@ -28,6 +28,7 @@ import android.widget.*;
 
 import com.android.swipelistview.SwipeListView;
 import com.fortysevendeg.android.swipelistview.R;
+import com.fortysevendeg.android.swipelistview.R.id;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -80,6 +81,8 @@ public class PackageAdapter extends BaseAdapter {
     	Button button_open;
     	Button button_inject;
     	Button button_uninject;
+    	Button button_strace;
+    	Button button_pack;
         ImageView process_image;
         TextView process_title;
         TextView process_description;
@@ -103,6 +106,8 @@ public class PackageAdapter extends BaseAdapter {
             holder.button_open = (Button) convertView.findViewById(R.id.example_row_b_action_1);
             holder.button_inject = (Button) convertView.findViewById(R.id.example_row_b_action_2);
             holder.button_uninject = (Button) convertView.findViewById(R.id.example_row_b_action_3);
+            holder.button_strace = (Button) convertView.findViewById(id.example_row_b_action_4);
+            holder.button_pack = (Button) convertView.findViewById(id.example_row_b_action_5);
             holder.process_image = (ImageView) convertView.findViewById(R.id.example_row_iv_image);
             holder.process_title = (TextView) convertView.findViewById(R.id.example_row_tv_title);
             holder.process_description = (TextView) convertView.findViewById(R.id.example_row_tv_description);
@@ -174,8 +179,8 @@ public class PackageAdapter extends BaseAdapter {
 
         			String pName = item.getPackageName();
         			String packageName = item.getPackageName();
-        			Log.v("InjectButton", "pName :" + pName);
-        			Log.v("InjectButton", "packageName :" + packageName);
+        			Log.v(TAG, "pName :" + pName);
+        			Log.v(TAG, "packageName :" + packageName);
 
         			String line = null;
 
@@ -188,10 +193,10 @@ public class PackageAdapter extends BaseAdapter {
         			
         			// 读取输出
         			while ((line = reader.readLine()) != null) { 
-        				Log.v("InjectButton", line);
+        				Log.v(TAG, line);
         			}
         			
-        			Log.v("InjectButton", "inject " + packageName + " successfully!");
+        			Log.v(TAG, "inject " + packageName + " successfully!");
         			Toast.makeText(mContext,"注入成功",Toast.LENGTH_SHORT).show();
         			holder.running_status.setText("已注入");
         			item.setRunningStatus(PackageItem.IS_INJECTED);
@@ -279,7 +284,21 @@ public class PackageAdapter extends BaseAdapter {
 					}
 				}
 			});
-
+        holder.button_strace.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Log.v(TAG, "in button_strace");
+			}
+		});
+        
+        holder.button_pack.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Log.v(TAG, "in button_pack");
+			}
+		});
         return convertView;//把写入具体函数之后的view返回
     }
     

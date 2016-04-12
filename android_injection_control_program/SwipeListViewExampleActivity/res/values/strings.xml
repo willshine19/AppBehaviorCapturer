@@ -23,7 +23,9 @@
     <string name="open">运行</string>
     <string name="googlePlay">注入</string>
     <string name="uninstall">解注入</string>
-
+    <string name="strace">strace</string>
+    <string name="pack">pack</string>
+    
     
     <string name="cantOpen">Can\'t open this application</string>
     <string name="settings">Settings</string>
