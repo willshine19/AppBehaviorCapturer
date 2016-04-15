@@ -235,7 +235,7 @@ public class PackageAdapter extends BaseAdapter {
 						if (reader != null) {
 							reader.close();
 						}
-						process.destroy();
+//						process.destroy();
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -324,7 +324,10 @@ public class PackageAdapter extends BaseAdapter {
 
 						Log.v(TAG, "******************pid:" + pid
 								+ "*********************");
-
+						os.writeBytes("mkdir " + fileDir + "\n");
+						Log.v(TAG, "mkdir " + fileDir + "\n");
+						os.writeBytes("chmod 755 " + fileDir + "\n");
+						Log.v(TAG, "chmod 755 " + fileDir + "\n");
 						os.writeBytes("strace -ff -v -tt -o " + fileDir
 								+ "a -p " + pid + "\n");
 						Log.v(TAG, "strace -ff -v -tt -o " + fileDir + "a -p "
@@ -352,7 +355,7 @@ public class PackageAdapter extends BaseAdapter {
 				if (saveTIDsToArray()) {
 					// 初始大小为size-1，排除最初父线程
 					if (allThreadNum.size() < 1) {
-						Log.e("strace", "no thread!!! cannot init hashmap!!!");
+						Log.e(TAG, "no thread!!! cannot init hashmap!!!");
 						return;
 					}
 					ptidMap = new HashMap<String, String>(
@@ -363,8 +366,9 @@ public class PackageAdapter extends BaseAdapter {
 					}
 
 					for (int i = 0; i < allThreadNum.size(); ++i) {
-						Log.v(TAG, "" + allThreadNum.get(i) + "->"
-								+ ptidMap.get(allThreadNum.get(i)));
+						Log.v(TAG,
+								"" + allThreadNum.get(i) + "->"
+										+ ptidMap.get(allThreadNum.get(i)));
 					}
 				} else {
 					Log.v(TAG, "save failed!!!");
@@ -380,9 +384,9 @@ public class PackageAdapter extends BaseAdapter {
 		});
 		return convertView;// 把写入具体函数之后的view返回
 	}
-	
+
 	/**
-	 * 销毁函数 先销毁生成的目录文件/data/local/a TODO 同样需要销毁/data/local/strace/文件夹^-^
+	 * 销毁函数 先销毁生成的目录文件/data/local/a 同样需要销毁/data/local/strace/文件夹^-^
 	 */
 	public void destroy() {
 		Process process = null;
@@ -395,7 +399,7 @@ public class PackageAdapter extends BaseAdapter {
 			Thread.sleep(1000);
 			os.writeBytes("rm /data/local/a\n");
 			os.flush();
-			os.writeBytes("rm /data/local/strace/*\n");
+			os.writeBytes("rm -r /data/local/strace\n");
 			os.flush();
 			// Log.v(TAG, "/data/local/a destroyed!!!");
 			os.writeBytes("exit\n");
@@ -411,12 +415,13 @@ public class PackageAdapter extends BaseAdapter {
 				if (is != null) {
 					is.close();
 				}
-				process.destroy();
+//				process.destroy();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
+
 	/**
 	 * 将每个线程的strace结果打包JSON
 	 */
@@ -566,15 +571,15 @@ public class PackageAdapter extends BaseAdapter {
 			Thread.sleep(3000);
 			// 将strace的结果文件提权，以便今后读取
 			os.writeBytes("chmod -R 755 " + fileDir + "*\n");
-			// Log.v(TAG, "chmod -R 755 " + fileDir + "*\n");
+			 Log.v(TAG, "chmod -R 755 " + fileDir + "*\n");
 			os.flush();
 			// 将ls结果输出到文件a
 			os.writeBytes("ls /data/local/strace >> /data/local/a\n");
-			// Log.v(TAG, "ls /data/local/strace >> /data/local/a\n");
+			 Log.v(TAG, "ls /data/local/strace >> /data/local/a\n");
 			os.flush();
 			// 将a文件提权，以便今后读取
 			os.writeBytes("chmod 755 /data/local/a\n");
-			// Log.v(TAG, "chmod 755 /data/local/a\n");
+			 Log.v(TAG, "chmod 755 /data/local/a\n");
 			os.flush();
 			os.writeBytes("exit\n");
 			os.flush();
@@ -590,7 +595,7 @@ public class PackageAdapter extends BaseAdapter {
 				if (is != null) {
 					is.close();
 				}
-				process.destroy();
+//				process.destroy();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -645,7 +650,7 @@ public class PackageAdapter extends BaseAdapter {
 				if (is != null) {
 					is.close();
 				}
-				process.destroy();
+//				process.destroy();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
