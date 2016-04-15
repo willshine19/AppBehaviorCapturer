@@ -27,14 +27,19 @@ import android.view.ViewGroup;
 import android.widget.*;
 
 import com.android.swipelistview.SwipeListView;
+import com.android.swipelistview.sample.adapters.StraceJSON;
 import com.fortysevendeg.android.swipelistview.R;
 import com.fortysevendeg.android.swipelistview.R.id;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.widget.Toast;
@@ -45,8 +50,16 @@ import android.widget.Toast;
  */
 public class PackageAdapter extends BaseAdapter {
 	protected static final String TAG = "PackageAdapter";
+	// 用于填充JSON里的num项，计数用？
+	private int count = 0;
+	// 该线程号，现在就只能跟踪单个进程
+	private String mPid;
 	// 文件的暂存地址
 	private String fileDir = "/data/local/strace/";
+	// 捕获到的所有线程（进程）号
+	private ArrayList<String> allThreadNum = new ArrayList<String>();
+	// 一个所有“进程-父进程”对的映射表
+	private HashMap<String, String> ptidMap;
 	private List<PackageItem> mPackageItemList;
 	private Context mContext;
 
@@ -212,7 +225,6 @@ public class PackageAdapter extends BaseAdapter {
 
 					process.waitFor();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					Log.e("Error", e.getMessage());
 					e.printStackTrace();
 				} finally {
@@ -225,7 +237,6 @@ public class PackageAdapter extends BaseAdapter {
 						}
 						process.destroy();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -278,7 +289,6 @@ public class PackageAdapter extends BaseAdapter {
 							holder.running_status.setText("未运行");
 							item.setRunningStatus(PackageItem.NOT_RUNNING);
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
 							Log.e("Error", e.getMessage());
 							e.printStackTrace();
 							// return false;
@@ -305,6 +315,7 @@ public class PackageAdapter extends BaseAdapter {
 				Log.v(TAG, "" + packageName);
 				String pid = getPID(packageName);
 				if (pid != "") {
+					mPid = pid;
 					Process process = null;
 					DataOutputStream os = null;
 					try {
@@ -337,9 +348,253 @@ public class PackageAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				Log.v(TAG, "in button_pack");
+				chgModandGetTIDsToFile();
+				if (saveTIDsToArray()) {
+					// 初始大小为size-1，排除最初父线程
+					if (allThreadNum.size() < 1) {
+						Log.e("strace", "no thread!!! cannot init hashmap!!!");
+						return;
+					}
+					ptidMap = new HashMap<String, String>(
+							allThreadNum.size() - 1);
+					for (int i = 0; i < allThreadNum.size(); ++i) {
+						// Log.v(TAG,""+i+":----GETPIDMAP------"+allThreadNum.get(i)+"-----");
+						getPTIDMap(allThreadNum.get(i));
+					}
+
+					for (int i = 0; i < allThreadNum.size(); ++i) {
+						Log.v(TAG, "" + allThreadNum.get(i) + "->"
+								+ ptidMap.get(allThreadNum.get(i)));
+					}
+				} else {
+					Log.v(TAG, "save failed!!!");
+				}
+				for (int i = 0; i < allThreadNum.size(); ++i) {
+					// Log.v(TAG,""+i+":----GETPIDMAP------"+allThreadNum.get(i)+"-----");
+					packThreadResultToJSON(allThreadNum.get(i));
+				}
+				Log.v(TAG, "before destroy()");
+				destroy();
+				Log.v(TAG, "destroyed!!!");
 			}
 		});
 		return convertView;// 把写入具体函数之后的view返回
+	}
+	
+	/**
+	 * 销毁函数 先销毁生成的目录文件/data/local/a TODO 同样需要销毁/data/local/strace/文件夹^-^
+	 */
+	public void destroy() {
+		Process process = null;
+		DataOutputStream os = null;
+		DataInputStream is = null;
+		try {
+			process = Runtime.getRuntime().exec("su");
+			os = new DataOutputStream(process.getOutputStream());
+			is = new DataInputStream(process.getInputStream());
+			Thread.sleep(1000);
+			os.writeBytes("rm /data/local/a\n");
+			os.flush();
+			os.writeBytes("rm /data/local/strace/*\n");
+			os.flush();
+			// Log.v(TAG, "/data/local/a destroyed!!!");
+			os.writeBytes("exit\n");
+			os.flush();
+		} catch (Exception e) {
+			Log.e("Error", e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				if (os != null) {
+					os.close();
+				}
+				if (is != null) {
+					is.close();
+				}
+				process.destroy();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	/**
+	 * 将每个线程的strace结果打包JSON
+	 */
+	public void packThreadResultToJSON(String tid) {
+		File file = new File("" + fileDir + "a." + tid);
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String tString = null;
+			StraceJSON tStraceJSON = new StraceJSON();
+			System.out.println("ok");
+			while ((tString = reader.readLine()) != null) {
+				Log.v(TAG, tString);
+				/**
+				 * 先排除特殊情况: +++ SIG KILL +++ <unfinished ...> --- {sig ...} ---
+				 */
+				// if
+				// (tString.contains("+++")||tString.contains("unfinished")||tString.contains("---"))
+				// {
+				// Log.v(TAG,tString);
+				// Log.e("strace", "LAST LINE!!!");
+				// } else {
+				++count;
+				tStraceJSON.reset();
+				tStraceJSON.mNum = "" + count;
+
+				String[] tSplit = tString.split(" ", 2);
+				tStraceJSON.mTime = tSplit[0];
+				if (tSplit.length < 2)
+					break;
+				tSplit = tSplit[1].split("\\(", 2);
+				tStraceJSON.mName = tSplit[0];
+				if (tSplit.length < 2)
+					break;
+				tSplit = tSplit[1].split("\\)", 2);
+				tStraceJSON.mPara = tSplit[0];
+				if (tSplit.length < 2)
+					break;
+				tSplit = tSplit[1].split("\\s+", 3);
+				if (tSplit.length < 3)
+					break;
+				tStraceJSON.mRes = tSplit[2];
+
+				tStraceJSON.mPID = mPid;
+				tStraceJSON.mTID = tid;
+				tStraceJSON.mPTID = ptidMap.get(tid);
+				tStraceJSON.show();
+			}
+			// }
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e1) {
+				}
+			}
+		}
+	}
+
+	/**
+	 * 在线程号为tid的结果文件中扫描clone，填充进程-父进程映射表ptidMap
+	 * 
+	 * @param tid
+	 */
+	public void getPTIDMap(String tid) {
+		File file = new File("" + fileDir + "a." + tid);
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String tString = null;
+			// int num = 1;
+			// System.out.println("ok");
+			while ((tString = reader.readLine()) != null) {
+				if (tString.contains("clone")) {
+					// Log.v(TAG, tString);
+					String[] tSplit = tString.split("\\s+");
+					// 排除clone信息是最后一行且不完整的情况
+					if (tSplit.length < 5)
+						continue;
+					// Log.v(TAG,""+tSplit.length);
+					// Log.v(TAG, tSplit[4]);
+					ptidMap.put(tSplit[4], tid);
+					// Log.v(TAG,
+					// "getit-----------"+tSplit[4]+"-->"+ptidMap.get(tSplit[4]));
+
+					// System.out.println(""+num+":"+tSplit[4]);
+					// num++;
+				}
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e1) {
+				}
+			}
+		}
+	}
+
+	/**
+	 * 将所有捕获到的线程号填充allThreadNum数组
+	 */
+	public boolean saveTIDsToArray() {
+		File file = new File("/data/local/a");
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String tString = null;
+			while ((tString = reader.readLine()) != null) {
+				Log.v(TAG, tString);
+				allThreadNum.add(tString.substring(2));
+			}
+			reader.close();
+		} catch (IOException e) {
+			Log.v(TAG, "read file a failed!!!");
+			e.printStackTrace();
+			return false;
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e1) {
+				}
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * 将捕获到的信息文件全部提权到755以便可读 由于用输入输出流ls获取所有结果文件会阻塞，所以将ls结果输出到文件
+	 * 集合这些函数一体的原因是它们都需要用到shell命令
+	 */
+	public void chgModandGetTIDsToFile() {
+		Process process = null;
+		DataOutputStream os = null;
+		DataInputStream is = null;
+		try {
+			process = Runtime.getRuntime().exec("su");
+			os = new DataOutputStream(process.getOutputStream());
+			is = new DataInputStream(process.getInputStream());
+			Thread.sleep(3000);
+			// 将strace的结果文件提权，以便今后读取
+			os.writeBytes("chmod -R 755 " + fileDir + "*\n");
+			// Log.v(TAG, "chmod -R 755 " + fileDir + "*\n");
+			os.flush();
+			// 将ls结果输出到文件a
+			os.writeBytes("ls /data/local/strace >> /data/local/a\n");
+			// Log.v(TAG, "ls /data/local/strace >> /data/local/a\n");
+			os.flush();
+			// 将a文件提权，以便今后读取
+			os.writeBytes("chmod 755 /data/local/a\n");
+			// Log.v(TAG, "chmod 755 /data/local/a\n");
+			os.flush();
+			os.writeBytes("exit\n");
+			os.flush();
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			Log.e("Error", e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				if (os != null) {
+					os.close();
+				}
+				if (is != null) {
+					is.close();
+				}
+				process.destroy();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
