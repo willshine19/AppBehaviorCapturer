@@ -30,7 +30,8 @@ class ApiHooker{
 		//成员函数
 		bool collectBaseInfo();
 		bool saveToQueue();
-		long getFatherId();
+		long getFatherId(long threadId);
+		long getSonId(long threadId);
 		bool main(const u4* args);
 		ApiDeclaration getApiDeclaration();
 		virtual bool parseParameter(const u4* args){//获取api信息

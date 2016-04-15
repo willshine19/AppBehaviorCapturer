@@ -25,6 +25,7 @@ public:
 	//成员变量
 	unordered_map<long, long> mMap; //hashmap变量声明
 	unordered_map<long, long> mpid_father_son_Map; //hashmap变量声明
+	unordered_map<long, long> mpid_javason_father_Map; //hashmap变量声明
 	unordered_map<long, char*> mpid_contextMap;
 	static pthread_mutex_t lock;
 

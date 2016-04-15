@@ -22,8 +22,7 @@ StartThreadApiHooker::~StartThreadApiHooker() {
  * args[0]表示调用实例，也就是Thread实例（子线程）
  * 调用子线程getId()方法，得到一个线程号（long类型）
  * 再调用线程号的toString()方法，得到String类型的线程号，打印到logcat
- */
-bool StartThreadApiHooker::parseParameter(const u4* args) {
+ */bool StartThreadApiHooker::parseParameter(const u4* args) {
 	// 调用子线程的getId
 	LOGD("[参数解析]调用Thread实例的getId");
 	// 参数1
@@ -86,6 +85,8 @@ bool StartThreadApiHooker::parseParameter(const u4* args) {
 	sscanf(paramString, "%ld", &javaThreadId);
 	//将父的c和子的java的线程号存入hashmap中
 	(ThreadMap::getInstance()->mMap).insert(make_pair(javaThreadId, threadId));
+	(ThreadMap::getInstance()->mpid_javason_father_Map).insert(
+			make_pair(threadId, javaThreadId));
 	//打印刚刚存入的键值对
 	auto mMapFound = (ThreadMap::getInstance()->mMap).find(javaThreadId);
 //		LOGD("[+] 存入hashmap中子java线程号为 %ld", mMapFound->first);
@@ -94,16 +95,16 @@ bool StartThreadApiHooker::parseParameter(const u4* args) {
 	LOGD("[+] start线程号为 %s", paramString);
 	//end
 
-	//存入json中
-	pthread_mutex_t* mutex =
-			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucketMutex);
-	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setSonThreadId(
-			javaThreadId);
-	//	LOGD("[+] apihooker-Infosender的context数据为 %s",
-	//			(ApiHookerManager::getInstance()->mcontextinfo).c_str());
-	//	LOGD("[+] apihooker-Infosender的fatherid数据为 %ld", GetFatherId());
-	//end
-	pthread_mutex_unlock(mutex);
+//	存入json中
+//	pthread_mutex_t* mutex =
+//			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucketMutex);
+//	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setSonThreadId(
+//			threadId);
+//	//	LOGD("[+] apihooker-Infosender的context数据为 %s",
+//	//			(ApiHookerManager::getInstance()->mcontextinfo).c_str());
+//	//	LOGD("[+] apihooker-Infosender的fatherid数据为 %ld", GetFatherId());
+//	//end
+//	pthread_mutex_unlock(mutex);
 
 	return true;
 }

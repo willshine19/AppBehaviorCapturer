@@ -1430,18 +1430,23 @@ ClassObject* dvmDefineClass(DvmDex* pDvmDex, const char* descriptor,
 ClassObject* dvmFindSystemClass(const char* descriptor)
 {
     ClassObject* clazz;
-
+    LOGD("[w]1.5.3.1");
     clazz = dvmFindSystemClassNoInit(descriptor);
+    LOGD("[w]1.5.3.2");
     if (clazz != NULL && clazz->status < CLASS_INITIALIZED) {
         /* initialize class */
+    	LOGD("[w]1.5.3.3");
         if (!dvmInitClass(clazz)) {
+        	LOGD("[w]1.5.3.4");
             /* init failed; leave it in the list, marked as bad */
             assert(dvmCheckException(dvmThreadSelf()));
+            LOGD("[w]1.5.3.5");
             assert(clazz->status == CLASS_ERROR);
+            LOGD("[w]1.5.3.6");
             return NULL;
         }
     }
-
+    LOGD("[w]1.5.3.7");
     return clazz;
 }
 

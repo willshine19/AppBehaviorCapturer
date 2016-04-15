@@ -30,19 +30,19 @@ string ApiHooker::toString() {
 /**
  * 将类名 方法名 时间 线程号 存入循环队列的Bucket实例中
  * result的存储在每个apihook中
- */
-bool ApiHooker::collectBaseInfo() {
+ */bool ApiHooker::collectBaseInfo() {
 	long threadId = pthread_self();
 	if (threadId == 0) {
 		LOGE("getThreadID falied");
 	}
-	pthread_mutex_t* mutex =
-			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucketMutex);
+//	pthread_mutex_t* mutex =
+//			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucketMutex);
 //	pthread_mutex_lock(mutex); 不注释会死锁
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setClassName(
 			this->mApiDeclaration.getClassName());
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setMethodName(
 			this->mApiDeclaration.getApiName());
+//	LOGE("11111111apihooker:%s", this->mApiDeclaration.getApiName().c_str());
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setTime();
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setThreadId(
 			threadId);
@@ -50,26 +50,39 @@ bool ApiHooker::collectBaseInfo() {
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setContext(
 			ApiHookerManager::getInstance()->mContextInfo);
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setFatherThreadId(
-			getFatherId());
+			getFatherId(threadId));
+	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setSonThreadId(
+			getSonId(threadId));
+	pthread_mutex_t* mutex =
+			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucketMutex);
 	pthread_mutex_unlock(mutex);
 	return true;
 }
 
-long ApiHooker::getFatherId() {
-	long threadId = pthread_self();
+long ApiHooker::getFatherId(long threadId) {
+//	long threadId = pthread_self();
 	auto mMapFound = (ThreadMap::getInstance()->mpid_father_son_Map).find(
 			threadId);
 	if (mMapFound != (ThreadMap::getInstance()->mpid_father_son_Map).end()) {
 		return mMapFound->second;
 	} else
-		LOGD("This thread don't have a father thread");
-	return 0;
+//		LOGD("This thread don't have a father thread");
+		return 0;
+}
+long ApiHooker::getSonId(long threadId) {
+//	long threadId = pthread_self();
+	auto mMapFound = (ThreadMap::getInstance()->mpid_javason_father_Map).find(
+			threadId);
+	if (mMapFound != (ThreadMap::getInstance()->mpid_javason_father_Map).end()) {
+		return mMapFound->second;
+	} else
+//		LOGD("This thread don't have a father thread");
+		return 0;
 }
 
 /**
  * 空函数
- */
-bool ApiHooker::saveToQueue() {
+ */bool ApiHooker::saveToQueue() {
 	LOGD("saveToQueue method has been called successfully in ApiHooker");
 	return true;
 }
@@ -77,12 +90,13 @@ bool ApiHooker::saveToQueue() {
 /**
  * ApiHooker类的入口
  * 在DalvikMethodHooker.cpp 中的methodHandler()函数中被调用
- */
-bool ApiHooker::main(const u4* args) {
+ */bool ApiHooker::main(const u4* args) {
 	pthread_mutex_lock(&lock);
 	//申请队列空闲位置
 	this->mQueuePosition =
 			InfoSender::mCycledBlockingQueue->getNowAvailablePosition();
+	if (mQueuePosition == -1)
+		return false;
 	parseParameter(args);
 //	collectBaseInfo();
 //	saveToQueue();

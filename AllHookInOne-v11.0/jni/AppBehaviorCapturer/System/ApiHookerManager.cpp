@@ -77,16 +77,15 @@ int ApiHookerManager::main() {
 	hookJavaMethod();
 
 	//获取系统发送模块的实例 初始化
-	this->mInfoSender = InfoSender::getInstance();
 	LOGE("-------------ApiHookerManager infosender ");
+	this->mInfoSender = InfoSender::getInstance();
 	mInfoSender->init();
 	return 0;
 }
 
 /**
  * 初始化哈希表
- */
-bool ApiHookerManager::initHashMap() {
+ */bool ApiHookerManager::initHashMap() {
 	//系统api
 	StartThreadApiHooker* start = new StartThreadApiHooker();
 	RunThreadApiHooker* run = new RunThreadApiHooker();
@@ -104,12 +103,12 @@ bool ApiHookerManager::initHashMap() {
 			new onStartCommandServiceApiHooker();
 	OnStopActivityApiHooker* onStop = new OnStopActivityApiHooker();
 
-	/* mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
-	 mApiHookerHashMap.insert(make_pair("onDestroy", onDestroy));
-	 mApiHookerHashMap.insert(make_pair("onPause", onPause));
-	 mApiHookerHashMap.insert(make_pair("onRestart", onRestart));
-	 mApiHookerHashMap.insert(make_pair("onStart", onStart));
-	 mApiHookerHashMap.insert(make_pair("onStop", onStop));*/
+	mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
+	mApiHookerHashMap.insert(make_pair("onDestroy", onDestroy));
+	mApiHookerHashMap.insert(make_pair("onPause", onPause));
+	mApiHookerHashMap.insert(make_pair("onRestart", onRestart));
+	mApiHookerHashMap.insert(make_pair("onStart", onStart));
+	mApiHookerHashMap.insert(make_pair("onStop", onStop));
 	mApiHookerHashMap.insert(make_pair("onResume", onResume));
 //	mApiHookerHashMap.insert(make_pair("OnCreateApplicationLandroid/app/Application", OnCreateApplication));
 //	mApiHookerHashMap.insert(make_pair("onCreateLandroid/app/Service;", onCreateService));//
@@ -193,8 +192,8 @@ bool ApiHookerManager::initHashMap() {
 			make_pair("getLastKnownLocation", getLastKnownLocation));
 	mApiHookerHashMap.insert(
 			make_pair("requestLocationUpdatas", requestLocationUpdatas));
-	mApiHookerHashMap.insert(
-			make_pair("readLjava/io/FileInputStream;", readFileInputStream));
+//	mApiHookerHashMap.insert(
+//			make_pair("readLjava/io/FileInputStream;", readFileInputStream));
 	mApiHookerHashMap.insert(
 			make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
 	mApiHookerHashMap.insert(make_pair("getFD", getFD));
@@ -245,8 +244,7 @@ bool ApiHookerManager::initHashMap() {
 /**
  * 遍历哈希表，hook哈希表中记录的所有目标java层api
  * 封装了dalvikJavaMethodHook函数
- */
-bool ApiHookerManager::hookJavaMethod() {
+ */bool ApiHookerManager::hookJavaMethod() {
 	JNIEnv *env = getEnv();
 	HookInfo info;
 	JavaMethodHooker* javaMethodHooker = new JavaMethodHooker();

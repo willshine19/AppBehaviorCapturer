@@ -9,7 +9,18 @@
 
 CollectedApiInfo::CollectedApiInfo() {
 	// TODO Auto-generated constructor stub
-	mResult="";
+	mClassName = "";
+	mMethodName = "";
+	mTime = "";
+	json2string = "";
+	mContext = "";
+	mParameter = "";
+	mResult = "";
+	mFatherThreadId = 0;
+	mThreadId = 0;
+	mProcessID = 0;
+	mSonThreadId = 0;
+	mResult = "";
 	mProcessID = getpid();
 
 }
@@ -64,6 +75,7 @@ bool CollectedApiInfo::setClassName(string className) {
 
 bool CollectedApiInfo::setMethodName(string methodName) {
 	this->mMethodName = methodName;
+	LOGD("11111111111111CollectedApiInfo set 输出为%s", methodName.c_str());
 	return true;
 }
 
@@ -75,7 +87,7 @@ bool CollectedApiInfo::setThreadId(long threadId) {
 string CollectedApiInfo::convertToJson() {
 	Json::Value root;
 
-	root["number"] = 0;
+	root["number"] = this->mNumber;
 	root["name"] = this->mClassName + "." + this->mMethodName;
 	root["time"] = this->mTime;
 	root["context"] = this->mContext; //zds add
@@ -87,6 +99,7 @@ string CollectedApiInfo::convertToJson() {
 
 //	json2string = root.toStyledString();
 	string out = root.toStyledString();
+	LOGD("11111111111111CollectedApiInfo root 输出为%s", this->mMethodName.c_str());
 //	const char* out = root.asCString();
 //	temp = root.asString();
 	LOGD("CollectedApiInfo类正在转换json，输出为%s", out.data());

@@ -48,17 +48,19 @@ InfoSender* InfoSender::getInstance() {
  * 在新的线程中执行该函数
  */
 void* InfoSender::readFromQueue(void* arg) {
-	LOGD("create reading thread successfully");
-	int count;
+	LOGE("create reading thread successfully");
+	int count=1;
 	TimeUtils* timeUtils = TimeUtils::getInstance();
 	string json;//待发送的json字符串
 
 	while (1) {
-		LOGD("第 %d 次 发送JSon", count);
+		LOGI("[r]第 %d 次 发送JSon", count);
 		// 若队列为空则阻塞?
 		CollectedApiInfo apiInfo = InfoSender::mCycledBlockingQueue->send();
+		LOGI("[r]IS:rFQ:send()");
 		json = apiInfo.convertToJson();
 
+		LOGI("[r]IS:rFQ:cTJ");
 		//发送json字符串
 		int len = json.size();
 		// send a message on a socket
@@ -66,7 +68,7 @@ void* InfoSender::readFromQueue(void* arg) {
 		int result = (int) send(sockfd, json.c_str(), len, 0);
 		if (result == -1)
 			LOGE("[-]send Json error!\r\n");
-		LOGD("send Json successfully");
+		LOGI("[r]send Json successfully");
 		++count;
 
 		//关于时间测试，为什么还用json传输，在这里做过一部分的探究，基于
@@ -237,7 +239,7 @@ bool InfoSender::init() {
 	//初始化读线程
 	int err = pthread_create(&this->ntid, NULL, InfoSender::readFromQueue,
 			NULL);
-	LOGE("-------------infosender readFromQueue ");
+	LOGE("-------------infosender readFromQueue ----%d",&this->ntid);
 	if (err != 0) {
 		LOGE("can not create thread :%s", strerror(err));
 	}

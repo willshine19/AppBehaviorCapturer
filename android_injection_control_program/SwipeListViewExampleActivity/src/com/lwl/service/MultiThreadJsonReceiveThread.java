@@ -163,7 +163,7 @@ class Handler implements Runnable {
 					json.put("IMEI", tm.getDeviceId());
 					sender.publish(json);
 					// Log.e("what's in json", "" + json);
-					// sender.saveToFile(json);
+//					 sender.saveToFile(json);
 
 					receivedJsonStringNum++;
 					Log.i(TAG, "[+] 成功从【jni层】接收到第" + receivedJsonStringNum
