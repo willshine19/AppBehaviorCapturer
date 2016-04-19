@@ -351,40 +351,52 @@ public class PackageAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				Log.v(TAG, "in button_pack");
-				chgModandGetTIDsToFile();
-				if (saveTIDsToArray()) {
-					// 初始大小为size-1，排除最初父线程
-					if (allThreadNum.size() < 1) {
-						Log.e(TAG, "no thread!!! cannot init hashmap!!!");
-						return;
-					}
-					ptidMap = new HashMap<String, String>(
-							allThreadNum.size() - 1);
-					for (int i = 0; i < allThreadNum.size(); ++i) {
-						// Log.v(TAG,""+i+":----GETPIDMAP------"+allThreadNum.get(i)+"-----");
-						getPTIDMap(allThreadNum.get(i));
-					}
-
-					for (int i = 0; i < allThreadNum.size(); ++i) {
-						Log.v(TAG,
-								"" + allThreadNum.get(i) + "->"
-										+ ptidMap.get(allThreadNum.get(i)));
-					}
-				} else {
-					Log.v(TAG, "save failed!!!");
-				}
-				for (int i = 0; i < allThreadNum.size(); ++i) {
-					// Log.v(TAG,""+i+":----GETPIDMAP------"+allThreadNum.get(i)+"-----");
-					packThreadResultToJSON(allThreadNum.get(i));
-				}
-				Log.v(TAG, "before destroy()");
-				destroy();
-				Log.v(TAG, "destroyed!!!");
+				Thread t=new Thread(new packAndSendStraceJson());
+				t.start();
+				Log.v(TAG, "done");
 			}
 		});
 		return convertView;// 把写入具体函数之后的view返回
 	}
 
+	//XXX 以下是功能函数
+	public class packAndSendStraceJson implements Runnable{
+
+		@Override
+		public void run() {
+			Log.v(TAG, "in Thread");
+			chgModandGetTIDsToFile();
+			if (saveTIDsToArray()) {
+				// 初始大小为size-1，排除最初父线程
+				if (allThreadNum.size() < 1) {
+					Log.e(TAG, "no thread!!! cannot init hashmap!!!");
+					return;
+				}
+				ptidMap = new HashMap<String, String>(
+						allThreadNum.size() - 1);
+				for (int i = 0; i < allThreadNum.size(); ++i) {
+					// Log.v(TAG,""+i+":----GETPIDMAP------"+allThreadNum.get(i)+"-----");
+					getPTIDMap(allThreadNum.get(i));
+				}
+
+				for (int i = 0; i < allThreadNum.size(); ++i) {
+					Log.v(TAG,
+							"" + allThreadNum.get(i) + "->"
+									+ ptidMap.get(allThreadNum.get(i)));
+				}
+			} else {
+				Log.v(TAG, "save failed!!!");
+			}
+			for (int i = 0; i < allThreadNum.size(); ++i) {
+				// Log.v(TAG,""+i+":----GETPIDMAP------"+allThreadNum.get(i)+"-----");
+				packThreadResultToJSON(allThreadNum.get(i));
+			}
+			Log.v(TAG, "before destroy()");
+			destroy();
+			Log.v(TAG, "destroyed!!!");
+		}
+		
+	}
 	/**
 	 * 销毁函数 先销毁生成的目录文件/data/local/a 同样需要销毁/data/local/strace/文件夹^-^
 	 */
