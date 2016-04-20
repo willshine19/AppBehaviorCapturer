@@ -125,10 +125,53 @@ public class PackageAdapter extends BaseAdapter {
 			holder.running_status.setText("未运行");
 		}
 
-		// 打开按钮 通过包名开启指定app
+		/**
+		 * 打开按钮 通过包名开启指定app
+		 */
 		holder.button_open.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Process process = null;
+				DataOutputStream os = null;
+				DataInputStream is = null;
+				BufferedReader reader = null;
+				String packageName;
+				String line = null;
+				try {
+					process = Runtime.getRuntime().exec("su");
+					os = new DataOutputStream(process.getOutputStream());
+					is = new DataInputStream(process.getInputStream());
+					reader = new BufferedReader(new InputStreamReader(is));
+
+					packageName = item.getPackageName();
+					os.writeBytes("am force-stop " + packageName + " \n");
+					os.flush();
+					os.writeBytes("exit\n");
+					os.flush();
+
+					Toast.makeText(mContext, "解注入成功", Toast.LENGTH_SHORT).show();
+					process.waitFor();
+					// }
+					holder.running_status.setText("未运行");
+					item.setRunningStatus(PackageItem.NOT_RUNNING);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					Log.e("Error", e.getMessage());
+					e.printStackTrace();
+					// return false;
+				} finally {
+					try {
+						if (os != null) {
+							os.close();
+						}
+						if (reader != null) {
+							reader.close();
+						}
+					} catch (IOException ex) {
+						Log.e(TAG, "关闭流失败");
+					}
+				}
+
 				// 通过intent启动应用程序
 				Intent intent = mContext.getPackageManager().getLaunchIntentForPackage(item.getPackageName());
 				if (intent != null) {
@@ -138,11 +181,6 @@ public class PackageAdapter extends BaseAdapter {
 				} else {
 					Toast.makeText(mContext, R.string.cantOpen, Toast.LENGTH_SHORT).show();
 				}
-
-				Process process = null;
-				DataOutputStream os = null;
-				DataInputStream is = null;
-				BufferedReader reader = null;
 
 				if (item.getRunningStatus() == PackageItem.NOT_RUNNING) {
 					Toast.makeText(mContext, "请先点击打开按钮，运行程序", Toast.LENGTH_SHORT).show();
@@ -154,71 +192,14 @@ public class PackageAdapter extends BaseAdapter {
 					return;
 				}
 
-				/*
-				 * Process process = null; DataOutputStream os = null;
-				 * DataInputStream is = null; BufferedReader reader = null;
-				 * 
-				 * if (item.getRunningStatus() == PackageItem.NOT_RUNNING) {
-				 * Toast.makeText(mContext, "请先点击打开按钮，运行程序",
-				 * Toast.LENGTH_SHORT).show(); return; }
-				 * 
-				 * if (item.getRunningStatus() == PackageItem.IS_INJECTED) {
-				 * Toast.makeText(mContext, "该程序已被注入成功",
-				 * Toast.LENGTH_SHORT).show(); return; }
-				 * 
-				 * try { process = Runtime.getRuntime().exec("su"); os = new
-				 * DataOutputStream(process.getOutputStream()); is = new
-				 * DataInputStream(process.getInputStream()); reader = new
-				 * BufferedReader(new InputStreamReader(is)); String lineps =
-				 * null; String line = null;
-				 * 
-				 * // String pName = item.getPackageName(); String packageName =
-				 * item.getPackageName(); // Log.v("InjectButton", "pName :" +
-				 * pName); Log.v("InjectButton", "packageName :" + packageName);
-				 * 
-				 * while (true) { // 读取输出 boolean m = false;
-				 * os.writeBytes("ps |grep " + packageName + "\n"); os.flush();
-				 * Thread.sleep(70); Log.v("111111111111", "" + m); while
-				 * ((lineps = reader.readLine()) != null) { String[]
-				 * splitFactors = lineps.split("\\s+"); String ss =
-				 * splitFactors[splitFactors.length - 1]; if
-				 * (ss.equals(packageName)) { m = true; Log.v("111111111111",
-				 * lineps);
-				 * os.writeBytes("chmod 777 /data/inj-allhookinone/*\n");
-				 * os.flush();
-				 * os.writeBytes("/data/inj-allhookinone/AndroidInjectSo " +
-				 * packageName + "\n"); os.flush(); os.writeBytes("exit\n");
-				 * os.flush();
-				 * 
-				 * // 读取输出 // while ((line = reader.readLine()) != null) { //
-				 * Log.v("InjectButton", line); // } Log.v("InjectButton",
-				 * "inject " + packageName + " successfully!");
-				 * Toast.makeText(mContext, "注入成功", Toast.LENGTH_SHORT).show();
-				 * holder.running_status.setText("已注入");
-				 * item.setRunningStatus(PackageItem.IS_INJECTED); } } if (m) {
-				 * break; } }
-				 * 
-				 * } catch (Exception e) { // TODO Auto-generated catch block
-				 * Log.e("1111111111", e.getMessage()); e.printStackTrace(); }
-				 * finally { try { if (os != null) { os.close(); } if (reader !=
-				 * null) { reader.close(); } process.destroy(); } catch
-				 * (IOException e) { // TODO Auto-generated catch block
-				 * e.printStackTrace(); } } }
-				 */
 				try {
-					Thread.sleep(600);
+					Thread.sleep(850);
 					process = Runtime.getRuntime().exec("su");
 					os = new DataOutputStream(process.getOutputStream());
 					is = new DataInputStream(process.getInputStream());
 					reader = new BufferedReader(new InputStreamReader(is));
 
-					String pid = null;
-					String lineps = null;
-					String line = null;
-
-					// String pName = item.getPackageName();
-					String packageName = item.getPackageName();
-					// Log.v("InjectButton", "pName :" + pName);
+					packageName = item.getPackageName();
 					Log.v("InjectButton", "packageName :" + packageName);
 
 					os.writeBytes("chmod 777 /data/inj-allhookinone/*\n");
@@ -351,26 +332,32 @@ public class PackageAdapter extends BaseAdapter {
 
 							String pName = item.getPackageName();
 
-							String pid = null;
-							String line = null;
+							// String pid = null;
+							// String line = null;
+							// os.writeBytes("ps\n");
+							// os.flush();
+							// while ((line = reader.readLine()) != null) { //
+							// 读取输出
+							// if (line.contains(pName)) {
+							// String[] splitline = line.split("\\s+");
+							// pid = splitline[1];
+							// break;
+							// }
+							// }
+							// if (pid != null) {
+							// os.writeBytes("kill " + pid + "\n");
+							// os.flush();
+							// os.writeBytes("exit\n");
+							// os.flush();
 
-							os.writeBytes("ps\n");
+							os.writeBytes("am force-stop " + pName + " \n");
 							os.flush();
-							while ((line = reader.readLine()) != null) { // 读取输出
-								if (line.contains(pName)) {
-									String[] splitline = line.split("\\s+");
-									pid = splitline[1];
-									break;
-								}
-							}
-							if (pid != null) {
-								os.writeBytes("kill " + pid + "\n");
-								os.flush();
-								os.writeBytes("exit\n");
-								os.flush();
-								Toast.makeText(mContext, "解注入成功", Toast.LENGTH_SHORT).show();
-								process.waitFor();
-							}
+							os.writeBytes("exit\n");
+							os.flush();
+
+							Toast.makeText(mContext, "解注入成功", Toast.LENGTH_SHORT).show();
+							process.waitFor();
+							// }
 							holder.running_status.setText("未运行");
 							item.setRunningStatus(PackageItem.NOT_RUNNING);
 						} catch (Exception e) {

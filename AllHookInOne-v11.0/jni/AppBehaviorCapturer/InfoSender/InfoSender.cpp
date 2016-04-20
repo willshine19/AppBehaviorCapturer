@@ -55,6 +55,7 @@ void* InfoSender::readFromQueue(void* arg) {
 
 	while (1) {
 		LOGI("[r]第 %d 次 发送JSon", count);
+		LOGE("11111111111111infosender");
 		// 若队列为空则阻塞?
 		CollectedApiInfo apiInfo = InfoSender::mCycledBlockingQueue->send();
 		LOGI("[r]IS:rFQ:send()");

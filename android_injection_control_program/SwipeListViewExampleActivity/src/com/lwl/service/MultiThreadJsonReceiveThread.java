@@ -168,6 +168,7 @@ class Handler implements Runnable {
 					receivedJsonStringNum++;
 					Log.i(TAG, "[+] 成功从【jni层】接收到第" + receivedJsonStringNum
 							+ "组行为【记录数据】");
+					Log.i(TAG,  json.toString());
 
 					hookerTimeUtils.setT4SendTime(); // 打时间戳
 					continue;

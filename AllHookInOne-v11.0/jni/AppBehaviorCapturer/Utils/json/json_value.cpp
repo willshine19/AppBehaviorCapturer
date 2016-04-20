@@ -102,6 +102,8 @@ static ValueAllocator *&valueAllocator()
    return valueAllocator;
 }
 
+//zds add 2016.4.15
+#pragma init_seg(lib)
 static struct DummyValueAllocatorInitializer {
    DummyValueAllocatorInitializer() 
    {

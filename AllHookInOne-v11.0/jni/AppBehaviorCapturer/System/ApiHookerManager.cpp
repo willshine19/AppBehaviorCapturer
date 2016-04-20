@@ -192,8 +192,8 @@ int ApiHookerManager::main() {
 			make_pair("getLastKnownLocation", getLastKnownLocation));
 	mApiHookerHashMap.insert(
 			make_pair("requestLocationUpdatas", requestLocationUpdatas));
-//	mApiHookerHashMap.insert(
-//			make_pair("readLjava/io/FileInputStream;", readFileInputStream));
+	mApiHookerHashMap.insert(
+			make_pair("readLjava/io/FileInputStream;", readFileInputStream));
 	mApiHookerHashMap.insert(
 			make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
 	mApiHookerHashMap.insert(make_pair("getFD", getFD));
