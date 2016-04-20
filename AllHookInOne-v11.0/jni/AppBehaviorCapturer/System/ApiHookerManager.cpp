@@ -192,8 +192,8 @@ int ApiHookerManager::main() {
 			make_pair("getLastKnownLocation", getLastKnownLocation));
 	mApiHookerHashMap.insert(
 			make_pair("requestLocationUpdatas", requestLocationUpdatas));
-	mApiHookerHashMap.insert(
-			make_pair("readLjava/io/FileInputStream;", readFileInputStream));
+//	mApiHookerHashMap.insert(
+//			make_pair("readLjava/io/FileInputStream;", readFileInputStream));
 	mApiHookerHashMap.insert(
 			make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
 	mApiHookerHashMap.insert(make_pair("getFD", getFD));
@@ -237,7 +237,6 @@ int ApiHookerManager::main() {
 	mApiHookerHashMap.insert(make_pair("call", call));
 	mApiHookerHashMap.insert(make_pair("endCall", endCall));
 	LOGD("insert communication api to hashmap successfully");
-
 	return true;
 }
 
