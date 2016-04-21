@@ -2,57 +2,57 @@ package com.android.swipelistview.sample.adapters;
 
 import org.json.JSONObject;
 
-public class StraceJSON {
-	public String mNum;
-	public String mName;
-	public String mTime;
-	public String mPTID;
-	public String mTID;
-	public String mPID;
-	public String mPara;
-	public String mRes;
+public class StraceJSON{
+	public String number;//public String mNum;
+	public String name;//public String mName;
+	public String time;//public String mTime;
+	public String FatherThreadIdofAPI;//public String mPTID;
+	public String threadID;//public String mTID;
+	public String processID;//public String mPID;
+	public String context;//public String mPara;
+	public String result;//public String mRes;
 
 	public StraceJSON() {
-		mNum = null;
-		mName = null;
-		mTime = null;
-		mPTID = null;
-		mTID = null;
-		mPID = null;
-		mPara = null;
-		mRes = null;
+		number = null;
+		name = null;
+		time = null;
+		FatherThreadIdofAPI = null;
+		threadID = null;
+		processID = null;
+		context = null;
+		result = null;
 	}
 
 	public StraceJSON(String n, String na, String tim, String pti, String cti, String ti,
 			String pi, String pa, String r) {
-		mNum = n;
-		mName = na;
-		mTime = tim;
-		mPTID = pti;
-		mTID = ti;
-		mPID = pi;
-		mPara = pa;
-		mRes = r;
+		number = n;
+		name = na;
+		time = tim;
+		FatherThreadIdofAPI = pti;
+		threadID = ti;
+		processID = pi;
+		context = pa;
+		result = r;
 	}
 	public void reset(){
-		mNum = "";
-		mName = "";
-		mTime = "";
-		mPTID = "";
-		mTID = "";
-		mPID = "";
-		mPara = "";
-		mRes = "";
+		number = "";
+		name = "";
+		time = "";
+		FatherThreadIdofAPI = "";
+		threadID = "";
+		processID = "";
+		context = "";
+		result = "";
 	}
 	public void show(){
-		System.out.println("*****mNum = " + mNum + "*****");
-		System.out.println("*****mName = " + mName + "*****");
-		System.out.println("*****mTime = " + mTime + "*****");
-		System.out.println("*****mPTID = " + mPTID + "*****");
-		System.out.println("*****mTID = " + mTID + "*****");
-		System.out.println("*****mPID = " + mPID + "*****");
-		System.out.println("*****mPara = " + mPara + "*****");
-		System.out.println("*****mRes = " + mRes + "*****");
+		System.out.println("*****mNum = " + number + "*****");
+//		System.out.println("*****mName = " + name + "*****");
+//		System.out.println("*****mTime = " + time + "*****");
+//		System.out.println("*****mPTID = " + FatherThreadIdofAPI + "*****");
+//		System.out.println("*****mTID = " + threadID + "*****");
+//		System.out.println("*****mPID = " + processID + "*****");
+//		System.out.println("*****mPara = " + context + "*****");
+//		System.out.println("*****mRes = " + result + "*****");
 	}
 //	  public JSONObject toJSON() throws JSONException {
 //	        JSONObject json = new JSONObject();

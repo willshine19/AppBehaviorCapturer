@@ -30,6 +30,7 @@ import com.android.swipelistview.SwipeListView;
 import com.android.swipelistview.sample.adapters.StraceJSON;
 import com.fortysevendeg.android.swipelistview.R;
 import com.fortysevendeg.android.swipelistview.R.id;
+import com.syh.pubjson.JsonSender;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -235,7 +236,7 @@ public class PackageAdapter extends BaseAdapter {
 						if (reader != null) {
 							reader.close();
 						}
-//						process.destroy();
+						// process.destroy();
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -351,7 +352,7 @@ public class PackageAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				Log.v(TAG, "in button_pack");
-				Thread t=new Thread(new packAndSendStraceJson());
+				Thread t = new Thread(new packAndSendStraceJson());
 				t.start();
 				Log.v(TAG, "done");
 			}
@@ -359,8 +360,8 @@ public class PackageAdapter extends BaseAdapter {
 		return convertView;// 把写入具体函数之后的view返回
 	}
 
-	//XXX 以下是功能函数
-	public class packAndSendStraceJson implements Runnable{
+	// XXX 以下是功能函数
+	public class packAndSendStraceJson implements Runnable {
 
 		@Override
 		public void run() {
@@ -372,8 +373,7 @@ public class PackageAdapter extends BaseAdapter {
 					Log.e(TAG, "no thread!!! cannot init hashmap!!!");
 					return;
 				}
-				ptidMap = new HashMap<String, String>(
-						allThreadNum.size() - 1);
+				ptidMap = new HashMap<String, String>(allThreadNum.size() - 1);
 				for (int i = 0; i < allThreadNum.size(); ++i) {
 					// Log.v(TAG,""+i+":----GETPIDMAP------"+allThreadNum.get(i)+"-----");
 					getPTIDMap(allThreadNum.get(i));
@@ -387,16 +387,24 @@ public class PackageAdapter extends BaseAdapter {
 			} else {
 				Log.v(TAG, "save failed!!!");
 			}
+
+			Log.v(TAG, "1sender");
+			JsonSender sender = new JsonSender();
+			Log.v(TAG, "2before login");
+			sender.login();
+			Log.v(TAG, "3logined");
+
 			for (int i = 0; i < allThreadNum.size(); ++i) {
 				// Log.v(TAG,""+i+":----GETPIDMAP------"+allThreadNum.get(i)+"-----");
-				packThreadResultToJSON(allThreadNum.get(i));
+				packThreadResultToJSON(allThreadNum.get(i), sender);
 			}
 			Log.v(TAG, "before destroy()");
 			destroy();
 			Log.v(TAG, "destroyed!!!");
 		}
-		
+
 	}
+
 	/**
 	 * 销毁函数 先销毁生成的目录文件/data/local/a 同样需要销毁/data/local/strace/文件夹^-^
 	 */
@@ -427,7 +435,7 @@ public class PackageAdapter extends BaseAdapter {
 				if (is != null) {
 					is.close();
 				}
-//				process.destroy();
+				// process.destroy();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -437,7 +445,7 @@ public class PackageAdapter extends BaseAdapter {
 	/**
 	 * 将每个线程的strace结果打包JSON
 	 */
-	public void packThreadResultToJSON(String tid) {
+	public void packThreadResultToJSON(String tid, JsonSender js) {
 		File file = new File("" + fileDir + "a." + tid);
 		BufferedReader reader = null;
 		try {
@@ -458,29 +466,31 @@ public class PackageAdapter extends BaseAdapter {
 				// } else {
 				++count;
 				tStraceJSON.reset();
-				tStraceJSON.mNum = "" + count;
+				tStraceJSON.number = "" + count;
 
 				String[] tSplit = tString.split(" ", 2);
-				tStraceJSON.mTime = tSplit[0];
+				tStraceJSON.time = tSplit[0];
 				if (tSplit.length < 2)
 					break;
 				tSplit = tSplit[1].split("\\(", 2);
-				tStraceJSON.mName = tSplit[0];
+				tStraceJSON.name = tSplit[0];
 				if (tSplit.length < 2)
 					break;
 				tSplit = tSplit[1].split("\\)", 2);
-				tStraceJSON.mPara = tSplit[0];
+				tStraceJSON.context = tSplit[0];
 				if (tSplit.length < 2)
 					break;
 				tSplit = tSplit[1].split("\\s+", 3);
 				if (tSplit.length < 3)
 					break;
-				tStraceJSON.mRes = tSplit[2];
+				tStraceJSON.result = tSplit[2];
 
-				tStraceJSON.mPID = mPid;
-				tStraceJSON.mTID = tid;
-				tStraceJSON.mPTID = ptidMap.get(tid);
+				tStraceJSON.processID = mPid;
+				tStraceJSON.threadID = tid;
+				tStraceJSON.FatherThreadIdofAPI = ptidMap.get(tid);
 				tStraceJSON.show();
+
+				js.publishStrace(tStraceJSON);
 			}
 			// }
 			reader.close();
@@ -583,15 +593,15 @@ public class PackageAdapter extends BaseAdapter {
 			Thread.sleep(3000);
 			// 将strace的结果文件提权，以便今后读取
 			os.writeBytes("chmod -R 755 " + fileDir + "*\n");
-			 Log.v(TAG, "chmod -R 755 " + fileDir + "*\n");
+			Log.v(TAG, "chmod -R 755 " + fileDir + "*\n");
 			os.flush();
 			// 将ls结果输出到文件a
 			os.writeBytes("ls /data/local/strace >> /data/local/a\n");
-			 Log.v(TAG, "ls /data/local/strace >> /data/local/a\n");
+			Log.v(TAG, "ls /data/local/strace >> /data/local/a\n");
 			os.flush();
 			// 将a文件提权，以便今后读取
 			os.writeBytes("chmod 755 /data/local/a\n");
-			 Log.v(TAG, "chmod 755 /data/local/a\n");
+			Log.v(TAG, "chmod 755 /data/local/a\n");
 			os.flush();
 			os.writeBytes("exit\n");
 			os.flush();
@@ -607,7 +617,7 @@ public class PackageAdapter extends BaseAdapter {
 				if (is != null) {
 					is.close();
 				}
-//				process.destroy();
+				// process.destroy();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -662,7 +672,7 @@ public class PackageAdapter extends BaseAdapter {
 				if (is != null) {
 					is.close();
 				}
-//				process.destroy();
+				// process.destroy();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
