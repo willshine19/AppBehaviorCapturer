@@ -77,15 +77,16 @@ int ApiHookerManager::main() {
 	hookJavaMethod();
 
 	//获取系统发送模块的实例 初始化
-	LOGE("-------------ApiHookerManager infosender ");
 	this->mInfoSender = InfoSender::getInstance();
+	LOGE("-------------ApiHookerManager infosender ");
 	mInfoSender->init();
 	return 0;
 }
 
 /**
  * 初始化哈希表
- */bool ApiHookerManager::initHashMap() {
+ */
+bool ApiHookerManager::initHashMap() {
 	//系统api
 	StartThreadApiHooker* start = new StartThreadApiHooker();
 	RunThreadApiHooker* run = new RunThreadApiHooker();
@@ -103,12 +104,12 @@ int ApiHookerManager::main() {
 			new onStartCommandServiceApiHooker();
 	OnStopActivityApiHooker* onStop = new OnStopActivityApiHooker();
 
-	mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
-//	mApiHookerHashMap.insert(make_pair("onDestroy", onDestroy));
-//	mApiHookerHashMap.insert(make_pair("onPause", onPause));
-//	mApiHookerHashMap.insert(make_pair("onRestart", onRestart));
-//	mApiHookerHashMap.insert(make_pair("onStart", onStart));
-//	mApiHookerHashMap.insert(make_pair("onStop", onStop));
+	/* mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
+	 mApiHookerHashMap.insert(make_pair("onDestroy", onDestroy));
+	 mApiHookerHashMap.insert(make_pair("onPause", onPause));
+	 mApiHookerHashMap.insert(make_pair("onRestart", onRestart));
+	 mApiHookerHashMap.insert(make_pair("onStart", onStart));
+	 mApiHookerHashMap.insert(make_pair("onStop", onStop));*/
 	mApiHookerHashMap.insert(make_pair("onResume", onResume));
 //	mApiHookerHashMap.insert(make_pair("OnCreateApplicationLandroid/app/Application", OnCreateApplication));
 //	mApiHookerHashMap.insert(make_pair("onCreateLandroid/app/Service;", onCreateService));//
@@ -117,7 +118,7 @@ int ApiHookerManager::main() {
 			make_pair("onStartCommandLandroid/app/Service;",
 					onStartCommandService)); //Landroid/app/Service
 	mApiHookerHashMap.insert(make_pair("startLjava/lang/Thread;", start));
-	mApiHookerHashMap.insert(make_pair("runLjava/lang/Thread;", run));
+	mApiHookerHashMap.insert(make_pair("run", run));
 	LOGD("insert system api to hashmap successfully");
 
 	//外设api
@@ -175,9 +176,9 @@ int ApiHookerManager::main() {
 	WriteFileOutputStreamApiHooker* writeFileOutputStream =
 			new WriteFileOutputStreamApiHooker();
 	ReadFileInputStream* readFileInputStream = new ReadFileInputStream();
-//	 mApiHookerHashMap.insert(make_pair("insert", insertContentResolver));
-//	 mApiHookerHashMap.insert(make_pair("query", queryContentResolve));
-//	 mApiHookerHashMap.insert(make_pair("delete", deleteContentResolver));
+	 mApiHookerHashMap.insert(make_pair("insert", insertContentResolver));
+	 mApiHookerHashMap.insert(make_pair("query", queryContentResolve));
+	 mApiHookerHashMap.insert(make_pair("delete", deleteContentResolver));
 	mApiHookerHashMap.insert(make_pair("update", updateContentResolver));
 	mApiHookerHashMap.insert(make_pair("getMessageBody", getMessageBody));
 	mApiHookerHashMap.insert(make_pair("getCallState", getCallState));
@@ -194,12 +195,12 @@ int ApiHookerManager::main() {
 			make_pair("requestLocationUpdatas", requestLocationUpdatas));
 //	mApiHookerHashMap.insert(
 //			make_pair("readLjava/io/FileInputStream;", readFileInputStream));
-//	mApiHookerHashMap.insert(
-//			make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
+	mApiHookerHashMap.insert(
+			make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
 	mApiHookerHashMap.insert(make_pair("getFD", getFD));
-//	mApiHookerHashMap.insert(
-//			make_pair("closeLjava/io/FileOutputStream;",
-//					closeFileOutputStream));
+	mApiHookerHashMap.insert(
+			make_pair("closeLjava/io/FileOutputStream;",
+					closeFileOutputStream));
 	mApiHookerHashMap.insert(make_pair("write", writeFileOutputStream));
 	mApiHookerHashMap.insert(make_pair("getMacAddress", getMacAddress));
 	LOGD("insert data api to hashmap successfully");
@@ -234,16 +235,18 @@ int ApiHookerManager::main() {
 	mApiHookerHashMap.insert(make_pair("disconnect", disconnect));
 	mApiHookerHashMap.insert(make_pair("enableNetwork", enableNetwork));
 	mApiHookerHashMap.insert(make_pair("setWifiEnabled", setWifiEnabled));
-	mApiHookerHashMap.insert(make_pair("call", call));
-	mApiHookerHashMap.insert(make_pair("endCall", endCall));
+//	mApiHookerHashMap.insert(make_pair("call", call));
+//	mApiHookerHashMap.insert(make_pair("endCall", endCall));
 	LOGD("insert communication api to hashmap successfully");
+
 	return true;
 }
 
 /**
  * 遍历哈希表，hook哈希表中记录的所有目标java层api
  * 封装了dalvikJavaMethodHook函数
- */bool ApiHookerManager::hookJavaMethod() {
+ */
+bool ApiHookerManager::hookJavaMethod() {
 	JNIEnv *env = getEnv();
 	HookInfo info;
 	JavaMethodHooker* javaMethodHooker = new JavaMethodHooker();

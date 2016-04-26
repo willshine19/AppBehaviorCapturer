@@ -87,11 +87,11 @@ StartThreadApiHooker::~StartThreadApiHooker() {
 	//ThreadMap::getInstance()->
 
 
-/*	(ThreadMap::getInstance()->mMap).insert(make_pair(javaThreadId, threadId));
+	(ThreadMap::getInstance()->mMap).insert(make_pair(javaThreadId, threadId));
 	(ThreadMap::getInstance()->mpid_javason_father_Map).insert(
 			make_pair(threadId, javaThreadId));
 	//打印刚刚存入的键值对
-	auto mMapFound = (ThreadMap::getInstance()->mMap).find(javaThreadId);*/
+	auto mMapFound = (ThreadMap::getInstance()->mMap).find(javaThreadId);
 
 
 

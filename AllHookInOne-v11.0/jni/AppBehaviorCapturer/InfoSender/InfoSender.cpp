@@ -55,12 +55,10 @@ void* InfoSender::readFromQueue(void* arg) {
 
 	while (1) {
 		LOGI("[r]第 %d 次 发送JSon", count);
-		LOGE("11111111111111infosender");
 		// 若队列为空则阻塞?
 		CollectedApiInfo apiInfo = InfoSender::mCycledBlockingQueue->send();
 		LOGI("[r]IS:rFQ:send()");
 		json = apiInfo.convertToJson();
-
 		LOGI("[r]IS:rFQ:cTJ");
 		//发送json字符串
 		int len = json.size();
@@ -240,7 +238,7 @@ bool InfoSender::init() {
 	//初始化读线程
 	int err = pthread_create(&this->ntid, NULL, InfoSender::readFromQueue,
 			NULL);
-	LOGE("-------------infosender readFromQueue ----%d",&this->ntid);
+	LOGE("-------------infosender readFromQueue ");
 	if (err != 0) {
 		LOGE("can not create thread :%s", strerror(err));
 	}

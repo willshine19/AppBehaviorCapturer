@@ -58,13 +58,13 @@ bool OnResumeActivityApiHooker::parseParameter(const u4* args) {
 	StringObject* sourceNameObj = (StringObject*) toStringResult;
 	char* paramString = dvmCreateCstrFromString(sourceNameObj);
 	LOGD("[+] OnResume调用实例为 %s", paramString);
-/*	long threadId = pthread_self();	//获取c层的线程号
+	long threadId = pthread_self();	//获取c层的线程号
 	(ThreadMap::getInstance()->mpid_contextMap).insert(
 			make_pair(threadId, paramString));
 	//zds测试
 	auto mMapFound = (ThreadMap::getInstance()->mpid_contextMap).find(threadId);
 	LOGD("存入hashmap中c线程号为 %ld", mMapFound->first);
-	LOGD("存入hashmap中context为 %s", mMapFound->second);*/
+	LOGD("存入hashmap中context为 %s", mMapFound->second);
 
 	//zds
 	ApiHookerManager::getInstance()->mContextInfo = paramString;

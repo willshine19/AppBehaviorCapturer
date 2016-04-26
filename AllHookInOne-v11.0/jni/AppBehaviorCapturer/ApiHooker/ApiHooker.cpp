@@ -50,9 +50,9 @@ string ApiHooker::toString() {
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setContext(
 			ApiHookerManager::getInstance()->mContextInfo);
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setFatherThreadId(
-			3333333);//getFatherId(threadId)
+			getFatherId(threadId)); //
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setSonThreadId(
-			4444444);//getSonId(threadId)
+			getSonId(threadId)); //
 	pthread_mutex_t* mutex =
 			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucketMutex);
 	pthread_mutex_unlock(mutex);
@@ -73,7 +73,8 @@ long ApiHooker::getSonId(long threadId) {
 //	long threadId = pthread_self();
 	auto mMapFound = (ThreadMap::getInstance()->mpid_javason_father_Map).find(
 			threadId);
-	if (mMapFound != (ThreadMap::getInstance()->mpid_javason_father_Map).end()) {
+	if (mMapFound
+			!= (ThreadMap::getInstance()->mpid_javason_father_Map).end()) {
 		return mMapFound->second;
 	} else
 //		LOGD("This thread don't have a father thread");
