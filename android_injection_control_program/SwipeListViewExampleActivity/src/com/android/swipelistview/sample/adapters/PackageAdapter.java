@@ -193,7 +193,7 @@ public class PackageAdapter extends BaseAdapter {
 				}
 
 				try {
-					Thread.sleep(800);
+					Thread.sleep(600);
 					process = Runtime.getRuntime().exec("su");
 					os = new DataOutputStream(process.getOutputStream());
 					is = new DataInputStream(process.getInputStream());

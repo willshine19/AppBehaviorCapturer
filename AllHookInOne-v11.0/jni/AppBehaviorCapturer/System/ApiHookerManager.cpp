@@ -104,11 +104,11 @@ int ApiHookerManager::main() {
 	OnStopActivityApiHooker* onStop = new OnStopActivityApiHooker();
 
 	mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
-	mApiHookerHashMap.insert(make_pair("onDestroy", onDestroy));
-	mApiHookerHashMap.insert(make_pair("onPause", onPause));
-	mApiHookerHashMap.insert(make_pair("onRestart", onRestart));
-	mApiHookerHashMap.insert(make_pair("onStart", onStart));
-	mApiHookerHashMap.insert(make_pair("onStop", onStop));
+//	mApiHookerHashMap.insert(make_pair("onDestroy", onDestroy));
+//	mApiHookerHashMap.insert(make_pair("onPause", onPause));
+//	mApiHookerHashMap.insert(make_pair("onRestart", onRestart));
+//	mApiHookerHashMap.insert(make_pair("onStart", onStart));
+//	mApiHookerHashMap.insert(make_pair("onStop", onStop));
 	mApiHookerHashMap.insert(make_pair("onResume", onResume));
 //	mApiHookerHashMap.insert(make_pair("OnCreateApplicationLandroid/app/Application", OnCreateApplication));
 //	mApiHookerHashMap.insert(make_pair("onCreateLandroid/app/Service;", onCreateService));//
@@ -117,7 +117,7 @@ int ApiHookerManager::main() {
 			make_pair("onStartCommandLandroid/app/Service;",
 					onStartCommandService)); //Landroid/app/Service
 	mApiHookerHashMap.insert(make_pair("startLjava/lang/Thread;", start));
-	mApiHookerHashMap.insert(make_pair("run", run));
+	mApiHookerHashMap.insert(make_pair("runLjava/lang/Thread;", run));
 	LOGD("insert system api to hashmap successfully");
 
 	//外设api
@@ -194,12 +194,12 @@ int ApiHookerManager::main() {
 			make_pair("requestLocationUpdatas", requestLocationUpdatas));
 //	mApiHookerHashMap.insert(
 //			make_pair("readLjava/io/FileInputStream;", readFileInputStream));
-	mApiHookerHashMap.insert(
-			make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
+//	mApiHookerHashMap.insert(
+//			make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
 	mApiHookerHashMap.insert(make_pair("getFD", getFD));
-	mApiHookerHashMap.insert(
-			make_pair("closeLjava/io/FileOutputStream;",
-					closeFileOutputStream));
+//	mApiHookerHashMap.insert(
+//			make_pair("closeLjava/io/FileOutputStream;",
+//					closeFileOutputStream));
 	mApiHookerHashMap.insert(make_pair("write", writeFileOutputStream));
 	mApiHookerHashMap.insert(make_pair("getMacAddress", getMacAddress));
 	LOGD("insert data api to hashmap successfully");

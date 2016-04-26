@@ -77,12 +77,14 @@ bool RunThreadApiHooker::parseParameter(const u4* args) {
 	long javaThreadId = 0;		//用来保存子java层的线程号
 	sscanf(paramString, "%ld", &javaThreadId);
 	long threadId = pthread_self();	//获取子c层的线程号
-	auto mMapFound = (ThreadMap::getInstance()->mMap).find(javaThreadId);
+	//ThreadMap::getInstance()->
+
+/*	auto mMapFound = (ThreadMap::getInstance()->mMap).find(javaThreadId);
 	(ThreadMap::getInstance()->mpid_father_son_Map).insert(
 			make_pair(threadId, mMapFound->second));
 	auto mmmm = (ThreadMap::getInstance()->mpid_father_son_Map).find(threadId);
 	LOGD("[+] 存入hashmap中子线程号为 %ld", mmmm->first);
 	LOGD("[+] 存入hashmap中父线程号为 %ld", mmmm->second);
-	LOGD("[+] run线程号为 %s", paramString);
+	LOGD("[+] run线程号为 %s", paramString);*/
 	return true;
 }

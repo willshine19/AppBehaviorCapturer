@@ -84,11 +84,17 @@ StartThreadApiHooker::~StartThreadApiHooker() {
 	long javaThreadId = 0;		//用来保存java层的线程号
 	sscanf(paramString, "%ld", &javaThreadId);
 	//将父的c和子的java的线程号存入hashmap中
-	(ThreadMap::getInstance()->mMap).insert(make_pair(javaThreadId, threadId));
+	//ThreadMap::getInstance()->
+
+
+/*	(ThreadMap::getInstance()->mMap).insert(make_pair(javaThreadId, threadId));
 	(ThreadMap::getInstance()->mpid_javason_father_Map).insert(
 			make_pair(threadId, javaThreadId));
 	//打印刚刚存入的键值对
-	auto mMapFound = (ThreadMap::getInstance()->mMap).find(javaThreadId);
+	auto mMapFound = (ThreadMap::getInstance()->mMap).find(javaThreadId);*/
+
+
+
 //		LOGD("[+] 存入hashmap中子java线程号为 %ld", mMapFound->first);
 //		LOGD("[+] 存入hashmap中父c线程号为 %ld", mMapFound->second);
 

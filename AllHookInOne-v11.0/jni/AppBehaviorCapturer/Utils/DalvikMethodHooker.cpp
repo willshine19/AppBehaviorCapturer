@@ -419,9 +419,11 @@ void methodHandler(const u4* args, JValue* pResult, const Method* method,
 	LOGD("[w]2");
 	if (tempApiHooker->main(args)) {
 		LOGD("[w]3");
-		tempApiHooker->parseResult(result); //解析返回参数
-		LOGD("[w]4");
-		tempApiHooker->collectBaseInfo(); //将获取信息存到发送队列
+		if(tempApiHooker->parseResult(result)){ //解析返回参数
+			LOGD("[w]4");
+			tempApiHooker->collectBaseInfo(); //将获取信息存到发送队列
+		}
+
 	}
 	LOGD("[w]5");
 	dvmReleaseTrackedAlloc((Object *) argTypes, self); //释放内存
