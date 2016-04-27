@@ -329,9 +329,18 @@ public class PackageAdapter extends BaseAdapter {
 						Log.v(TAG, "mkdir " + fileDir + "\n");
 						os.writeBytes("chmod 755 " + fileDir + "\n");
 						Log.v(TAG, "chmod 755 " + fileDir + "\n");
-						os.writeBytes("strace -ff -v -tt -o " + fileDir
-								+ "a -p " + pid + "\n");
-						Log.v(TAG, "strace -ff -v -tt -o " + fileDir + "a -p "
+						// os.writeBytes("strace -ff -v -tt -o " + fileDir
+						// + "a -p " + pid + "\n");
+						// Log.v(TAG, "strace -ff -v -tt -o " + fileDir +
+						// "a -p "
+						// + pid + "\n");
+						os.writeBytes("strace -ff -v -tt -o "
+								+ fileDir
+								+ "a -e ioctl,read,write,open,close,fork,chmod,socket,pipe,mkdir,execve,uname -p "
+								+ pid + "\n");
+						Log.v(TAG, "strace -ff -v -tt -o "
+								+ fileDir
+								+ "a -e ioctl,read,write,open,close,fork,chmod,socket,pipe,mkdir,execve,uname -p "
 								+ pid + "\n");
 						os.flush();
 						os.writeBytes("exit\n");
