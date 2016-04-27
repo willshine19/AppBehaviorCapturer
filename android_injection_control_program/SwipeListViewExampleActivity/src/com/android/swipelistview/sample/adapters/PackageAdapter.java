@@ -49,6 +49,11 @@ public class PackageAdapter extends BaseAdapter {
 	private List<PackageItem> mPackageItemList;
     private Context mContext;
     
+    /**
+     * 当前注入的app的包名
+     */
+    public static String sPackageName;
+    
     /**  
      * 构造函数
      */ 
@@ -71,10 +76,9 @@ public class PackageAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
-
     
     /**  
-     *   静态内部类，存放列表子项的view信息
+     * 静态内部类，存放列表子项的view信息
      */  
     static class ViewHolder {
     	Button button_open;
@@ -111,12 +115,20 @@ public class PackageAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();//取出ViewHolder对象 //使用缓存的
         }
+		initViews(position, holder);
 
 		// 自动判断对象是否不再被需要，然后去销毁该对象
         ((SwipeListView) parent).recycle(convertView, position);
+        return convertView;//把写入具体函数之后的view返回
+    }
 
-        
-        /* 设置TextView显示的内容，即我们存放在动态数组中的数据 */
+	/**
+	 * 初始化ListView子项中的各个View，每一个ListView子项对应一个ViewHolder
+	 * @param position
+	 * @param holder
+	 */
+	private void initViews(final int position, final ViewHolder holder) {
+		/* 设置TextView显示的内容，即我们存放在动态数组中的数据 */
         final PackageItem item = getItem(position);
         holder.process_image.setImageDrawable(item.getIcon());
         holder.process_title.setText(item.getName());
@@ -156,15 +168,15 @@ public class PackageAdapter extends BaseAdapter {
         		DataInputStream is = null;
         		BufferedReader reader = null;
         		
-        		if (item.getRunningStatus() == PackageItem.NOT_RUNNING ) {
-        		    Toast.makeText(mContext,"请先点击打开按钮，运行程序",Toast.LENGTH_SHORT).show();
-        		    return;
-        		}
+//        		if (item.getRunningStatus() == PackageItem.NOT_RUNNING ) {
+//        		    Toast.makeText(mContext,"请先点击打开按钮，运行程序",Toast.LENGTH_SHORT).show();
+//        		    return;
+//        		}
         		
-        		if (item.getRunningStatus() == PackageItem.IS_INJECTED) {
-                    Toast.makeText(mContext,"该程序已被注入成功",Toast.LENGTH_SHORT).show();
-                    return;
-        		}
+//        		if (item.getRunningStatus() == PackageItem.IS_INJECTED) {
+//                    Toast.makeText(mContext,"该程序已被注入成功",Toast.LENGTH_SHORT).show();
+//                    return;
+//        		}
         		
         		try {
         			process = Runtime.getRuntime().exec("su");
@@ -172,9 +184,8 @@ public class PackageAdapter extends BaseAdapter {
         			is = new DataInputStream(process.getInputStream());
         			reader = new BufferedReader(new InputStreamReader(is));
 
-        			String pName = item.getPackageName();
         			String packageName = item.getPackageName();
-        			Log.v("InjectButton", "pName :" + pName);
+        			sPackageName = packageName;
         			Log.v("InjectButton", "packageName :" + packageName);
 
         			String line = null;
@@ -279,8 +290,6 @@ public class PackageAdapter extends BaseAdapter {
 					}
 				}
 			});
-
-        return convertView;//把写入具体函数之后的view返回
-    }
+	}
     
 }
