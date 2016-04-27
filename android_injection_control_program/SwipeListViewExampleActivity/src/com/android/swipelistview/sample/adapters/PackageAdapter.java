@@ -34,6 +34,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.widget.Toast;
@@ -159,73 +160,18 @@ public class PackageAdapter extends BaseAdapter {
             }
         });
 
-        //注入按钮
+        //注入按钮 依次注入该app的所有进程
         holder.button_inject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            	Process process = null;
-        		DataOutputStream os = null;
-        		DataInputStream is = null;
-        		BufferedReader reader = null;
-        		
-//        		if (item.getRunningStatus() == PackageItem.NOT_RUNNING ) {
-//        		    Toast.makeText(mContext,"请先点击打开按钮，运行程序",Toast.LENGTH_SHORT).show();
-//        		    return;
-//        		}
-        		
-//        		if (item.getRunningStatus() == PackageItem.IS_INJECTED) {
-//                    Toast.makeText(mContext,"该程序已被注入成功",Toast.LENGTH_SHORT).show();
-//                    return;
-//        		}
-        		
-        		try {
-        			process = Runtime.getRuntime().exec("su");
-        			os = new DataOutputStream(process.getOutputStream());
-        			is = new DataInputStream(process.getInputStream());
-        			reader = new BufferedReader(new InputStreamReader(is));
-
-        			String packageName = item.getPackageName();
-        			sPackageName = packageName;
-        			Log.v("InjectButton", "packageName :" + packageName);
-
-        			String line = null;
-
-        			os.writeBytes("chmod 777 /data/inj-allhookinone/*\n");
-                    os.flush();
-                    os.writeBytes("/data/inj-allhookinone/AndroidInjectSo " +packageName +"\n");
-                    os.flush();
-        			os.writeBytes("exit\n");
-        			os.flush();
-        			
-        			// 读取输出
-        			while ((line = reader.readLine()) != null) { 
-        				Log.v("InjectButton", line);
-        			}
-        			
-        			Log.v("InjectButton", "inject " + packageName + " successfully!");
-        			Toast.makeText(mContext,"注入成功",Toast.LENGTH_SHORT).show();
-        			holder.running_status.setText("已注入");
-        			item.setRunningStatus(PackageItem.IS_INJECTED);
-        			
-        			process.waitFor();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					Log.e("Error", e.getMessage());
-					e.printStackTrace();
-				} finally {
-					try {
-						if (os != null) {
-							os.close();
-						}
-						if (reader != null) {
-							reader.close();
-						}
-						process.destroy();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
+            	List<String> runningProcessList = getRunningProcessList();
+            	List<String> packageNameList = findPackageName(item, runningProcessList);
+            	for (String each : packageNameList) {
+            		injectProcess(each);
+            	}
+        		Toast.makeText(mContext,"注入成功",Toast.LENGTH_SHORT).show();
+        		holder.running_status.setText("已注入");
+        		item.setRunningStatus(PackageItem.IS_INJECTED);
             }
         });
 
@@ -291,5 +237,124 @@ public class PackageAdapter extends BaseAdapter {
 				}
 			});
 	}
+	
+	/**
+	 * 注入一个进程，
+	 * @param 该进程对应的包名
+	 */
+	private void injectProcess(String packageName) {
+		Process process = null;
+		DataOutputStream os = null;
+		DataInputStream is = null;
+		BufferedReader reader = null;
+		
+		try {
+			process = Runtime.getRuntime().exec("su");
+			os = new DataOutputStream(process.getOutputStream());
+			is = new DataInputStream(process.getInputStream());
+			reader = new BufferedReader(new InputStreamReader(is));
+
+			sPackageName = packageName;
+			Log.v("InjectButton", "packageName :" + packageName);
+
+			String line = null;
+
+			os.writeBytes("chmod 777 /data/inj-allhookinone/*\n");
+            os.flush();
+            os.writeBytes("/data/inj-allhookinone/AndroidInjectSo " +packageName +"\n");
+            os.flush();
+			os.writeBytes("exit\n");
+			os.flush();
+			
+			// 读取输出
+			while ((line = reader.readLine()) != null) { 
+//				Log.v("InjectButton", line);
+			}
+			
+			Log.i("InjectButton", "[+] 注入 " + packageName + " 完成!");
+			
+			process.waitFor();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			Log.e("Error", e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				if (os != null) {
+					os.close();
+				}
+				if (reader != null) {
+					reader.close();
+				}
+				process.destroy();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+    /**  
+     * 用linux命令行运行 ps，将所有正在运行的进程信息保存在数组中,返回这个数组
+     * 这个数组中的元素是字符串，每个字符串对应ps命令输出的一行，未加工
+     */
+    private List<String> getRunningProcessList() {
+    	List<String> runningProcessList = new ArrayList<String>();
+        Process process = null;
+        DataOutputStream os = null;
+        BufferedReader reader = null;
+
+        try {
+        	process = Runtime.getRuntime().exec("su");
+            os = new DataOutputStream(process.getOutputStream());
+            reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            os.writeBytes("ps\n");
+            os.flush();
+            String line = null;
+            os.writeBytes("exit\n");
+            os.flush();
+            while ((line = reader.readLine()) != null) {
+            	runningProcessList.add(line);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (os != null) {
+        			os.close();
+        		}
+        		if (reader != null) {
+        			reader.close();
+        		}
+        	} catch (IOException ex) {
+        		Log.e(TAG,	"关闭流失败");
+        	}
+        }
+        return runningProcessList;
+    }
+    
+    /**  
+     * 返回满足条件的包名List，List中的包名所对应的进程都是同一个app的。解决多进程问题
+     * @param item 代表已安装到手机上的一个app
+     * @param list getRunningProcessList的返回值
+     */
+    private List<String> findPackageName(PackageItem item, List<String> list) {
+    	List<String> packageNameList = new ArrayList<String>();
+        String pName = item.getPackageName();
+
+        for (String each : list) {
+        	if(each.contains(pName)) {
+        		String[] splitFactors = each.split(" ");
+        		 for (String factor : splitFactors) {
+        			 if (factor.contains(pName)) {
+        				 packageNameList.add(factor);
+        			 }
+        		 }
+        	}
+        }
+        return packageNameList;
+    }
+
     
 }
