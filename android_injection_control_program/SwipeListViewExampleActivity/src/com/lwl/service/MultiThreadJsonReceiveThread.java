@@ -155,7 +155,8 @@ public class MultiThreadJsonReceiveThread {
 					.getSystemService(Context.TELEPHONY_SERVICE);
 			try {
 				jsonObject.put("IMEI", tm.getDeviceId());
-				jsonObject.put("packageName", PackageAdapter.sPackageName);
+				int pid = jsonObject.getInt("processID");
+				jsonObject.put("packageName", PackageAdapter.sPackageNameMap.get(pid));
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

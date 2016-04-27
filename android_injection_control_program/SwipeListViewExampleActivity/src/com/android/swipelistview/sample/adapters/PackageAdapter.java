@@ -35,7 +35,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.widget.Toast;
 
@@ -53,7 +55,7 @@ public class PackageAdapter extends BaseAdapter {
     /**
      * 当前注入的app的包名
      */
-    public static String sPackageName;
+    public static Map<Integer, String> sPackageNameMap = new HashMap<Integer, String>();
     
     /**  
      * 构造函数
@@ -164,6 +166,7 @@ public class PackageAdapter extends BaseAdapter {
         holder.button_inject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            	sPackageNameMap.clear();
             	List<String> runningProcessList = getRunningProcessList();
             	List<String> packageNameList = findPackageName(item, runningProcessList);
             	for (String each : packageNameList) {
@@ -254,7 +257,6 @@ public class PackageAdapter extends BaseAdapter {
 			is = new DataInputStream(process.getInputStream());
 			reader = new BufferedReader(new InputStreamReader(is));
 
-			sPackageName = packageName;
 			Log.v("InjectButton", "packageName :" + packageName);
 
 			String line = null;
@@ -345,12 +347,9 @@ public class PackageAdapter extends BaseAdapter {
 
         for (String each : list) {
         	if(each.contains(pName)) {
-        		String[] splitFactors = each.split(" ");
-        		 for (String factor : splitFactors) {
-        			 if (factor.contains(pName)) {
-        				 packageNameList.add(factor);
-        			 }
-        		 }
+        		String[] splitFactors = each.split("\\s+");
+        		packageNameList.add(splitFactors[8]);
+        		sPackageNameMap.put(Integer.valueOf(splitFactors[1]), splitFactors[8]);
         	}
         }
         return packageNameList;
