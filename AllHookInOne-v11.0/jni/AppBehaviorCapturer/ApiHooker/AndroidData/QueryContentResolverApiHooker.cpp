@@ -20,9 +20,10 @@ QueryContentResolverApiHooker::~QueryContentResolverApiHooker() {
 }
 
 bool QueryContentResolverApiHooker::parseResult(Object* obj) {
-	const char* className = "android/database/Cursor";
+	const char* className = "java/lang/Object";//java/long/object!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	char* resultString = parseObjectToString(obj, className);
 	LOGD("[返回值解析] -> %s", resultString);
-	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setResult(resultString);
+	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setResult(
+			resultString);
 	return true;
 }

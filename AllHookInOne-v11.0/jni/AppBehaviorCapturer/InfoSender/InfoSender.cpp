@@ -59,6 +59,7 @@ void* InfoSender::readFromQueue(void* arg) {
 		CollectedApiInfo apiInfo = InfoSender::mCycledBlockingQueue->send();
 		LOGI("[r]IS:rFQ:send()");
 		json = apiInfo.convertToJson();
+//		json="test it";
 		LOGI("[r]IS:rFQ:cTJ");
 		//发送json字符串
 		int len = json.size();

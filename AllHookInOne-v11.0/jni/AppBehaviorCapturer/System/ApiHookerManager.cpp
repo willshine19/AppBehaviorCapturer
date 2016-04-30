@@ -85,8 +85,7 @@ int ApiHookerManager::main() {
 
 /**
  * 初始化哈希表
- */
-bool ApiHookerManager::initHashMap() {
+ */bool ApiHookerManager::initHashMap() {
 	//系统api
 	StartThreadApiHooker* start = new StartThreadApiHooker();
 	RunThreadApiHooker* run = new RunThreadApiHooker();
@@ -176,9 +175,9 @@ bool ApiHookerManager::initHashMap() {
 	WriteFileOutputStreamApiHooker* writeFileOutputStream =
 			new WriteFileOutputStreamApiHooker();
 	ReadFileInputStream* readFileInputStream = new ReadFileInputStream();
-	 mApiHookerHashMap.insert(make_pair("insert", insertContentResolver));
-	 mApiHookerHashMap.insert(make_pair("query", queryContentResolve));
-	 mApiHookerHashMap.insert(make_pair("delete", deleteContentResolver));
+	mApiHookerHashMap.insert(make_pair("insert", insertContentResolver));
+	mApiHookerHashMap.insert(make_pair("query", queryContentResolve));
+	mApiHookerHashMap.insert(make_pair("delete", deleteContentResolver));
 	mApiHookerHashMap.insert(make_pair("update", updateContentResolver));
 	mApiHookerHashMap.insert(make_pair("getMessageBody", getMessageBody));
 	mApiHookerHashMap.insert(make_pair("getCallState", getCallState));
@@ -235,6 +234,7 @@ bool ApiHookerManager::initHashMap() {
 	mApiHookerHashMap.insert(make_pair("disconnect", disconnect));
 	mApiHookerHashMap.insert(make_pair("enableNetwork", enableNetwork));
 	mApiHookerHashMap.insert(make_pair("setWifiEnabled", setWifiEnabled));
+//	com/android/internal/telephony/ITelephony$Stub$Proxy->call method not found
 //	mApiHookerHashMap.insert(make_pair("call", call));
 //	mApiHookerHashMap.insert(make_pair("endCall", endCall));
 	LOGD("insert communication api to hashmap successfully");
@@ -245,8 +245,7 @@ bool ApiHookerManager::initHashMap() {
 /**
  * 遍历哈希表，hook哈希表中记录的所有目标java层api
  * 封装了dalvikJavaMethodHook函数
- */
-bool ApiHookerManager::hookJavaMethod() {
+ */bool ApiHookerManager::hookJavaMethod() {
 	JNIEnv *env = getEnv();
 	HookInfo info;
 	JavaMethodHooker* javaMethodHooker = new JavaMethodHooker();
