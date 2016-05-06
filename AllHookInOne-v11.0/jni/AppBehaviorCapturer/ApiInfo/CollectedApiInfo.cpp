@@ -9,7 +9,7 @@
 
 CollectedApiInfo::CollectedApiInfo() {
 	// TODO Auto-generated constructor stub
-	mResult="";
+	mResult="null";
 	mProcessID = getpid();
 
 }
@@ -56,6 +56,18 @@ bool CollectedApiInfo::setSonThreadId(long SonThreadId) {
 	this->mSonThreadId = SonThreadId;
 	return true;
 }
+
+char* CollectedApiInfo::getResult()  {
+	const int len = mResult.length();
+	char* c = new char[len+1];
+	strcpy(c,mResult.c_str());
+	return c;
+}
+
+bool CollectedApiInfo::setResult(char* result) {
+	mResult.assign(result);
+	return true;
+}
 //end
 bool CollectedApiInfo::setClassName(string className) {
 	this->mClassName = className;
@@ -84,6 +96,7 @@ string CollectedApiInfo::convertToJson() {
 	root["threadID"] = (unsigned int) this->mThreadId;
 	root["processID"] = this->mProcessID;
 	root["result"] = this->mResult;
+//	root["result"] ="not put into json";
 
 //	json2string = root.toStyledString();
 	string out = root.toStyledString();

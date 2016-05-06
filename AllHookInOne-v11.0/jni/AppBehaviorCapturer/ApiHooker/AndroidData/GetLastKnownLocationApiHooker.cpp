@@ -26,6 +26,6 @@ bool GetLastKnownLocationApiHooker::parseResult(Object* obj) {
 	const char* className = "android/location/Location";
 	char* resultString = parseObjectToString(obj, className);
 	LOGD("[返回值解析] -> %s", resultString);
-	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setResult(resultString);
+//	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setResult(resultString);
 	return true;
 }

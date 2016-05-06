@@ -178,9 +178,9 @@ public class JsonSender {
 				e.printStackTrace();
 			}
 		}*/
-		Log.v(TAG1, "离开while循环");
+//		Log.v(TAG1, "离开while循环");
 		mSuccessFlag = false;
-		Log.i(TAG1, "完成pubJSON数据");
+//		Log.i(TAG1, "完成pubJSON数据");
 
 //		try {
 //			Thread.sleep(1000);// 等待服务器计算
@@ -250,43 +250,29 @@ public class JsonSender {
 	}
 	
 	/**
-	 * 将json对象转为字符串写到一个文本中，并将文件保存到sd卡中，即/storage/emulated/0/json.txt
+	 * 将json对象转为字符串写到一个文本中，并将文件保存到sd卡中，即/storage/emulated/0/SyhJson.txt
 	 * 需要申请权限<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	 * 和<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-	 * @throws FileNotFoundException 
-	 * @Description:
 	 */
 	public void saveToFile(JSONObject jo) {
-		FileOutputStream fos = null	;
 		PrintStream ps = null;
 		try {
 			String fileName = getSDPath() + "/SyhJson.txt";
-//			fos = context.openFileOutput(fileName, Context.MODE_APPEND);
-			fos = new FileOutputStream(fileName, true);
-			ps = new PrintStream(fos);
+			ps = new PrintStream(new FileOutputStream(fileName, true));
 			ps.println(jo.toString());
 			Log.d(TAG1, "成功保存到文件/storage/emulated/0/SyhJson.txt");
 		} catch (IOException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
-			try {
-				if (ps != null) {
-					ps.close();
-				}
-				if (fos != null) {
-					fos.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				ps.close();
 			}
 		}
 	}
 	
 	/**
 	 * 获取SD卡的路径
-	 * @Description:
-	 * @return
 	 */
 	private String getSDPath() {
         File sdDir = null;

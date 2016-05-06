@@ -85,7 +85,7 @@ public class SplashScreen extends Activity {
             os.writeBytes("exit\n");
             os.flush();
             while ((line = reader.readLine()) != null) {
-            	runningProcessList.add(line);
+            	runningProcessList.add(new String(line));
             }
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());

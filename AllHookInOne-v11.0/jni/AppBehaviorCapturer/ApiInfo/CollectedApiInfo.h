@@ -27,7 +27,7 @@ class CollectedApiInfo {
 	string json2string;
 	string mContext;
 	char* mParameter;
-	char* mResult;
+	string mResult;
 	long mFatherThreadId;
 	long mThreadId;
 	int mProcessID;
@@ -47,19 +47,16 @@ public:
 	string getContext();
 	long getFatherThreadId();
 
-	long getSonThreadId();
-	bool setSonThreadId(long SonThreadId);
+	long getSonThreadId();bool setSonThreadId(long SonThreadId);
+
+	char* getResult();bool setResult(char* result);
 
 	pthread_mutex_t getLock();
 	//改成私有成员函数
-	bool setClassName(string ClasName);
-	bool setMethodName(string MethodName);
-	bool setThreadId(long ThreadId);
-	bool setContext(string Context);
-	bool setFatherThreadId(long FatherThreadId);
-	bool setTime();
-	bool setFlag(int flag);
-	bool setLock(pthread_mutex_t lock);
+	bool setClassName(string ClasName);bool setMethodName(string MethodName);bool setThreadId(
+			long ThreadId);bool setContext(string Context);bool setFatherThreadId(
+			long FatherThreadId);bool setTime();bool setFlag(int flag);bool setLock(
+			pthread_mutex_t lock);
 	string convertToJson();
 
 	char* getParameter() const {
@@ -69,15 +66,6 @@ public:
 	void setParameter(char* parameter) {
 		mParameter = parameter;
 	}
-
-	char* getResult() const {
-		return mResult;
-	}
-
-	void setResult(char* result) {
-		mResult = result;
-	}
-
 
 };
 
