@@ -282,6 +282,7 @@ int ApiHookerManager::main() {
 
 		// step 4
 		map_it++;
+		sleep(0.05);
 	}
 	return true;
 }

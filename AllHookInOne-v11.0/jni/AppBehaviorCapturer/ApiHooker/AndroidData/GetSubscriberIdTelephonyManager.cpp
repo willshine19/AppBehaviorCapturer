@@ -20,7 +20,10 @@ GetSubscriberIdTelephonyManager::~GetSubscriberIdTelephonyManager() {
 bool GetSubscriberIdTelephonyManager::parseResult(Object* obj) {
 	StringObject* stringObjId = (StringObject*) obj;
 	char* resultString = dvmCreateCstrFromString(stringObjId);
+//	LOGD("[返回值解析] Object-> %s", obj);
+//	LOGD("[返回值解析] stringObjId-> %s", stringObjId);
 	LOGD("[返回值解析] -> %s", resultString);
+//	string m(resultString);
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setResult(resultString);
 	return true;
 }

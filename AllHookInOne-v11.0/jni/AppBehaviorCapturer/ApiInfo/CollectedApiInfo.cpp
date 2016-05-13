@@ -62,10 +62,24 @@ char* CollectedApiInfo::getResult()  {
 	char* c = new char[len+1];
 	strcpy(c,mResult.c_str());
 	return c;
+//	return mResult;
 }
 
 bool CollectedApiInfo::setResult(char* result) {
+//	LOGD("---------CollectedApiInfo start %s",result);
+//	mResult.assign(result);
+//	CString m;
+//	mResult=reinterpret_cast<string>(&result);
+//	char* i = reinterpret_cast<char*>(result);
+
 	mResult.assign(result);
+//	LOGD("---------CollectedApiInfo start %s",result);
+//	LOGD("---------CollectedApiInfo start %s",result);
+//	char rs[200];
+//	sprintf(rs, "%s", result);
+//	LOGD("---------CollectedApiInfo 111 %s",rs);
+//	mResult.assign(rs);
+//	LOGD("---------CollectedApiInfo end %s",mResult.c_str());
 	return true;
 }
 //end

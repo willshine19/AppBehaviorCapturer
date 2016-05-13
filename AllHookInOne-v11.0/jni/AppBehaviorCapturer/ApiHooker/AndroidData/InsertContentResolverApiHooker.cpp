@@ -57,7 +57,7 @@ bool InsertContentResolverApiHooker::parseParameter(const u4* args){
 	return true;
 }
 
-bool InsertContentResolverApiHooker::parseResult(Object* obj) {
+bool InsertContentResolverApiHooker::parseResult(Object* obj) {/*
 	JNIEnv *env = AndroidRuntime::getJNIEnv();
 		jclass uri = env->FindClass("android/net/Uri");
 		if (uri == 0) {
@@ -89,6 +89,6 @@ bool InsertContentResolverApiHooker::parseResult(Object* obj) {
 		char* resultString = dvmCreateCstrFromString(sourceNameObj);
 	LOGD("[返回值解析] -> %s", resultString);
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setResult(resultString);
+	*/
 	return true;
 }
-

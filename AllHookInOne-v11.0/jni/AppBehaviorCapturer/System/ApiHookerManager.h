@@ -8,6 +8,7 @@
 #define APIHOOKERMANAGER_H_
 #include <string>
 #include <jni.h>
+#include <unistd.h>
 #include <stdio.h>
 #include "android_runtime/AndroidRuntime.h"
 #include <unordered_map>
