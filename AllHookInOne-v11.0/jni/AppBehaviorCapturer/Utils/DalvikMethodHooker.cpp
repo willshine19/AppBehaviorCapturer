@@ -464,8 +464,8 @@ int dalvikJavaMethodHook(JNIEnv* env, ApiHooker* temp, HookInfo *info) {
 		LOGE("[-] %s->%s method not found", classDesc, methodName);
 		return -1;
 	}
-	LOGD("-------------------MethodId %s has found in %s", methodName,
-			classDesc);
+	LOGD(
+			"-------------------MethodId %s has found in %s", methodName, classDesc);
 
 	// step 4 判断该方法是否已经被hook过
 	Method* method = (Method*) methodId;

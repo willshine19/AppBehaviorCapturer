@@ -64,7 +64,7 @@
     </style>
 
     <style name="ListButtonAction">
-        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_margin">3dp</item>
          <item name="android:background">@drawable/button_selector</item>
          <item name="android:clickable">true</item>
     </style>

@@ -49,6 +49,20 @@
             style="@style/ListButtonAction"
             android:text="@string/uninstall"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/example_row_b_action_4"
+            style="@style/ListButtonAction"
+            android:text="@string/strace"/>
+        
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/example_row_b_action_5"
+            style="@style/ListButtonAction"
+            android:text="@string/pack"/>
+        
     </LinearLayout>
 
     <!-- 前面板 app信息-->

@@ -96,8 +96,7 @@ long ApiHooker::getSonId(long threadId) {
 	//申请队列空闲位置
 	this->mQueuePosition =
 			InfoSender::mCycledBlockingQueue->getNowAvailablePosition();
-	if (mQueuePosition == -1)
-		return false;
+	if(mQueuePosition==-1)return false;
 	parseParameter(args);
 //	collectBaseInfo();
 //	saveToQueue();
