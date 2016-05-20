@@ -161,7 +161,7 @@ public class PackageAdapter extends BaseAdapter {
                 }     
                 
                 try {
-					Thread.sleep(600);
+					Thread.sleep(500);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

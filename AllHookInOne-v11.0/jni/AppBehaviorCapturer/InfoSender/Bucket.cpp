@@ -76,8 +76,6 @@ unsigned int Bucket::getThreadId() {
 }
 
 bool Bucket::setResult(char* result) {
-	return this->mCollectedApiInfo.setResult(result);
-}
-char*  Bucket::getResult(){
-	return this->mCollectedApiInfo.getResult();
+	this->mCollectedApiInfo.setResult(result);
+	return true;
 }

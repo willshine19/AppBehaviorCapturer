@@ -24,14 +24,12 @@ public:
 	bool setThreadId(long threadId);
 	bool setTime();
 	bool setResult(char* result);
-
 	bool setParameter(char* parameter);
 	bool setContext(string context);
 	bool setFatherThreadId(long FatherThreadId);
 	bool setSonThreadId(long SonThreadId);
-
 	long getSonThreadId();
-	char* getResult();
+
 	// 从mCollectedApiInfo中读
 	string getClassName();
 	string getMethodName();
