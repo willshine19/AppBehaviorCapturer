@@ -86,159 +86,111 @@ int ApiHookerManager::main() {
 /**
  * 初始化哈希表
  */bool ApiHookerManager::initHashMap() {
-	//系统api
-	StartThreadApiHooker* start = new StartThreadApiHooker();
-	RunThreadApiHooker* run = new RunThreadApiHooker();
-	OnCreateServiceApiHooker* onCreateService = new OnCreateServiceApiHooker();
-	OnCreateActivityApiHooker* onCreate = new OnCreateActivityApiHooker();
-	OnCreateApplicationApiHooker* OnCreateApplication =
-			new OnCreateApplicationApiHooker();
-	OnDestroyActivityApiHooker* onDestroy = new OnDestroyActivityApiHooker();
-	OnPauseActivityApiHooker* onPause = new OnPauseActivityApiHooker();
-	OnRestartActivityApiHooker* onRestart = new OnRestartActivityApiHooker();
-	OnResumeActivityApiHooker* onResume = new OnResumeActivityApiHooker();
-	OnStartActivityApiHooker* onStart = new OnStartActivityApiHooker();
-//	OnStartServiceApiHooker*  onStartService = new OnStartServiceApiHooker();
-	onStartCommandServiceApiHooker* onStartCommandService =
-			new onStartCommandServiceApiHooker();
-	OnStopActivityApiHooker* onStop = new OnStopActivityApiHooker();
-
-	/* mApiHookerHashMap.insert(make_pair("onCreate", onCreate));
-	 mApiHookerHashMap.insert(make_pair("onDestroy", onDestroy));
-	 mApiHookerHashMap.insert(make_pair("onPause", onPause));
-	 mApiHookerHashMap.insert(make_pair("onRestart", onRestart));
-	 mApiHookerHashMap.insert(make_pair("onStart", onStart));
-	 mApiHookerHashMap.insert(make_pair("onStop", onStop));*/
-	mApiHookerHashMap.insert(make_pair("onResume", onResume));
-//	mApiHookerHashMap.insert(make_pair("OnCreateApplicationLandroid/app/Application", OnCreateApplication));
-//	mApiHookerHashMap.insert(make_pair("onCreateLandroid/app/Service;", onCreateService));//
-//	mApiHookerHashMap.insert(make_pair("onStart", onStartService));
-	mApiHookerHashMap.insert(
-			make_pair("onStartCommandLandroid/app/Service;",
-					onStartCommandService)); //Landroid/app/Service
-	mApiHookerHashMap.insert(make_pair("startLjava/lang/Thread;", start));
-	mApiHookerHashMap.insert(make_pair("run", run));
+	 bindService0ApiHooker* bindService0 = new bindService0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("bindServiceLandroid/content/ContextWrapper;ZLLI",bindService0));
+	 checkPermission0ApiHooker* checkPermission0 = new checkPermission0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("checkPermissionLandroid/content/ContextWrapper;ILII",checkPermission0));
+	 checkUriPermission0ApiHooker* checkUriPermission0 = new checkUriPermission0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("checkUriPermissionLandroid/content/ContextWrapper;ILIII",checkUriPermission0));
+	 checkUriPermission1ApiHooker* checkUriPermission1 = new checkUriPermission1ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("checkUriPermissionLandroid/content/ContextWrapper;ILLLIII",checkUriPermission1));
+	 getAction0ApiHooker* getAction0 = new getAction0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("getActionLandroid/content/Intent;L",getAction0));
+	 getData0ApiHooker* getData0 = new getData0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("getDataLandroid/content/Intent;L",getData0));
+	 getDataString0ApiHooker* getDataString0 = new getDataString0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("getDataStringLandroid/content/Intent;L",getDataString0));
+	 getExtras0ApiHooker* getExtras0 = new getExtras0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("getExtrasLandroid/content/Intent;L",getExtras0));
+	 getIntent0ApiHooker* getIntent0 = new getIntent0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("getIntentLandroid/content/Intent;LL",getIntent0));
+	 getPackageName0ApiHooker* getPackageName0 = new getPackageName0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("getPackageNameLandroid/content/ContextWrapper;L",getPackageName0));
+	 getResources0ApiHooker* getResources0 = new getResources0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("getResourcesLandroid/content/ContextWrapper;L",getResources0));
+	 getSystemService0ApiHooker* getSystemService0 = new getSystemService0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("getSystemServiceLandroid/content/ContextWrapper;LL",getSystemService0));
+	 grantUriPermission0ApiHooker* grantUriPermission0 = new grantUriPermission0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("grantUriPermissionLandroid/content/ContextWrapper;VLLI",grantUriPermission0));
+	 hasExtra0ApiHooker* hasExtra0 = new hasExtra0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("hasExtraLandroid/content/Intent;ZL",hasExtra0));
+	 Intent0ApiHooker* Intent0 = new Intent0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("<init>Landroid/content/Intent;V",Intent0));
+	 Intent1ApiHooker* Intent1 = new Intent1ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("<init>Landroid/content/Intent;VL",Intent1));
+	 Intent2ApiHooker* Intent2 = new Intent2ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("<init>Landroid/content/Intent;VLL",Intent2));
+	 parseUri0ApiHooker* parseUri0 = new parseUri0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("parseUriLandroid/content/Intent;LLI",parseUri0));
+	 putExtra0ApiHooker* putExtra0 = new putExtra0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("putExtraLandroid/content/Intent;LLL",putExtra0));
+	 registerReceiver0ApiHooker* registerReceiver0 = new registerReceiver0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("registerReceiverLandroid/content/ContextWrapper;LLLLL",registerReceiver0));
+	 registerReceiver1ApiHooker* registerReceiver1 = new registerReceiver1ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("registerReceiverLandroid/content/ContextWrapper;LLLLL",registerReceiver1));
+	 sendBroadcast0ApiHooker* sendBroadcast0 = new sendBroadcast0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendBroadcastLandroid/content/ContextWrapper;VLL",sendBroadcast0));
+	 sendBroadcast1ApiHooker* sendBroadcast1 = new sendBroadcast1ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendBroadcastLandroid/content/ContextWrapper;VLL",sendBroadcast1));
+	 sendBroadcast2ApiHooker* sendBroadcast2 = new sendBroadcast2ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendBroadcastLandroid/content/ContextWrapper;VLL",sendBroadcast2));
+	 sendBroadcastAsUser0ApiHooker* sendBroadcastAsUser0 = new sendBroadcastAsUser0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendBroadcastAsUserLandroid/content/ContextWrapper;VLLL",sendBroadcastAsUser0));
+	 sendBroadcastAsUser1ApiHooker* sendBroadcastAsUser1 = new sendBroadcastAsUser1ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendBroadcastAsUserLandroid/content/ContextWrapper;VLLL",sendBroadcastAsUser1));
+	 sendBroadcastAsUser2ApiHooker* sendBroadcastAsUser2 = new sendBroadcastAsUser2ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendBroadcastAsUserLandroid/content/ContextWrapper;VLL",sendBroadcastAsUser2));
+	 sendBroadcastAsUser3ApiHooker* sendBroadcastAsUser3 = new sendBroadcastAsUser3ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendBroadcastAsUserLandroid/content/ContextWrapper;VLLL",sendBroadcastAsUser3));
+	 sendOrderedBroadcast0ApiHooker* sendOrderedBroadcast0 = new sendOrderedBroadcast0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendOrderedBroadcastLandroid/content/ContextWrapper;VLLLLILL",sendOrderedBroadcast0));
+	 sendOrderedBroadcast1ApiHooker* sendOrderedBroadcast1 = new sendOrderedBroadcast1ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendOrderedBroadcastLandroid/content/ContextWrapper;VLL",sendOrderedBroadcast1));
+	 sendOrderedBroadcast2ApiHooker* sendOrderedBroadcast2 = new sendOrderedBroadcast2ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendOrderedBroadcastLandroid/content/ContextWrapper;VLLLLILL",sendOrderedBroadcast2));
+	 sendOrderedBroadcast3ApiHooker* sendOrderedBroadcast3 = new sendOrderedBroadcast3ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendOrderedBroadcastLandroid/content/ContextWrapper;VLL",sendOrderedBroadcast3));
+	 sendOrderedBroadcastAsUser0ApiHooker* sendOrderedBroadcastAsUser0 = new sendOrderedBroadcastAsUser0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendOrderedBroadcastAsUserLandroid/content/ContextWrapper;VLLLLLILL",sendOrderedBroadcastAsUser0));
+	 sendOrderedBroadcastAsUser1ApiHooker* sendOrderedBroadcastAsUser1 = new sendOrderedBroadcastAsUser1ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendOrderedBroadcastAsUserLandroid/content/ContextWrapper;VLLLLLILL",sendOrderedBroadcastAsUser1));
+	 sendStickyBroadcast0ApiHooker* sendStickyBroadcast0 = new sendStickyBroadcast0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendStickyBroadcastLandroid/content/ContextWrapper;VL",sendStickyBroadcast0));
+	 sendStickyBroadcast1ApiHooker* sendStickyBroadcast1 = new sendStickyBroadcast1ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendStickyBroadcastLandroid/content/ContextWrapper;VL",sendStickyBroadcast1));
+	 sendStickyBroadcastAsUser0ApiHooker* sendStickyBroadcastAsUser0 = new sendStickyBroadcastAsUser0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendStickyBroadcastAsUserLandroid/content/ContextWrapper;VLL",sendStickyBroadcastAsUser0));
+	 sendStickyBroadcastAsUser1ApiHooker* sendStickyBroadcastAsUser1 = new sendStickyBroadcastAsUser1ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendStickyBroadcastAsUserLandroid/content/ContextWrapper;VLL",sendStickyBroadcastAsUser1));
+	 sendStickyOrderedBroadcast0ApiHooker* sendStickyOrderedBroadcast0 = new sendStickyOrderedBroadcast0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendStickyOrderedBroadcastLandroid/content/ContextWrapper;VLLLILL",sendStickyOrderedBroadcast0));
+	 sendStickyOrderedBroadcast1ApiHooker* sendStickyOrderedBroadcast1 = new sendStickyOrderedBroadcast1ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendStickyOrderedBroadcastLandroid/content/ContextWrapper;VLLLILL",sendStickyOrderedBroadcast1));
+	 sendStickyOrderedBroadcastAsUser0ApiHooker* sendStickyOrderedBroadcastAsUser0 = new sendStickyOrderedBroadcastAsUser0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendStickyOrderedBroadcastAsUserLandroid/content/ContextWrapper;VLLLLILL",sendStickyOrderedBroadcastAsUser0));
+	 sendStickyOrderedBroadcastAsUser1ApiHooker* sendStickyOrderedBroadcastAsUser1 = new sendStickyOrderedBroadcastAsUser1ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("sendStickyOrderedBroadcastAsUserLandroid/content/ContextWrapper;VLLLLILL",sendStickyOrderedBroadcastAsUser1));
+	 setAction0ApiHooker* setAction0 = new setAction0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("setActionLandroid/content/Intent;LL",setAction0));
+	 setData0ApiHooker* setData0 = new setData0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("setDataLandroid/content/Intent;LL",setData0));
+	 startActivities0ApiHooker* startActivities0 = new startActivities0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("startActivitiesLandroid/content/ContextWrapper;VLL",startActivities0));
+	 startActivity0ApiHooker* startActivity0 = new startActivity0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("startActivityLandroid/content/ContextWrapper;VLL",startActivity0));
+	 startInstrumentation0ApiHooker* startInstrumentation0 = new startInstrumentation0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("startInstrumentationLandroid/content/ContextWrapper;ZLLL",startInstrumentation0));
+	 startIntentSender0ApiHooker* startIntentSender0 = new startIntentSender0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("startIntentSenderLandroid/content/ContextWrapper;VLLIIIL",startIntentSender0));
+	 startService0ApiHooker* startService0 = new startService0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("startServiceLandroid/content/ContextWrapper;LL",startService0));
+	 stopService0ApiHooker* stopService0 = new stopService0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("stopServiceLandroid/content/ContextWrapper;ZL",stopService0));
+	 unbindService0ApiHooker* unbindService0 = new unbindService0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("unbindServiceLandroid/content/ContextWrapper;VL",unbindService0));
+	 unregisterReceiver0ApiHooker* unregisterReceiver0 = new unregisterReceiver0ApiHooker();
+	 mApiHookerHashMap.insert(make_pair("unregisterReceiverLandroid/content/ContextWrapper;VL",unregisterReceiver0));
 	LOGD("insert system api to hashmap successfully");
-
-	//外设api
-	OpenCamera* open = new OpenCamera();
-	GetDefaultSensorSensorManager* getDefaultSensor =
-			new GetDefaultSensorSensorManager();
-	PrepareMediaRecorder* prepare = new PrepareMediaRecorder();
-	ReadAudioRecord* readAudio = new ReadAudioRecord();
-	ReleaseMediaRecorder* release = new ReleaseMediaRecorder();
-	StartMediaRecorder* startMediaRecorder = new StartMediaRecorder();
-	StartRecordingAudioRecord* startRecordingAudioRecord =
-			new StartRecordingAudioRecord();
-	mApiHookerHashMap.insert(make_pair("openLandroid/hardware/Camera;", open));
-	mApiHookerHashMap.insert(make_pair("getDefaultSensor", getDefaultSensor));
-	mApiHookerHashMap.insert(make_pair("prepare", prepare));
-	mApiHookerHashMap.insert(
-			make_pair("readLandroid/media/AudioRecord;", readAudio));
-	mApiHookerHashMap.insert(make_pair("release", release));
-	mApiHookerHashMap.insert(
-			make_pair("startLandroid/media/MediaRecorder;",
-					startMediaRecorder));
-	mApiHookerHashMap.insert(
-			make_pair("startRecording", startRecordingAudioRecord));
-	LOGD("insert peripheral api to hashmap successfully");
-
-	//数据api
-	AddGpsStatusListenerLocationManager* addGpsStatusListener =
-			new AddGpsStatusListenerLocationManager();
-	CloseFileInputStream* closeFileInputStream = new CloseFileInputStream();
-	CloseFileOutputStream* closeFileOutputStream = new CloseFileOutputStream();
-	DeleteContentResolver* deleteContentResolver = new DeleteContentResolver();
-	GetCallStateTelephonyManager* getCallState =
-			new GetCallStateTelephonyManager();
-	GetDeviceIdTelephonyApiHooker* getDeviceId =
-			new GetDeviceIdTelephonyApiHooker();
-	GetFDFileInputStream* getFD = new GetFDFileInputStream();
-	GetLastKnownLocationApiHooker* getLastKnownLocation =
-			new GetLastKnownLocationApiHooker();
-	GetLine1NumberTelephonyManager* getLine1 =
-			new GetLine1NumberTelephonyManager();
-	GetMacAddressWifiInfoApiHooker* getMacAddress =
-			new GetMacAddressWifiInfoApiHooker();
-	GetMessageBodySmsMessage* getMessageBody = new GetMessageBodySmsMessage();
-	GetSimSerialNumberTelephonyManager* getSimSerialNumber =
-			new GetSimSerialNumberTelephonyManager();
-	GetSubscriberIdTelephonyManager* getSubscriberId =
-			new GetSubscriberIdTelephonyManager();
-	InsertContentResolverApiHooker* insertContentResolver =
-			new InsertContentResolverApiHooker();
-	QueryContentResolverApiHooker* queryContentResolve =
-			new QueryContentResolverApiHooker();
-	RequestLocationUpdatesLocationManager* requestLocationUpdatas =
-			new RequestLocationUpdatesLocationManager();
-	UpdateContentResolver* updateContentResolver = new UpdateContentResolver();
-	WriteFileOutputStreamApiHooker* writeFileOutputStream =
-			new WriteFileOutputStreamApiHooker();
-	ReadFileInputStream* readFileInputStream = new ReadFileInputStream();
-	mApiHookerHashMap.insert(make_pair("insert", insertContentResolver));
-	mApiHookerHashMap.insert(make_pair("query", queryContentResolve));
-	mApiHookerHashMap.insert(make_pair("delete", deleteContentResolver));
-	mApiHookerHashMap.insert(make_pair("update", updateContentResolver));
-	mApiHookerHashMap.insert(make_pair("getMessageBody", getMessageBody));
-	mApiHookerHashMap.insert(make_pair("getCallState", getCallState));
-	mApiHookerHashMap.insert(make_pair("getDeviceId", getDeviceId));
-	mApiHookerHashMap.insert(make_pair("getLine1Number", getLine1));
-	mApiHookerHashMap.insert(
-			make_pair("getSimSerialNumber", getSimSerialNumber));
-	mApiHookerHashMap.insert(make_pair("getSubscriberId", getSubscriberId));
-	mApiHookerHashMap.insert(
-			make_pair("addGpsStatusListener", addGpsStatusListener));
-	mApiHookerHashMap.insert(
-			make_pair("getLastKnownLocation", getLastKnownLocation));
-	mApiHookerHashMap.insert(
-			make_pair("requestLocationUpdatas", requestLocationUpdatas));
-//	mApiHookerHashMap.insert(
-//			make_pair("readLjava/io/FileInputStream;", readFileInputStream));
-	mApiHookerHashMap.insert(
-			make_pair("closeLjava/io/FileInputStream;", closeFileInputStream));
-	mApiHookerHashMap.insert(make_pair("getFD", getFD));
-	mApiHookerHashMap.insert(
-			make_pair("closeLjava/io/FileOutputStream;",
-					closeFileOutputStream));
-	mApiHookerHashMap.insert(make_pair("write", writeFileOutputStream));
-	mApiHookerHashMap.insert(make_pair("getMacAddress", getMacAddress));
-	LOGD("insert data api to hashmap successfully");
-
-	// 通信 api
-	CloseSocket* closeSocket = new CloseSocket();
-	DisableBluetoothAdapter* disableBluetoothAdapter =
-			new DisableBluetoothAdapter();
-	DisconnectWifiManager* disconnect = new DisconnectWifiManager();
-	EnableBluetoothAdapter* enableBluetoothAdapter =
-			new EnableBluetoothAdapter();
-	EnableNetworkWifiManager* enableNetwork = new EnableNetworkWifiManager();
-	OpenConnectionURL* openConnection = new OpenConnectionURL();
-	SendDataMessageSmsManager* sendDataMessage =
-			new SendDataMessageSmsManager();
-	SendMultipartTextMessageSmsManager* sendMultipartTextMessage =
-			new SendMultipartTextMessageSmsManager();
-	SendTextMessageSmsManager* sendTextMessage =
-			new SendTextMessageSmsManager();
-	CallTelephonnyApiHooker* call = new CallTelephonnyApiHooker();
-	EndCallITelephonyApiHooker* endCall = new EndCallITelephonyApiHooker();
-	SetWifiEnabledWifiManager* setWifiEnabled = new SetWifiEnabledWifiManager();
-	mApiHookerHashMap.insert(make_pair("sendDataMessage", sendDataMessage));
-	mApiHookerHashMap.insert(
-			make_pair("sendMultipartTextMessage", sendMultipartTextMessage));
-	mApiHookerHashMap.insert(make_pair("sendTextMessage", sendTextMessage));
-	mApiHookerHashMap.insert(make_pair("disable", disableBluetoothAdapter));
-	mApiHookerHashMap.insert(make_pair("enable", enableBluetoothAdapter));
-	mApiHookerHashMap.insert(make_pair("closeLjava/net/Socket;", closeSocket));
-	mApiHookerHashMap.insert(
-			make_pair("openConnectionLjava/net/URL;", openConnection));
-	mApiHookerHashMap.insert(make_pair("disconnect", disconnect));
-	mApiHookerHashMap.insert(make_pair("enableNetwork", enableNetwork));
-	mApiHookerHashMap.insert(make_pair("setWifiEnabled", setWifiEnabled));
-//	com/android/internal/telephony/ITelephony$Stub$Proxy->call method not found
-//	mApiHookerHashMap.insert(make_pair("call", call));
-//	mApiHookerHashMap.insert(make_pair("endCall", endCall));
-	LOGD("insert communication api to hashmap successfully");
-
 	return true;
 }
 
@@ -282,7 +234,6 @@ int ApiHookerManager::main() {
 
 		// step 4
 		map_it++;
-		sleep(0.05);
 	}
 	return true;
 }

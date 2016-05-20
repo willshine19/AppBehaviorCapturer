@@ -47,12 +47,12 @@ string ApiHooker::toString() {
 	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setThreadId(
 			threadId);
 	//zds add
-	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setContext(
-			ApiHookerManager::getInstance()->mContextInfo);
-	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setFatherThreadId(
-			getFatherId(threadId)); //
-	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setSonThreadId(
-			getSonId(threadId)); //
+//	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setContext(
+//			ApiHookerManager::getInstance()->mContextInfo);
+//	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setFatherThreadId(
+//			getFatherId(threadId)); //
+//	InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].setSonThreadId(
+//			getSonId(threadId)); //
 	pthread_mutex_t* mutex =
 			&(InfoSender::mCycledBlockingQueue->queue[this->mQueuePosition].bucketMutex);
 	pthread_mutex_unlock(mutex);
@@ -98,7 +98,7 @@ long ApiHooker::getSonId(long threadId) {
 			InfoSender::mCycledBlockingQueue->getNowAvailablePosition();
 	if (mQueuePosition == -1)
 		return false;
-	parseParameter(args);
+//	parseParameter(args);
 //	collectBaseInfo();
 //	saveToQueue();
 	pthread_mutex_unlock(&lock);

@@ -13,10 +13,7 @@ LOCAL_LDFLAGS	:=	-L./jni/lib/  -L$(SYSROOT)/usr/lib -llog -ldvm -landroid_runtim
 MY_CPP_LIST := $(wildcard $(LOCAL_PATH)/*.cpp)
 #获取jni/AndroidSecuritySystem/ApiHook目录下的源文件,并追加到变量MY_CPP_LIST里
 MY_CPP_LIST += $(wildcard $(LOCAL_PATH)/AppBehaviorCapturer/ApiHooker/*.cpp)
-MY_CPP_LIST += $(wildcard $(LOCAL_PATH)/AppBehaviorCapturer/ApiHooker/AndroidCommunication/*.cpp)
-MY_CPP_LIST += $(wildcard $(LOCAL_PATH)/AppBehaviorCapturer/ApiHooker/AndroidData/*.cpp)
-MY_CPP_LIST += $(wildcard $(LOCAL_PATH)/AppBehaviorCapturer/ApiHooker/AndroidSystem/*.cpp)
-MY_CPP_LIST += $(wildcard $(LOCAL_PATH)/AppBehaviorCapturer/ApiHooker/AndroidPeripheral/*.cpp)
+MY_CPP_LIST += $(wildcard $(LOCAL_PATH)/AppBehaviorCapturer/ApiHooker/Androidapi/*.cpp)
 MY_CPP_LIST += $(wildcard $(LOCAL_PATH)/AppBehaviorCapturer/ApiInfo/*.cpp)
 MY_CPP_LIST += $(wildcard $(LOCAL_PATH)/AppBehaviorCapturer/InfoSender/*.cpp)
 MY_CPP_LIST += $(wildcard $(LOCAL_PATH)/AppBehaviorCapturer/System/*.cpp)
