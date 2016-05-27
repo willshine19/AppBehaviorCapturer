@@ -175,7 +175,26 @@ public class PackageAdapter extends BaseAdapter {
                     item.setRunningStatus(PackageItem.NOT_INJECT);
                 } else {
                     Toast.makeText(mContext, R.string.cantOpen, Toast.LENGTH_SHORT).show();
-                }      
+                }     
+                
+                try {
+					Thread.sleep(600);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                
+
+            	sPackageNameMap.clear();
+            	List<String> runningProcessList = getRunningProcessList();
+            	List<String> packageNameList = findPackageName(item, runningProcessList);
+            	for (String each : packageNameList) {
+            		injectProcess(each);
+            	}
+        		Toast.makeText(mContext,"注入成功",Toast.LENGTH_SHORT).show();
+        		holder.running_status.setText("已注入");
+        		item.setRunningStatus(PackageItem.IS_INJECTED);
+            
             }
         });
 
@@ -228,7 +247,7 @@ public class PackageAdapter extends BaseAdapter {
                             }
                         }
                         if (pid != null) {
-                        	os.writeBytes("kill " + pid + "\n");
+                        	os.writeBytes("am force-stop " + pName + " \n");
                         	os.flush();
                         	os.writeBytes("exit\n");
                         	os.flush();
@@ -750,5 +769,4 @@ public class PackageAdapter extends BaseAdapter {
         }
         return packageNameList;
     }
-
 }
