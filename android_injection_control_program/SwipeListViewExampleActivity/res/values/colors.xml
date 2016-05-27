@@ -27,7 +27,7 @@
     <color name="text_description">#7e7e7e</color>
 
     <color name="line">#ffbcbcbc</color>
-
+    <color name="white">#ffffff</color>
     <color name="background_new_tag">#33B5E5</color>
     <color name="text_new_tag">#ffffff</color>
 

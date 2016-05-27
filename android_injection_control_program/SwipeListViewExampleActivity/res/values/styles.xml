@@ -67,6 +67,7 @@
         <item name="android:layout_margin">3dp</item>
          <item name="android:background">@drawable/button_selector</item>
          <item name="android:clickable">true</item>
+         
     </style>
 
     <!-- Settings -->
@@ -101,5 +102,12 @@
         <item name="android:background">@drawable/background_new_tag</item>
         <item name="android:padding">@dimen/padding_new_tag</item>
     </style>
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light">  
+     <item name="android:titleTextStyle">@style/AcBar_titleStyle</item>  
+    </style>  
+    <style name="AcBar_titleStyle">  
+        <item name="android:textSize">18sp</item>  
+        <item name="android:textColor">#FFFFFF</item>  
+    </style>  
 
 </resources>

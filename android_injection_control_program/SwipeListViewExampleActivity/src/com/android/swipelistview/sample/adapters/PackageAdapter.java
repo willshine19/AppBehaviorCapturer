@@ -127,7 +127,7 @@ public class PackageAdapter extends BaseAdapter {
             holder.button_uninject = (Button) convertView.findViewById(R.id.example_row_b_action_3);
             holder.process_image = (ImageView) convertView.findViewById(R.id.example_row_iv_image);
             holder.process_title = (TextView) convertView.findViewById(R.id.example_row_tv_title);
-            holder.process_description = (TextView) convertView.findViewById(R.id.example_row_tv_description);
+            holder.process_description = (TextView) convertView.findViewById(R.id.example_row_tv_title);
             holder.running_status = (TextView) convertView.findViewById(R.id.sText);
 			holder.button_strace = (Button) convertView.findViewById(id.example_row_b_action_4);
 			holder.button_pack = (Button) convertView.findViewById(id.example_row_b_action_5);
@@ -177,23 +177,23 @@ public class PackageAdapter extends BaseAdapter {
                     Toast.makeText(mContext, R.string.cantOpen, Toast.LENGTH_SHORT).show();
                 }     
                 
-                try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-                
-
-            	sPackageNameMap.clear();
-            	List<String> runningProcessList = getRunningProcessList();
-            	List<String> packageNameList = findPackageName(item, runningProcessList);
-            	for (String each : packageNameList) {
-            		injectProcess(each);
-            	}
-        		Toast.makeText(mContext,"注入成功",Toast.LENGTH_SHORT).show();
-        		holder.running_status.setText("已注入");
-        		item.setRunningStatus(PackageItem.IS_INJECTED);
+//                try {
+//					Thread.sleep(500);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//                
+//
+//            	sPackageNameMap.clear();
+//            	List<String> runningProcessList = getRunningProcessList();
+//            	List<String> packageNameList = findPackageName(item, runningProcessList);
+//            	for (String each : packageNameList) {
+//            		injectProcess(each);
+//            	}
+//        		Toast.makeText(mContext,"注入成功",Toast.LENGTH_SHORT).show();
+//        		holder.running_status.setText("已注入");
+//        		item.setRunningStatus(PackageItem.IS_INJECTED);
             
             }
         });

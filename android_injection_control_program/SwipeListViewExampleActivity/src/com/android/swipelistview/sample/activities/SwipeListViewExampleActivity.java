@@ -35,6 +35,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.swipelistview.BaseSwipeListViewListener;
 import com.android.swipelistview.SwipeListView;
@@ -183,6 +184,7 @@ public class SwipeListViewExampleActivity extends FragmentActivity {
             @Override
             public void onClickFrontView(int position) {
 //                Log.d("swipe", String.format("onClickFrontView %d", position));
+            	Toast.makeText(SwipeListViewExampleActivity.this, "点击了" + position, Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -20,12 +20,28 @@
 <resources>
 
     <string name="appName">注入控制程序</string>
+    <string name="anotherActivity">应用信息</string>
     <string name="open">运行</string>
     <string name="googlePlay">注入</string>
-    <string name="uninstall">解注入</string>
+    <string name="uninstall">关闭</string>
     <string name="strace">strace</string>
-    <string name="pack">pack</string>
+    <string name="pack">上传</string>
+    <string name="jincheng">进程</string>
+    <string name="jinchengshu">进程数目</string>
+    <string name="jinchengname">进程名称</string>
+    <string name="jinchengid">进程编号</string>
+     <string name="app">应用</string>
+     <string name="app_open">应用开关</string>
+     <string name="on">已运行</string>
+     <string name="off">已关闭</string>
+    <string name="app_zhuru">程序注入</string>
+     <string name="app_strace">strace</string>
+     <string name="app_package">打包上传</string>
     
+    <string name="storage">存储空间</string>
+    <string name="zongji">总计</string>
+    <string name="storage_app">应用</string>
+    <string name="storage_data">数据</string>
     
     <string name="cantOpen">Can\'t open this application</string>
     <string name="settings">Settings</string>
