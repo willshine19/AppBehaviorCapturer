@@ -249,7 +249,7 @@ public class MimoNodeAPI {
 	public void publishOnTheme(String nameofAPI, String numberofAPI,
 			String threadIDofAPI, String timeofAPI, String processID,
 			String IMEI, String contextofAPI, String FatherThreadIdofAPI,
-			String SonThreadIdofAPI, String resultofAPI,
+			String SonThreadIdofAPI, String resultofAPI,String packageNameofAPI,
 			String userName,	String spaceName, String themeName, final Callback callback) {
 
 		JSONObject data = new JSONObject();
@@ -267,6 +267,7 @@ public class MimoNodeAPI {
 			data.put("FatherThreadIdofAPI", FatherThreadIdofAPI);
 			data.put("SonThreadIdofAPI", SonThreadIdofAPI);
 			data.put("resultofAPI", resultofAPI);
+			data.put("packageNameofAPI", packageNameofAPI);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

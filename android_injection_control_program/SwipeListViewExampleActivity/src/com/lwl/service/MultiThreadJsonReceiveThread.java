@@ -128,7 +128,7 @@ public class MultiThreadJsonReceiveThread {
 						Log.i(TAG, "[+] 成功从【jni层】接收到第" + ++receivedCount + "组行为【记录数据】");
 						Log.i(TAG, json.toString());
 						sender.publish(json);
-						// sender.saveToFile(json);
+//						 sender.saveToFile(json);
 						continue;
 					}
 				} // while
