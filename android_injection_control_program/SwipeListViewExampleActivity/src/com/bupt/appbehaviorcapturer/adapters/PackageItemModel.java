@@ -1,4 +1,4 @@
-package com.android.swipelistview.sample.adapters;
+package com.bupt.appbehaviorcapturer.adapters;
 
 import java.util.ArrayList;
 

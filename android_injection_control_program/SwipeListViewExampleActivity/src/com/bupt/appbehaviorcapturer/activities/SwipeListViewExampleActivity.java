@@ -16,7 +16,7 @@
  *  limitations under the License.
  */
 
-package com.android.swipelistview.sample.activities;
+package com.bupt.appbehaviorcapturer.activities;
 
 import android.app.ProgressDialog;
 import android.app.Service;
@@ -37,12 +37,12 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.swipelistview.BaseSwipeListViewListener;
-import com.android.swipelistview.SwipeListView;
-import com.android.swipelistview.sample.adapters.PackageAdapter;
-import com.android.swipelistview.sample.adapters.PackageItem;
-import com.android.swipelistview.sample.adapters.PackageItemModel;
-import com.android.swipelistview.sample.utils.SettingsManager;
+import com.bupt.appbehaviorcapturer.adapters.PackageAdapter;
+import com.bupt.appbehaviorcapturer.adapters.PackageItem;
+import com.bupt.appbehaviorcapturer.adapters.PackageItemModel;
+import com.bupt.appbehaviorcapturer.utils.SettingsManager;
+import com.bupt.swipelistview.BaseSwipeListViewListener;
+import com.bupt.swipelistview.SwipeListView;
 import com.fortysevendeg.android.swipelistview.R;
 import com.lwl.service.JsonService;
 

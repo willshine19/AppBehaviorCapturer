@@ -1,4 +1,4 @@
-package com.android.swipelistview.sample.activities;
+package com.bupt.appbehaviorcapturer.activities;
 
 import com.fortysevendeg.android.swipelistview.R;
 

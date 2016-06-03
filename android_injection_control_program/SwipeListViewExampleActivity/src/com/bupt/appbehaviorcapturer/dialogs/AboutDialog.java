@@ -16,7 +16,7 @@
  *  limitations under the License.
  */
 
-package com.android.swipelistview.sample.dialogs;
+package com.bupt.appbehaviorcapturer.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -29,7 +29,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.CheckBox;
 
-import com.android.swipelistview.sample.utils.PreferencesManager;
+import com.bupt.appbehaviorcapturer.utils.PreferencesManager;
 import com.fortysevendeg.android.swipelistview.R;
 
 public class AboutDialog extends DialogFragment {

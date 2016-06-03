@@ -16,7 +16,7 @@
  *  limitations under the License.
  */
 
-package com.android.swipelistview.sample.activities;
+package com.bupt.appbehaviorcapturer.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -25,8 +25,8 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.*;
 
-import com.android.swipelistview.SwipeListView;
-import com.android.swipelistview.sample.utils.SettingsManager;
+import com.bupt.appbehaviorcapturer.utils.SettingsManager;
+import com.bupt.swipelistview.SwipeListView;
 import com.fortysevendeg.android.swipelistview.R;
 
 public class SettingsActivity extends Activity {//设置界面，未使用

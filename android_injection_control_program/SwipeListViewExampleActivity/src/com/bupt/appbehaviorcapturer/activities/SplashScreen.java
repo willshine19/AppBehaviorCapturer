@@ -1,5 +1,5 @@
 
-package com.android.swipelistview.sample.activities;
+package com.bupt.appbehaviorcapturer.activities;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -17,8 +17,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.android.swipelistview.sample.adapters.PackageItem;
-import com.android.swipelistview.sample.adapters.PackageItemModel;
+import com.bupt.appbehaviorcapturer.adapters.PackageItem;
+import com.bupt.appbehaviorcapturer.adapters.PackageItemModel;
 import com.fortysevendeg.android.swipelistview.R;
 
 /**  

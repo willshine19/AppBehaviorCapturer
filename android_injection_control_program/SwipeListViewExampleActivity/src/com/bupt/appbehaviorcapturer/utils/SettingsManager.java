@@ -16,9 +16,9 @@
  *  limitations under the License.
  */
 
-package com.android.swipelistview.sample.utils;
+package com.bupt.appbehaviorcapturer.utils;
 
-import com.android.swipelistview.SwipeListView;
+import com.bupt.swipelistview.SwipeListView;
 
 public class SettingsManager {//设置界面的数据读写,父类
 

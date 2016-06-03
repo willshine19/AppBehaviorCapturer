@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.android.swipelistview;
+package com.bupt.swipelistview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -16,7 +16,7 @@
  *  limitations under the License.
  */
 
-package com.android.swipelistview.sample.adapters;
+package com.bupt.appbehaviorcapturer.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,8 +26,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
-import com.android.swipelistview.SwipeListView;
-import com.android.swipelistview.sample.adapters.StraceJSON;
+import com.bupt.appbehaviorcapturer.adapters.StraceJSON;
+import com.bupt.swipelistview.SwipeListView;
 import com.fortysevendeg.android.swipelistview.R;
 import com.fortysevendeg.android.swipelistview.R.id;
 import com.syh.pubjson.JsonSender;

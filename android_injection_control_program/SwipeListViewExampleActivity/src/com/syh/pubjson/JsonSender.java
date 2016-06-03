@@ -4,10 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.android.swipelistview.sample.adapters.PackageAdapter;
-import com.android.swipelistview.sample.adapters.StraceJSON;
+import com.bupt.appbehaviorcapturer.adapters.PackageAdapter;
+import com.bupt.appbehaviorcapturer.adapters.StraceJSON;
 
-import com.lwl.utils.ServerToHookerTimeTestUtils;
+import com.lwl.time.ServerToHookerTimeTestUtils;
 
 import android.content.Context;
 import android.os.Environment;

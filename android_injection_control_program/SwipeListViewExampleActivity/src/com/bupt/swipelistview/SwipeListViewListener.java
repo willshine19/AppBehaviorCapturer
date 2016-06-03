@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.android.swipelistview;
+package com.bupt.swipelistview;
 
 /**
  * Listener to get callback notifications for the SwipeListView

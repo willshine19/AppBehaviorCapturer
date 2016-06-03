@@ -16,7 +16,7 @@
  *  limitations under the License.
  */
 
-package com.android.swipelistview.sample.adapters;
+package com.bupt.appbehaviorcapturer.adapters;
 
 //import java.io.Serializable;
 

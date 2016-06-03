@@ -16,7 +16,7 @@
  *  limitations under the License.
  */
 
-package com.android.swipelistview.sample.utils;
+package com.bupt.appbehaviorcapturer.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
