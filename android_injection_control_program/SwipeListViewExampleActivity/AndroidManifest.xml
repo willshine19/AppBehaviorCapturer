@@ -55,6 +55,9 @@
             android:name="com.android.swipelistview.sample.activities.SettingsActivity"
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
+        <activity
+            android:name="com.android.swipelistview.sample.activities.AppDetailActivity" >
+        </activity>    
         <service android:name="com.lwl.service.JsonService" >
             <intent-filter>
                 <action android:name="com.lwl.service.JSON_SERVICE" />

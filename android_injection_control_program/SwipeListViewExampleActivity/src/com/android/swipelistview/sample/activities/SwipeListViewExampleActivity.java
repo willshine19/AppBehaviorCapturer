@@ -184,7 +184,9 @@ public class SwipeListViewExampleActivity extends FragmentActivity {
             @Override
             public void onClickFrontView(int position) {
 //                Log.d("swipe", String.format("onClickFrontView %d", position));
-            	Toast.makeText(SwipeListViewExampleActivity.this, "点击了" + position, Toast.LENGTH_SHORT).show();
+//            	Toast.makeText(SwipeListViewExampleActivity.this, "点击了" + position, Toast.LENGTH_SHORT).show();
+            	Intent intent = new Intent(SwipeListViewExampleActivity.this, AppDetailActivity.class);
+            	startActivity(intent);
             }
 
             @Override
