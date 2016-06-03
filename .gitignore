@@ -1,11 +1,5 @@
-AllHookInOne-v11.0/bin/
-AllHookInOne-v11.0/gen/
-AllHookInOne-v11.0/libs/armeabi/
 .*~
 documents/*~
-AllHookInOne-v11.0/obj/
-android_injection_control_program/main/bin/
-android_injection_control_program/main/gen/
-android_injection_control_program/SwipeListViewExampleActivity/bin/
-android_injection_control_program/SwipeListViewExampleActivity/gen/
+AppBehaviorCapturer/bin/
+AppBehaviorCapturer/gen/
 
