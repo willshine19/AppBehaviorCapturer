@@ -26,11 +26,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
-import com.bupt.appbehaviorcapturer.adapters.StraceJSON;
 import com.bupt.swipelistview.SwipeListView;
 import com.fortysevendeg.android.swipelistview.R;
 import com.fortysevendeg.android.swipelistview.R.id;
 import com.syh.pubjson.JsonSender;
+import com.syh.pubjson.StraceJSON;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

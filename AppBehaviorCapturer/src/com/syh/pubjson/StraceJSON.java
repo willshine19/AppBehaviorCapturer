@@ -1,4 +1,4 @@
-package com.bupt.appbehaviorcapturer.adapters;
+package com.syh.pubjson;
 
 import org.json.JSONObject;
 

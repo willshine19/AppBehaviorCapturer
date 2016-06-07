@@ -5,7 +5,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.bupt.appbehaviorcapturer.adapters.PackageAdapter;
-import com.bupt.appbehaviorcapturer.adapters.StraceJSON;
 
 import com.lwl.time.ServerToHookerTimeTestUtils;
 
@@ -121,7 +120,6 @@ public class JsonSender {
 		String resultofAPI = null;
 		String packageNameofAPI = null;
 
-		// try {
 		nameofAPI = sj.name;
 		numberofAPI = sj.number;
 		threadIDofAPI = sj.threadID;
@@ -134,9 +132,6 @@ public class JsonSender {
 		resultofAPI = sj.result;
 		packageNameofAPI = PackageAdapter.sPackageNameMap.get(Integer.getInteger(packageNameofAPI));
 
-		// } catch (JSONException e) {
-		// e.printStackTrace();
-		// }
 		Log.d("what's in StraceJSON:", "" + nameofAPI + " " + numberofAPI + " " + threadIDofAPI + " " + timeofAPI + " "
 			+ processID + " " + IMEI);
 		// 上传json
@@ -182,7 +177,7 @@ public class JsonSender {
 	 *            即将被发送的JSON对象
 	 */
 	public void publish(JSONObject jo) {
-		// Log.v(TAG1, "****开始publish****");
+		Log.i(TAG1, "publish ：上传json");
 		String nameofAPI = "";
 		String numberofAPI = "";
 		String threadIDofAPI = "";
@@ -202,7 +197,6 @@ public class JsonSender {
 			timeofAPI = jo.getString("time");
 			processID = jo.getString("processID");
 			IMEI = jo.getString("IMEI");
-			Log.i("11111111111111", IMEI);
 			contextofAPI = jo.getString("context");
 			FatherThreadIdofAPI = jo.getString("FatherThreadId");
 			SonThreadIdofAPI = jo.getString("SonThreadId");
@@ -212,15 +206,11 @@ public class JsonSender {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		Log.d("what's in json [No.2]", "" + nameofAPI + numberofAPI + threadIDofAPI + timeofAPI + processID + IMEI);
-		// 上传json
-		Log.i(TAG1, "正在pubJSON数据");
 		mMimoNode.publishOnTheme(nameofAPI, numberofAPI, threadIDofAPI, timeofAPI, processID, IMEI, contextofAPI,
 			FatherThreadIdofAPI, SonThreadIdofAPI, resultofAPI, packageNameofAPI, USER_NAME, SPACE, THEME,
 			new Callback() {
 				@Override
 				public void successCallback(Object message) {
-					// Log.v(TAG2, "publish成功" );
 					mSuccessFlag = true;
 				};
 
@@ -229,24 +219,6 @@ public class JsonSender {
 					Log.e(TAG2, "publish失败: " + message);
 				};
 			});
-		// 等待发送成功
-		Log.v(TAG1, "进入while循环");
-		// 带解决，服务器已收到json但没有返回信息
-		/*
-		 * while (!mSuccessFlag) { Log.v(TAG1, "JsonSender等待发送成功的标志..."); try {
-		 * Thread.sleep(5000); } catch (InterruptedException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); } }
-		 */
-		// Log.v(TAG1, "离开while循环");
-		mSuccessFlag = false;
-		// Log.i(TAG1, "完成pubJSON数据");
-
-		// try {
-		// Thread.sleep(1000);// 等待服务器计算
-		// } catch (InterruptedException e) {
-		// e.printStackTrace();
-		// }
-		// Log.v(TAG1, "****结束publish****");
 	}
 
 	/**

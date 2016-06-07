@@ -12,11 +12,15 @@ package com.syh.pubjson;
 
 import java.net.URISyntaxException;
 import org.json.*;
+
+import android.util.Log;
+
 import com.github.nkzawa.emitter.*;
 import com.github.nkzawa.socketio.client.*;
 
 public class MimoNodeAPI {
 
+	private static final String TAG = "MimoNode";
 	private static Socket socket;
 
 	/**
@@ -286,5 +290,31 @@ public class MimoNodeAPI {
 					}
 				});
 	};
+	
+	public void publishOnTheme(JSONObject data, String userName, String spaceName, String themeName,  final Callback callback) {
+		try {
+			data.put("rootSpaceName", spaceName);
+			data.put("subSpaceName", themeName);
+			data.put("puber", userName);		
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.d(TAG, "发送json： " + data.toString());
+		socket.emit("publishOnTheme", data)
+		.on("publishOnThemeSucceed", new Emitter.Listener() {
+			@Override
+			public void call(Object... args) {
+				callback.successCallback((JSONObject) args[0]);
+				// System.out.println("publishOnTheme: " + (JSONObject)
+				// args[0]);
+			}
+		}).on("publishOnThemeFailed", new Emitter.Listener() {
+			@Override
+			public void call(Object... args) {
+				callback.errorCallback((JSONObject) args[0]);
+			}
+		});
+	}
 
 }
