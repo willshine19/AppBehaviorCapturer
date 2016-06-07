@@ -178,37 +178,7 @@ public class JsonSender {
 	 *            即将被发送的JSON对象
 	 */
 	public void publish(JSONObject jo) {
-		Log.i(TAG1, "publish ：上传json");
-		String nameofAPI = "";
-		String numberofAPI = "";
-		String threadIDofAPI = "";
-		String timeofAPI = "";
-		String processID = "";
-		String IMEI = "";
-		String contextofAPI = "";
-		String FatherThreadIdofAPI = "";
-		String SonThreadIdofAPI = "";
-		String resultofAPI = "";
-		String packageNameofAPI = "";
-
-		try {
-			nameofAPI = jo.getString("name");
-			numberofAPI = jo.getString("number");
-			threadIDofAPI = jo.getString("threadID");
-			timeofAPI = jo.getString("time");
-			processID = jo.getString("processID");
-			IMEI = jo.getString("IMEI");
-			contextofAPI = jo.getString("context");
-			FatherThreadIdofAPI = jo.getString("FatherThreadId");
-			SonThreadIdofAPI = jo.getString("SonThreadId");
-			resultofAPI = jo.getString("result");
-			packageNameofAPI = jo.getString("packageName");
-
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		mMimoNode.publishOnTheme(nameofAPI, numberofAPI, threadIDofAPI, timeofAPI, processID, IMEI, contextofAPI,
-			FatherThreadIdofAPI, SonThreadIdofAPI, resultofAPI, packageNameofAPI, USER_NAME, SPACE, THEME,
+		mMimoNode.publishOnTheme(jo, USER_NAME, SPACE, THEME,
 			new Callback() {
 				@Override
 				public void successCallback(Object message) {

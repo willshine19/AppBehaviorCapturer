@@ -275,6 +275,7 @@ public class MimoNodeAPI {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		Log.v(TAG, "发送json： " + data.toString());
 		socket.emit("publishOnTheme", data)
 				.on("publishOnThemeSucceed", new Emitter.Listener() {
 					@Override
@@ -300,7 +301,7 @@ public class MimoNodeAPI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Log.d(TAG, "发送json： " + data.toString());
+		Log.v(TAG, "发送json： " + data.toString());
 		socket.emit("publishOnTheme", data)
 		.on("publishOnThemeSucceed", new Emitter.Listener() {
 			@Override
