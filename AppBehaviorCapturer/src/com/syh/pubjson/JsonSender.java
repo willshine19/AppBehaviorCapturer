@@ -105,6 +105,7 @@ public class JsonSender {
 		Log.i(TAG1, "****结束login****");
 	}
 
+	//Strace的publish方法
 	public void publishStrace(StraceJSON sj) {
 
 		// Log.v(TAG1, "****开始publish****");
