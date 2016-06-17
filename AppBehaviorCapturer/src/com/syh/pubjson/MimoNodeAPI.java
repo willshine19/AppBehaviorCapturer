@@ -3,11 +3,11 @@ package com.syh.pubjson;
 /**
  * mimonode APIs for Java Applications.
  *
- * @author mimonode by xufei
+ * @author mimonode by xufei, zgwang
  * 
  * @version v2.0
  * 
- * @data 2015.12.06
+ * @data 2016.5.30
  */
 
 import java.net.URISyntaxException;
@@ -30,7 +30,7 @@ public class MimoNodeAPI {
 	 */
 	private void connect(final Callback callback) {
 		try {
-			socket = IO.socket("http://10.107.29.248:3002/access");
+			socket = IO.socket("http://10.107.29.248:8888/access");
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -57,15 +57,13 @@ public class MimoNodeAPI {
 	/**
 	 * This function is used to register an account in mimonode.
 	 * 
-	 * @param userName
-	 *            , password, email, callback.
+	 * @param userName, password, email, callback.
 	 * 
 	 * @see successCallback,errorCallback,connectCallback,disconnectCallback,
 	 *      socketErrorCallback are supposed to Override in this callback.
 	 */
 	public void register(String userName, String password, String email,
 			final Callback callback) {
-
 		this.connect(callback);
 		JSONObject userData = new JSONObject();
 		try {
@@ -90,11 +88,43 @@ public class MimoNodeAPI {
 	};
 
 	/**
+	 * This function is used to update an account in mimonode.
+	 * 
+	 * @param userName, password, email, callback.
+	 * 
+	 * @see successCallback,errorCallback,connectCallback,disconnectCallback,
+	 *      socketErrorCallback are supposed to Override in this callback.
+	 */
+	public void updateUser(String userName, String password, String email,
+			final Callback callback) {
+		this.connect(callback);
+		JSONObject userData = new JSONObject();
+		try {
+			userData.put("userName", userName);
+			userData.put("password", password);
+			userData.put("email", email);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		socket.emit("updateUser", userData)
+				.on("updateUserSucceed", new Emitter.Listener() {
+					@Override
+					public void call(Object... args) {
+						callback.successCallback((JSONObject) args[0]);
+					}
+				}).on("updateUserFailed", new Emitter.Listener() {
+					@Override
+					public void call(Object... args) {
+						callback.errorCallback((JSONObject) args[0]);
+					}
+				});
+	};
+	
+	/**
 	 * This function is used to login mimonode. new messages are accepted from
 	 * now on if there are any messages.
 	 * 
-	 * @param userName
-	 *            , password, email, callback.
+	 * @param userName, password, callback.
 	 * 
 	 * @see successCallback, errorCallback, connectCallback, disconnectCallback,
 	 *      socketErrorCallback, NewMessageCallback are supposed to Override in
@@ -139,7 +169,7 @@ public class MimoNodeAPI {
 	public void logout() {
 		socket.disconnect();
 	}
-
+/****************************************�ݲ�����******************************************/   
 	/**
 	 * This function is used to createSpace in mimonode.
 	 * 
@@ -150,22 +180,29 @@ public class MimoNodeAPI {
 	 * @see successCallback, errorCallback are supposed to Override in this
 	 *      callback.
 	 */
-	/*
-	 * public void createSpace(String userName, String spaceName,final Callback
-	 * callback) {
-	 * 
-	 * JSONObject space = new JSONObject(); try { space.put("rootSpaceName",
-	 * spaceName); space.put("owner", userName); space.pubers=userName; } catch
-	 * (JSONException e) { e.printStackTrace(); } socket.emit("createSpace",
-	 * space) .on("createSpaceSucceed", new Emitter.Listener() {
-	 * 
-	 * @Override public void call(Object... args) {
-	 * callback.successCallback((JSONObject) args[0]); }
-	 * }).on("createSpaceFailed", new Emitter.Listener() {
-	 * 
-	 * @Override public void call(Object... args) {
-	 * callback.errorCallback((JSONObject) args[0]); } }); };
-	 */
+	public void createSpace(String userName, String spaceName,final Callback callback) {
+
+		JSONObject space = new JSONObject();
+		try {
+			space.put("rootSpaceName", spaceName);
+			space.put("owner", userName);
+			// space.pubers=userName;
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		socket.emit("createSpace", space)
+				.on("createSpaceSucceed", new Emitter.Listener() {
+					@Override
+					public void call(Object... args) {
+						callback.successCallback((JSONObject) args[0]);
+					}
+				}).on("createSpaceFailed", new Emitter.Listener() {
+					@Override
+					public void call(Object... args) {
+						callback.errorCallback((JSONObject) args[0]);
+					}
+				});
+	};
 
 	/**
 	 * This function is used to createThemeOnSpace in mimonode.
@@ -185,8 +222,8 @@ public class MimoNodeAPI {
 		try {
 			space.put("rootSpaceName", spaceName);
 			theme.put("owner", userName);
-			theme.put("pubers", userName);
-			theme.put("subSpaceName", themeName);
+			theme.put("pubers",userName);
+			theme.put("subSpaceName",themeName);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -203,36 +240,33 @@ public class MimoNodeAPI {
 					}
 				});
 	};
-
+/******************************************************************************************/
 	/**
-	 * This function is used to subscribeOnTheme in mimonode.
+	 * This function is used to subscribe in mimonode.
 	 * 
-	 * @param subscriberId
-	 *            , spaceId, themeId, attrName1, subValue11, attrName2,
-	 *            subValue21, subValue22, attrName3, subValue31, subValue32,
-	 *            callback.
+	 * @param rootSpaceName, subSpaceName, userName.
 	 * 
 	 * @see successCallback, errorCallback are supposed to Override in this
 	 *      callback.
 	 */
-	public void subscribeOnTheme(String userName, String spaceName,
-			String themeName, final Callback callback) {
+	public void subscribe(String userName, String rootSpaceName, 
+			String subSpaceName, final Callback callback) {
 
 		JSONObject data = new JSONObject();
 		try {
-			data.put("rootSpaceName", spaceName);
-			data.put("subSpaceName", themeName);
-			data.put("subscriber", userName);
+			data.put("rootSpaceName", rootSpaceName);
+			data.put("subSpaceName", subSpaceName);
+			data.put("suberName", userName);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		socket.emit("subscribeOnTheme", data)
-				.on("subscribeOnThemeSucceed", new Emitter.Listener() {
+		socket.emit("subscribe", data)
+				.on("subscribeSucceed", new Emitter.Listener() {
 					@Override
 					public void call(Object... args) {
 						callback.successCallback((JSONObject) args[0]);
 					}
-				}).on("subscribeOnThemeFailed", new Emitter.Listener() {
+				}).on("subscribeFailed", new Emitter.Listener() {
 					@Override
 					public void call(Object... args) {
 						callback.errorCallback((JSONObject) args[0]);
@@ -241,25 +275,57 @@ public class MimoNodeAPI {
 	};
 
 	/**
-	 * This function is used to publishOnTheme in mimonode.
+	 * This function is used to unsubscribe in mimonode.
 	 * 
-	 * @param publisherId
-	 *            , spaceId, themeId, secureLevel, msgType, content, attrName1,
-	 *            value11, attrName2, value2, attrName3, value3, callback.
+	 * @param rootSpaceName, subSpaceName, userName.
 	 * 
 	 * @see successCallback, errorCallback are supposed to Override in this
 	 *      callback.
 	 */
-	public void publishOnTheme(String nameofAPI, String numberofAPI,
-			String threadIDofAPI, String timeofAPI, String processID,
-			String IMEI, String contextofAPI, String FatherThreadIdofAPI,
-			String SonThreadIdofAPI, String resultofAPI,String packageNameofAPI,
-			String userName,	String spaceName, String themeName, final Callback callback) {
+	public void unsubscribe(String userName, String rootSpaceName, 
+			String subSpaceName, final Callback callback) {
 
 		JSONObject data = new JSONObject();
 		try {
-			data.put("rootSpaceName", spaceName);
-			data.put("subSpaceName", themeName);
+			data.put("rootSpaceName", rootSpaceName);
+			data.put("subSpaceName", subSpaceName);
+			data.put("suberName", userName);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		socket.emit("unsubscribe", data)
+				.on("unsubscribeSucceed", new Emitter.Listener() {
+					@Override
+					public void call(Object... args) {
+						callback.successCallback((JSONObject) args[0]);
+					}
+				}).on("unsubscribeFailed", new Emitter.Listener() {
+					@Override
+					public void call(Object... args) {
+						callback.errorCallback((JSONObject) args[0]);
+					}
+				});
+	};
+	
+	/**
+	 * This function is used to publish in mimonode.
+	 * 
+	 * @param rootSpaceName, subSpaceName, puber, sensorId, monitorContent, 
+	 * concentration, monitorTime.
+	 * 
+	 * @see successCallback, errorCallback are supposed to Override in this
+	 *      callback.
+	 */
+	public void publish(String rootSpaceName, String subSpaceName, 
+			String userName, String nameofAPI, String numberofAPI,
+			String threadIDofAPI, String timeofAPI, String processID,
+			String IMEI, String contextofAPI, String FatherThreadIdofAPI,
+			String SonThreadIdofAPI, String resultofAPI,String packageNameofAPI,final Callback callback) {
+
+		JSONObject data = new JSONObject();
+		try {
+			data.put("rootSpaceName", rootSpaceName);
+			data.put("subSpaceName", subSpaceName);
 			data.put("puber", userName);
 			data.put("nameofAPI", nameofAPI);
 			data.put("numberofAPI", numberofAPI);
@@ -275,16 +341,13 @@ public class MimoNodeAPI {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		Log.v(TAG, "发送json： " + data.toString());
-		socket.emit("publishOnTheme", data)
-				.on("publishOnThemeSucceed", new Emitter.Listener() {
+		socket.emit("publish", data)
+				.on("publishSucceed", new Emitter.Listener() {
 					@Override
 					public void call(Object... args) {
 						callback.successCallback((JSONObject) args[0]);
-						// System.out.println("publishOnTheme: " + (JSONObject)
-						// args[0]);
 					}
-				}).on("publishOnThemeFailed", new Emitter.Listener() {
+				}).on("publishFailed", new Emitter.Listener() {
 					@Override
 					public void call(Object... args) {
 						callback.errorCallback((JSONObject) args[0]);
@@ -292,18 +355,20 @@ public class MimoNodeAPI {
 				});
 	};
 	
-	public void publishOnTheme(JSONObject data, String userName, String spaceName, String themeName,  final Callback callback) {
+	public void publish(String rootSpaceName, String subSpaceName, 
+			String userName, JSONObject data, final Callback callback) {
 		try {
-			data.put("rootSpaceName", spaceName);
-			data.put("subSpaceName", themeName);
+			data.put("rootSpaceName", rootSpaceName);
+			data.put("subSpaceName", subSpaceName);
+			data.put("puber", userName);
 			data.put("puber", userName);		
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Log.v(TAG, "发送json： " + data.toString());
-		socket.emit("publishOnTheme", data)
-		.on("publishOnThemeSucceed", new Emitter.Listener() {
+		socket.emit("publish", data)
+		.on("publishSucceed", new Emitter.Listener() {
 			@Override
 			public void call(Object... args) {
 				callback.successCallback((JSONObject) args[0]);

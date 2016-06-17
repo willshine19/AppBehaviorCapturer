@@ -137,12 +137,11 @@ public class JsonSender {
 			+ processID + " " + IMEI);
 		// 上传json
 		Log.i(TAG1, "正在pubJSON数据");
-		mMimoNode.publishOnTheme(nameofAPI, numberofAPI, threadIDofAPI, timeofAPI, processID, IMEI, contextofAPI,
-			FatherThreadIdofAPI, SonThreadIdofAPI, resultofAPI, packageNameofAPI, USER_NAME, SPACE, THEME,
-			new Callback() {
+		mMimoNode.publish(SPACE, THEME, USER_NAME, nameofAPI, numberofAPI, threadIDofAPI, timeofAPI, processID, IMEI,
+			contextofAPI, FatherThreadIdofAPI, SonThreadIdofAPI, resultofAPI, packageNameofAPI, new Callback() {
 				@Override
 				public void successCallback(Object message) {
-					// Log.v(TAG2, "publish成功" );
+					Log.v(TAG2, "publish成功");
 					mSuccessFlag = true;
 				};
 
@@ -178,7 +177,7 @@ public class JsonSender {
 	 *            即将被发送的JSON对象
 	 */
 	public void publish(JSONObject jo) {
-		mMimoNode.publishOnTheme(jo, USER_NAME, SPACE, THEME,
+		mMimoNode.publish(SPACE, THEME,USER_NAME,jo,
 			new Callback() {
 				@Override
 				public void successCallback(Object message) {
@@ -197,7 +196,7 @@ public class JsonSender {
 	 */
 	public void subscribe() {
 		Log.i(TAG1, "****开始subscribe****");
-		mMimoNode.subscribeOnTheme(USER_NAME, SPACE,// spaceName
+		mMimoNode.subscribe(USER_NAME, SPACE,// spaceName
 			THEME,// themeName
 			new Callback() {
 				@Override

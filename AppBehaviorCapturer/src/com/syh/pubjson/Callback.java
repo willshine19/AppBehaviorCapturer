@@ -4,7 +4,7 @@ package com.syh.pubjson;
  * Abstract class to be subclassed by objects being passed as callbacks to
  * mimonode APIs Default implementation for all methods is blank
  *
- * @author mimonode
+ * @author xufei, zgwang
  *
  */
 public abstract class Callback {
